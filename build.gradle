@@ -9,7 +9,9 @@ repositories.maven {
 sourceSets {
     main {
         java {
-            srcDirs = ["lib", "standalone", "2017Gui"]
+            srcDirs = ["src/lib", 
+                       "src/standalone", 
+                       "src/2017Gui"]
         }
     }
 }
