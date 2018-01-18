@@ -120,6 +120,8 @@ public class LayerManager extends JPanel implements ILayerManager
         {
             Graphics2D graphics = (Graphics2D) g;
 
+            g.clearRect(0, 0, getWidth(), getHeight());
+
             for (ILayer layer : mLayers)
             {
                 layer.render(graphics);

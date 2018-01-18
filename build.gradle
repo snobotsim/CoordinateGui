@@ -1,5 +1,6 @@
 
 apply plugin: 'java'
+apply plugin: 'eclipse'
 
 repositories.maven {
     name = "WPI"
@@ -11,20 +12,14 @@ sourceSets {
         java {
             srcDirs = ["src/lib", 
                        "src/standalone", 
-                       "src/2017Gui"]
+                       "src/2017Gui", 
+                       "src/2018Gui"]
         }
     }
 }
 
 dependencies {
-    //compile 'edu.wpi.first.wpilib.networktables.java:networktables:3.1.7:desktop'
-    compile 'edu.wpi.first.wpilib.networktables.java:NetworkTables:3.1.7:desktop'
-    compile 'edu.wpi.first.wpilibj:athena:2017.3.1'
-    compile files('dependencies/RIOdroid.jar')
-    
-    //http://first.wpi.edu/FRC/roborio/maven/release/edu/wpi/first/wpilib/networktables/java/
-    //http://first.wpi.edu/FRC/roborio/maven/release/edu/wpi/first/wpilib/networktables/java/networktables/3.1.7/networktables-3.1.7-desktop.jar
-    
+
 }
 
 

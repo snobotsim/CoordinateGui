@@ -1,11 +1,18 @@
 package com.snobot.coordinate_gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-import com.snobot.coordinate_gui.steamworks.CoordinateGui2017;
+import com.snobot.coordinate_gui.model.Coordinate;
+import com.snobot.coordinate_gui.model.DataProvider;
+import com.snobot.coordinate_gui.powerup.CoordinateGui2018;
+import com.snobot.coordinate_gui.ui.layers.CreatePointsLayer;
 import com.snobot.coordinate_gui.ui.renderProps.CoordinateLayerRenderProps;
+import com.snobot.coordinate_gui.ui.renderProps.CreatePointsLayerRenderProps;
 import com.snobot.coordinate_gui.ui.renderProps.RobotLayerRenderProps;
 
 public class Main
@@ -16,17 +23,31 @@ public class Main
         CoordinateLayerRenderProps coordinateLayerRenderProps = new CoordinateLayerRenderProps();
         RobotLayerRenderProps robotLayerRenderProps = new RobotLayerRenderProps();
 
+        CreatePointsLayerRenderProps createTrajectoryLayerRenderProps = new CreatePointsLayerRenderProps();
+        DataProvider<Coordinate> createTrajectoryDataProvider = new DataProvider<>();
+        DataProvider<Coordinate> previewTrajectoryDataProvider = new DataProvider<>();
+
         trajectoryLayerRenderProps.setFadeOverTime(false);
         trajectoryLayerRenderProps.setPointSize(5);
         trajectoryLayerRenderProps.setPointMemory(-1);
         trajectoryLayerRenderProps.setPointColor(Color.red);
 
-        CoordinateGui2017 coordinateGuiPanel = new CoordinateGui2017(trajectoryLayerRenderProps, coordinateLayerRenderProps, robotLayerRenderProps);
+        CoordinateGui2018 coordinateGuiPanel = new CoordinateGui2018(trajectoryLayerRenderProps, coordinateLayerRenderProps, robotLayerRenderProps);
+
+        CreatePointsLayer createTrajectoryLayer = new CreatePointsLayer(coordinateGuiPanel.mLayerManager, createTrajectoryDataProvider,
+                previewTrajectoryDataProvider, createTrajectoryLayerRenderProps, coordinateGuiPanel.mConverter);
+
+        coordinateGuiPanel.mLayerManager.addLayer(createTrajectoryLayer);
+
+        JPanel configPanel = new JPanel();
+        configPanel.add(new TrajectoryGeneratorPanel(createTrajectoryDataProvider));
 
         JFrame frame = new JFrame();
-        frame.getContentPane().add(coordinateGuiPanel.getComponent());
-        frame.pack();
+        frame.add(coordinateGuiPanel.getComponent(), BorderLayout.CENTER);
+        frame.add(configPanel, BorderLayout.EAST);
         frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(new Dimension(400, 400));
     }
 
     public static void main(String[] args)

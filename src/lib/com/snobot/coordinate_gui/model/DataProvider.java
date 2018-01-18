@@ -3,13 +3,15 @@ package com.snobot.coordinate_gui.model;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 public class DataProvider<DataType>
 {
     public static final int sABSOLUTE_MAX_POINT_MEMORY = 1500; //50 updates/sec * 30 seconds
 
-    protected Deque<DataType> mCoordinates;
-    protected int mMaxPoints;
+    protected final List<DataProviderListener<DataType>> mDataListeners;
+    protected final Deque<DataType> mData;
+    protected final int mMaxPoints;
 
 
     public DataProvider()
@@ -24,41 +26,53 @@ public class DataProvider<DataType>
             throw new IndexOutOfBoundsException("Max memory (" + aMaxPoints + ") must be last than the absolute max (" + sABSOLUTE_MAX_POINT_MEMORY
                     + ")");
         }
-        mCoordinates = new LinkedList<>();
+
+        mDataListeners = new LinkedList<>();
+        mData = new LinkedList<>();
         mMaxPoints = aMaxPoints;
     }
 
-    public void addData(DataType aCoordinate)
+    public void addData(DataType aData)
     {
-        mCoordinates.add(aCoordinate);
+        mData.add(aData);
         trim();
+
+        for (DataProviderListener<DataType> listener : mDataListeners)
+        {
+            listener.onDataAdded(aData);
+        }
     }
 
     protected void trim()
     {
-        while (mCoordinates.size() > mMaxPoints)
+        while (mData.size() > mMaxPoints)
         {
-            mCoordinates.remove();
+            mData.remove();
         }
     }
 
     public DataType getMostRecentData()
     {
-        return mCoordinates.peekLast();
+        return mData.peekLast();
     }
 
     public Iterator<DataType> getReverseIterator()
     {
-        return mCoordinates.descendingIterator();
+        return mData.descendingIterator();
     }
 
     public Deque<DataType> getAllData()
     {
-        return mCoordinates;
+        return mData;
     }
 
     public void clear()
     {
-        mCoordinates.clear();
+        mData.clear();
+    }
+
+    public void addDataListener(DataProviderListener<DataType> aDataListener)
+    {
+        mDataListeners.add(aDataListener);
     }
 }
