@@ -33,7 +33,6 @@ public class BaseCoordinateGui
         {
             mCoordinateDataProvider.addData(aCoordinate);
         }
-        mLayerManager.repaint();
     }
 
     public ILayerManager getLayerManager()
