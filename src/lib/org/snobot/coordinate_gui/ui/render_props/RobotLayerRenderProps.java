@@ -1,4 +1,4 @@
-package org.snobot.coordinate_gui.ui.renderProps;
+package org.snobot.coordinate_gui.ui.render_props;
 
 import java.awt.Color;
 
@@ -8,6 +8,9 @@ public class RobotLayerRenderProps
     protected Color mReferencePointColor;
     protected Color mRobotColor;
 
+    /**
+     * Constructor.
+     */
     public RobotLayerRenderProps()
     {
         mDotSize = 3;

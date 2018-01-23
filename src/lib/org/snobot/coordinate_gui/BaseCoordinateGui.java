@@ -16,10 +16,18 @@ public class BaseCoordinateGui
 
     /**
      * "Mutex" to make sure data doesn't get added while we are iterating, like
-     * during rendering
+     * during rendering.
      */
     protected Object mDataLock = new Object();
 
+    /**
+     * Base class for the coordinate GUI.
+     * 
+     * @param aCenterPointX
+     *            THe center of the field, in feet
+     * @param aCenterPointY
+     *            The center of the field, in feet
+     */
     public BaseCoordinateGui(double aCenterPointX, double aCenterPointY)
     {
         mCoordinateDataProvider = new DataProvider<Coordinate>();
@@ -27,6 +35,12 @@ public class BaseCoordinateGui
         mLayerManager = new LayerManager(mConverter, mDataLock);
     }
 
+    /**
+     * Adds a coordinate to the data provider.
+     * 
+     * @param aCoordinate
+     *            The coordinate
+     */
     public void addCoordinate(Coordinate aCoordinate)
     {
         synchronized (mDataLock)
@@ -45,6 +59,9 @@ public class BaseCoordinateGui
         return mLayerManager;
     }
 
+    /**
+     * Clears the data out of the data provider.
+     */
     public void clearCoordinates()
     {
         synchronized (mDataLock)

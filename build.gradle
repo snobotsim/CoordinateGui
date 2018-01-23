@@ -1,10 +1,19 @@
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
 
-repositories.maven {
-    name = "WPI"
-    url = "http://first.wpi.edu/FRC/roborio/maven/release"
+repositories {
+    maven {
+        name = "WPI"
+        url = "http://first.wpi.edu/FRC/roborio/maven/release"
+    }
+    
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
 }
 
 sourceSets {
@@ -21,6 +30,32 @@ sourceSets {
 dependencies {
 
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+// Style/Formatting stuff
+checkstyle {
+    toolVersion = "8.1"
+    configFile = new File(rootDir, "styleguide/checkstyle.xml")
+}
+
+pmd {
+    consoleOutput  = true
+    reportsDir = file("${project.buildDir}/reports/pmd")
+    ruleSetFiles = files(file("styleguide/pmd-ruleset.xml"))
+    ruleSets = []
+}
+
+findbugs {
+    excludeFilter = file("styleguide/findbugs_suppressions.xml")
+    effort = "max"
+}
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////
 
 
 task wrapper(type: Wrapper) {

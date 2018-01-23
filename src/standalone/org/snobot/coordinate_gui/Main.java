@@ -11,11 +11,14 @@ import org.snobot.coordinate_gui.model.DataProvider;
 import org.snobot.coordinate_gui.powerup.CoordinateGui2018;
 import org.snobot.coordinate_gui.trajectory_gen.TrajectoryGeneratorPanel;
 import org.snobot.coordinate_gui.ui.layers.CreatePointsLayer;
-import org.snobot.coordinate_gui.ui.renderProps.CreatePointsLayerRenderProps;
+import org.snobot.coordinate_gui.ui.render_props.CreatePointsLayerRenderProps;
 
-public class Main
+public final class Main
 {
-    public Main()
+    /**
+     * Constructor.
+     */
+    private Main()
     {
         CreatePointsLayerRenderProps createTrajectoryLayerRenderProps = new CreatePointsLayerRenderProps();
         DataProvider<Coordinate> createTrajectoryDataProvider = new DataProvider<>();
@@ -39,7 +42,7 @@ public class Main
         frame.setSize(new Dimension(400, 400));
     }
 
-    public static void main(String[] args)
+    public static void main(String[] aArgs)
     {
         new Main();
     }

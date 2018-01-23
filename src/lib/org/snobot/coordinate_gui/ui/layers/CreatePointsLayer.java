@@ -7,7 +7,7 @@ import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
 import org.snobot.coordinate_gui.model.PixelConverter;
 import org.snobot.coordinate_gui.ui.layers.ILayerManager.IFieldClickListener;
-import org.snobot.coordinate_gui.ui.renderProps.CreatePointsLayerRenderProps;
+import org.snobot.coordinate_gui.ui.render_props.CreatePointsLayerRenderProps;
 
 public class CreatePointsLayer implements ILayer
 {
@@ -22,6 +22,20 @@ public class CreatePointsLayer implements ILayer
     private Coordinate mActiveCoordinate;
 
 
+    /**
+     * Constructor.
+     * 
+     * @param aLayerManager
+     *            THe layer manager
+     * @param aTrajConfigDataProvider
+     *            The data provider for the trajectory configs
+     * @param aTrajPreviewDataProvider
+     *            The data provider for the preview
+     * @param aRenderProperties
+     *            The render properties for the data provider
+     * @param aPixelConverter
+     *            The pixel converter
+     */
     public CreatePointsLayer(
             ILayerManager aLayerManager, 
             DataProvider<Coordinate> aTrajConfigDataProvider,
@@ -55,8 +69,8 @@ public class CreatePointsLayer implements ILayer
                 Coordinate lastCoord = mTrajectoryConfigDataProvider.getMostRecentData();
                 if (lastCoord != null)
                 {
-                    double dx = lastCoord.x - aXFeet;
-                    double dy = lastCoord.y - aYFeet;
+                    double dx = lastCoord.mX - aXFeet;
+                    double dy = lastCoord.mY - aYFeet;
                     double distance = Math.sqrt(dx * dx + dy * dy);
                     if (distance < mRenderProperties.getMinDragDistance())
                     {
@@ -97,11 +111,11 @@ public class CreatePointsLayer implements ILayer
 
         if (mRenderProperties.isSnapToGrid())
         {
-            double snapped_x = getSnappedX(aXFeet);
-            double snapped_y = getSnappedY(aYFeet);
-            double angle = mRenderProperties.getAngle(mTrajectoryConfigDataProvider.getMostRecentData(), snapped_x, snapped_y);
+            double snappedX = getSnappedX(aXFeet);
+            double snappedY = getSnappedY(aYFeet);
+            double angle = mRenderProperties.getAngle(mTrajectoryConfigDataProvider.getMostRecentData(), snappedX, snappedY);
 
-            output = new Coordinate(snapped_x, snapped_y, angle);
+            output = new Coordinate(snappedX, snappedY, angle);
         }
         else
         {
@@ -132,14 +146,14 @@ public class CreatePointsLayer implements ILayer
 
         if (mActiveCoordinate != null)
         {
-            int x = mPixelConverter.convertXFeetToPixels(mActiveCoordinate.x);
-            int y = mPixelConverter.convertYFeetToPixels(mActiveCoordinate.y);
-            int size = (mRenderProperties.getActivePointSize());
+            int x = mPixelConverter.convertXFeetToPixels(mActiveCoordinate.mX);
+            int y = mPixelConverter.convertYFeetToPixels(mActiveCoordinate.mY);
+            int size = mRenderProperties.getActivePointSize();
 
             aGraphics.setColor(mRenderProperties.getActivePointColor());
             aGraphics.fillOval(x - size / 2, y - size / 2, size, size);
             
-            String toDraw = String.format("%.02f, %.02f, %.02f", mActiveCoordinate.x, mActiveCoordinate.y, mActiveCoordinate.angle);
+            String toDraw = String.format("%.02f, %.02f, %.02f", mActiveCoordinate.mX, mActiveCoordinate.mY, mActiveCoordinate.mAngle);
 
             aGraphics.drawString(toDraw, x + 5, y - 5);
         }

@@ -24,38 +24,38 @@ public class LayerManager extends JPanel implements ILayerManager
     protected MouseAdapter mMouseListener = new MouseAdapter()
     {
         @Override
-        public void mouseClicked(MouseEvent e)
+        public void mouseClicked(MouseEvent aEvent)
         {
-            double x_feet = mConverter.convertXPixelsToFeet(e.getX());
-            double y_feet = mConverter.convertYPixelsToFeet(e.getY());
+            double xFeet = mConverter.convertXPixelsToFeet(aEvent.getX());
+            double yFeet = mConverter.convertYPixelsToFeet(aEvent.getY());
 
             for (IFieldClickListener listener : mFieldClickListeners)
             {
-                listener.onClicked(x_feet, y_feet);
+                listener.onClicked(xFeet, yFeet);
             }
         }
 
         @Override
-        public void mouseDragged(MouseEvent e)
+        public void mouseDragged(MouseEvent aEvent)
         {
-            double x_feet = mConverter.convertXPixelsToFeet(e.getX());
-            double y_feet = mConverter.convertYPixelsToFeet(e.getY());
+            double xFeet = mConverter.convertXPixelsToFeet(aEvent.getX());
+            double yFeet = mConverter.convertYPixelsToFeet(aEvent.getY());
 
             for (IFieldClickListener listener : mFieldClickListeners)
             {
-                listener.onDrag(x_feet, y_feet);
+                listener.onDrag(xFeet, yFeet);
             }
         }
 
         @Override
-        public void mouseMoved(MouseEvent e)
+        public void mouseMoved(MouseEvent aEvent)
         {
-            double x_feet = mConverter.convertXPixelsToFeet(e.getX());
-            double y_feet = mConverter.convertYPixelsToFeet(e.getY());
+            double xFeet = mConverter.convertXPixelsToFeet(aEvent.getX());
+            double yFeet = mConverter.convertYPixelsToFeet(aEvent.getY());
 
             for (IFieldClickListener listener : mFieldClickListeners)
             {
-                listener.onHover(x_feet, y_feet);
+                listener.onHover(xFeet, yFeet);
             }
         }
     };
@@ -63,13 +63,22 @@ public class LayerManager extends JPanel implements ILayerManager
     protected ComponentAdapter mResizeListener = new ComponentAdapter()
     {
         @Override
-        public void componentResized(ComponentEvent e)
+        public void componentResized(ComponentEvent aEvent)
         {
             mConverter.updateScaleFactor(getWidth(), getHeight(), 27, 54);
             repaint();
         }
     };
 
+    /**
+     * Constructor.
+     * 
+     * @param aConverter
+     *            The pixel converter used to translate swing coordinates to
+     *            real world distances
+     * @param aLock
+     *            Lock for data
+     */
     public LayerManager(PixelConverter aConverter, Object aLock)
     {
         mFieldClickListeners = new ArrayList<>();
@@ -114,13 +123,13 @@ public class LayerManager extends JPanel implements ILayerManager
     }
 
     @Override
-    public void paint(Graphics g)
+    public void paint(Graphics aGraphics)
     {
         synchronized (mLock)
         {
-            Graphics2D graphics = (Graphics2D) g;
+            Graphics2D graphics = (Graphics2D) aGraphics;
 
-            g.clearRect(0, 0, getWidth(), getHeight());
+            aGraphics.clearRect(0, 0, getWidth(), getHeight());
 
             for (ILayer layer : mLayers)
             {

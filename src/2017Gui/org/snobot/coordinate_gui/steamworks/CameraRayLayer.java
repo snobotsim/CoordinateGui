@@ -11,25 +11,11 @@ import org.snobot.coordinate_gui.ui.layers.ILayer;
 
 public class CameraRayLayer implements ILayer
 {
-    public static class Ray
-    {
-        public double mXStart;
-        public double mYStart;
-        public double mXEnd;
-        public double mYEnd;
-        public boolean mAmbiguous;
 
-        @Override
-        public String toString()
-        {
-            return "Ray [mXStart=" + mXStart + ", mYStart=" + mYStart + ", mXEnd=" + mXEnd + ", mYEnd=" + mYEnd + "]";
-        }
-    }
-
-    protected PixelConverter mPixelConverter;
-    private List<Ray> mRays;
-    private Color mUnambiguousRayColor = Color.green;
-    private Color mAmbiguousRayColor = Color.yellow;
+    protected final PixelConverter mPixelConverter;
+    private final Color mUnambiguousRayColor = Color.green;
+    private final Color mAmbiguousRayColor = Color.yellow;
+    private final List<Ray> mRays;
 
     public CameraRayLayer(PixelConverter aConverter)
     {
@@ -67,7 +53,23 @@ public class CameraRayLayer implements ILayer
 
     public void setRays(List<Ray> aRays)
     {
-        mRays = aRays;
+        mRays.clear();
+        mRays.addAll(aRays);
+    }
+
+    public static class Ray
+    {
+        public double mXStart;
+        public double mYStart;
+        public double mXEnd;
+        public double mYEnd;
+        public boolean mAmbiguous;
+
+        @Override
+        public String toString()
+        {
+            return "Ray [mXStart=" + mXStart + ", mYStart=" + mYStart + ", mXEnd=" + mXEnd + ", mYEnd=" + mYEnd + "]";
+        }
     }
 
 }

@@ -18,26 +18,30 @@ import org.snobot.coordinate_gui.model.DataProviderListener;
 
 public class TrajectoryGeneratorPanel extends JPanel
 {
-    private JButton mResetButton;
-    private JButton mSaveButton;
     private JTable mTable;
     private DefaultTableModel mTableModel;
 
-    public TrajectoryGeneratorPanel(DataProvider<Coordinate> coordinateDataProvider)
+    /**
+     * Constructor.
+     * 
+     * @param aCoordinateDataProvider
+     *            The data provider
+     */
+    public TrajectoryGeneratorPanel(DataProvider<Coordinate> aCoordinateDataProvider)
     {
         initComponents();
 
-        coordinateDataProvider.addDataListener(mDataListener);
+        aCoordinateDataProvider.addDataListener(mDataListener);
     }
 
     private void onSave()
     {
-
+        // TODO implement
     }
 
     private void onReset()
     {
-
+        // TODO implement
     }
 
     private void onRowSelected()
@@ -48,8 +52,6 @@ public class TrajectoryGeneratorPanel extends JPanel
     private void initComponents()
     {
         mTableModel = new DefaultTableModel(new Object[] {"X",  "Y", "Angle"}, 0);
-        mResetButton = new JButton("Reset");
-        mSaveButton = new JButton("Save");
         mTable = new JTable(mTableModel);
         mTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -57,26 +59,28 @@ public class TrajectoryGeneratorPanel extends JPanel
 
         JPanel buttonPanel = new JPanel();
 
-        buttonPanel.add(mSaveButton);
-        buttonPanel.add(mResetButton);
+        JButton resetButton = new JButton("Reset");
+        JButton saveButton = new JButton("Save");
+        buttonPanel.add(saveButton);
+        buttonPanel.add(resetButton);
         add(mTable, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
 
-        mSaveButton.addActionListener(new ActionListener()
+        saveButton.addActionListener(new ActionListener()
         {
 
             @Override
-            public void actionPerformed(ActionEvent arg0)
+            public void actionPerformed(ActionEvent aEvent)
             {
                 onSave();
             }
         });
 
-        mResetButton.addActionListener(new ActionListener()
+        resetButton.addActionListener(new ActionListener()
         {
 
             @Override
-            public void actionPerformed(ActionEvent arg0)
+            public void actionPerformed(ActionEvent aEvent)
             {
                 onReset();
             }
@@ -85,9 +89,9 @@ public class TrajectoryGeneratorPanel extends JPanel
         {
 
             @Override
-            public void valueChanged(ListSelectionEvent arg0)
+            public void valueChanged(ListSelectionEvent aEvent)
             {
-                if (!arg0.getValueIsAdjusting())
+                if (!aEvent.getValueIsAdjusting())
                 {
                     onRowSelected();
                 }
@@ -95,13 +99,13 @@ public class TrajectoryGeneratorPanel extends JPanel
         });
     }
 
-    private DataProviderListener<Coordinate> mDataListener = new DataProviderListener<Coordinate>()
+    private final DataProviderListener<Coordinate> mDataListener = new DataProviderListener<Coordinate>()
     {
 
         @Override
-        public void onDataAdded(Coordinate data)
+        public void onDataAdded(Coordinate aData)
         {
-            mTableModel.addRow(new Object[] {data.x, data.y, data.angle});
+            mTableModel.addRow(new Object[] {aData.mX, aData.mY, aData.mAngle});
         }
     };
 

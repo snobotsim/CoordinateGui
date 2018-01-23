@@ -1,4 +1,4 @@
-package org.snobot.coordinate_gui.ui.renderProps;
+package org.snobot.coordinate_gui.ui.render_props;
 
 import java.awt.Color;
 
@@ -12,14 +12,17 @@ public class CreatePointsLayerRenderProps
     }
 
     protected AngleCalculationType mAngleCalculationType;
-    private boolean mSnapToGrid;
-    private double mGridFactorX;
-    private double mGridFactorY;
-    private double mMinDragDistance;
+    private final boolean mSnapToGrid;
+    private final double mGridFactorX;
+    private final double mGridFactorY;
+    private final double mMinDragDistance;
 
-    private CoordinateLayerRenderProps mConfigRenderProperties;
-    private CoordinateLayerRenderProps mPreviewRenderProperties;
+    private final CoordinateLayerRenderProps mConfigRenderProperties;
+    private final CoordinateLayerRenderProps mPreviewRenderProperties;
 
+    /**
+     * Constructor.
+     */
     public CreatePointsLayerRenderProps()
     {
         mConfigRenderProperties = new CoordinateLayerRenderProps();
@@ -51,6 +54,17 @@ public class CreatePointsLayerRenderProps
         return Color.red;
     }
 
+    /**
+     * Gets the angle between the most recent point and the provided point.
+     * 
+     * @param aLastPoint
+     *            The last point
+     * @param aXFeet
+     *            The current coordinates X position, in feet
+     * @param aYFeet
+     *            The current coordinates Y position, in feet
+     * @return The angle between the points
+     */
     public double getAngle(Coordinate aLastPoint, double aXFeet, double aYFeet)
     {
         double output = 0;
@@ -64,8 +78,8 @@ public class CreatePointsLayerRenderProps
         {
             if (aLastPoint != null)
             {
-                double dx = aXFeet - aLastPoint.x;
-                double dy = aYFeet - aLastPoint.y;
+                double dx = aXFeet - aLastPoint.mX;
+                double dy = aYFeet - aLastPoint.mY;
                 output = Math.toDegrees(Math.atan2(dx, dy));
             }
             break;
@@ -75,6 +89,7 @@ public class CreatePointsLayerRenderProps
             break;
         default:
             System.err.println("Unknown angle calculation type " + mAngleCalculationType);
+            break;
         }
 
         return output;

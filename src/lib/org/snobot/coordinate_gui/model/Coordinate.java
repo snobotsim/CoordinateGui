@@ -6,14 +6,14 @@ package org.snobot.coordinate_gui.model;
  */
 public class Coordinate
 {
-    /** The x coordinate, in feet */
-    public double x;
+    /** The x coordinate, in feet. */
+    public double mX;
 
-    /** The y coordinate, in feet */
-    public double y;
+    /** The y coordinate, in feet. */
+    public double mY;
 
-    /** The angle of the coordinate, in degrees */
-    public double angle;
+    /** The angle of the coordinate, in degrees. */
+    public double mAngle;
 
     /**
      * Constructor.  Sets the (x,y,angle) position to all zeros
@@ -25,30 +25,30 @@ public class Coordinate
 
     /**
      * Copy constructor.  Copies the (x,y,angle) position from the given coordinate
-     * @param c The coordinate to copy
+     * @param aCopy The coordinate to copy
      */
-    public Coordinate(Coordinate c)
+    public Coordinate(Coordinate aCopy)
     {
-        this(c.x, c.y, c.angle);
+        this(aCopy.mX, aCopy.mY, aCopy.mAngle);
     }
 
     /**
      * Constructor.  Sets the (x,y,angle) to the given values
-     * @param x The x coordinate
-     * @param y The y coordinate
-     * @param angle The angle
+     * @param aX The x coordinate
+     * @param aY The y coordinate
+     * @param aAngle The angle
      */
-    public Coordinate(double x, double y, double angle)
+    public Coordinate(double aX, double aY, double aAngle)
     {
-        this.x = x;
-        this.y = y;
-        this.angle = angle;
+        this.mX = aX;
+        this.mY = aY;
+        this.mAngle = aAngle;
     }
 
     @Override
     public String toString()
     {
-        return "Coordinate{" + "x=" + x + ", y=" + y + ", angle=" + angle + '}';
+        return "Coordinate{" + "x=" + mX + ", y=" + mY + ", angle=" + mAngle + '}';
     }
 
 }

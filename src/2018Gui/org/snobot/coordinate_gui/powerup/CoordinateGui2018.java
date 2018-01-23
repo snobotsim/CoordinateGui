@@ -9,8 +9,8 @@ import org.snobot.coordinate_gui.model.DataProvider;
 import org.snobot.coordinate_gui.ui.layers.CoordinateLayer;
 import org.snobot.coordinate_gui.ui.layers.FieldImageLayer;
 import org.snobot.coordinate_gui.ui.layers.RobotLayer;
-import org.snobot.coordinate_gui.ui.renderProps.CoordinateLayerRenderProps;
-import org.snobot.coordinate_gui.ui.renderProps.RobotLayerRenderProps;
+import org.snobot.coordinate_gui.ui.render_props.CoordinateLayerRenderProps;
+import org.snobot.coordinate_gui.ui.render_props.RobotLayerRenderProps;
 
 public class CoordinateGui2018 extends BaseCoordinateGui
 {
@@ -33,20 +33,23 @@ public class CoordinateGui2018 extends BaseCoordinateGui
 
     protected RobotLayer mRobotLayer;
 
+    /**
+     * Constructor.
+     */
     public CoordinateGui2018()
     {
         super(CENTER_POINT_X, CENTER_POINT_Y);
 
         CoordinateLayerRenderProps trajectoryLayerRenderProps = new CoordinateLayerRenderProps();
-        CoordinateLayerRenderProps coordinateLayerRenderProps = new CoordinateLayerRenderProps();
-        RobotLayerRenderProps robotLayerRenderProps = new RobotLayerRenderProps();
-
         trajectoryLayerRenderProps.setFadeOverTime(false);
         trajectoryLayerRenderProps.setPointSize(5);
         trajectoryLayerRenderProps.setPointMemory(-1);
         trajectoryLayerRenderProps.setPointColor(Color.red);
 
         mTrajectoryDataProvider = new DataProvider<>();
+
+        CoordinateLayerRenderProps coordinateLayerRenderProps = new CoordinateLayerRenderProps();
+        RobotLayerRenderProps robotLayerRenderProps = new RobotLayerRenderProps();
 
         mFieldLayer = new FieldImageLayer(FIELD_IMAGE_PATH, mConverter, FIELD_WIDTH, FIELD_HEIGHT);
         mRobotLayer = new RobotLayer(mCoordinateDataProvider, robotLayerRenderProps, mConverter, ROBOT_WIDTH,
@@ -60,6 +63,12 @@ public class CoordinateGui2018 extends BaseCoordinateGui
         mLayerManager.addLayer(mTrajectoryLayer);
     }
 
+    /**
+     * Sets a trajectory path.
+     * 
+     * @param aSegments
+     *            The path
+     */
     public void setPath(List<Coordinate> aSegments)
     {
         synchronized (mDataLock)

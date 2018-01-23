@@ -9,7 +9,7 @@ import java.awt.geom.Rectangle2D;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
 import org.snobot.coordinate_gui.model.PixelConverter;
-import org.snobot.coordinate_gui.ui.renderProps.RobotLayerRenderProps;
+import org.snobot.coordinate_gui.ui.render_props.RobotLayerRenderProps;
 
 public class RobotLayer implements ILayer
 {
@@ -19,6 +19,20 @@ public class RobotLayer implements ILayer
     protected final double mRobotHeight;
     protected final RobotLayerRenderProps mRenderProperties;
 
+    /**
+     * Constructor.
+     * 
+     * @param aDataProvider
+     *            Data provider for robot coordinates
+     * @param aRenderProps
+     *            The render properties for the layer
+     * @param aPixelConverter
+     *            The pixel converter
+     * @param aRobotWidth
+     *            The widght of the robot, in inches
+     * @param aRobotHeight
+     *            The height of the robot, in inches
+     */
     public RobotLayer(DataProvider<Coordinate> aDataProvider, RobotLayerRenderProps aRenderProps, PixelConverter aPixelConverter, double aRobotWidth,
             double aRobotHeight)
     {
@@ -40,49 +54,49 @@ public class RobotLayer implements ILayer
         }
     }
 
-    protected void drawRobot(Graphics2D g, Coordinate c)
+    protected void drawRobot(Graphics2D aGraphics, Coordinate aCoordinates)
     {
-        double centerX = mPixelConverter.convertXFeetToPixels(c.x);
-        double centerY = mPixelConverter.convertYFeetToPixels(c.y);
+        double centerX = mPixelConverter.convertXFeetToPixels(aCoordinates.mX);
+        double centerY = mPixelConverter.convertYFeetToPixels(aCoordinates.mY);
 
         double widthInPixels = mPixelConverter.convertFeetToPixels(mRobotWidth);
         double heightInPixels = mPixelConverter.convertFeetToPixels(mRobotHeight);
 
-        double robotCenter_x = centerX - widthInPixels / 2;
-        double robotCenter_y = centerY - heightInPixels / 2;
+        double robotCenterX = centerX - widthInPixels / 2;
+        double robotCenterY = centerY - heightInPixels / 2;
 
         Rectangle2D robot = new Rectangle2D.Double(0, 0, widthInPixels, heightInPixels);
 
-        int pivotX = (int) (robotCenter_x + widthInPixels / 2);
-        int pivotY = (int) (robotCenter_y + heightInPixels / 2);
+        int pivotX = (int) (robotCenterX + widthInPixels / 2);
+        int pivotY = (int) (robotCenterY + heightInPixels / 2);
 
         AffineTransform transform = new AffineTransform();
-        transform.rotate(Math.toRadians(c.angle), pivotX, pivotY);
-        transform.translate(robotCenter_x, robotCenter_y);
+        transform.rotate(Math.toRadians(aCoordinates.mAngle), pivotX, pivotY);
+        transform.translate(robotCenterX, robotCenterY);
 
         Shape shape = transform.createTransformedShape(robot);
-        g.setColor(mRenderProperties.getRobotColor());
-        g.fill(shape);
+        aGraphics.setColor(mRenderProperties.getRobotColor());
+        aGraphics.fill(shape);
     }
 
-    protected void drawReferencePoint(Graphics2D g, Coordinate c)
+    protected void drawReferencePoint(Graphics2D aGraphics, Coordinate aCoordinate)
     {
-        double centerX = mPixelConverter.convertXFeetToPixels(c.x);
-        double centerY = mPixelConverter.convertYFeetToPixels(c.y);
+        double centerX = mPixelConverter.convertXFeetToPixels(aCoordinate.mX);
+        double centerY = mPixelConverter.convertYFeetToPixels(aCoordinate.mY);
         double heightInPixels = mPixelConverter.convertFeetToPixels(mRobotHeight);
 
         double halfRobotHeight = heightInPixels / 2;
 
-        double dx = halfRobotHeight * Math.sin(Math.toRadians(c.angle));
-        double dy = halfRobotHeight * Math.cos(Math.toRadians(c.angle));
+        double dx = halfRobotHeight * Math.sin(Math.toRadians(aCoordinate.mAngle));
+        double dy = halfRobotHeight * Math.cos(Math.toRadians(aCoordinate.mAngle));
 
         int dotSize = mRenderProperties.getReferencePointSize();
 
-        int pointX = (int) (centerX + dx - dotSize / 2);
-        int pointY = (int) (centerY - dy - dotSize / 2);
+        int pointX = (int) (centerX + dx - dotSize / 2.0);
+        int pointY = (int) (centerY - dy - dotSize / 2.0);
 
-        g.setColor(mRenderProperties.getReferencePointColor());
-        g.fillOval(pointX, pointY, dotSize, dotSize);
+        aGraphics.setColor(mRenderProperties.getReferencePointColor());
+        aGraphics.fillOval(pointX, pointY, dotSize, dotSize);
     }
 
     @Override

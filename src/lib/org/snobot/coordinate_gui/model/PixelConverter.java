@@ -45,14 +45,26 @@ public class PixelConverter
         return mYCenterFeet - convertPixelsToFeet(aY);
     }
 
-    public void updateScaleFactor(int widthPixels, int heightPixels, double widthFeet, double heightFeet)
+    /**
+     * Updates the scale factor, based on the size of the window.
+     * 
+     * @param aWidthPixels
+     *            The width of the panel, in pixels
+     * @param aHeightPixels
+     *            The height of the panel, in pixels
+     * @param aWidthFeet
+     *            The width of the field, in feet
+     * @param aHeightFeet
+     *            The height of the field, in feet
+     */
+    public void updateScaleFactor(int aWidthPixels, int aHeightPixels, double aWidthFeet, double aHeightFeet)
     {
-        double horizontalScaleFactor = (widthPixels / widthFeet);
-        double verticalScaleFactor = (heightPixels / heightFeet);
+        double horizontalScaleFactor = aWidthPixels / aWidthFeet;
+        double verticalScaleFactor = aHeightPixels / aHeightFeet;
 
         double minScaleFactor = Math.min(horizontalScaleFactor, verticalScaleFactor);
 
         mScaleFactor = minScaleFactor;
-        mXCenterPixels = (int) (widthFeet * mScaleFactor);
+        mXCenterPixels = (int) (aWidthFeet * mScaleFactor);
     }
 }

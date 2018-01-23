@@ -19,6 +19,12 @@ public class DataProvider<DataType>
         this(sABSOLUTE_MAX_POINT_MEMORY);
     }
 
+    /**
+     * Constructor.
+     * 
+     * @param aMaxPoints
+     *            The absolute max number of points to hold on to
+     */
     public DataProvider(int aMaxPoints)
     {
         if (aMaxPoints > sABSOLUTE_MAX_POINT_MEMORY)
@@ -32,6 +38,12 @@ public class DataProvider<DataType>
         mMaxPoints = aMaxPoints;
     }
 
+    /**
+     * Adds data to the collection. Will trim the back if necessary
+     * 
+     * @param aData
+     *            The new data
+     */
     public void addData(DataType aData)
     {
         mData.add(aData);

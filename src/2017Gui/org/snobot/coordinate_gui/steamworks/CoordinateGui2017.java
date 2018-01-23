@@ -9,8 +9,8 @@ import org.snobot.coordinate_gui.steamworks.CameraRayLayer.Ray;
 import org.snobot.coordinate_gui.ui.layers.CoordinateLayer;
 import org.snobot.coordinate_gui.ui.layers.FieldImageLayer;
 import org.snobot.coordinate_gui.ui.layers.RobotLayer;
-import org.snobot.coordinate_gui.ui.renderProps.CoordinateLayerRenderProps;
-import org.snobot.coordinate_gui.ui.renderProps.RobotLayerRenderProps;
+import org.snobot.coordinate_gui.ui.render_props.CoordinateLayerRenderProps;
+import org.snobot.coordinate_gui.ui.render_props.RobotLayerRenderProps;
 
 public class CoordinateGui2017 extends BaseCoordinateGui
 {
@@ -34,6 +34,16 @@ public class CoordinateGui2017 extends BaseCoordinateGui
 
     protected RobotLayer mRobotLayer;
 
+    /**
+     * Constructor.
+     * 
+     * @param aTrajectoryLayerRenderProps
+     *            The render properties for trajectories
+     * @param aCoordinateLayerRenderProps
+     *            The render properties for coordinates
+     * @param aRobotLayerRenderProps
+     *            The render properties for the robot layer
+     */
     public CoordinateGui2017(
             CoordinateLayerRenderProps aTrajectoryLayerRenderProps, 
             CoordinateLayerRenderProps aCoordinateLayerRenderProps, 
@@ -57,6 +67,12 @@ public class CoordinateGui2017 extends BaseCoordinateGui
         mLayerManager.addLayer(mTrajectoryLayer);
     }
 
+    /**
+     * Sets a trajectory path.
+     * 
+     * @param aSegments
+     *            The path
+     */
     public void setPath(List<Coordinate> aSegments)
     {
         synchronized (mDataLock)
@@ -70,6 +86,12 @@ public class CoordinateGui2017 extends BaseCoordinateGui
         mLayerManager.repaint();
     }
 
+    /**
+     * Sets the rays seen by the camera.
+     * 
+     * @param aRays
+     *            The rays
+     */
     public void setRays(List<Ray> aRays)
     {
         mRayLayer.setRays(aRays);

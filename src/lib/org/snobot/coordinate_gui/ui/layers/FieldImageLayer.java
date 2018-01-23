@@ -17,6 +17,18 @@ public class FieldImageLayer implements ILayer
     protected double mFieldWidth;
     protected double mFieldHeight;
 
+    /**
+     * Constructor.
+     * 
+     * @param aImagePath
+     *            The resource name for the image to load
+     * @param aPixelConverter
+     *            The pixel converter
+     * @param aFieldWidth
+     *            The field width, in feet
+     * @param aFieldHeight
+     *            The field height, in feet
+     */
     public FieldImageLayer(String aImagePath, PixelConverter aPixelConverter, double aFieldWidth, double aFieldHeight)
     {
         readFieldImage(aImagePath);
@@ -35,22 +47,22 @@ public class FieldImageLayer implements ILayer
             InputStream in = getClass().getResourceAsStream(aImagePath);
 
             // Image exists
-            if (in != null)
+            if (in == null)
             {
-                mFieldImage = ImageIO.read(in);
-
-                if (mFieldImage != null)
-                {
-                    mPreferredSize = new Dimension(mFieldImage.getWidth(), mFieldImage.getHeight());
-                }
-                else
-                {
-                    System.out.println("Could not open image file : '" + aImagePath + "'");
-                }
+                System.out.println("Could not find image file : '" + aImagePath + "'");
             }
             else
             {
-                System.out.println("Could not find image file : '" + aImagePath + "'");
+                mFieldImage = ImageIO.read(in);
+
+                if (mFieldImage == null)
+                {
+                    System.out.println("Could not open image file : '" + aImagePath + "'");
+                }
+                else
+                {
+                    mPreferredSize = new Dimension(mFieldImage.getWidth(), mFieldImage.getHeight());
+                }
             }
         }
         catch (Exception ex)

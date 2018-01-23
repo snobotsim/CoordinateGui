@@ -8,7 +8,7 @@ import java.util.Iterator;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
 import org.snobot.coordinate_gui.model.PixelConverter;
-import org.snobot.coordinate_gui.ui.renderProps.CoordinateLayerRenderProps;
+import org.snobot.coordinate_gui.ui.render_props.CoordinateLayerRenderProps;
 
 public class CoordinateLayer implements ILayer
 {
@@ -16,6 +16,16 @@ public class CoordinateLayer implements ILayer
     protected final PixelConverter mPixelConverter;
     protected final CoordinateLayerRenderProps mRenderProperties;
 
+    /**
+     * Standard coordinate layer.
+     * 
+     * @param aDataProvider
+     *            The data provider for the coordinates
+     * @param aRenderProps
+     *            The render properties for standard coordinates
+     * @param aPixelConverter
+     *            The pixel converter
+     */
     public CoordinateLayer(DataProvider<Coordinate> aDataProvider, CoordinateLayerRenderProps aRenderProps, PixelConverter aPixelConverter)
     {
         mDataProvider = aDataProvider;
@@ -29,28 +39,27 @@ public class CoordinateLayer implements ILayer
         renderCoordinates(aGraphics, mDataProvider, mRenderProperties);
     }
 
-    protected void renderCoordinates(Graphics2D aGraphics, DataProvider<Coordinate> dataProvider, CoordinateLayerRenderProps renderProperties)
+    protected void renderCoordinates(Graphics2D aGraphics, DataProvider<Coordinate> aDataProvider, CoordinateLayerRenderProps aRenderProperties)
     {
-        Iterator<Coordinate> rev_iterator = dataProvider.getReverseIterator();
+        Iterator<Coordinate> revIterator = aDataProvider.getReverseIterator();
         int coordinateCtr = 0;
 
-        while (rev_iterator.hasNext())
+        while (revIterator.hasNext())
         {
-            int pointMemory = renderProperties.getPointMemory();
+            int pointMemory = aRenderProperties.getPointMemory();
             if (pointMemory != -1 && coordinateCtr >= pointMemory)
             {
                 break;
             }
 
-            Coordinate coord = rev_iterator.next();
 
             float opacity = 1.0f - ((float) coordinateCtr / pointMemory);
             opacity = Math.min(1, opacity);
             opacity = Math.max(0, opacity);
-            Color defaultColor = renderProperties.getPointColor();
+            Color defaultColor = aRenderProperties.getPointColor();
             Color color;
 
-            if (renderProperties.isFadeOverTime())
+            if (aRenderProperties.isFadeOverTime())
             {
                 color = new Color(defaultColor.getRed() / 255.0f, defaultColor.getGreen() / 255.0f, defaultColor.getBlue() / 255.0f, opacity);
             }
@@ -59,7 +68,8 @@ public class CoordinateLayer implements ILayer
                 color = defaultColor;
             }
 
-            paintCoordinate(aGraphics, coord, color, renderProperties.getPointSize());
+            Coordinate coord = revIterator.next();
+            paintCoordinate(aGraphics, coord, color, aRenderProperties.getPointSize());
             ++coordinateCtr;
         }
     }
@@ -68,8 +78,8 @@ public class CoordinateLayer implements ILayer
     {
         if (aCoordinate != null)
         {
-            int x = mPixelConverter.convertXFeetToPixels(aCoordinate.x);
-            int y = mPixelConverter.convertYFeetToPixels(aCoordinate.y);
+            int x = mPixelConverter.convertXFeetToPixels(aCoordinate.mX);
+            int y = mPixelConverter.convertYFeetToPixels(aCoordinate.mY);
 
             aGraphics.setColor(aColor);
             aGraphics.fillOval(x - aSize / 2, y - aSize / 2, aSize, aSize);

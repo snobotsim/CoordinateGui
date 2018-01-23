@@ -1,4 +1,4 @@
-package org.snobot.coordinate_gui.ui.renderProps;
+package org.snobot.coordinate_gui.ui.render_props;
 
 import java.awt.Color;
 
@@ -10,6 +10,9 @@ public class CoordinateLayerRenderProps
     protected Color mColor;
     protected boolean mFadeOverTime;
 
+    /**
+     * Constructor.
+     */
     public CoordinateLayerRenderProps()
     {
         mSize = 10;
@@ -38,24 +41,24 @@ public class CoordinateLayerRenderProps
         return mSize;
     }
 
-    public void setPointSize(int mSize)
+    public void setPointSize(int aSize)
     {
-        this.mSize = mSize;
+        this.mSize = aSize;
     }
 
-    public void setPointMemory(int mPointMemory)
+    public void setPointMemory(int aPointMemory)
     {
-        this.mPointMemory = mPointMemory;
+        this.mPointMemory = aPointMemory;
     }
 
-    public void setPointColor(Color mColor)
+    public void setPointColor(Color aColor)
     {
-        this.mColor = mColor;
+        this.mColor = aColor;
     }
 
-    public void setFadeOverTime(boolean mFadeOverTime)
+    public void setFadeOverTime(boolean aFadeOverTime)
     {
-        this.mFadeOverTime = mFadeOverTime;
+        this.mFadeOverTime = aFadeOverTime;
     }
 
 }
