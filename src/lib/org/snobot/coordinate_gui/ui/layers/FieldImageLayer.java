@@ -7,10 +7,14 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.snobot.coordinate_gui.model.PixelConverter;
 
 public class FieldImageLayer implements ILayer
 {
+    private static final Logger sLOGGER = Logger.getLogger(FieldImageLayer.class);
+
     protected BufferedImage mFieldImage;
     protected PixelConverter mPixelConverter;
     protected Dimension mPreferredSize;
@@ -49,7 +53,7 @@ public class FieldImageLayer implements ILayer
             // Image exists
             if (in == null)
             {
-                System.out.println("Could not find image file : '" + aImagePath + "'");
+                sLOGGER.log(Level.ERROR, "Could not find image file : '" + aImagePath + "'");
             }
             else
             {
@@ -57,7 +61,7 @@ public class FieldImageLayer implements ILayer
 
                 if (mFieldImage == null)
                 {
-                    System.out.println("Could not open image file : '" + aImagePath + "'");
+                    sLOGGER.log(Level.ERROR, "Could not find image file : '" + aImagePath + "'");
                 }
                 else
                 {
@@ -67,7 +71,7 @@ public class FieldImageLayer implements ILayer
         }
         catch (Exception ex)
         {
-            System.err.println(ex);
+            sLOGGER.log(Level.ERROR, ex);
         }
     }
 

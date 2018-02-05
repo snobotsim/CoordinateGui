@@ -2,10 +2,14 @@ package org.snobot.coordinate_gui.ui.render_props;
 
 import java.awt.Color;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.snobot.coordinate_gui.model.Coordinate;
 
 public class CreatePointsLayerRenderProps
 {
+    private static final Logger sLOGGER = Logger.getLogger(CreatePointsLayerRenderProps.class);
+
     public enum AngleCalculationType
     {
         Zero, Calculate, Custom
@@ -40,7 +44,7 @@ public class CreatePointsLayerRenderProps
         mSnapToGrid = true;
         mGridFactorX = .25;
         mGridFactorY = .25;
-        mMinDragDistance = .25;
+        mMinDragDistance = 2.5;
         mAngleCalculationType = AngleCalculationType.Calculate;
     }
 
@@ -88,7 +92,7 @@ public class CreatePointsLayerRenderProps
             output = 90;
             break;
         default:
-            System.err.println("Unknown angle calculation type " + mAngleCalculationType);
+            sLOGGER.log(Level.ERROR, "Unknown angle calculation type " + mAngleCalculationType);
             break;
         }
 

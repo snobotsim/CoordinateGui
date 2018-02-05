@@ -50,5 +50,7 @@ public class Coordinate
     {
         return "Coordinate{" + "x=" + mX + ", y=" + mY + ", angle=" + mAngle + '}';
     }
+    
+    
 
 }

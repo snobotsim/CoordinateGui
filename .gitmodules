@@ -1,0 +1,3 @@
+[submodule "SnobotRobotLibs"]
+	path = SnobotRobotLibs
+	url = https://github.com/ArcticWarriors/SnobotRobotLibs.git

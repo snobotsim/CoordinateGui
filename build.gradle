@@ -1,6 +1,7 @@
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'application'
 apply plugin: 'checkstyle'
 apply plugin: 'pmd'
 apply plugin: 'findbugs'
@@ -20,15 +21,42 @@ sourceSets {
     main {
         java {
             srcDirs = ["src/lib", 
-                       "src/standalone", 
+                       "src/BaseYearSpecificGui", 
                        "src/2017Gui", 
-                       "src/2018Gui"]
+                       "src/2018Gui", 
+                       
+                       "src/standalone", 
+                       "SnobotRobotLibs/CheesyPoofsLibs"]
         }
     }
 }
 
 dependencies {
+    compile 'log4j:log4j:1.2.16'
+    compile 'org.yaml:snakeyaml:1.18'
+}
 
+///////////////////////////////////////////////////////////
+// Build Application
+mainClassName = "org.snobot.coordinate_gui.Main"
+
+jar {
+   from("${rootDir}/src/standalone") {
+      include  '**/*.properties'
+   }
+   from("src/2018Gui/") {
+      include  "**/*.png"
+   }
+   from("src/2017Gui/") {
+      include  "**/*.png"
+   }
+   from("src/lib/") {
+      include  "**/*.png"
+   }
+}
+
+tasks.withType(Jar) {
+  includeEmptyDirs = false
 }
 
 /////////////////////////////////////////////////////////////////////////////////
