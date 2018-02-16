@@ -4,12 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import org.apache.log4j.PropertyConfigurator;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
-import org.snobot.coordinate_gui.steamworks.CoordinateGui2017;
+import org.snobot.coordinate_gui.powerup.CoordinateGui2018;
+import org.snobot.coordinate_gui.trajectory_gen.BulkGenerateAction;
 import org.snobot.coordinate_gui.trajectory_gen.TrajectoryGeneratorPanel;
 import org.snobot.coordinate_gui.ui.layers.CreatePointsLayer;
 import org.snobot.coordinate_gui.ui.render_props.CreatePointsLayerRenderProps;
@@ -21,12 +24,12 @@ public final class Main
      */
     private Main()
     {
-        PropertyConfigurator.configure(Main.class.getClassLoader().getResource("org/snobot/coordinate_gui/log4j.properties"));
-
         CreatePointsLayerRenderProps createTrajectoryLayerRenderProps = new CreatePointsLayerRenderProps();
         DataProvider<Coordinate> previewTrajectoryDataProvider = new DataProvider<>();
 
-        BaseYearSpecificGui coordinateGuiPanel = new CoordinateGui2017();
+        GuiProperties properties = new GuiProperties();
+        BaseYearSpecificGui coordinateGuiPanel = new CoordinateGui2018();
+        double robotWheelBase = 12; // inches
 
         CreatePointsLayer createTrajectoryLayer = new CreatePointsLayer(coordinateGuiPanel.mLayerManager,
                 coordinateGuiPanel.getTrajectoryWaypointDataProvider(),
@@ -35,7 +38,8 @@ public final class Main
         coordinateGuiPanel.mLayerManager.addLayer(createTrajectoryLayer);
 
         JPanel configPanel = new JPanel();
-        configPanel.add(new TrajectoryGeneratorPanel(coordinateGuiPanel.mLayerManager, coordinateGuiPanel.getTrajectoryWaypointDataProvider()));
+        configPanel.add(new TrajectoryGeneratorPanel(properties, coordinateGuiPanel.mLayerManager,
+                coordinateGuiPanel.getTrajectoryWaypointDataProvider(), coordinateGuiPanel.getTrajectoryDataProvider(), robotWheelBase));
 
         JFrame frame = new JFrame();
         frame.add(coordinateGuiPanel.getComponent(), BorderLayout.CENTER);
@@ -43,6 +47,14 @@ public final class Main
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(new Dimension(800, 800));
+
+        JMenuBar menuBar = new JMenuBar();
+        JMenu generateMenu = new JMenu("Bulk Generate");
+        JMenuItem generateItem = new JMenuItem(new BulkGenerateAction(properties, robotWheelBase));
+        generateMenu.add(generateItem);
+        menuBar.add(generateMenu);
+
+        frame.setJMenuBar(menuBar);
     }
 
     public static void main(String[] aArgs)

@@ -4,14 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -24,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.snobot.coordinate_gui.GuiProperties;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
 import org.snobot.coordinate_gui.model.DataProviderListener;
@@ -32,6 +30,7 @@ import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
 import com.team254.lib.trajectory.Path;
+import com.team254.lib.trajectory.Trajectory;
 import com.team254.lib.trajectory.Waypoint;
 import com.team254.lib.trajectory.gen.SnobotTrajectoryGen;
 import com.team254.lib.trajectory.gen.TrajectoryGenerator.Config;
@@ -39,73 +38,38 @@ import com.team254.lib.trajectory.gen.TrajectoryGenerator.Config;
 public class TrajectoryGeneratorPanel extends JPanel
 {
     private static final Logger sLOGGER = Logger.getLogger(TrajectoryGeneratorPanel.class);
-    private static final String sSTANDALONE_PROPERTIES_FILE = "standalone.properties";
-    private static final String sDEFAULT_CONFIG_DIRECTORY_PROP = "config_directory";
-    private static final String sDEFAULT_TRAJECTORY_DIRECTORY_PROP = "trajectory_directory";
 
     private TrajectoryConfigPanel mConfigPanel;
     private JTable mTable;
     private DefaultTableModel mTableModel;
     private final DataProvider<Coordinate> mCoordinateDataProvider;
+    private final DataProvider<Coordinate> mTrajectoryDataProvider;
     private final LayerManager mLayerManager;
+    private final double mWheelbaseWidth; // Should be consistant with waypoint
+                                          // numbers
 
-    private final Properties mDefaultProperties;
+    private final GuiProperties mGuiProperties;
 
     /**
      * Constructor.
      * 
      * @param aCoordinateDataProvider
-     *            The data provider.
+     *            The data provider for coordinates.
+     * @param aTrajectoryDataProvider
+     *            The data provider for the full trajectory
      */
-    public TrajectoryGeneratorPanel(LayerManager aLayerManager, DataProvider<Coordinate> aCoordinateDataProvider)
+    public TrajectoryGeneratorPanel(GuiProperties aGuiProperties, LayerManager aLayerManager, DataProvider<Coordinate> aCoordinateDataProvider,
+            DataProvider<Coordinate> aTrajectoryDataProvider, double aWheelbaseWidth)
     {
         initComponents();
 
-        mDefaultProperties = loadProperties();
-        saveProperties();
+        mWheelbaseWidth = aWheelbaseWidth;
+        mGuiProperties = aGuiProperties;
 
         mCoordinateDataProvider = aCoordinateDataProvider;
+        mTrajectoryDataProvider = aTrajectoryDataProvider;
         mLayerManager = aLayerManager;
         mCoordinateDataProvider.addDataListener(mDataListener);
-    }
-
-    private Properties loadProperties()
-    {
-        Properties output = new Properties();
-        try (FileReader fileReader = new FileReader(sSTANDALONE_PROPERTIES_FILE))
-        {
-            output.load(fileReader);
-        }
-        catch (Exception ex)
-        {
-            sLOGGER.log(Level.ERROR, ex);
-        }
-
-        return output;
-    }
-
-    private void saveProperties()
-    {
-        try (FileOutputStream outputStream = new FileOutputStream(new File(sSTANDALONE_PROPERTIES_FILE)))
-        {
-            mDefaultProperties.store(outputStream, "Properties");
-        }
-        catch (Exception ex)
-        {
-            sLOGGER.log(Level.ERROR, ex);
-        }
-    }
-
-    private void updateDefaultConfigPath(File aSelectedFile)
-    {
-        mDefaultProperties.setProperty(sDEFAULT_CONFIG_DIRECTORY_PROP, aSelectedFile.getParent());
-        saveProperties();
-    }
-
-    private void updateDefaultTrajectoryPath(File aSelectedFile)
-    {
-        mDefaultProperties.setProperty(sDEFAULT_TRAJECTORY_DIRECTORY_PROP, aSelectedFile.getParent());
-        saveProperties();
     }
 
     /**
@@ -114,7 +78,7 @@ public class TrajectoryGeneratorPanel extends JPanel
     private void onSave()
     {
         JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new File(mDefaultProperties.getProperty(sDEFAULT_CONFIG_DIRECTORY_PROP, ".")));
+        chooser.setCurrentDirectory(new File(mGuiProperties.getTrajectoryConfigDirectory()));
         chooser.setDialogTitle("");
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
@@ -125,7 +89,7 @@ public class TrajectoryGeneratorPanel extends JPanel
         {
             File selectedFile = chooser.getSelectedFile();
             writeFile(selectedFile.getAbsolutePath());
-            updateDefaultConfigPath(selectedFile);
+            mGuiProperties.setTrajectoryConfigDirectory(selectedFile);
         }
     }
 
@@ -135,7 +99,7 @@ public class TrajectoryGeneratorPanel extends JPanel
     private void onLoad()
     {
         JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new File(mDefaultProperties.getProperty(sDEFAULT_CONFIG_DIRECTORY_PROP, ".")));
+        chooser.setCurrentDirectory(new File(mGuiProperties.getTrajectoryConfigDirectory()));
         chooser.setDialogTitle("");
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
@@ -146,7 +110,7 @@ public class TrajectoryGeneratorPanel extends JPanel
         {
             File selectedFile = chooser.getSelectedFile();
             loadFile(selectedFile.getAbsolutePath());
-            updateDefaultConfigPath(selectedFile);
+            mGuiProperties.setTrajectoryConfigDirectory(selectedFile);
         }
     }
 
@@ -174,24 +138,15 @@ public class TrajectoryGeneratorPanel extends JPanel
     private void loadFile(String aPath)
     {
         onReset();
-        try (FileReader fileReader = new FileReader(aPath))
+
+        TrajectoryConfigLoader configLoader = new TrajectoryConfigLoader();
+        configLoader.loadFile(aPath);
+
+        mConfigPanel.setConfig(configLoader.getConfig());
+
+        for (Coordinate coord : configLoader.getCoordinates())
         {
-            Yaml yaml = new Yaml();
-            Map<String, Object> config = (Map<String, Object>) yaml.load(fileReader);
-
-            Config trajectoryConfig = (Config) config.get("config");
-            List<Coordinate> coordinates = (List<Coordinate>) config.get("waypoints");
-
-            mConfigPanel.setConfig(trajectoryConfig);
-
-            for (Coordinate coord : coordinates)
-            {
-                mCoordinateDataProvider.addData(coord);
-            }
-        }
-        catch (Exception ex)
-        {
-            sLOGGER.log(Level.ERROR, ex);
+            mCoordinateDataProvider.addData(coord);
         }
 
         mLayerManager.render();
@@ -203,6 +158,7 @@ public class TrajectoryGeneratorPanel extends JPanel
     private void onReset()
     {
         mCoordinateDataProvider.clear();
+        mTrajectoryDataProvider.clear();
         mLayerManager.render();
 
         while (mTableModel.getRowCount() > 0)
@@ -230,7 +186,7 @@ public class TrajectoryGeneratorPanel extends JPanel
     private void onGenerate()
     {
         JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new File(mDefaultProperties.getProperty(sDEFAULT_TRAJECTORY_DIRECTORY_PROP, ".")));
+        chooser.setCurrentDirectory(new File(mGuiProperties.getTrajectoryDumpPathDirectory()));
         chooser.setDialogTitle("");
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
@@ -249,10 +205,25 @@ public class TrajectoryGeneratorPanel extends JPanel
             }
 
             File selectedFile = chooser.getSelectedFile();
-            Path path = gen.generate(config, waypointSequence, selectedFile, "GeneratedTrajectory", 12);
+            Path path = gen.generate(config, waypointSequence, selectedFile, "GeneratedTrajectory", mWheelbaseWidth);
+            plotTrajectory(path);
             sLOGGER.log(Level.INFO, "Trajectory will take " + path.getLeftWheelTrajectory().getNumSegments() * config.dt + " seconds to complete");
 
-            updateDefaultTrajectoryPath(selectedFile);
+            mGuiProperties.setTrajectoryDumpPath(selectedFile);
+        }
+    }
+
+    private void plotTrajectory(Path aPath)
+    {
+        Trajectory left = aPath.getLeftWheelTrajectory();
+        Trajectory right = aPath.getRightWheelTrajectory();
+
+        for (int i = 0; i < left.getNumSegments(); ++i)
+        {
+            double averageX = (left.getSegment(i).y + right.getSegment(i).y) / 2;
+            double averageY = (left.getSegment(i).x + right.getSegment(i).x) / 2;
+
+            mTrajectoryDataProvider.addData(new Coordinate(averageX / 12.0, averageY / 12.0, right.getSegment(i).heading));
         }
     }
 
