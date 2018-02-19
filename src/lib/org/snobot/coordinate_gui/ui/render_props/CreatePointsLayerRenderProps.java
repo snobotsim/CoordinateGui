@@ -12,7 +12,7 @@ public class CreatePointsLayerRenderProps
 
     public enum AngleCalculationType
     {
-        Zero, Calculate, Custom
+        Zero, Calculate, CalculateBackwards, Custom
     }
 
     protected AngleCalculationType mAngleCalculationType;
@@ -85,6 +85,16 @@ public class CreatePointsLayerRenderProps
                 double dx = aXFeet - aLastPoint.mX;
                 double dy = aYFeet - aLastPoint.mY;
                 output = Math.toDegrees(Math.atan2(dx, dy));
+            }
+            break;
+        }
+        case CalculateBackwards:
+        {
+            if (aLastPoint != null)
+            {
+                double dx = aXFeet - aLastPoint.mX;
+                double dy = aYFeet - aLastPoint.mY;
+                output = Math.toDegrees(Math.atan2(dx, dy)) - 180;
             }
             break;
         }

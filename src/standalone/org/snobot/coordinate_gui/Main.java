@@ -39,7 +39,8 @@ public final class Main
 
         JPanel configPanel = new JPanel();
         configPanel.add(new TrajectoryGeneratorPanel(properties, coordinateGuiPanel.mLayerManager,
-                coordinateGuiPanel.getTrajectoryWaypointDataProvider(), coordinateGuiPanel.getTrajectoryDataProvider(), robotWheelBase));
+                coordinateGuiPanel.getTrajectoryWaypointDataProvider(), coordinateGuiPanel.getTrajectoryDataProvider(),
+                createTrajectoryLayerRenderProps, robotWheelBase));
 
         JFrame frame = new JFrame();
         frame.add(coordinateGuiPanel.getComponent(), BorderLayout.CENTER);

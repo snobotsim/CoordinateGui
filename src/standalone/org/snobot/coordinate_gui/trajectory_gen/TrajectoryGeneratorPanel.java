@@ -3,6 +3,8 @@ package org.snobot.coordinate_gui.trajectory_gen;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -11,10 +13,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -30,6 +35,8 @@ import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
 import org.snobot.coordinate_gui.model.DataProviderListener;
 import org.snobot.coordinate_gui.ui.layers.LayerManager;
+import org.snobot.coordinate_gui.ui.render_props.CreatePointsLayerRenderProps;
+import org.snobot.coordinate_gui.ui.render_props.CreatePointsLayerRenderProps.AngleCalculationType;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
@@ -48,11 +55,13 @@ public class TrajectoryGeneratorPanel extends JPanel
     private DefaultTableModel mTableModel;
     private final DataProvider<Coordinate> mCoordinateDataProvider;
     private final DataProvider<Coordinate> mTrajectoryDataProvider;
+    private final CreatePointsLayerRenderProps mCreateTrajectoryLayerRenderProps; // NOPMD
     private final LayerManager mLayerManager;
     private final double mWheelbaseWidth; // Should be consistant with waypoint
                                           // numbers
 
     private final GuiProperties mGuiProperties;
+
 
     /**
      * Constructor.
@@ -61,9 +70,11 @@ public class TrajectoryGeneratorPanel extends JPanel
      *            The data provider for coordinates.
      * @param aTrajectoryDataProvider
      *            The data provider for the full trajectory
+     * @param aCreateTrajectoryLayerRenderProps
+     *            The render properties for the create trajectory layer
      */
     public TrajectoryGeneratorPanel(GuiProperties aGuiProperties, LayerManager aLayerManager, DataProvider<Coordinate> aCoordinateDataProvider,
-            DataProvider<Coordinate> aTrajectoryDataProvider, double aWheelbaseWidth)
+            DataProvider<Coordinate> aTrajectoryDataProvider, CreatePointsLayerRenderProps aCreateTrajectoryLayerRenderProps, double aWheelbaseWidth)
     {
         initComponents();
 
@@ -72,8 +83,11 @@ public class TrajectoryGeneratorPanel extends JPanel
 
         mCoordinateDataProvider = aCoordinateDataProvider;
         mTrajectoryDataProvider = aTrajectoryDataProvider;
+        mCreateTrajectoryLayerRenderProps = aCreateTrajectoryLayerRenderProps;
         mLayerManager = aLayerManager;
         mCoordinateDataProvider.addDataListener(mDataListener);
+
+        mCreateTrajectoryLayerRenderProps.setAngleCalculationType(AngleCalculationType.Calculate);
     }
 
     /**
@@ -141,19 +155,12 @@ public class TrajectoryGeneratorPanel extends JPanel
     @SuppressWarnings("unchecked")
     private void loadFile(String aPath)
     {
-        onReset();
-
         TrajectoryConfigLoader configLoader = new TrajectoryConfigLoader();
         configLoader.loadFile(aPath);
 
         mConfigPanel.setConfig(configLoader.getConfig());
 
-        for (Coordinate coord : configLoader.getCoordinates())
-        {
-            mCoordinateDataProvider.addData(coord);
-        }
-
-        mLayerManager.render();
+        addAllPoints(configLoader.getCoordinates());
     }
 
     /**
@@ -169,6 +176,17 @@ public class TrajectoryGeneratorPanel extends JPanel
         {
             mTableModel.removeRow(0);
         }
+    }
+
+    private void addAllPoints(List<Coordinate> aCoordintes)
+    {
+        onReset();
+        for (Coordinate coord : aCoordintes)
+        {
+            mCoordinateDataProvider.addData(coord);
+        }
+
+        mLayerManager.render();
     }
 
     /**
@@ -239,6 +257,8 @@ public class TrajectoryGeneratorPanel extends JPanel
 
             mTrajectoryDataProvider.addData(new Coordinate(averageX / 12.0, averageY / 12.0, right.getSegment(i).heading));
         }
+
+        mLayerManager.render();
     }
 
     private void initComponents()
@@ -336,12 +356,90 @@ public class TrajectoryGeneratorPanel extends JPanel
                 }
             }
         });
+
+        mTable.addMouseListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseReleased(MouseEvent aMouseEvent)
+            {
+                int r = mTable.rowAtPoint(aMouseEvent.getPoint());
+                if (r >= 0 && r < mTable.getRowCount())
+                {
+                    mTable.setRowSelectionInterval(r, r);
+                }
+                else
+                {
+                    mTable.clearSelection();
+                }
+
+                int rowindex = mTable.getSelectedRow();
+                if (rowindex < 0)
+                {
+                    return;
+                }
+                if (aMouseEvent.isPopupTrigger() && aMouseEvent.getComponent() instanceof JTable)
+                {
+                    JPopupMenu popup = createYourPopUp(mTable.rowAtPoint(aMouseEvent.getPoint()));
+                    popup.show(aMouseEvent.getComponent(), aMouseEvent.getX(), aMouseEvent.getY());
+                }
+            }
+        });
     }
 
-    private void onTableUpdated()
+    private class DeleteRowAction extends AbstractAction
     {
-        List<Coordinate> coordinates = new ArrayList<>();
-        
+        private final int mRow;
+
+        private DeleteRowAction(int aRow)
+        {
+            super("Delete Row");
+            mRow = aRow;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent aEvent)
+        {
+            List<Coordinate> coordinates = new ArrayList<>();
+            getCoordinatesFromTable(coordinates);
+
+            coordinates.remove(mRow);
+            addAllPoints(coordinates);
+        }
+    }
+
+    private class InsertPointAction extends AbstractAction
+    {
+        private final int mRow;
+
+        private InsertPointAction(int aRow)
+        {
+            super("Insert Point Before");
+            mRow = aRow;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent aEvent)
+        {
+            List<Coordinate> coordinates = new ArrayList<>();
+            getCoordinatesFromTable(coordinates);
+
+            coordinates.add(mRow, new Coordinate(coordinates.get(mRow)));
+            addAllPoints(coordinates);
+        }
+    }
+
+    private JPopupMenu createYourPopUp(int aRow)
+    {
+        JPopupMenu menu = new JPopupMenu();
+
+        menu.add(new JMenuItem(new DeleteRowAction(aRow)));
+        menu.add(new JMenuItem(new InsertPointAction(aRow)));
+
+        return menu;
+    }
+
+    private String getCoordinatesFromTable(List<Coordinate> aCoordinates)
+    {
         boolean error = false;
         StringBuilder fullMessage = new StringBuilder();
 
@@ -356,17 +454,14 @@ public class TrajectoryGeneratorPanel extends JPanel
                 double x = Double.parseDouble(xString);
                 double y = Double.parseDouble(yString);
                 double angle = Double.parseDouble(angleString);
-                
-                coordinates.add(new Coordinate(x, y, angle));
+
+                aCoordinates.add(new Coordinate(x, y, angle));
             }
             catch (Exception ex)
             {
                 StringBuilder messageBuilder = new StringBuilder(25);
-                messageBuilder
-                    .append("Invalid row: {'")
-                    .append(xString).append("', '")
-                    .append(yString).append("', '")
-                    .append(angleString).append("'}");
+                messageBuilder.append("Invalid row: {'").append(xString).append("', '").append(yString).append("', '").append(angleString)
+                        .append("'}");
 
                 fullMessage.append(messageBuilder.toString()).append('\n');
 
@@ -377,17 +472,26 @@ public class TrajectoryGeneratorPanel extends JPanel
 
         if (error)
         {
-            JOptionPane.showMessageDialog(this, fullMessage.toString(), "Error modifying table", JOptionPane.ERROR_MESSAGE);
+            return fullMessage.toString();
         }
         else
         {
-            onReset();
-            for (Coordinate coord : coordinates)
-            {
-                mCoordinateDataProvider.addData(coord);
-            }
+            return null;
+        }
+    }
 
-            mLayerManager.render();
+    private void onTableUpdated()
+    {
+        List<Coordinate> coordinates = new ArrayList<>();
+        String errorMessage = getCoordinatesFromTable(coordinates);
+
+        if (errorMessage == null)
+        {
+            addAllPoints(coordinates);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, errorMessage, "Error modifying table", JOptionPane.ERROR_MESSAGE);
         }
     }
 
