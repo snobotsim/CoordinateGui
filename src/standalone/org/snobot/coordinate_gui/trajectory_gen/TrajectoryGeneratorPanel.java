@@ -9,13 +9,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
@@ -204,12 +208,22 @@ public class TrajectoryGeneratorPanel extends JPanel
                 waypointSequence.add(new Waypoint(coord.mX * 12, coord.mY * 12, coord.mAngle));
             }
 
-            File selectedFile = chooser.getSelectedFile();
-            Path path = gen.generate(config, waypointSequence, selectedFile, "GeneratedTrajectory", mWheelbaseWidth);
-            plotTrajectory(path);
-            sLOGGER.log(Level.INFO, "Trajectory will take " + path.getLeftWheelTrajectory().getNumSegments() * config.dt + " seconds to complete");
+            try
+            {
+                File selectedFile = chooser.getSelectedFile();
+                Path path = gen.generate(config, waypointSequence, selectedFile, "GeneratedTrajectory", mWheelbaseWidth);
+                plotTrajectory(path);
+                sLOGGER.log(Level.INFO,
+                        "Trajectory will take " + path.getLeftWheelTrajectory().getNumSegments() * config.dt + " seconds to complete");
 
-            mGuiProperties.setTrajectoryDumpPath(selectedFile);
+                mGuiProperties.setTrajectoryDumpPath(selectedFile);
+            }
+            catch (NullPointerException ex)
+            {
+                String message = "Got a null pointer exception... Make sure no angle delta between points is greater than 90°";
+                JOptionPane.showMessageDialog(this, message, "Error generating profile", JOptionPane.ERROR_MESSAGE);
+                sLOGGER.log(Level.ERROR, message, ex);
+            }
         }
     }
 
@@ -308,6 +322,83 @@ public class TrajectoryGeneratorPanel extends JPanel
                 onGenerate();
             }
         });
+
+
+        mTableModel.addTableModelListener(new TableModelListener()
+        {
+
+            @Override
+            public void tableChanged(TableModelEvent aEvent)
+            {
+                if (aEvent.getType() == TableModelEvent.UPDATE)
+                {
+                    onTableUpdated();
+                }
+            }
+        });
+    }
+
+    private void onTableUpdated()
+    {
+        List<Coordinate> coordinates = new ArrayList<>();
+        
+        boolean error = false;
+        StringBuilder fullMessage = new StringBuilder();
+
+        for (int i = 0; i < mTable.getRowCount(); ++i)
+        {
+            String xString = mTable.getValueAt(i, 0).toString();
+            String yString = mTable.getValueAt(i, 1).toString();
+            String angleString = mTable.getValueAt(i, 2).toString();
+
+            try
+            {
+                double x = Double.parseDouble(xString);
+                double y = Double.parseDouble(yString);
+                double angle = Double.parseDouble(angleString);
+                
+                coordinates.add(new Coordinate(x, y, angle));
+            }
+            catch (Exception ex)
+            {
+                StringBuilder messageBuilder = new StringBuilder(25);
+                messageBuilder
+                    .append("Invalid row: {'")
+                    .append(xString).append("', '")
+                    .append(yString).append("', '")
+                    .append(angleString).append("'}");
+
+                fullMessage.append(messageBuilder.toString()).append('\n');
+
+                sLOGGER.log(Level.ERROR, messageBuilder.toString(), ex);
+                error = true;
+            }
+        }
+
+        if (error)
+        {
+            JOptionPane.showMessageDialog(this, fullMessage.toString(), "Error modifying table", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            onReset();
+            for (Coordinate coord : coordinates)
+            {
+                mCoordinateDataProvider.addData(coord);
+            }
+
+            mLayerManager.render();
+        }
+    }
+
+    private void addRow(Coordinate aCoordinate)
+    {
+        Vector<Double> row = new Vector<Double>(); // NOPMD
+        row.add(aCoordinate.mX);
+        row.add(aCoordinate.mY);
+        row.add(aCoordinate.mAngle);
+
+        mTableModel.addRow(row);
     }
 
     private final DataProviderListener<Coordinate> mDataListener = new DataProviderListener<Coordinate>()
@@ -316,8 +407,7 @@ public class TrajectoryGeneratorPanel extends JPanel
         @Override
         public void onDataAdded(Coordinate aData)
         {
-            mTableModel.addRow(new Object[]
-            { aData.mX, aData.mY, aData.mAngle });
+            addRow(aData);
         }
     };
 }
