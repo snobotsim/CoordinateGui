@@ -120,6 +120,8 @@ public class BulkGenerateAction extends AbstractAction
             TrajectoryConfigLoader configLoader = new TrajectoryConfigLoader();
             configLoader.loadFile(configFile);
 
+            System.out.println("output file: " + configFile);
+            
             SnobotTrajectoryGen gen = new SnobotTrajectoryGen();
 
             List<Waypoint> waypointSequence = new ArrayList<>();
