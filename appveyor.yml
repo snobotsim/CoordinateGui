@@ -35,10 +35,7 @@ build_script:
 
 artifacts:
 
-- path: build/libs/CoordinateGui.jar
-  name: CoordinateGui
-
-- path: build/distributions
+- path: Standalone/build/distributions
   name: CoordinateGuiStandalone
 
  
