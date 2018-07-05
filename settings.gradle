@@ -1,7 +1,6 @@
 rootProject.name="CoordinateGuiRepo"
 
-include '2017Gui'
-include '2018Gui'
 include 'CoordinateGuiCore'
-include 'YearSpecificGuiCore'
-include 'Standalone'
+include 'CoordinateGui2017'
+include 'CoordinateGui2018'
+include 'CoordinateGuiStandalone'
