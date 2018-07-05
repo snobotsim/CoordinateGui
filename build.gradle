@@ -20,13 +20,15 @@ repositories {
 sourceSets {
     main {
         java {
-            srcDirs = ["src/lib", 
-                       "src/BaseYearSpecificGui", 
-                       "src/2017Gui", 
-                       "src/2018Gui", 
+            srcDirs = ["CoordinateGuiCore/src/main/java", 
+                       "YearSpecificGuiCore/src/main/java",
+                       "2017Gui/src/main/java", 
+                       "2018Gui/src/main/java", 
                        
-                       "src/standalone", 
-                       "SnobotRobotLibs/CheesyPoofsLibs"]
+                       "Standalone/src/main/java",
+                        
+                       "SnobotRobotLibs/CheesyPoofsLibs"
+                       ]
         }
     }
 }
