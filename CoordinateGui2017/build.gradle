@@ -4,7 +4,7 @@ apply plugin: "java"
 apply from: "$rootDir/shared_styleguide.gradle"
 dependencies 
 {
-    compile project(":CoordinateGuiCore")
+    compile project("$coordinateGuiBase:CoordinateGuiCore")
 }
 
 jar {

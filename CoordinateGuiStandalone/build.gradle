@@ -8,14 +8,14 @@ dependencies {
     compile 'log4j:log4j:1.2.16'
     compile 'org.yaml:snakeyaml:1.18'
     
-    compile project(":CoordinateGuiCore")
-    compile project(":CoordinateGui2018")
+    compile project("$coordinateGuiBase:CoordinateGuiCore")
+    compile project("$coordinateGuiBase:CoordinateGui2018")
 }
 
 sourceSets {
     main {
         java {
-            srcDirs += ["$rootDir/SnobotRobotLibs/CheesyPoofsLibs"]
+            srcDirs += ["$projectDir/../SnobotRobotLibs/CheesyPoofsLibs"]
         }
     }
 }
