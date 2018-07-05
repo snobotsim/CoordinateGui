@@ -1,0 +1,13 @@
+
+apply plugin: "java"
+
+apply from: "$rootDir/shared_styleguide.gradle"
+dependencies {
+    compile 'log4j:log4j:1.2.16'
+}
+
+jar {
+   from("src/main/java/") {
+      include  "**/*.png"
+   }
+}

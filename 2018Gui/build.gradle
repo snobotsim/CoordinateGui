@@ -1,0 +1,14 @@
+
+apply plugin: "java"
+
+apply from: "$rootDir/shared_styleguide.gradle"
+dependencies
+{
+    compile project(":YearSpecificGuiCore")
+}
+
+jar {
+   from("src/main/java/") {
+      include  "**/*.png"
+   }
+}

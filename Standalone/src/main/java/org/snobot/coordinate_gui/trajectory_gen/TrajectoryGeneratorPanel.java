@@ -152,7 +152,6 @@ public class TrajectoryGeneratorPanel extends JPanel
         }
     }
 
-    @SuppressWarnings("unchecked")
     private void loadFile(String aPath)
     {
         TrajectoryConfigLoader configLoader = new TrajectoryConfigLoader();

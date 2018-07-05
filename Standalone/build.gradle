@@ -1,0 +1,29 @@
+
+apply plugin: "java"
+apply plugin: 'application'
+
+
+apply from: "$rootDir/shared_styleguide.gradle"
+dependencies {
+    compile 'log4j:log4j:1.2.16'
+    compile 'org.yaml:snakeyaml:1.18'
+    
+    compile project(":CoordinateGuiCore")
+    compile project(":2018Gui")
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs += ["$rootDir/SnobotRobotLibs/CheesyPoofsLibs"]
+        }
+    }
+}
+
+jar {
+   from("src/main/java/") {
+      include  "**/*.xml"
+   }
+}
+
+mainClassName = "org.snobot.coordinate_gui.Main"
