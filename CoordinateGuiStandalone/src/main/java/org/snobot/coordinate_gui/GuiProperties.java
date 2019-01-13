@@ -3,6 +3,7 @@ package org.snobot.coordinate_gui;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Properties;
 
 import org.apache.log4j.Level;
@@ -76,7 +77,7 @@ public class GuiProperties
         {
             output.load(fileReader);
         }
-        catch (Exception ex)
+        catch (IOException ex)
         {
             sLOGGER.log(Level.ERROR, ex);
         }
@@ -90,7 +91,7 @@ public class GuiProperties
         {
             mDefaultProperties.store(outputStream, "Properties");
         }
-        catch (Exception ex)
+        catch (IOException ex)
         {
             sLOGGER.log(Level.ERROR, ex);
         }

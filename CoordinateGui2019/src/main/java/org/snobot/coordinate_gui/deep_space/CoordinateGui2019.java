@@ -1,10 +1,10 @@
-package org.snobot.coordinate_gui.powerup;
+package org.snobot.coordinate_gui.deep_space;
 
 import org.snobot.coordinate_gui.BaseYearSpecificGui;
 
 public class CoordinateGui2019 extends BaseYearSpecificGui
 {
-    private static final String FIELD_IMAGE_PATH = "/org/snobot/coordinate_gui/powerup/2018Field.png";
+    private static final String FIELD_IMAGE_PATH = "/org/snobot/coordinate_gui/deep_space/2019Field.png";
 
     private static final double FIELD_WIDTH = 27;
     private static final double FIELD_HEIGHT = 54;

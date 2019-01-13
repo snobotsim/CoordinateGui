@@ -3,6 +3,7 @@ package org.snobot.coordinate_gui.ui.layers;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
@@ -69,7 +70,7 @@ public class FieldImageLayer implements ILayer
                 }
             }
         }
-        catch (Exception ex)
+        catch (IOException ex)
         {
             sLOGGER.log(Level.ERROR, ex);
         }
@@ -87,6 +88,7 @@ public class FieldImageLayer implements ILayer
 
     }
 
+    @Override
     public Dimension getPreferredSize()
     {
         return mPreferredSize;

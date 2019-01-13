@@ -1,6 +1,7 @@
 package org.snobot.coordinate_gui.ui.render_props;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
@@ -25,7 +26,7 @@ public class MovementArrowLayerRenderProps
             InputStream in = getClass().getResourceAsStream(FIELD_IMAGE_PATH);
             mFieldImage = ImageIO.read(in);
         }
-        catch (Exception ex)
+        catch (IOException ex)
         {
             sLOGGER.log(Level.ERROR, ex);
         }

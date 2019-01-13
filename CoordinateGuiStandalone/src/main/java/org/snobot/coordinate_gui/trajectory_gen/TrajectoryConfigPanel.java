@@ -53,7 +53,7 @@ public class TrajectoryConfigPanel extends JPanel
         return new Config(dt, maxVel, maxAccel, maxJerk, mIsBackwardsBox.isSelected());
     }
 
-    private void initComponents()
+    private void initComponents() // NOPMD
     {
         GridBagLayout gridBagLayout = new GridBagLayout();
         gridBagLayout.columnWidths = new int[]

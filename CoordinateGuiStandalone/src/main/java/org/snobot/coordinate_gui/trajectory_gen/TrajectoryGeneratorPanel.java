@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +47,7 @@ import com.team254.lib.trajectory.Waypoint;
 import com.team254.lib.trajectory.gen.SnobotTrajectoryGen;
 import com.team254.lib.trajectory.gen.TrajectoryGenerator.Config;
 
+@SuppressWarnings("PMD.TooManyMethods")
 public class TrajectoryGeneratorPanel extends JPanel
 {
     private static final Logger sLOGGER = Logger.getLogger(TrajectoryGeneratorPanel.class);
@@ -146,7 +148,7 @@ public class TrajectoryGeneratorPanel extends JPanel
 
             yaml.dump(config, fileWriter);
         }
-        catch (Exception ex)
+        catch (IOException ex)
         {
             sLOGGER.log(Level.ERROR, ex);
         }
@@ -235,7 +237,7 @@ public class TrajectoryGeneratorPanel extends JPanel
 
                 mGuiProperties.setTrajectoryDumpPath(selectedFile);
             }
-            catch (NullPointerException ex)
+            catch (NullPointerException ex) // NOPMD
             {
                 String message = "Got a null pointer exception... Make sure no angle delta between points is greater than 90°";
                 JOptionPane.showMessageDialog(this, message, "Error generating profile", JOptionPane.ERROR_MESSAGE);
@@ -260,7 +262,7 @@ public class TrajectoryGeneratorPanel extends JPanel
         mLayerManager.render();
     }
 
-    private void initComponents()
+    private void initComponents() // NOPMD
     {
         mTableModel = new DefaultTableModel(new Object[][]
         {}, new Object[]
@@ -456,7 +458,7 @@ public class TrajectoryGeneratorPanel extends JPanel
 
                 aCoordinates.add(new Coordinate(x, y, angle));
             }
-            catch (Exception ex)
+            catch (NumberFormatException ex)
             {
                 StringBuilder messageBuilder = new StringBuilder(25);
                 messageBuilder.append("Invalid row: {'").append(xString).append("', '").append(yString).append("', '").append(angleString)

@@ -90,16 +90,19 @@ public class LayerManager extends JPanel implements ILayerManager
         addMouseMotionListener(mMouseListener);
     }
 
+    @Override
     public void addFieldClickListener(IFieldClickListener aListener)
     {
         mFieldClickListeners.add(aListener);
     }
 
+    @Override
     public void removeFieldClickListener(IFieldClickListener aListener)
     {
         mFieldClickListeners.remove(aListener);
     }
 
+    @Override
     public void addLayer(ILayer aLayer)
     {
         mLayers.add(aLayer);
@@ -138,6 +141,7 @@ public class LayerManager extends JPanel implements ILayerManager
         }
     }
 
+    @Override
     public void render()
     {
         repaint();

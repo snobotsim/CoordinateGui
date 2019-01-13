@@ -9,9 +9,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import org.snobot.coordinate_gui.deep_space.CoordinateGui2019;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
-import org.snobot.coordinate_gui.powerup.CoordinateGui2019;
 import org.snobot.coordinate_gui.trajectory_gen.BulkGenerateAction;
 import org.snobot.coordinate_gui.trajectory_gen.TrajectoryGeneratorPanel;
 import org.snobot.coordinate_gui.ui.layers.CreatePointsLayer;

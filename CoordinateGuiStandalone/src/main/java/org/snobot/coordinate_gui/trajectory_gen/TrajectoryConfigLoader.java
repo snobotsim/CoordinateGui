@@ -1,6 +1,7 @@
 package org.snobot.coordinate_gui.trajectory_gen;
 
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +36,7 @@ public final class TrajectoryConfigLoader
             mTrajectoryConfig = (Config) config.get("config");
             mCoordinates = (List<Coordinate>) config.get("waypoints");
         }
-        catch (Exception ex)
+        catch (ClassCastException | IOException ex)
         {
             sLOGGER.log(Level.ERROR, ex);
         }
