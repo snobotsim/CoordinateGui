@@ -1,0 +1,6 @@
+rootProject.name="CoordinateGuiRepo"
+
+include 'CoordinateGuiCore'
+include 'CoordinateGui2017'
+include 'CoordinateGui2018'
+include 'CoordinateGuiStandalone'
