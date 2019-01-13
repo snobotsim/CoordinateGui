@@ -4,3 +4,6 @@ include 'CoordinateGuiCore'
 include 'CoordinateGui2017'
 include 'CoordinateGui2018'
 include 'CoordinateGuiStandalone'
+
+// Submodules
+include 'SnobotRobotLibs:CheesyPoofsLibs'

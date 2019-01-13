@@ -2,13 +2,13 @@ package org.snobot.coordinate_gui.ui.render_props;
 
 import java.awt.Color;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.snobot.coordinate_gui.model.Coordinate;
 
 public class CreatePointsLayerRenderProps
 {
-    private static final Logger sLOGGER = Logger.getLogger(CreatePointsLayerRenderProps.class);
+    private static final Logger sLOGGER = LogManager.getLogger(CreatePointsLayerRenderProps.class);
 
     public enum AngleCalculationType
     {
@@ -102,7 +102,7 @@ public class CreatePointsLayerRenderProps
             output = 90;
             break;
         default:
-            sLOGGER.log(Level.ERROR, "Unknown angle calculation type " + mAngleCalculationType);
+            sLOGGER.error("Unknown angle calculation type " + mAngleCalculationType);
             break;
         }
 

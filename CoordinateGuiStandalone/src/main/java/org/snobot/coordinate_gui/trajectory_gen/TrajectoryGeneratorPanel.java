@@ -28,8 +28,8 @@ import javax.swing.event.TableModelListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.snobot.coordinate_gui.GuiProperties;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
@@ -48,7 +48,7 @@ import com.team254.lib.trajectory.gen.TrajectoryGenerator.Config;
 
 public class TrajectoryGeneratorPanel extends JPanel
 {
-    private static final Logger sLOGGER = Logger.getLogger(TrajectoryGeneratorPanel.class);
+    private static final Logger sLOGGER = LogManager.getLogger(TrajectoryGeneratorPanel.class);
 
     private TrajectoryConfigPanel mConfigPanel;
     private JTable mTable;
@@ -148,7 +148,7 @@ public class TrajectoryGeneratorPanel extends JPanel
         }
         catch (Exception ex)
         {
-            sLOGGER.log(Level.ERROR, ex);
+            sLOGGER.error("", ex);
         }
     }
 
@@ -230,8 +230,7 @@ public class TrajectoryGeneratorPanel extends JPanel
                 File selectedFile = chooser.getSelectedFile();
                 Path path = gen.generate(config, waypointSequence, selectedFile, "GeneratedTrajectory", mWheelbaseWidth);
                 plotTrajectory(path);
-                sLOGGER.log(Level.INFO,
-                        "Trajectory will take " + path.getLeftWheelTrajectory().getNumSegments() * config.dt + " seconds to complete");
+                sLOGGER.info("Trajectory will take " + path.getLeftWheelTrajectory().getNumSegments() * config.dt + " seconds to complete");
 
                 mGuiProperties.setTrajectoryDumpPath(selectedFile);
             }
@@ -239,7 +238,7 @@ public class TrajectoryGeneratorPanel extends JPanel
             {
                 String message = "Got a null pointer exception... Make sure no angle delta between points is greater than 90°";
                 JOptionPane.showMessageDialog(this, message, "Error generating profile", JOptionPane.ERROR_MESSAGE);
-                sLOGGER.log(Level.ERROR, message, ex);
+                sLOGGER.error(message, ex);
             }
         }
     }
@@ -464,7 +463,7 @@ public class TrajectoryGeneratorPanel extends JPanel
 
                 fullMessage.append(messageBuilder.toString()).append('\n');
 
-                sLOGGER.log(Level.ERROR, messageBuilder.toString(), ex);
+                sLOGGER.error(messageBuilder.toString(), ex);
                 error = true;
             }
         }

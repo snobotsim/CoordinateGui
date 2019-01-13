@@ -5,19 +5,13 @@ apply plugin: 'application'
 
 apply from: "$rootDir/shared_styleguide.gradle"
 dependencies {
-    compile 'log4j:log4j:1.2.16'
+    compile 'org.apache.logging.log4j:log4j-api:2.11.0'
+    compile 'org.apache.logging.log4j:log4j-core:2.11.0'
     compile 'org.yaml:snakeyaml:1.18'
     
     compile project("$coordinateGuiBase:CoordinateGuiCore")
     compile project("$coordinateGuiBase:CoordinateGui2018")
-}
-
-sourceSets {
-    main {
-        java {
-            srcDirs += ["$projectDir/../SnobotRobotLibs/CheesyPoofsLibs"]
-        }
-    }
+    compile project(":SnobotRobotLibs:CheesyPoofsLibs")
 }
 
 jar {

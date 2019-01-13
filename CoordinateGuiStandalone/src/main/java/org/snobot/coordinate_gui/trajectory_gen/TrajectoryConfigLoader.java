@@ -4,8 +4,8 @@ import java.io.FileReader;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.yaml.snakeyaml.Yaml;
 
@@ -13,7 +13,7 @@ import com.team254.lib.trajectory.gen.TrajectoryGenerator.Config;
 
 public final class TrajectoryConfigLoader
 {
-    private static final Logger sLOGGER = Logger.getLogger(TrajectoryConfigLoader.class);
+    private static final Logger sLOGGER = LogManager.getLogger(TrajectoryConfigLoader.class);
 
     private Config mTrajectoryConfig;
     private List<Coordinate> mCoordinates;
@@ -37,7 +37,7 @@ public final class TrajectoryConfigLoader
         }
         catch (Exception ex)
         {
-            sLOGGER.log(Level.ERROR, ex);
+            sLOGGER.error("", ex);
         }
     }
 

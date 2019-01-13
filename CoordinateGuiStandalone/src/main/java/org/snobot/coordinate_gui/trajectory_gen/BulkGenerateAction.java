@@ -19,8 +19,8 @@ import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.snobot.coordinate_gui.GuiProperties;
 import org.snobot.coordinate_gui.model.Coordinate;
 
@@ -29,7 +29,7 @@ import com.team254.lib.trajectory.gen.SnobotTrajectoryGen;
 
 public class BulkGenerateAction extends AbstractAction
 {
-    private static final Logger sLOGGER = Logger.getLogger(TrajectoryGeneratorPanel.class);
+    private static final Logger sLOGGER = LogManager.getLogger(TrajectoryGeneratorPanel.class);
 
     private final GuiProperties mGuiProperties;
     private final double mRobotWheelBase;
@@ -102,7 +102,7 @@ public class BulkGenerateAction extends AbstractAction
         }
         catch (IOException ex)
         {
-            sLOGGER.log(Level.ERROR, ex);
+            sLOGGER.error("", ex);
         }
 
         return finder.mFiles;

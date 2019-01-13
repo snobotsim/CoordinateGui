@@ -5,12 +5,12 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.util.Properties;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class GuiProperties
 {
-    private static final Logger sLOGGER = Logger.getLogger(GuiProperties.class);
+    private static final Logger sLOGGER = LogManager.getLogger(GuiProperties.class);
     private static final String sSTANDALONE_PROPERTIES_FILE = "standalone.properties";
     private static final String sDEFAULT_CONFIG_DIRECTORY_PROP = "config_directory";
     private static final String sDEFAULT_TRAJECTORY_DIRECTORY_PROP = "trajectory_directory";
@@ -78,7 +78,7 @@ public class GuiProperties
         }
         catch (Exception ex)
         {
-            sLOGGER.log(Level.ERROR, ex);
+            sLOGGER.error("", ex);
         }
 
         return output;
@@ -92,7 +92,7 @@ public class GuiProperties
         }
         catch (Exception ex)
         {
-            sLOGGER.log(Level.ERROR, ex);
+            sLOGGER.error("", ex);
         }
     }
 }
