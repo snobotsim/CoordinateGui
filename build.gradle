@@ -10,5 +10,5 @@ apply plugin: "eclipse"
 ext.coordinateGuiBase = ""
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.7'
+    gradleVersion = '5.0'
 }

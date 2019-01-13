@@ -9,7 +9,7 @@ dependencies {
     compile 'org.yaml:snakeyaml:1.18'
     
     compile project("$coordinateGuiBase:CoordinateGuiCore")
-    compile project("$coordinateGuiBase:CoordinateGui2018")
+    compile project("$coordinateGuiBase:CoordinateGui2019")
 }
 
 sourceSets {

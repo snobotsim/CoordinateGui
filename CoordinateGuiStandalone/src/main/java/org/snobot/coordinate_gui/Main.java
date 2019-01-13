@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
-import org.snobot.coordinate_gui.powerup.CoordinateGui2018;
+import org.snobot.coordinate_gui.powerup.CoordinateGui2019;
 import org.snobot.coordinate_gui.trajectory_gen.BulkGenerateAction;
 import org.snobot.coordinate_gui.trajectory_gen.TrajectoryGeneratorPanel;
 import org.snobot.coordinate_gui.ui.layers.CreatePointsLayer;
@@ -28,7 +28,7 @@ public final class Main
         DataProvider<Coordinate> previewTrajectoryDataProvider = new DataProvider<>();
 
         GuiProperties properties = new GuiProperties();
-        BaseYearSpecificGui coordinateGuiPanel = new CoordinateGui2018();
+        BaseYearSpecificGui coordinateGuiPanel = new CoordinateGui2019();
         double robotWheelBase = 12; // inches
 
         CreatePointsLayer createTrajectoryLayer = new CreatePointsLayer(coordinateGuiPanel.mLayerManager,
