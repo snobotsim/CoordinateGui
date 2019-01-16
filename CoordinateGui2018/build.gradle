@@ -6,9 +6,3 @@ dependencies
 {
     compile project("$coordinateGuiBase:CoordinateGuiCore")
 }
-
-jar {
-   from("src/main/java/") {
-      include  "**/*.png"
-   }
-}

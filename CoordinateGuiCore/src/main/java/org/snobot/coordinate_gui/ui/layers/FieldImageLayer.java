@@ -8,13 +8,14 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.snobot.coordinate_gui.model.PixelConverter;
 
 public class FieldImageLayer implements ILayer
 {
-    private static final Logger sLOGGER = Logger.getLogger(FieldImageLayer.class);
+	private static final Logger sLOGGER = LogManager.getLogger(FieldImageLayer.class);
 
     protected BufferedImage mFieldImage;
     protected PixelConverter mPixelConverter;
@@ -72,7 +73,7 @@ public class FieldImageLayer implements ILayer
         }
         catch (IOException ex)
         {
-            sLOGGER.log(Level.ERROR, ex);
+            sLOGGER.log(Level.ERROR, "Could not load field image", ex);
         }
     }
 
