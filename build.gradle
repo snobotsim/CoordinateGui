@@ -5,8 +5,22 @@ plugins {
 }
 
 allprojects {
+    apply {
+        plugin("maven-publish")
+        plugin("java")
+    }
     repositories {
         mavenCentral()
+    }
+    
+    publishing {
+        publications {
+            snobot_sim_java(MavenPublication) {
+                groupId 'org.snobot.coordinate_viewer'
+                artifact jar
+                version "2019.0.0.0"
+            }
+        }
     }
 }
 
