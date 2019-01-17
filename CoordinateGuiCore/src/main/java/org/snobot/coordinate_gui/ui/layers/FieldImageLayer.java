@@ -15,7 +15,7 @@ import org.snobot.coordinate_gui.model.PixelConverter;
 
 public class FieldImageLayer implements ILayer
 {
-	private static final Logger sLOGGER = LogManager.getLogger(FieldImageLayer.class);
+    private static final Logger sLOGGER = LogManager.getLogger(FieldImageLayer.class);
 
     protected BufferedImage mFieldImage;
     protected PixelConverter mPixelConverter;

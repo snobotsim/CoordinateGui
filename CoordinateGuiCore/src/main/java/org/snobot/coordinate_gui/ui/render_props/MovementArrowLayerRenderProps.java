@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 public class MovementArrowLayerRenderProps
 {
-	private static final Logger sLOGGER = LogManager.getLogger(MovementArrowLayerRenderProps.class);
+    private static final Logger sLOGGER = LogManager.getLogger(MovementArrowLayerRenderProps.class);
 
     private static final String FIELD_IMAGE_PATH = "/org/snobot/coordinate_gui/ui/render_props/movementArrow.png";
     protected BufferedImage mFieldImage;

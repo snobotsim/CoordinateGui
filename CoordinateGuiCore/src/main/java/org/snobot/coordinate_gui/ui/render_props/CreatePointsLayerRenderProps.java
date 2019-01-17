@@ -9,7 +9,7 @@ import org.snobot.coordinate_gui.model.Coordinate;
 
 public class CreatePointsLayerRenderProps
 {
-	private static final Logger sLOGGER = LogManager.getLogger(CreatePointsLayerRenderProps.class);
+    private static final Logger sLOGGER = LogManager.getLogger(CreatePointsLayerRenderProps.class);
 
     public enum AngleCalculationType
     {
