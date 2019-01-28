@@ -18,7 +18,7 @@
     <property name="severity" value="error"/>
 
     <module name="SuppressionFilter">
-        <property name="file" value="styleguide/checkstyle_suppressions.xml" />
+        <property name="file" value="${config_loc}/checkstyle_suppressions.xml" />
     </module>
 
     <property name="fileExtensions" value="java, properties, xml"/>
@@ -62,7 +62,6 @@
         <module name="NeedBraces"/>
         <module name="LeftCurly">
             <property name="option" value="nl"/>
-            <property name="maxLineLength" value="100"/>
         </module>
         <module name="RightCurly">
             <property name="option" value="alone"/>

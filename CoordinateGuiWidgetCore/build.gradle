@@ -1,0 +1,37 @@
+
+apply plugin: "java"
+
+apply from: "$rootDir/shared_styleguide.gradle"
+
+
+repositories {
+    maven {
+        name = "WPI"
+        url = "http://first.wpi.edu/FRC/roborio/maven/release"
+    }
+}
+
+ext.getShuffleboardVersion = {
+    return "2019.1.1"
+}
+
+dependencies {
+    compile project("$coordinateGuiBase:CoordinateGuiCore")
+    compile project("$coordinateGuiBase:TrajectoryPlotter")
+    
+    compile 'org.apache.logging.log4j:log4j-api:2.11.0'
+    compile 'org.apache.logging.log4j:log4j-core:2.11.0'
+    
+    compile "org.openjfx:javafx-base:11:win"
+    compile "org.openjfx:javafx-graphics:11:win"
+    compile "org.openjfx:javafx-controls:11:win"
+    compile "org.openjfx:javafx-fxml:11:win"
+    
+    
+    compile 'edu.wpi.first.shuffleboard:shuffleboard:' + getShuffleboardVersion()
+    compile 'edu.wpi.first.shuffleboard:api:' + getShuffleboardVersion()
+    compile 'edu.wpi.first.shuffleboard.plugin:networktables:' + getShuffleboardVersion()
+    compile 'edu.wpi.first.shuffleboard:api:' + getShuffleboardVersion()
+    compile 'edu.wpi.first.shuffleboard.plugin:networktables:' + getShuffleboardVersion()
+
+}

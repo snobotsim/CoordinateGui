@@ -1,14 +1,23 @@
+plugins {
+	id "java"
+	id "com.github.spotbugs" version "1.6.9"
+	id "eclipse"
+}
 
 allprojects {
+    apply {
+        plugin("maven-publish")
+        plugin("java")
+    }
     repositories {
         mavenCentral()
     }
 }
 
-apply plugin: "eclipse"
-
-ext.coordinateGuiBase = ""
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.7'
+ext {
+	SpotBugsTask = com.github.spotbugs.SpotBugsTask
+	coordinateGuiBase = ""
+    
+    publishing_url = "${rootDir}/build/publishing"
+    publishing_version = "2019.0.0.0"
 }

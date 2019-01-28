@@ -1,6 +1,6 @@
 package org.snobot.coordinate_gui.ui.render_props;
 
-import java.awt.Color;
+import javafx.scene.paint.Color;
 
 public class CoordinateLayerRenderProps
 {
@@ -13,12 +13,12 @@ public class CoordinateLayerRenderProps
     /**
      * Constructor.
      */
-    public CoordinateLayerRenderProps()
+    public CoordinateLayerRenderProps(int aPointMemory, int aSize, Color aColor, boolean aFadeOverTime)
     {
-        mSize = 10;
-        mPointMemory = 100;
-        mColor = Color.green;
-        mFadeOverTime = true;
+        mSize = aSize;
+        mPointMemory = aPointMemory;
+        mColor = aColor;
+        mFadeOverTime = aFadeOverTime;
     }
 
     public int getPointMemory()
@@ -26,9 +26,29 @@ public class CoordinateLayerRenderProps
         return mPointMemory;
     }
 
-    public Color getPointColor()
+    /**
+     * Gets the point color, based on how deep in the list it is.
+     * 
+     * @param aCoordinateCounter
+     *            The counter of which data point this is. Affects the opacity
+     * @return The color to draw with
+     */
+    public Color getPointColor(int aCoordinateCounter)
     {
-        return mColor;
+        float opacity;
+
+        if (mFadeOverTime)
+        {
+            opacity = 1.0f - ((float) aCoordinateCounter / mPointMemory);
+            opacity = Math.min(1, opacity);
+            opacity = Math.max(0, opacity);
+        }
+        else
+        {
+            opacity = 1;
+        }
+
+        return new Color(mColor.getRed(), mColor.getGreen(), mColor.getBlue(), opacity);
     }
 
     public boolean isFadeOverTime()

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.Group?>
+
+<Pane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.snobot.coordinate_gui.ui.layers.CoordinateLayerController">
+    <children>
+        <Group fx:id="mCoordinates" />
+    </children>
+</Pane>

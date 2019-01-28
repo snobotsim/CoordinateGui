@@ -1,0 +1,84 @@
+package org.snobot.coordinate_gui.ui.layers;
+
+import java.util.Iterator;
+
+import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.model.DataProvider;
+import org.snobot.coordinate_gui.model.PixelConverter;
+import org.snobot.coordinate_gui.ui.render_props.CoordinateLayerRenderProps;
+
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.scene.Group;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+
+public class CoordinateLayerController
+{
+
+    @FXML
+    private Group mCoordinates;
+
+    protected PixelConverter mPixelConverter;
+    protected DataProvider<Coordinate> mDataProvider;
+    protected CoordinateLayerRenderProps mRenderProperties;
+
+    public CoordinateLayerController()
+    {
+
+    }
+
+    /**
+     * Sets the controller up.
+     * 
+     * @param aRenderProperties
+     *            The render properties used to draw the coordinates
+     * @param aDataProvider
+     *            The data provider that contains the data to draw
+     * @param aPixelConverter
+     *            The coordinate converter
+     */
+    public void setup(CoordinateLayerRenderProps aRenderProperties, DataProvider<Coordinate> aDataProvider, PixelConverter aPixelConverter)
+    {
+        mDataProvider = aDataProvider;
+        mPixelConverter = aPixelConverter;
+        mRenderProperties = aRenderProperties;
+    }
+
+    /**
+     * Safely renders the layer, by running on the event thread.
+     */
+    public void safeRender()
+    {
+        Platform.runLater(() ->
+        {
+            render();
+        });
+    }
+
+    /**
+     * Uses the history in the data provider to draw fading coordinates.
+     */
+    public void render()
+    {
+        mCoordinates.getChildren().clear();
+
+        Iterator<Coordinate> revIterator = mDataProvider.getReverseIterator();
+        int coordinateCtr = 0;
+
+        while (revIterator.hasNext())
+        {
+            Color color = mRenderProperties.getPointColor(coordinateCtr);
+            Coordinate coord = revIterator.next();
+
+            Circle circle = new Circle(mRenderProperties.getPointSize());
+            circle.setFill(color);
+            circle.setCenterX(mPixelConverter.convertFieldXFeetToPixels(coord.mX));
+            circle.setCenterY(mPixelConverter.convertFieldYFeetToPixels(coord.mY));
+            mCoordinates.getChildren().add(circle);
+
+            ++coordinateCtr;
+        }
+    }
+
+}

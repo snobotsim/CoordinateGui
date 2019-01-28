@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="properties" 
+          xmlns="http://javafx.com/javafx/10.0.1" 
+          xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.snobot.coordinate_gui.trajectory_gen.ui.PathParamsController">
+
+    <children>
+        <Label text="Max Velocity"           GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <TextField fx:id="mMaxVelocity"      GridPane.rowIndex="0" GridPane.columnIndex="1" />
+        
+        <Label text="Max Acceleration"       GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <TextField fx:id="mMaxAcceleration"  GridPane.rowIndex="1" GridPane.columnIndex="1" />
+        
+        <Label text="Backwards"              GridPane.rowIndex="2" GridPane.columnIndex="0" />
+        <CheckBox fx:id="mIsBackwards"       GridPane.rowIndex="2" GridPane.columnIndex="1" />
+    </children>
+</GridPane>

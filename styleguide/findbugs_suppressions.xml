@@ -3,14 +3,7 @@
         <Package name="~com\.team254.*"/>
     </Match>
     <Match>
-        <Class name="org.snobot.coordinate_gui.trajectory_gen.TrajectoryGeneratorPanel"/>
-        <Bug pattern="SE_BAD_FIELD_STORE" />
-    </Match>
-    <Match>
-        <Class name="org.snobot.coordinate_gui.ui.layers.LayerManager"/>
-        <Bug pattern="SE_BAD_FIELD_STORE" />
-    </Match>
-    <Match>
-        <Bug pattern="DM_DEFAULT_ENCODING" />
+        <Class name="org.snobot.coordinate_gui.ui.layers.BaseGuiController"/>
+        <Bug pattern="UI_INHERITANCE_UNSAFE_GETRESOURCE" />
     </Match>
 </FindBugsFilter>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.Polygon?>
+
+
+<Pane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.snobot.coordinate_gui.ui.layers.RobotPositionLayerController">
+    <Rectangle fx:id="mRobot" />
+    <Polygon fx:id="mOrientationArrow" />
+</Pane>

@@ -1,13 +1,12 @@
 package org.snobot.coordinate_gui.model;
 
-
 public class PixelConverter
 {
     protected double mXCenterFeet;
     protected double mYCenterFeet;
-    protected double mScaleFactor;
 
-    protected int mXCenterPixels;
+    protected double mXCenterPixels;
+    protected double mImageScaleFactor;
 
     public PixelConverter(double aFieldCenterX, double aFieldCenterY)
     {
@@ -15,34 +14,29 @@ public class PixelConverter
         mYCenterFeet = aFieldCenterY;
     }
 
-    public int convertFeetToPixels(double aFeet)
+    public double convertFeetToPixels(double aFeet)
     {
-        return (int) (aFeet * mScaleFactor);
+        return aFeet * mImageScaleFactor;
     }
 
-    public int convertXFeetToPixels(double aFeet)
+    public double convertFieldXFeetToPixels(double aFeet)
     {
         return mXCenterPixels - convertFeetToPixels(mXCenterFeet - aFeet);
     }
 
-    public int convertYFeetToPixels(double aFeet)
+    public double convertFieldYFeetToPixels(double aFeet)
     {
         return convertFeetToPixels(mYCenterFeet - aFeet);
     }
 
-    public double convertPixelsToFeet(int aPixels)
+    public double convertFieldXPixelsToFeet(int aX)
     {
-        return aPixels / mScaleFactor;
+        return mXCenterFeet - (mXCenterPixels - aX) / mImageScaleFactor;
     }
 
-    public double convertXPixelsToFeet(int aX)
+    public double convertFieldYPixelsToFeet(int aY)
     {
-        return mXCenterFeet - convertPixelsToFeet(mXCenterPixels - aX);
-    }
-
-    public double convertYPixelsToFeet(int aY)
-    {
-        return mYCenterFeet - convertPixelsToFeet(aY);
+        return mYCenterFeet - aY / mImageScaleFactor;
     }
 
     /**
@@ -57,14 +51,12 @@ public class PixelConverter
      * @param aHeightFeet
      *            The height of the field, in feet
      */
-    public void updateScaleFactor(int aWidthPixels, int aHeightPixels, double aWidthFeet, double aHeightFeet)
+    public void setImageScale(double aWidthPixels, double aHeightPixels, double aWidthFeet, double aHeightFeet)
     {
         double horizontalScaleFactor = aWidthPixels / aWidthFeet;
         double verticalScaleFactor = aHeightPixels / aHeightFeet;
 
-        double minScaleFactor = Math.min(horizontalScaleFactor, verticalScaleFactor);
-
-        mScaleFactor = minScaleFactor;
-        mXCenterPixels = (int) (aWidthFeet * mScaleFactor);
+        mImageScaleFactor = Math.min(horizontalScaleFactor, verticalScaleFactor);
+        mXCenterPixels = aWidthFeet * mImageScaleFactor;
     }
 }

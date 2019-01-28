@@ -1,0 +1,11 @@
+
+apply plugin: "java"
+
+
+apply from: "$rootDir/shared_styleguide.gradle"
+dependencies {
+    compile "org.openjfx:javafx-base:11:win"
+    compile "org.openjfx:javafx-graphics:11:win"
+    compile "org.openjfx:javafx-controls:11:win"
+    compile "org.openjfx:javafx-fxml:11:win"
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.snobot.coordinate_gui.ui.layers.FieldLayerController">
+    <children>
+        <ImageView fx:id="mBackgroundImage" preserveRatio="true" />
+    </children>
+</Pane>

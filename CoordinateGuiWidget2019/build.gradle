@@ -1,0 +1,100 @@
+
+apply plugin: "java"
+
+apply from: "$rootDir/shared_styleguide.gradle"
+
+
+repositories {
+    maven {
+        name = "WPI"
+        url = "http://first.wpi.edu/FRC/roborio/maven/release"
+    }
+}
+
+ext.getShuffleboardVersion = {
+    return "2019.1.1"
+}
+
+dependencies {
+    compile project("$coordinateGuiBase:CoordinateGuiCore")
+    compile project("$coordinateGuiBase:CoordinateGuiWidgetCore")
+    
+    compile 'org.apache.logging.log4j:log4j-api:2.11.0'
+    compile 'org.apache.logging.log4j:log4j-core:2.11.0'
+    
+    compile "org.openjfx:javafx-base:11:win"
+    compile "org.openjfx:javafx-graphics:11:win"
+    compile "org.openjfx:javafx-controls:11:win"
+    compile "org.openjfx:javafx-fxml:11:win"
+    
+    
+    compile 'edu.wpi.first.shuffleboard:shuffleboard:' + getShuffleboardVersion()
+    compile 'edu.wpi.first.shuffleboard:api:' + getShuffleboardVersion()
+    compile 'edu.wpi.first.shuffleboard.plugin:networktables:' + getShuffleboardVersion()
+    compile 'edu.wpi.first.shuffleboard:api:' + getShuffleboardVersion()
+    compile 'edu.wpi.first.shuffleboard.plugin:networktables:' + getShuffleboardVersion()
+
+}
+
+
+task customFatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'com.baeldung.fatjar.Application'
+    }
+    baseName = 'CoordinateGuiShuffleboard'
+    
+    
+    outputs.upToDateWhen {
+        false
+    }
+    
+    from configurations.compile.collect {
+        if(it.toString().contains("org.apache.logging")) {
+            FileTree filtered = zipTree(it).matching { unused ->
+                exclude "org/apache/logging/log4j/core/appender/mom/kafka/KafkaManager*.class"
+                exclude "org/apache/logging/log4j/core/async/AsyncLogger.class"
+                exclude "org/apache/logging/log4j/core/async/AsyncLoggerConfigDefaultExceptionHandler*.class"
+                exclude "org/apache/logging/log4j/core/async/AsyncLoggerConfigDisruptor*.class"
+                exclude "org/apache/logging/log4j/core/async/AsyncLoggerDefaultExceptionHandler*.class"
+                exclude "org/apache/logging/log4j/core/async/JCToolsBlockingQueueFactory*.class"
+                exclude "org/apache/logging/log4j/core/async/RingBufferLogEvent*.class"
+                exclude "org/apache/logging/log4j/core/net/SmtpManager*.class"
+                exclude "org/apache/logging/log4j/core/layout/JacksonFactory*.class"
+                exclude "org/apache/logging/log4j/core/jackson/*.class"
+                exclude "org/apache/logging/log4j/core/osgi/*.class"
+                exclude "org/apache/logging/log4j/util/Activator*.class"
+                exclude "META-INF/**/*.class"
+            }
+            
+            filtered
+        }
+        else if(it.toString().contains("CoordinateGui")) {
+            zipTree(it)
+        }
+        else { [] }
+    }
+    
+    with jar
+}
+
+task install_plugin(type: Copy) {
+    from(tasks.named("customFatJar"))
+    into("${System.getProperty("user.home")}/Shuffleboard/plugins")
+}
+
+publishing {
+     repositories {
+       maven {
+           url publishing_url
+       }
+    }
+    publications {
+        application(MavenPublication) {
+            groupId = "org.snobot.coordinate_gui"
+            artifactId = "CoordinateGuiWidget"
+            version = publishing_version
+            
+            artifact customFatJar
+        }
+    }
+}
