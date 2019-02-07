@@ -30,4 +30,18 @@ public class PathParamsController
         mMaxVelocity.setText(Double.toString(aPathConfig.mMaxAcceleration));
         mIsBackwards.setSelected(aPathConfig.mIsBackwards);
     }
+
+    /**
+     * Gets the params represented by the view.
+     * 
+     * @return The config
+     */
+    public PathConfig getPathParams()
+    {
+        PathConfig output = new PathConfig();
+        output.mMaxAcceleration = Double.parseDouble(mMaxAcceleration.getText());
+        output.mMaxVelocity = Double.parseDouble(mMaxVelocity.getText());
+        output.mIsBackwards = mIsBackwards.isSelected();
+        return output;
+    }
 }

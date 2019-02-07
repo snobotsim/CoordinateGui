@@ -11,6 +11,8 @@ import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.shuffleboard.data.CoordinateData;
 import org.snobot.coordinate_gui.shuffleboard.data.CoordinateDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.CoordinateGuiData;
+import org.snobot.coordinate_gui.shuffleboard.data.GoToPositionData;
+import org.snobot.coordinate_gui.shuffleboard.data.GoToPositionDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.SmartDashboardNames;
 import org.snobot.coordinate_gui.shuffleboard.data.TrajectoryData;
 import org.snobot.coordinate_gui.shuffleboard.data.TrajectoryDataType;
@@ -54,6 +56,11 @@ public class CoordinateGuiWidget extends ComplexAnnotatedWidget<CoordinateGuiDat
             if (changes.containsKey(VisionDataType.NAME + "/" + SmartDashboardNames.sCAMERA_POSITIONS))
             {
                 updateCameraPositions(newData.getVisionData());
+            }
+
+            if (changes.containsKey(GoToPositionDataType.NAME + "/" + SmartDashboardNames.sCAMERA_POSITIONS))
+            {
+                updateGoToXY(newData.getGoToPositionData());
             }
 
             if (changes.containsKey(TrajectoryDataType.NAME + "/" + SmartDashboardNames.sSPLINE_WAYPOINTS))
@@ -124,6 +131,19 @@ public class CoordinateGuiWidget extends ComplexAnnotatedWidget<CoordinateGuiDat
             coordinates.add(new Coordinate(splineSegment.mAverageX / 12.0, splineSegment.mAverageY / 12.0, splineSegment.mRobotHeading));
         }
         mFieldController.setIdealTrajectory(coordinates);
+    }
+
+    private void updateGoToXY(GoToPositionData aGoToPositionData)
+    {
+        if (aGoToPositionData.getX() != null && aGoToPositionData.getY() != null)
+        {
+            mFieldController.setGoToXYPosition(aGoToPositionData.getX() / 12, aGoToPositionData.getY() / 12);
+        }
+        else
+        {
+            mFieldController.setGoToXYPosition(aGoToPositionData.getX(), aGoToPositionData.getY());
+        }
+
     }
 
     @Override

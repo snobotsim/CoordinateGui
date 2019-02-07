@@ -2,6 +2,13 @@
 apply plugin: "java"
 apply plugin: 'application'
 
+repositories {
+    mavenCentral()
+    maven {
+        url = uri("https://dev.imjac.in/maven/")
+    }
+}
+
 
 apply from: "$rootDir/shared_styleguide.gradle"
 dependencies {
@@ -16,6 +23,11 @@ dependencies {
     compile "org.openjfx:javafx-graphics:11:win"
     compile "org.openjfx:javafx-controls:11:win"
     compile "org.openjfx:javafx-fxml:11:win"
+    
+    compile "jaci.pathfinder:Pathfinder-Java:2019.1.10"
+    compile "jaci.pathfinder:Pathfinder-JNI:2019.1.10:windowsx86-64"
+    compile "jaci.pathfinder:Pathfinder-CoreJNI:2019.1.10:windowsx86-64"
+    compile "jaci.jniloader:JNILoader:1.0.1"
 }
 
 mainClassName = "org.snobot.coordinate_gui.Main"

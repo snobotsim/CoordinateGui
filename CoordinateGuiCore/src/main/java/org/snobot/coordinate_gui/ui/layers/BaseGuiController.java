@@ -54,7 +54,12 @@ public class BaseGuiController
                         mTopPane.widthProperty(), mTopPane.heightProperty()));
 
         mLayers.getTransforms().add(scale);
-        mPixelConverter.setImageScale(fieldImage.getWidth(), fieldImage.getHeight(), mFieldWidthFeet, mFieldHeightFeet);
+        mPixelConverter.setImageScale(scale, fieldImage.getWidth(), fieldImage.getHeight(), mFieldWidthFeet, mFieldHeightFeet);
+    }
+
+    public PixelConverter getPixelConverter()
+    {
+        return mPixelConverter;
     }
 
 }

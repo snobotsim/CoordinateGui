@@ -5,20 +5,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public final class StandaloneMain extends Application
+public final class StandaloneMain
 {
-    @Override
-    public void start(Stage aPrimaryStage) throws IOException
+    public static class PseudoMain extends Application
     {
-        Pane root = FXMLLoader.load(getClass().getResource("trajectory_overview.fxml"));
-        Scene scene = new Scene(root);
-        aPrimaryStage.setScene(scene);
-        aPrimaryStage.show();
+
+        @Override
+        public void start(Stage aPrimaryStage) throws IOException
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("trajectory_overview.fxml"));
+            Pane root = loader.load();
+            Scene scene = new Scene(root);
+            aPrimaryStage.setScene(scene);
+            aPrimaryStage.show();
+
+            TrajectoryGraphOverviewController overviewController = loader.getController();
+            tempFillOutData(overviewController);
+        }
+    }
+
+    private StandaloneMain()
+    {
+
     }
 
     /**
@@ -29,13 +43,17 @@ public final class StandaloneMain extends Application
      */
     public static void main(String[] aArgs)
     {
-        launch(aArgs);
+        // JavaFX 11+ uses GTK3 by default, and has problems on some display
+        // servers
+        // This flag forces JavaFX to use GTK2
+        System.setProperty("jdk.gtk.version", "2");
+        Application.launch(PseudoMain.class, aArgs);
     }
 
     /**
      * Test function that can populate the view with data.
      */
-    public void tempFillOutData() // NOPMD
+    public static void tempFillOutData(TrajectoryGraphOverviewController aOverviewController) // NOPMD
     {
 
         final List<SplineSegment> path_points = new ArrayList<SplineSegment>();
@@ -94,7 +112,7 @@ public final class StandaloneMain extends Application
         p.mRobotHeading = 0;
         path_points.add(p);
 
-        // setPath(path_points);
+        aOverviewController.setPath(path_points);
 
         Thread t = new Thread(new Runnable() // NOPMD
         {
@@ -125,19 +143,23 @@ public final class StandaloneMain extends Application
                     actuals.add(p);
                 }
 
-//                for (int i = 0; i < actuals.size(); ++i)
-//                {
-//                    // setPoint(i, actuals.get(i));
-//
-//                    try
-//                    {
-//                        Thread.sleep(500);
-//                    }
-//                    catch (InterruptedException ex)
-//                    {
-//                        ex.printStackTrace(); // NOPMD
-//                    }
-//                }
+                for (int i = 0; i < actuals.size(); ++i)
+                {
+                    int xx = i;
+                    Platform.runLater(() ->
+                    {
+                        aOverviewController.setPoint(xx, actuals.get(xx));
+                    });
+
+                    try
+                    {
+                        Thread.sleep(500);
+                    }
+                    catch (InterruptedException ex)
+                    {
+                        ex.printStackTrace(); // NOPMD
+                    }
+                }
             }
         });
         t.start();

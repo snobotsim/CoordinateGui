@@ -1,5 +1,7 @@
 package org.snobot.coordinate_gui.model;
 
+import javafx.scene.transform.Scale;
+
 public class PixelConverter
 {
     protected double mXCenterFeet;
@@ -7,6 +9,8 @@ public class PixelConverter
 
     protected double mXCenterPixels;
     protected double mImageScaleFactor;
+
+    protected Scale mScale;
 
     public PixelConverter(double aFieldCenterX, double aFieldCenterY)
     {
@@ -29,18 +33,20 @@ public class PixelConverter
         return convertFeetToPixels(mYCenterFeet - aFeet);
     }
 
-    public double convertFieldXPixelsToFeet(int aX)
+    public double convertFieldXPixelsToFeet(double aX)
     {
-        return mXCenterFeet - (mXCenterPixels - aX) / mImageScaleFactor;
+        return mXCenterFeet - (mXCenterPixels - aX / mScale.getX()) / mImageScaleFactor;
     }
 
-    public double convertFieldYPixelsToFeet(int aY)
+    public double convertFieldYPixelsToFeet(double aY)
     {
-        return mYCenterFeet - aY / mImageScaleFactor;
+        return mYCenterFeet - aY / mScale.getY() / mImageScaleFactor;
     }
 
     /**
      * Updates the scale factor, based on the size of the window.
+     * 
+     * @param aScale
      * 
      * @param aWidthPixels
      *            The width of the panel, in pixels
@@ -51,11 +57,12 @@ public class PixelConverter
      * @param aHeightFeet
      *            The height of the field, in feet
      */
-    public void setImageScale(double aWidthPixels, double aHeightPixels, double aWidthFeet, double aHeightFeet)
+    public void setImageScale(Scale aScale, double aWidthPixels, double aHeightPixels, double aWidthFeet, double aHeightFeet)
     {
         double horizontalScaleFactor = aWidthPixels / aWidthFeet;
         double verticalScaleFactor = aHeightPixels / aHeightFeet;
 
+        mScale = aScale;
         mImageScaleFactor = Math.min(horizontalScaleFactor, verticalScaleFactor);
         mXCenterPixels = aWidthFeet * mImageScaleFactor;
     }

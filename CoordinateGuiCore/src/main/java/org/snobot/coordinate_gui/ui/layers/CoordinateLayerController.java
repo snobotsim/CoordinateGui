@@ -7,7 +7,6 @@ import org.snobot.coordinate_gui.model.DataProvider;
 import org.snobot.coordinate_gui.model.PixelConverter;
 import org.snobot.coordinate_gui.ui.render_props.CoordinateLayerRenderProps;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -43,17 +42,6 @@ public class CoordinateLayerController
         mDataProvider = aDataProvider;
         mPixelConverter = aPixelConverter;
         mRenderProperties = aRenderProperties;
-    }
-
-    /**
-     * Safely renders the layer, by running on the event thread.
-     */
-    public void safeRender()
-    {
-        Platform.runLater(() ->
-        {
-            render();
-        });
     }
 
     /**

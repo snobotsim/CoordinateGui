@@ -3,14 +3,19 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.BorderPane?>
 
-<LineChart xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="org.snobot.nt.spline_plotter.TrajectoryWheelGraphController"
-           fx:id="mChart">
-	<xAxis>
-		<NumberAxis side="BOTTOM" />
-	</xAxis>
-	<yAxis>
-		<NumberAxis side="LEFT" />
-	</yAxis>
-</LineChart>
+
+<BorderPane fx:id="mPane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.snobot.nt.spline_plotter.TrajectoryWheelGraphController">
+  <center>
+    <LineChart xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+               fx:id="mChart">
+      <xAxis>
+        <NumberAxis side="BOTTOM"  fx:id="mXAxis"/>
+      </xAxis>
+      <yAxis>
+        <NumberAxis side="LEFT"  fx:id="mYAxis"/>
+      </yAxis>
+    </LineChart>
+  </center>
+</BorderPane>

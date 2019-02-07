@@ -8,8 +8,10 @@ import org.snobot.coordinate_gui.ui.layers.BaseGuiController;
 import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController;
 import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController.Ray;
 import org.snobot.coordinate_gui.ui.layers.CoordinateLayerController;
+import org.snobot.coordinate_gui.ui.layers.GoToPositionController;
 import org.snobot.coordinate_gui.ui.layers.RobotPositionLayerController;
 import org.snobot.coordinate_gui.ui.layers.TrajectoryConfigLayerController;
+import org.snobot.coordinate_gui.ui.layers.TrajectoryConfigLayerController.CoodrinateWrapper;
 import org.snobot.coordinate_gui.ui.render_props.CoordinateLayerRenderProps;
 
 import javafx.fxml.FXML;
@@ -30,6 +32,9 @@ public class DeepSpaceController extends BaseGuiController
 
     @FXML
     private RobotPositionLayerController mRobotPositionController;
+
+    @FXML
+    private GoToPositionController mGoToPositionController;
 
     @FXML
     private CameraRayLayerController mCameraLayerController;
@@ -56,7 +61,7 @@ public class DeepSpaceController extends BaseGuiController
         mCoordinatesRenderProperties = new CoordinateLayerRenderProps(100, 5, Color.GREEN, true);
         mCoordinatesDataProvider = new DataProvider<>();
 
-        mIdealTrajectoryRenderProperties = new CoordinateLayerRenderProps(100, 1, Color.RED, false);
+        mIdealTrajectoryRenderProperties = new CoordinateLayerRenderProps(100, 1, Color.YELLOWGREEN, false);
         mIdealTrajectoryDataProvider = new DataProvider<>();
     }
 
@@ -80,7 +85,7 @@ public class DeepSpaceController extends BaseGuiController
     {
         mRobotPositionController.setPosition(mPixelConverter, aRobotPosition);
         mCoordinatesDataProvider.addData(aRobotPosition);
-        mFadingCoordinatesController.safeRender();
+        mFadingCoordinatesController.render();
     }
 
     public void setCameraRays(List<Ray> aRays)
@@ -91,6 +96,11 @@ public class DeepSpaceController extends BaseGuiController
     public void setWaypoints(List<Coordinate> aWaypoints)
     {
         mTrajectoryConfigController.setTrajectoryPoints(mPixelConverter, aWaypoints);
+    }
+
+    public List<Coordinate> getWaypoints()
+    {
+        return mTrajectoryConfigController.getWaypoints();
     }
 
     /**
@@ -106,7 +116,21 @@ public class DeepSpaceController extends BaseGuiController
         {
             mIdealTrajectoryDataProvider.addData(coord);
         }
-        mIdealTrajectoryCoordinatesController.safeRender();
+        mIdealTrajectoryCoordinatesController.render();
     }
 
+    public CoodrinateWrapper getSelectedWaypoint()
+    {
+        return mTrajectoryConfigController.getSelectedWaypoint();
+    }
+
+    public void addIdealTrajectory(Coordinate aCoordinate)
+    {
+        mTrajectoryConfigController.addPoint(mPixelConverter, aCoordinate);
+    }
+
+    public void setGoToXYPosition(Double aX, Double aY)
+    {
+        mGoToPositionController.setGoToXYPosition(mPixelConverter, aX, aY);
+    }
 }

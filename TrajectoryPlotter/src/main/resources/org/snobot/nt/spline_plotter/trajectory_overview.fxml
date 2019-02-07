@@ -16,7 +16,8 @@
             prefWidth="1024.0" 
             xmlns="http://javafx.com/javafx/10.0.1" 
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.snobot.nt.spline_plotter.TrajectoryGraphOverviewController">
+            fx:controller="org.snobot.nt.spline_plotter.TrajectoryGraphOverviewController"
+            fx:id="mPane">
             
     <fx:include source="/org/snobot/nt/spline_plotter/trajectory_wheel_graph.fxml"
                 GridPane.rowIndex="0" GridPane.columnIndex="0" fx:id="mLeftWheelGraph" />

@@ -8,6 +8,7 @@ import edu.wpi.first.shuffleboard.api.data.ComplexData;
 public class CoordinateGuiData extends ComplexData<CoordinateGuiData>
 {
     private final CoordinateData mCoordinateData;
+    private final GoToPositionData mGoToPositionData;
     private final VisionData mVisionData;
     private final TrajectoryData mTrajectoryData;
 
@@ -19,6 +20,7 @@ public class CoordinateGuiData extends ComplexData<CoordinateGuiData>
         mCoordinateData = new CoordinateData();
         mVisionData = new VisionData();
         mTrajectoryData = new TrajectoryData();
+        mGoToPositionData = new GoToPositionData();
     }
 
     /**
@@ -32,6 +34,7 @@ public class CoordinateGuiData extends ComplexData<CoordinateGuiData>
         mCoordinateData = new CoordinateData(CoordinateDataType.NAME + "/", aMap);
         mVisionData = new VisionData(VisionDataType.NAME + "/", aMap);
         mTrajectoryData = new TrajectoryData(TrajectoryDataType.NAME + "/", aMap);
+        mGoToPositionData = new GoToPositionData(GoToPositionDataType.NAME + "/", aMap);
 
     }
 
@@ -42,12 +45,18 @@ public class CoordinateGuiData extends ComplexData<CoordinateGuiData>
         map.putAll(mCoordinateData.asMap(CoordinateDataType.NAME + "/"));
         map.putAll(mVisionData.asMap(VisionDataType.NAME + "/"));
         map.putAll(mTrajectoryData.asMap(TrajectoryDataType.NAME + "/"));
+        map.putAll(mGoToPositionData.asMap(GoToPositionDataType.NAME + "/"));
         return map;
     }
 
     public CoordinateData getRobotPosition()
     {
         return mCoordinateData;
+    }
+
+    public GoToPositionData getGoToPositionData()
+    {
+        return mGoToPositionData;
     }
 
     public VisionData getVisionData()
