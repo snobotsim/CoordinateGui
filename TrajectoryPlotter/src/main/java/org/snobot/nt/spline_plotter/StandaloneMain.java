@@ -19,13 +19,13 @@ public final class StandaloneMain
         @Override
         public void start(Stage aPrimaryStage) throws IOException
         {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("trajectory_overview.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("trajectory_plots.fxml"));
             Pane root = loader.load();
             Scene scene = new Scene(root);
             aPrimaryStage.setScene(scene);
             aPrimaryStage.show();
 
-            TrajectoryGraphOverviewController overviewController = loader.getController();
+            TrajectoryPlotsController overviewController = loader.getController();
             tempFillOutData(overviewController);
         }
     }
@@ -53,7 +53,7 @@ public final class StandaloneMain
     /**
      * Test function that can populate the view with data.
      */
-    public static void tempFillOutData(TrajectoryGraphOverviewController aOverviewController) // NOPMD
+    public static void tempFillOutData(TrajectoryPlotsController aOverviewController) // NOPMD
     {
 
         final List<SplineSegment> path_points = new ArrayList<SplineSegment>();

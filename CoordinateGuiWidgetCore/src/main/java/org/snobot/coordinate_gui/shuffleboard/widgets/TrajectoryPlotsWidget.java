@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 import org.snobot.coordinate_gui.shuffleboard.data.SmartDashboardNames;
 import org.snobot.coordinate_gui.shuffleboard.data.TrajectoryData;
 import org.snobot.nt.spline_plotter.SplineSegment;
-import org.snobot.nt.spline_plotter.TrajectoryGraphOverviewController;
+import org.snobot.nt.spline_plotter.TrajectoryPlotsController;
 
 import edu.wpi.first.shuffleboard.api.widget.Description;
 import edu.wpi.first.shuffleboard.api.widget.ParametrizedController;
@@ -22,7 +22,7 @@ public class TrajectoryPlotsWidget extends SimpleAnnotatedWidget<TrajectoryData>
     private Pane mRoot;
 
     @FXML
-    private TrajectoryGraphOverviewController mOverviewContainerController;
+    private TrajectoryPlotsController mOverviewContainerController;
 
     private int mLastIndex;
 

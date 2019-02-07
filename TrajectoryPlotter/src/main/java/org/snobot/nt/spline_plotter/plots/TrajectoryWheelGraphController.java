@@ -1,4 +1,4 @@
-package org.snobot.nt.spline_plotter;
+package org.snobot.nt.spline_plotter.plots;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class TrajectoryWheelGraphController
         mActualPosition.setName("Actual Position");
         mActualVelocity.setName("Actual Velocity");
 
-        mChart.getData().addAll(mIdealPosition, mActualPosition);
+        mChart.getData().addAll(mIdealPosition, mActualPosition, mIdealVelocity, mActualVelocity);
     }
 
     /**

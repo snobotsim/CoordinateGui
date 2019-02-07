@@ -16,19 +16,19 @@
             prefWidth="1024.0" 
             xmlns="http://javafx.com/javafx/10.0.1" 
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.snobot.nt.spline_plotter.TrajectoryGraphOverviewController"
+            fx:controller="org.snobot.nt.spline_plotter.plot_groups.TrajectoryPositionOverviewController"
             fx:id="mPane">
             
-    <fx:include source="/org/snobot/nt/spline_plotter/trajectory_wheel_graph.fxml"
+    <fx:include source="/org/snobot/nt/spline_plotter/plots/trajectory_wheel_graph.fxml"
                 GridPane.rowIndex="0" GridPane.columnIndex="0" fx:id="mLeftWheelGraph" />
             
-    <fx:include source="/org/snobot/nt/spline_plotter/trajectory_wheel_graph.fxml"
+    <fx:include source="/org/snobot/nt/spline_plotter/plots/trajectory_wheel_graph.fxml"
                 GridPane.rowIndex="0" GridPane.columnIndex="1" fx:id="mRightWheelGraph" />
     
-    <fx:include source="/org/snobot/nt/spline_plotter/trajectory_heading_graph.fxml"
+    <fx:include source="/org/snobot/nt/spline_plotter/plots/trajectory_heading_graph.fxml"
                 GridPane.rowIndex="1" GridPane.columnIndex="0" fx:id="mHeadingGraph" />
     
-    <fx:include source="/org/snobot/nt/spline_plotter/trajectory_xy_position_graph.fxml"
+    <fx:include source="/org/snobot/nt/spline_plotter/plots/trajectory_xy_position_graph.fxml"
                 GridPane.rowIndex="1" GridPane.columnIndex="1" fx:id="mXYPositionGraph" />
 
 </GridPane >

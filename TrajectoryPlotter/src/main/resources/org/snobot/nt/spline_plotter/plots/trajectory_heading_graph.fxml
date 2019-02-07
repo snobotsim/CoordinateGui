@@ -5,19 +5,16 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane fx:id="mPane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.snobot.nt.spline_plotter.TrajectoryXYPositionGraphController">
+<BorderPane fx:id="mPane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.snobot.nt.spline_plotter.plots.TrajectoryHeadingGraphController">
   <center>
-
     <LineChart xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-               
                fx:id="mChart">
-      <xAxis>
-        <NumberAxis side="BOTTOM" />
-      </xAxis>
-      <yAxis>
-        <NumberAxis side="LEFT" />
-      </yAxis>
+    	<xAxis>
+    		<NumberAxis side="BOTTOM" />
+    	</xAxis>
+    	<yAxis>
+    		<NumberAxis side="LEFT" />
+    	</yAxis>
     </LineChart>
   </center>
 </BorderPane>

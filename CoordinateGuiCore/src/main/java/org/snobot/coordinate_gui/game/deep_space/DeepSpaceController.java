@@ -58,8 +58,8 @@ public class DeepSpaceController extends BaseGuiController
     {
         super(FIELD_IMAGE_PATH, FIELD_WIDTH, FIELD_HEIGHT);
 
-        mCoordinatesRenderProperties = new CoordinateLayerRenderProps(100, 5, Color.GREEN, true);
-        mCoordinatesDataProvider = new DataProvider<>();
+        mCoordinatesRenderProperties = new CoordinateLayerRenderProps(100, 5, Color.ORANGERED, true);
+        mCoordinatesDataProvider = new DataProvider<>(1000);
 
         mIdealTrajectoryRenderProperties = new CoordinateLayerRenderProps(100, 1, Color.YELLOWGREEN, false);
         mIdealTrajectoryDataProvider = new DataProvider<>();

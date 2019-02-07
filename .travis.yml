@@ -5,9 +5,9 @@ matrix:
   - os: linux
     sudo: required
     dist: xenial
-
-  - os: osx
-    osx_image: xcode8
+#
+#  - os: osx
+#    osx_image: xcode8
 
 before_cache:
 - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock

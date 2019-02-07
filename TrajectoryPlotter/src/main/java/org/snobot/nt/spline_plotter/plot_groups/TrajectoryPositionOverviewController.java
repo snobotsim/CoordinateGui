@@ -1,23 +1,28 @@
-package org.snobot.nt.spline_plotter;
+package org.snobot.nt.spline_plotter.plot_groups;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.snobot.nt.spline_plotter.SplineSegment;
+import org.snobot.nt.spline_plotter.plots.TrajectoryHeadingGraphController;
+import org.snobot.nt.spline_plotter.plots.TrajectoryWheelGraphController;
+import org.snobot.nt.spline_plotter.plots.TrajectoryXYPositionGraphController;
+
 import javafx.fxml.FXML;
 
-public class TrajectoryGraphOverviewController
+public class TrajectoryPositionOverviewController
 {
     @FXML
-    private TrajectoryWheelGraphController mLeftWheelGraphController;
+    public TrajectoryWheelGraphController mLeftWheelGraphController;
 
     @FXML
-    private TrajectoryWheelGraphController mRightWheelGraphController;
+    public TrajectoryWheelGraphController mRightWheelGraphController;
 
     @FXML
-    private TrajectoryHeadingGraphController mHeadingGraphController;
+    public TrajectoryHeadingGraphController mHeadingGraphController;
 
     @FXML
-    private TrajectoryXYPositionGraphController mXYPositionGraphController;
+    public TrajectoryXYPositionGraphController mXYPositionGraphController;
 
     /**
      * Sets the spline segments.

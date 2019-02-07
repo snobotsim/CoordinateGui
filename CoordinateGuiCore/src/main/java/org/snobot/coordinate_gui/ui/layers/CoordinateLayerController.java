@@ -2,6 +2,9 @@ package org.snobot.coordinate_gui.ui.layers;
 
 import java.util.Iterator;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
 import org.snobot.coordinate_gui.model.PixelConverter;
@@ -14,6 +17,7 @@ import javafx.scene.shape.Circle;
 
 public class CoordinateLayerController
 {
+    private static final Logger sLOGGER = LogManager.getLogger(CoordinateLayerController.class);
 
     @FXML
     private Group mCoordinates;
@@ -67,6 +71,7 @@ public class CoordinateLayerController
 
             ++coordinateCtr;
         }
+        sLOGGER.log(Level.ERROR, "Rendered " + coordinateCtr + " coordinates");
     }
 
 }

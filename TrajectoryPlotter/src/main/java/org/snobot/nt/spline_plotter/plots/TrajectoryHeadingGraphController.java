@@ -1,4 +1,4 @@
-package org.snobot.nt.spline_plotter;
+package org.snobot.nt.spline_plotter.plots;
 
 import java.util.List;
 
