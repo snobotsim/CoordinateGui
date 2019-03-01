@@ -1,0 +1,40 @@
+
+resources:
+  containers:
+  - container: wpilib2019
+    image: wpilib/roborio-cross-ubuntu:2019-18.04
+
+jobs:
+ - job: Linux
+   pool:
+     vmImage: 'Ubuntu 16.04'
+
+   container: wpilib2019
+
+   steps:
+   - task: Gradle@2
+     inputs:
+       workingDirectory: ''
+       gradleWrapperFile: 'gradlew'
+       gradleOptions: '-Xmx3072m'
+       publishJUnitResults: false
+       tasks: 'build publish'
+
+   - task: ArchiveFiles@2
+     displayName: 'Archive Maven Artifact'
+     inputs:
+       archiveFile: '$(Build.ArtifactStagingDirectory)/MavenRepo.zip' 
+       rootFolderOrFile: build/publishing
+       
+   - task: CopyFiles@2
+     inputs:
+       sourceFolder: 'CoordinateGuiWidget2019/build/libs'
+       contents: '*.jar'
+       targetFolder: $(Build.ArtifactStagingDirectory)
+
+   - task: PublishBuildArtifacts@1
+     displayName: 'Publish Artifact: Plugin'
+     inputs:
+       pathtoPublish: $(Build.ArtifactStagingDirectory)
+       ArtifactName: 'artifacts'
+   

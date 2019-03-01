@@ -16,7 +16,7 @@ import edu.wpi.first.shuffleboard.api.plugin.Plugin;
 import edu.wpi.first.shuffleboard.api.widget.ComponentType;
 import edu.wpi.first.shuffleboard.api.widget.WidgetType;
 
-@Description(group = "org.snobot.coordinate_gui", name = "CoordinateGuiPlugins", version = "1.0.0", summary = "Coordinate GUI Utilities")
+@Description(group = "org.snobot.coordinate_gui", name = "CoordinateGuiPlugins", version = PluginVersion.VERSION, summary = "Coordinate GUI Utilities")
 public class ShuffleboardPlugin2019 extends Plugin
 {
 

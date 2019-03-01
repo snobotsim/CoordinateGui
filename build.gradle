@@ -19,5 +19,5 @@ ext {
 	coordinateGuiBase = ""
     
     publishing_url = "${rootDir}/build/publishing"
-    publishing_version = "2019.0.1.0"
+    publishing_version = "2.0.0"
 }

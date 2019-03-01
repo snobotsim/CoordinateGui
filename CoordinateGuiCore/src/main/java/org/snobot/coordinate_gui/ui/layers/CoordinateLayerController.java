@@ -71,7 +71,7 @@ public class CoordinateLayerController
 
             ++coordinateCtr;
         }
-        sLOGGER.log(Level.ERROR, "Rendered " + coordinateCtr + " coordinates");
+        sLOGGER.log(Level.TRACE, "Rendered " + coordinateCtr + " coordinates");
     }
 
 }
