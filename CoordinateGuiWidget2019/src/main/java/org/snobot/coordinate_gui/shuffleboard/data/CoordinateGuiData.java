@@ -11,6 +11,7 @@ public class CoordinateGuiData extends ComplexData<CoordinateGuiData>
     private final GoToPositionData mGoToPositionData;
     private final VisionData mVisionData;
     private final TrajectoryData mTrajectoryData;
+    private final PurePursuitData mPurePursuitData;
 
     /**
      * Constructor.
@@ -21,6 +22,7 @@ public class CoordinateGuiData extends ComplexData<CoordinateGuiData>
         mVisionData = new VisionData();
         mTrajectoryData = new TrajectoryData();
         mGoToPositionData = new GoToPositionData();
+        mPurePursuitData = new PurePursuitData();
     }
 
     /**
@@ -35,6 +37,7 @@ public class CoordinateGuiData extends ComplexData<CoordinateGuiData>
         mVisionData = new VisionData(VisionDataType.NAME + "/", aMap);
         mTrajectoryData = new TrajectoryData(TrajectoryDataType.NAME + "/", aMap);
         mGoToPositionData = new GoToPositionData(GoToPositionDataType.NAME + "/", aMap);
+        mPurePursuitData = new PurePursuitData(PurePursuitDataType.NAME + "/", aMap);
 
     }
 
@@ -46,6 +49,7 @@ public class CoordinateGuiData extends ComplexData<CoordinateGuiData>
         map.putAll(mVisionData.asMap(VisionDataType.NAME + "/"));
         map.putAll(mTrajectoryData.asMap(TrajectoryDataType.NAME + "/"));
         map.putAll(mGoToPositionData.asMap(GoToPositionDataType.NAME + "/"));
+        map.putAll(mPurePursuitData.asMap(PurePursuitDataType.NAME + "/"));
         return map;
     }
 
@@ -67,6 +71,11 @@ public class CoordinateGuiData extends ComplexData<CoordinateGuiData>
     public TrajectoryData getTrajectoryData()
     {
         return mTrajectoryData;
+    }
+
+    public PurePursuitData getPurePursuitData()
+    {
+        return mPurePursuitData;
     }
 
 }

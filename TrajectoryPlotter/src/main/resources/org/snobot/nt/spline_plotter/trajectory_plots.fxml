@@ -2,9 +2,9 @@
 
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<Pane  maxHeight="-Infinity" 
+<BorderPane  maxHeight="-Infinity" 
             maxWidth="-Infinity" 
             prefHeight="768.0" 
             prefWidth="1024.0" 
@@ -12,8 +12,8 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.snobot.nt.spline_plotter.TrajectoryPlotsController"
             fx:id="mPane">
-            
-  <TabPane fx:id="mTabPane" xmlns="http://javafx.com/javafx/8.0.40" >
+  <center>
+  <TabPane fx:id="mTabPane" xmlns="http://javafx.com/javafx/8.0.40" tabClosingPolicy="UNAVAILABLE">
     <Tab text="Position Overview">
       <fx:include fx:id="mPositionOverview" source="/org/snobot/nt/spline_plotter/plot_groups/trajectory_position_overview.fxml"/>
     </Tab>
@@ -50,5 +50,6 @@
     
   
   </TabPane>
+  </center>
 
-</Pane>
+</BorderPane>

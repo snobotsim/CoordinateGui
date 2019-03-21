@@ -13,6 +13,8 @@ import org.snobot.coordinate_gui.shuffleboard.data.CoordinateDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.CoordinateGuiData;
 import org.snobot.coordinate_gui.shuffleboard.data.GoToPositionData;
 import org.snobot.coordinate_gui.shuffleboard.data.GoToPositionDataType;
+import org.snobot.coordinate_gui.shuffleboard.data.PurePursuitData;
+import org.snobot.coordinate_gui.shuffleboard.data.PurePursuitDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.SmartDashboardNames;
 import org.snobot.coordinate_gui.shuffleboard.data.TrajectoryData;
 import org.snobot.coordinate_gui.shuffleboard.data.TrajectoryDataType;
@@ -71,6 +73,12 @@ public class CoordinateGuiWidget extends ComplexAnnotatedWidget<CoordinateGuiDat
             if (changes.containsKey(TrajectoryDataType.NAME + "/" + SmartDashboardNames.sSPLINE_IDEAL_POINTS))
             {
                 updateIdealTrajectory(newData.getTrajectoryData());
+            }
+
+            if (changes.containsKey(PurePursuitDataType.NAME + "/" + SmartDashboardNames.sPURE_PURSUIT_SMOOTHED)
+                    || changes.containsKey(PurePursuitDataType.NAME + "/" + SmartDashboardNames.sPURE_PURSUIT_LOOKAHEAD))
+            {
+                updatePurePursuit(newData.getPurePursuitData());
             }
 
         });
@@ -143,7 +151,20 @@ public class CoordinateGuiWidget extends ComplexAnnotatedWidget<CoordinateGuiDat
         {
             mFieldController.setGoToXYPosition(aGoToPositionData.getX(), aGoToPositionData.getY());
         }
+    }
 
+    private void updatePurePursuit(PurePursuitData aPurePursuitData)
+    {
+        mFieldController.setPurePursuitWaypoints(aPurePursuitData.getWaypoints(), aPurePursuitData.getUpSampledPoints(),
+                aPurePursuitData.getSmoothedPoints());
+
+        String lookaheadString = aPurePursuitData.getLookaheadString();
+        if (!lookaheadString.isEmpty())
+        {
+            String[] lookahead = aPurePursuitData.getLookaheadString().split(",");
+            mFieldController.setPurePursuitLookahead(Double.parseDouble(lookahead[0]), Double.parseDouble(lookahead[1]),
+                    Double.parseDouble(lookahead[2]), Double.parseDouble(lookahead[3]));
+        }
     }
 
     @Override

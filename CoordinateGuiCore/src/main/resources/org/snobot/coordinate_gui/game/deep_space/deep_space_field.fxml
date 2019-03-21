@@ -26,6 +26,7 @@
             <fx:include fx:id="mRobotPosition" source="/org/snobot/coordinate_gui/ui/layers/robot_position_layer.fxml" />
             <fx:include fx:id="mCameraLayer" source="/org/snobot/coordinate_gui/ui/layers/camera_ray_layer.fxml" />
             <fx:include fx:id="mFadingCoordinates" source="/org/snobot/coordinate_gui/ui/layers/coordinate_layer.fxml" />
+            <fx:include fx:id="mPurePursuit" source="/org/snobot/coordinate_gui/ui/layers/pure_pursuit_layer.fxml" />
         </Group>
     </children>
 </Pane>

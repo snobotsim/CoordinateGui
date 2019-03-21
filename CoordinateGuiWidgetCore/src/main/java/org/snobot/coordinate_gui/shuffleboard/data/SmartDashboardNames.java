@@ -25,4 +25,12 @@ public class SmartDashboardNames
     public static final String sSPLINE_REAL_POINT = "Real Spline Point";
     public static final String sSPLINE_WAYPOINTS = "Spline Waypoints";
 
+    // Pure-Pursuit table
+    public static final String sPURE_PERSUIT_TABLE_TYPE = "PurePursuit";
+    public static final String sPURE_PURSUIT_WAYPOINTS = "Waypoints";
+    public static final String sPURE_PURSUIT_UP_SAMPLED = "UpSampled";
+    public static final String sPURE_PURSUIT_SMOOTHED = "Smoothed";
+    public static final String sPURE_PURSUIT_LOOKAHEAD = "Lookahead";
+    public static final String sPURE_PURSUIT_CURRENT_POINT = "CurrentPoint";
+
 }

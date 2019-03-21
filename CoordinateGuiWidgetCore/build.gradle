@@ -17,6 +17,7 @@ ext.getShuffleboardVersion = {
 
 dependencies {
     compile project("$coordinateGuiBase:CoordinateGuiCore")
+    compile project("$coordinateGuiBase:PurePursuitPlotter")
     compile project("$coordinateGuiBase:TrajectoryPlotter")
     
     compile 'org.apache.logging.log4j:log4j-api:2.11.0'

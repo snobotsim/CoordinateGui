@@ -9,6 +9,7 @@ import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController;
 import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController.Ray;
 import org.snobot.coordinate_gui.ui.layers.CoordinateLayerController;
 import org.snobot.coordinate_gui.ui.layers.GoToPositionController;
+import org.snobot.coordinate_gui.ui.layers.PurePursuitLayerController;
 import org.snobot.coordinate_gui.ui.layers.RobotPositionLayerController;
 import org.snobot.coordinate_gui.ui.layers.TrajectoryConfigLayerController;
 import org.snobot.coordinate_gui.ui.layers.TrajectoryConfigLayerController.CoodrinateWrapper;
@@ -45,6 +46,9 @@ public class DeepSpaceController extends BaseGuiController
     @FXML
     private CoordinateLayerController mIdealTrajectoryCoordinatesController;
 
+    @FXML
+    private PurePursuitLayerController mPurePursuitController;
+
     private final DataProvider<Coordinate> mCoordinatesDataProvider;
     private final CoordinateLayerRenderProps mCoordinatesRenderProperties;
 
@@ -73,6 +77,7 @@ public class DeepSpaceController extends BaseGuiController
 
         mFadingCoordinatesController.setup(mCoordinatesRenderProperties, mCoordinatesDataProvider, mPixelConverter);
         mIdealTrajectoryCoordinatesController.setup(mIdealTrajectoryRenderProperties, mIdealTrajectoryDataProvider, mPixelConverter);
+        mPurePursuitController.setup(mPixelConverter);
     }
 
     /**
@@ -132,5 +137,15 @@ public class DeepSpaceController extends BaseGuiController
     public void setGoToXYPosition(Double aX, Double aY)
     {
         mGoToPositionController.setGoToXYPosition(mPixelConverter, aX, aY);
+    }
+
+    public void setPurePursuitWaypoints(List<Coordinate> aCoordinates, List<Coordinate> aUpSampled, List<Coordinate> aSmoothed)
+    {
+        mPurePursuitController.setWaypoints(aCoordinates, aUpSampled, aSmoothed);
+    }
+
+    public void setPurePursuitLookahead(double aRobotX, double aRobotY, double aLookaheadX, double aLookaheadY)
+    {
+        mPurePursuitController.setLookaheadLine(aRobotX, aRobotY, aLookaheadX, aLookaheadY);
     }
 }

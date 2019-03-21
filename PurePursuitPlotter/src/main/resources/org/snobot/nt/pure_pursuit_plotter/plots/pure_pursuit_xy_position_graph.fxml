@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 
 
-<BorderPane fx:id="mPane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.snobot.nt.spline_plotter.plots.TrajectoryXYPositionGraphController">
+<BorderPane fx:id="mPane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.snobot.nt.pure_pursuit_plotter.plots.PurePursuitXYPositionGraphController">
   <center>
 
     <ScatterChart xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"

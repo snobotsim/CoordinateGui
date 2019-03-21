@@ -10,8 +10,8 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.chart.*?>
 
-<GridPane  maxHeight="-Infinity" 
-            maxWidth="-Infinity" 
+<GridPane  maxHeight="Infinity" 
+            maxWidth="Infinity" 
             prefHeight="768.0" 
             prefWidth="1024.0" 
             xmlns="http://javafx.com/javafx/10.0.1" 

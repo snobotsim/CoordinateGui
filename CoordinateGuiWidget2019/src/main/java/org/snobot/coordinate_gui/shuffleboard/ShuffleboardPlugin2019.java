@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.snobot.coordinate_gui.shuffleboard.data.CoordinateDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.CoordinateGuiDataType;
+import org.snobot.coordinate_gui.shuffleboard.data.PurePursuitDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.TrajectoryDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.VisionDataType;
+import org.snobot.coordinate_gui.shuffleboard.widgets.PurePursuitPlotsWidget;
 import org.snobot.coordinate_gui.shuffleboard.widgets.TrajectoryPlotsWidget;
 
 import com.google.common.collect.ImmutableList;
@@ -25,7 +27,8 @@ public class ShuffleboardPlugin2019 extends Plugin
     {
         return ImmutableList.of(
                 WidgetType.forAnnotatedWidget(CoordinateGuiWidget.class),
-                WidgetType.forAnnotatedWidget(TrajectoryPlotsWidget.class));
+                WidgetType.forAnnotatedWidget(TrajectoryPlotsWidget.class),
+                WidgetType.forAnnotatedWidget(PurePursuitPlotsWidget.class));
 
     }
 
@@ -33,7 +36,7 @@ public class ShuffleboardPlugin2019 extends Plugin
     public List<DataType> getDataTypes()
     {
         return ImmutableList.of(
-                new CoordinateGuiDataType(), new CoordinateDataType(), new VisionDataType(), new TrajectoryDataType());
+                new CoordinateGuiDataType(), new CoordinateDataType(), new VisionDataType(), new TrajectoryDataType(), new PurePursuitDataType());
     }
 
 }

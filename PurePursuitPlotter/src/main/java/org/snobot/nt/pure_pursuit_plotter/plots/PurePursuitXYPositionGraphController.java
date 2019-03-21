@@ -1,13 +1,16 @@
-package org.snobot.nt.spline_plotter.plots;
+package org.snobot.nt.pure_pursuit_plotter.plots;
 
 import java.util.List;
+
+import org.snobot.coordinate_gui.model.Coordinate;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 
-public class TrajectoryXYPositionGraphController
+public class PurePursuitXYPositionGraphController
 {
+
     @FXML
     private ScatterChart<Double, Double> mChart;
 
@@ -30,21 +33,19 @@ public class TrajectoryXYPositionGraphController
     }
 
     /**
-     * Sets the spline center path, and the velocity.
+     * Sets the ideal path.
      * 
-     * @param aX
-     *            The ideal X positions
-     * @param aY
-     *            The ideal Y positions
+     * @param aCoordinates
+     *            the coordinates
      */
-    public void setPath(List<Double> aX, List<Double> aY)
+    public void setPath(List<Coordinate> aCoordinates)
     {
         mIdeal.getData().clear();
         clearActuals();
 
-        for (int i = 0; i < aX.size(); ++i)
+        for (Coordinate coord : aCoordinates)
         {
-            mIdeal.getData().add(new XYChart.Data<Double, Double>(aX.get(i), aY.get(i)));
+            mIdeal.getData().add(new XYChart.Data<Double, Double>(coord.mX, coord.mY));
         }
     }
 
@@ -56,7 +57,7 @@ public class TrajectoryXYPositionGraphController
      * @param aY
      *            The Y position, in inches
      */
-    public void setPoint(double aX, double aY)
+    public void addPoint(double aX, double aY)
     {
         mActual.getData().add(new XYChart.Data<Double, Double>(aX, aY));
     }

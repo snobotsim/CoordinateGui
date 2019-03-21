@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane  prefHeight="100" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
+           fx:controller="org.snobot.coordinate_gui.gen.pure_pursuit.ui.PurePursuitParamsController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label text="Up Sample Spacing" GridPane.rowIndex="0" />
+      <Label text="Turn Factor" GridPane.rowIndex="1" />
+
+      <TextField fx:id="mUpSampleSpacing" onAction="#handleChange" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+      <TextField fx:id="mTurnFactor" onAction="#handleChange" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+   </children>
+</GridPane>
