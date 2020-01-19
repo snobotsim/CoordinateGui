@@ -12,10 +12,10 @@ public class RobotPositionLayerController
     private static final double ARROW_SIZE = 10;
 
     @FXML
-    private Rectangle mRobot;
+    protected Rectangle mRobot;
 
     @FXML
-    private Polygon mOrientationArrow;
+    protected Polygon mOrientationArrow;
 
     private double mRobotWidth; // Feet
     private double mRobotHeight; // Feet

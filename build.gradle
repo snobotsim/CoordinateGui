@@ -1,7 +1,24 @@
+
+buildscript
+{
+    ext.getShuffleboardVersion = {
+        return "2020.1.2"
+    }
+}
+
 plugins {
 	id "java"
 	id "com.github.spotbugs" version "1.6.9"
 	id "eclipse"
+}
+
+allprojects {
+    repositories {
+        maven {
+            name = "WPI"
+            url = "https://frcmaven.wpi.edu/artifactory/release/"
+        }
+    }
 }
 
 allprojects {
@@ -19,5 +36,5 @@ ext {
 	coordinateGuiBase = ""
     
     publishing_url = "${rootDir}/build/publishing"
-    publishing_version = "2.1.0"
+    publishing_version = "3.0.0"
 }

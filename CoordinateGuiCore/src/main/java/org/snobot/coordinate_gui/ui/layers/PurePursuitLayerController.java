@@ -75,13 +75,13 @@ public class PurePursuitLayerController
 
         for (Coordinate coordinate : aUpSampled)
         {
-            Rectangle circle = new Rectangle();
-            circle.setHeight(5);
-            circle.setWidth(5);
-            circle.setX(mPixelConverter.convertFieldXFeetToPixels(coordinate.mX));
-            circle.setY(mPixelConverter.convertFieldYFeetToPixels(coordinate.mY));
-            circle.setFill(Color.ORANGE);
-            mMarkers.getChildren().add(circle);
+            Rectangle rectangle = new Rectangle();
+            rectangle.setHeight(5);
+            rectangle.setWidth(5);
+            rectangle.setX(mPixelConverter.convertFieldXFeetToPixels(coordinate.mX));
+            rectangle.setY(mPixelConverter.convertFieldYFeetToPixels(coordinate.mY));
+            rectangle.setFill(Color.ORANGE);
+            mMarkers.getChildren().add(rectangle);
         }
         for (Coordinate coordinate : aSmoothed)
         {

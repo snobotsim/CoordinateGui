@@ -3,18 +3,6 @@ apply plugin: "java"
 
 apply from: "$rootDir/shared_styleguide.gradle"
 
-
-repositories {
-    maven {
-        name = "WPI"
-        url = "http://first.wpi.edu/FRC/roborio/maven/release"
-    }
-}
-
-ext.getShuffleboardVersion = {
-    return "2019.1.1"
-}
-
 dependencies {
     compile project("$coordinateGuiBase:CoordinateGuiCore")
     compile project("$coordinateGuiBase:PurePursuitPlotter")

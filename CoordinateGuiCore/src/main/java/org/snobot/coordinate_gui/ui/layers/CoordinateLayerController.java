@@ -20,7 +20,7 @@ public class CoordinateLayerController
     private static final Logger sLOGGER = LogManager.getLogger(CoordinateLayerController.class);
 
     @FXML
-    private Group mCoordinates;
+    protected Group mCoordinates;
 
     protected PixelConverter mPixelConverter;
     protected DataProvider<Coordinate> mDataProvider;

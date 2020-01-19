@@ -1,6 +1,10 @@
 rootProject.name="CoordinateGuiRepo"
 
 include 'CoordinateGuiCore'
+include 'CoordinateGuiCore2017'
+include 'CoordinateGuiCore2018'
+include 'CoordinateGuiCore2019'
+include 'CoordinateGuiCore2020'
 include 'CoordinateGuiStandalone'
 include 'CoordinateGuiWidget'
 include 'CoordinateGuiWidgetCore'

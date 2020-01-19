@@ -12,7 +12,7 @@ import javafx.scene.shape.Line;
 public class CameraRayLayerController
 {
     @FXML
-    private Group mRays;
+    protected Group mRays;
 
     /**
      * Sets the camera rays to draw.

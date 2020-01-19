@@ -31,7 +31,7 @@ public class TrajectoryConfigLayerController
     public static final DataFormat ANGLE_LINE = new DataFormat("coordinate_gui/angle_line");
 
     @FXML
-    private Group mPathPoints;
+    protected Group mPathPoints;
 
     private final List<Coordinate> mCoordinates;
     private final List<CoodrinateWrapper> mWrapper;
@@ -172,7 +172,7 @@ public class TrajectoryConfigLayerController
     public void addPoint(PixelConverter aPixelConverter, Coordinate aCoordinate)
     {
         mCoordinates.add(aCoordinate);
-        setTrajectoryPoints(aPixelConverter, mCoordinates);
+        setTrajectoryPoints(aPixelConverter, new ArrayList<>(mCoordinates));
     }
 
     public List<Coordinate> getWaypoints()

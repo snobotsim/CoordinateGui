@@ -10,9 +10,9 @@ public class GoToPositionController
 {
 
     @FXML
-    private Group mPosition;
+    protected Group mPosition;
 
-    private Polygon mIcon;
+    protected Polygon mIcon;
 
     @FXML
     public void initialize()
