@@ -5,11 +5,12 @@ import java.util.function.Function;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexDataType;
 
-public class GoToPositionDataType extends ComplexDataType<GoToPositionData>
+public final class GoToPositionDataType extends ComplexDataType<GoToPositionData>
 {
+    public static final GoToPositionDataType INSTANCE = new GoToPositionDataType();
     public static final String NAME = SmartDashboardNames.sGO_TO_POSITION_TABLE_TYPE;
 
-    public GoToPositionDataType()
+    private GoToPositionDataType()
     {
         super(NAME, GoToPositionData.class);
     }

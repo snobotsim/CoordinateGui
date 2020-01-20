@@ -1,9 +1,10 @@
 package org.snobot.coordinate_gui.ui.layers;
 
+import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.shape.Polygon;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.snobot.coordinate_gui.TestablePixelConverterFactory;
 import org.snobot.coordinate_gui.model.PixelConverter;
 
@@ -27,8 +28,8 @@ public class GoToPositionControllerTest
         GoToPositionController controller = new TestableGoToPositionController();
         controller.initialize();
 
-        controller.setGoToXYPosition(converter, null, null);
-        Assert.assertEquals(0, controller.mPosition.getChildren().size());
+        controller.setGoToXYPosition(converter, null);
+        Assertions.assertEquals(0, controller.mPosition.getChildren().size());
     }
 
     @Test
@@ -39,12 +40,12 @@ public class GoToPositionControllerTest
         GoToPositionController controller = new TestableGoToPositionController();
         controller.initialize();
 
-        controller.setGoToXYPosition(converter, 5.42, -9.42);
-        Assert.assertEquals(1, controller.mPosition.getChildren().size());
+        controller.setGoToXYPosition(converter, new Point2D(5.42, -9.42));
+        Assertions.assertEquals(1, controller.mPosition.getChildren().size());
 
         Polygon icon = (Polygon) controller.mPosition.getChildren().get(0);
 
-        Assert.assertEquals(189.2, icon.getTranslateX(), EPSILON);
-        Assert.assertEquals(364.2, icon.getTranslateY(), EPSILON);
+        Assertions.assertEquals(189.2, icon.getTranslateX(), EPSILON);
+        Assertions.assertEquals(364.2, icon.getTranslateY(), EPSILON);
     }
 }

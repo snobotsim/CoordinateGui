@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
+import javafx.geometry.Point2D;
 
 public class GoToPositionData extends ComplexData<GoToPositionData>
 {
@@ -69,13 +70,34 @@ public class GoToPositionData extends ComplexData<GoToPositionData>
         return map;
     }
 
+    /**
+     * Gets the X coordinate.
+     * @return The coordinate
+     */
     public Double getX()
     {
         return mX;
     }
 
+    /**
+     * Gets the Y coordinate.
+     * @return The coordinate
+     */
     public Double getY()
     {
         return mY;
+    }
+
+    /**
+     * Converts this to the data model the gui core understands.
+     * @return The new value
+     */
+    public Point2D toCoordinate()
+    {
+        if (getX() == null || getY() == null)
+        {
+            return null;
+        }
+        return new Point2D(getX() / 12, getY() / 12);
     }
 }

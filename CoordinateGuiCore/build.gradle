@@ -11,6 +11,7 @@ dependencies {
     compile "org.openjfx:javafx-controls:11:win"
     compile "org.openjfx:javafx-fxml:11:win"
 
-    testCompile 'junit:junit:4.12'
+    testCompile 'org.junit.jupiter:junit-jupiter-api:5.5.1'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
 
 }

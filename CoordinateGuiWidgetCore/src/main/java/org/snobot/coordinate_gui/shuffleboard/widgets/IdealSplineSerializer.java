@@ -37,7 +37,7 @@ public final class IdealSplineSerializer
      */
     public static List<SplineSegment> deserializePath(String aString)
     {
-        List<SplineSegment> points = new ArrayList<SplineSegment>();
+        List<SplineSegment> points = new ArrayList<>();
         StringTokenizer tokenizer = new StringTokenizer(aString, ",");
 
         while (tokenizer.hasMoreElements())

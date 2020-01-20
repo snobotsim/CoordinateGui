@@ -1,9 +1,15 @@
 package org.snobot.coordinate_gui.shuffleboard.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
+import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.shuffleboard.widgets.IdealSplineSerializer;
+import org.snobot.nt.spline_plotter.SplineSegment;
 
 public class TrajectoryData extends ComplexData<TrajectoryData>
 {
@@ -100,4 +106,40 @@ public class TrajectoryData extends ComplexData<TrajectoryData>
         return mSplineWaypoints;
     }
 
+    /**
+     * Converts this to the data model the gui core understands.
+     * @return The new value
+     */
+    public List<Coordinate> toWaypoints()
+    {
+        List<Coordinate> coordinates = new ArrayList<>();
+        StringTokenizer tokenizer = new StringTokenizer(getSplineWaypoints(), ",");
+        while (tokenizer.countTokens() >= 3)
+        {
+            double x = Double.parseDouble(tokenizer.nextToken());
+            double y = Double.parseDouble(tokenizer.nextToken());
+            double angle = Math.toDegrees(Double.parseDouble(tokenizer.nextToken()));
+            Coordinate coordinate = new Coordinate(x / 12.0, y / 12.0, angle);
+            coordinates.add(coordinate);
+        }
+
+        return coordinates;
+    }
+
+    /**
+     * Converts this to the data model the gui core understands.
+     * @return The new value
+     */
+    public List<Coordinate> toIdealCoordinates()
+    {
+        List<Coordinate> coordinates = new ArrayList<>();
+        List<SplineSegment> segments = IdealSplineSerializer.deserializePath(getIdealSpline());
+
+        for (SplineSegment splineSegment : segments)
+        {
+            coordinates.add(new Coordinate(splineSegment.mAverageX / 12.0, splineSegment.mAverageY / 12.0, splineSegment.mRobotHeading));
+        }
+
+        return coordinates;
+    }
 }

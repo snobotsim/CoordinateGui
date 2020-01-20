@@ -14,6 +14,30 @@ import javafx.scene.shape.Rectangle;
 
 public class PurePursuitLayerController
 {
+    @SuppressWarnings("PMD.DataClass")
+    public static class PurePursuitLookaheadData
+    {
+        public final double mRobotX;
+        public final double mRobotY;
+        public final double mLookaheadX;
+        public final double mLookaheadY;
+
+        /**
+         * Constructor.
+         * @param aRobotX Robots X
+         * @param aRobotY Robots Y
+         * @param aLookaheadX Lookahead X
+         * @param aLookaheadY Lookahead Y
+         */
+        public PurePursuitLookaheadData(double aRobotX, double aRobotY, double aLookaheadX, double aLookaheadY)
+        {
+            mRobotX = aRobotX;
+            mRobotY = aRobotY;
+            mLookaheadX = aLookaheadX;
+            mLookaheadY = aLookaheadY;
+        }
+    }
+
     @FXML
     protected Group mMarkers;
 
@@ -31,21 +55,15 @@ public class PurePursuitLayerController
     /**
      * Sets the line representing the lookahead distance.
      * 
-     * @param aRobotX
-     *            The robots X position
-     * @param aRobotY
-     *            The robots Y position
-     * @param aLookaheadX
-     *            The lookahead position
-     * @param aLookaheadY
-     *            The lookahead position
+     * @param aLookaheadConfig
+     *            The lookahead data
      */
-    public void setLookaheadLine(double aRobotX, double aRobotY, double aLookaheadX, double aLookaheadY)
+    public void setLookaheadLine(PurePursuitLookaheadData aLookaheadConfig)
     {
-        mLookaheadLine.setStartX(mPixelConverter.convertFieldXFeetToPixels(aRobotX));
-        mLookaheadLine.setStartY(mPixelConverter.convertFieldYFeetToPixels(aRobotY));
-        mLookaheadLine.setEndX(mPixelConverter.convertFieldXFeetToPixels(aLookaheadX));
-        mLookaheadLine.setEndY(mPixelConverter.convertFieldYFeetToPixels(aLookaheadY));
+        mLookaheadLine.setStartX(mPixelConverter.convertFieldXFeetToPixels(aLookaheadConfig.mRobotX));
+        mLookaheadLine.setStartY(mPixelConverter.convertFieldYFeetToPixels(aLookaheadConfig.mRobotY));
+        mLookaheadLine.setEndX(mPixelConverter.convertFieldXFeetToPixels(aLookaheadConfig.mLookaheadX));
+        mLookaheadLine.setEndY(mPixelConverter.convertFieldYFeetToPixels(aLookaheadConfig.mLookaheadY));
     }
 
     /**

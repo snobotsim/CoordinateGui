@@ -1,8 +1,11 @@
 
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: "pmd"
 apply plugin: "checkstyle"
+apply plugin:  "jacoco"
 apply plugin: 'com.github.spotbugs'
 
 checkstyle {
@@ -24,10 +27,51 @@ spotbugs {
   excludeFilter = file("$rootDir/styleguide/findbugs_suppressions.xml")
   effort = "max"
 }
+jacoco {
+    toolVersion = "0.8.4"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 1.0
+            }
+        }
+    }
+}
+
+test {
+//    useJUnitPlatform()
+    testLogging {
+        events TestLogEvent.FAILED,
+                TestLogEvent.SKIPPED,
+                TestLogEvent.STANDARD_OUT
+        exceptionFormat "full"
+    }
+}
 
 tasks.withType(SpotBugsTask) {
     reports {
         xml.enabled false
         html.enabled true
+    }
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events TestLogEvent.FAILED,
+                TestLogEvent.SKIPPED
+        //TestLogEvent.STANDARD_OUT
+        exceptionFormat "full"
     }
 }

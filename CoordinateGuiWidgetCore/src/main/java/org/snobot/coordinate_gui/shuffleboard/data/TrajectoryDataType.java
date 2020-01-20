@@ -5,11 +5,12 @@ import java.util.function.Function;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexDataType;
 
-public class TrajectoryDataType extends ComplexDataType<TrajectoryData>
+public final class TrajectoryDataType extends ComplexDataType<TrajectoryData>
 {
+    public static final TrajectoryDataType INSTANCE = new TrajectoryDataType();
     public static final String NAME = SmartDashboardNames.sSPLINE_NAMESPACE;
 
-    public TrajectoryDataType()
+    private TrajectoryDataType()
     {
         super(NAME, TrajectoryData.class);
     }

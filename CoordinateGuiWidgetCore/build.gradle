@@ -15,12 +15,15 @@ dependencies {
     compile "org.openjfx:javafx-graphics:11:win"
     compile "org.openjfx:javafx-controls:11:win"
     compile "org.openjfx:javafx-fxml:11:win"
-    
+
     
     compile 'edu.wpi.first.shuffleboard:shuffleboard:' + getShuffleboardVersion()
     compile 'edu.wpi.first.shuffleboard:api:' + getShuffleboardVersion()
     compile 'edu.wpi.first.shuffleboard.plugin:networktables:' + getShuffleboardVersion()
     compile 'edu.wpi.first.shuffleboard:api:' + getShuffleboardVersion()
     compile 'edu.wpi.first.shuffleboard.plugin:networktables:' + getShuffleboardVersion()
+
+    testCompile 'org.junit.jupiter:junit-jupiter-api:5.5.1'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
 
 }

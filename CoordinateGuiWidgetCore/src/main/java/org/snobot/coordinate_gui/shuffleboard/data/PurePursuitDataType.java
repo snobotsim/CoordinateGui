@@ -5,12 +5,12 @@ import java.util.function.Function;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexDataType;
 
-public class PurePursuitDataType extends ComplexDataType<PurePursuitData>
+public final class PurePursuitDataType extends ComplexDataType<PurePursuitData>
 {
-
+    public static final PurePursuitDataType INSTANCE = new PurePursuitDataType();
     public static final String NAME = SmartDashboardNames.sPURE_PERSUIT_TABLE_TYPE;
 
-    public PurePursuitDataType()
+    private PurePursuitDataType()
     {
         super(NAME, PurePursuitData.class);
     }

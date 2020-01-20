@@ -1,5 +1,6 @@
 package org.snobot.coordinate_gui.ui.layers;
 
+import javafx.geometry.Point2D;
 import org.snobot.coordinate_gui.model.PixelConverter;
 
 import javafx.fxml.FXML;
@@ -25,18 +26,16 @@ public class GoToPositionController
      * Sets the position of the display icon. Inputs can be null to indicate no
      * position.
      * 
-     * @param aX
-     *            The x coordinate, in feet
-     * @param aY
-     *            The y coordinate, in feet
+     * @param aPoint
+     *            The coordinate
      */
-    public void setGoToXYPosition(PixelConverter aPixelConverter, Double aX, Double aY)
+    public void setGoToXYPosition(PixelConverter aPixelConverter, Point2D aPoint)
     {
         mPosition.getChildren().clear();
-        if (aX != null && aY != null)
+        if (aPoint != null)
         {
-            mIcon.setTranslateX(aPixelConverter.convertFieldXFeetToPixels(aX));
-            mIcon.setTranslateY(aPixelConverter.convertFieldYFeetToPixels(aY));
+            mIcon.setTranslateX(aPixelConverter.convertFieldXFeetToPixels(aPoint.getX()));
+            mIcon.setTranslateY(aPixelConverter.convertFieldYFeetToPixels(aPoint.getY()));
             mPosition.getChildren().add(mIcon);
         }
     }

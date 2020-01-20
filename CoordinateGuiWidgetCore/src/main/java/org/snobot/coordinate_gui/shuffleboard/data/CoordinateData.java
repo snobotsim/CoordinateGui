@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
+import org.snobot.coordinate_gui.model.Coordinate;
 
 public class CoordinateData extends ComplexData<CoordinateData>
 {
@@ -99,5 +100,18 @@ public class CoordinateData extends ComplexData<CoordinateData>
     public double getAngle()
     {
         return mAngle;
+    }
+
+    /**
+     * Converts this to the data model the gui core understands.
+     * @return The new value
+     */
+    public Coordinate toCoord()
+    {
+        double x = getX() / 12;
+        double y = getY() / 12;
+        double angle = getAngle();
+
+        return new Coordinate(x, y, angle);
     }
 }

@@ -1,9 +1,13 @@
 package org.snobot.coordinate_gui.shuffleboard.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
+import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController;
 
 public class VisionData extends ComplexData<VisionData>
 {
@@ -80,4 +84,26 @@ public class VisionData extends ComplexData<VisionData>
         return "VisionData [mValue=" + mValue + "]";
     }
 
+    /**
+     * Converts this to the data model the gui core understands.
+     * @return The new value
+     */
+    public List<CameraRayLayerController.Ray> toRays()
+    {
+        List<CameraRayLayerController.Ray> rays = new ArrayList<>();
+
+        StringTokenizer tokenizer = new StringTokenizer(getValue(), ",");
+        while (tokenizer.countTokens() >= 4)
+        {
+            CameraRayLayerController.Ray ray = new CameraRayLayerController.Ray();
+
+            ray.mXStart = Double.parseDouble(tokenizer.nextToken()) / 12;
+            ray.mYStart = Double.parseDouble(tokenizer.nextToken()) / 12;
+            ray.mXEnd = Double.parseDouble(tokenizer.nextToken()) / 12;
+            ray.mYEnd = Double.parseDouble(tokenizer.nextToken()) / 12;
+
+            rays.add(ray);
+        }
+        return rays;
+    }
 }

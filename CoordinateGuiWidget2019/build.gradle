@@ -22,7 +22,6 @@ dependencies {
     compile 'edu.wpi.first.shuffleboard.plugin:networktables:' + getShuffleboardVersion()
     compile 'edu.wpi.first.shuffleboard:api:' + getShuffleboardVersion()
     compile 'edu.wpi.first.shuffleboard.plugin:networktables:' + getShuffleboardVersion()
-
 }
 
 

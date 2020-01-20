@@ -5,11 +5,13 @@ import java.util.function.Function;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexDataType;
 
-public class CoordinateDataType extends ComplexDataType<CoordinateData>
+public final class CoordinateDataType extends ComplexDataType<CoordinateData>
 {
+    public static final CoordinateDataType INSTANCE = new CoordinateDataType();
+
     public static final String NAME = SmartDashboardNames.sROBOT_POSITION_TABLE_TYPE;
 
-    public CoordinateDataType()
+    private CoordinateDataType()
     {
         super(NAME, CoordinateData.class);
     }
@@ -28,4 +30,5 @@ public class CoordinateDataType extends ComplexDataType<CoordinateData>
     {
         return new CoordinateData();
     }
+
 }

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
 
-public class CoordinateGuiData extends ComplexData<CoordinateGuiData>
+public class DeepSpaceCoordinateGuiData extends ComplexData<DeepSpaceCoordinateGuiData>
 {
     private final CoordinateData mCoordinateData;
     private final GoToPositionData mGoToPositionData;
@@ -16,7 +16,7 @@ public class CoordinateGuiData extends ComplexData<CoordinateGuiData>
     /**
      * Constructor.
      */
-    public CoordinateGuiData()
+    public DeepSpaceCoordinateGuiData()
     {
         mCoordinateData = new CoordinateData();
         mVisionData = new VisionData();
@@ -31,7 +31,7 @@ public class CoordinateGuiData extends ComplexData<CoordinateGuiData>
      * @param aMap
      *            The map from NetworkTables
      */
-    public CoordinateGuiData(Map<String, Object> aMap)
+    public DeepSpaceCoordinateGuiData(Map<String, Object> aMap)
     {
         mCoordinateData = new CoordinateData(CoordinateDataType.NAME + "/", aMap);
         mVisionData = new VisionData(VisionDataType.NAME + "/", aMap);

@@ -5,11 +5,12 @@ import java.util.function.Function;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexDataType;
 
-public class VisionDataType extends ComplexDataType<VisionData>
+public final class VisionDataType extends ComplexDataType<VisionData>
 {
+    public static final VisionDataType INSTANCE = new VisionDataType();
     public static final String NAME = SmartDashboardNames.sCAMERA_RAY_TABLE_TYPE;
 
-    public VisionDataType()
+    private VisionDataType()
     {
         super(NAME, VisionData.class);
     }

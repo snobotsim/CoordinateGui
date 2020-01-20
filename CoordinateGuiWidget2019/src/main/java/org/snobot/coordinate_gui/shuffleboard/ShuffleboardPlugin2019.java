@@ -3,7 +3,7 @@ package org.snobot.coordinate_gui.shuffleboard;
 import java.util.List;
 
 import org.snobot.coordinate_gui.shuffleboard.data.CoordinateDataType;
-import org.snobot.coordinate_gui.shuffleboard.data.CoordinateGuiDataType;
+import org.snobot.coordinate_gui.shuffleboard.data.DeepSpaceCoordinateGuiDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.PurePursuitDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.TrajectoryDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.VisionDataType;
@@ -36,7 +36,7 @@ public class ShuffleboardPlugin2019 extends Plugin
     public List<DataType> getDataTypes()
     {
         return ImmutableList.of(
-                new CoordinateGuiDataType(), new CoordinateDataType(), new VisionDataType(), new TrajectoryDataType(), new PurePursuitDataType());
+                DeepSpaceCoordinateGuiDataType.INSTANCE, CoordinateDataType.INSTANCE, VisionDataType.INSTANCE, TrajectoryDataType.INSTANCE, PurePursuitDataType.INSTANCE);
     }
 
 }

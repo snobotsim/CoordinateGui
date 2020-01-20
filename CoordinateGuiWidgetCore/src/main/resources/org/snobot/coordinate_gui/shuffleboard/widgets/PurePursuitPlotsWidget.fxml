@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.embed.swing.SwingNode?>
 
 <StackPane fx:id="mRoot" minHeight="200" minWidth="200" prefHeight="200" prefWidth="200" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.snobot.coordinate_gui.shuffleboard.widgets.PurePursuitPlotsWidget">
     <children>

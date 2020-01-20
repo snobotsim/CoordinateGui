@@ -37,7 +37,7 @@ public class TrajectoryPlotsWidget extends SimpleAnnotatedWidget<TrajectoryData>
             final Map<String, Object> changes = newData.changesFrom(oldData);
             if (changes.containsKey(SmartDashboardNames.sSPLINE_IDEAL_POINTS))
             {
-                handleNewIdealPoints(newData);
+                mOverviewContainerController.setPath(IdealSplineSerializer.deserializePath(newData.getIdealSpline()));
             }
             if (changes.containsKey(SmartDashboardNames.sSPLINE_REAL_POINT))
             {
@@ -50,12 +50,6 @@ public class TrajectoryPlotsWidget extends SimpleAnnotatedWidget<TrajectoryData>
     public Pane getView()
     {
         return mRoot;
-    }
-
-    private void handleNewIdealPoints(TrajectoryData aData)
-    {
-        String newIdeal = aData.getIdealSpline();
-        mOverviewContainerController.setPath(IdealSplineSerializer.deserializePath(newIdeal));
     }
 
     private void handleNewRealPoint(TrajectoryData aData)

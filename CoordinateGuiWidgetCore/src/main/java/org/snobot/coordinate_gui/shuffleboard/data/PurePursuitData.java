@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.ui.layers.PurePursuitLayerController;
 import org.snobot.nt.pure_pursuit_plotter.PurePursuitPointInfo;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
@@ -143,7 +144,7 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
     {
         StringTokenizer tokenizer = new StringTokenizer(mCurrentPoint, ",");
 
-        if (tokenizer.countTokens() < 6) // NOPMD
+        if (tokenizer.countTokens() < 7) // NOPMD
         {
             return new PurePursuitPointInfo(-1);
         }
@@ -160,5 +161,21 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
         return output;
     }
 
+    /**
+     * Converts this to the data model the gui core understands.
+     * @return The new value
+     */
+    public PurePursuitLayerController.PurePursuitLookaheadData toLookaheadData()
+    {
+        String lookaheadString = getLookaheadString();
+        if (!lookaheadString.isEmpty())
+        {
+            String[] lookahead = getLookaheadString().split(",");
+            PurePursuitLayerController.PurePursuitLookaheadData data = new PurePursuitLayerController.PurePursuitLookaheadData(Double.parseDouble(lookahead[0]), Double.parseDouble(lookahead[1]),
+                Double.parseDouble(lookahead[2]), Double.parseDouble(lookahead[3]));
+            return data;
+        }
+        return null;
+    }
 }
 

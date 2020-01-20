@@ -2,8 +2,8 @@ package org.snobot.coordinate_gui.ui.layers;
 
 import javafx.scene.Group;
 import javafx.scene.shape.Line;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.snobot.coordinate_gui.TestablePixelConverterFactory;
 import org.snobot.coordinate_gui.model.PixelConverter;
 
@@ -34,20 +34,20 @@ public class CameraRayLayerControllerTest
         rays.add(new CameraRayLayerController.Ray(13, -26, 0, 0));
 
         rayController.setRays(converter, rays);
-        Assert.assertEquals(2, rayController.mRays.getChildren().size());
+        Assertions.assertEquals(2, rayController.mRays.getChildren().size());
 
         Line line;
 
         line = (Line) rayController.mRays.getChildren().get(0);
-        Assert.assertEquals(135, line.getStartX(), EPSILON);
-        Assert.assertEquals(290, line.getStartY(), EPSILON);
-        Assert.assertEquals(185, line.getEndX(), EPSILON);
-        Assert.assertEquals(220, line.getEndY(), EPSILON);
+        Assertions.assertEquals(135, line.getStartX(), EPSILON);
+        Assertions.assertEquals(290, line.getStartY(), EPSILON);
+        Assertions.assertEquals(185, line.getEndX(), EPSILON);
+        Assertions.assertEquals(220, line.getEndY(), EPSILON);
 
         line = (Line) rayController.mRays.getChildren().get(1);
-        Assert.assertEquals(265, line.getStartX(), EPSILON);
-        Assert.assertEquals(530, line.getStartY(), EPSILON);
-        Assert.assertEquals(135, line.getEndX(), EPSILON);
-        Assert.assertEquals(270, line.getEndY(), EPSILON);
+        Assertions.assertEquals(265, line.getStartX(), EPSILON);
+        Assertions.assertEquals(530, line.getStartY(), EPSILON);
+        Assertions.assertEquals(135, line.getEndX(), EPSILON);
+        Assertions.assertEquals(270, line.getEndY(), EPSILON);
     }
 }

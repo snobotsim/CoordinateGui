@@ -4,8 +4,8 @@ import javafx.scene.Group;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.snobot.coordinate_gui.TestablePixelConverterFactory;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.PixelConverter;
@@ -46,36 +46,36 @@ public class PurePursuitLayerControllerTest
         smoothed.add(new Coordinate(-12.41, -9.42, 95.67));
         smoothed.add(new Coordinate(12.56, -9.48, 0));
 
-        controller.setLookaheadLine(-8.842, 1.34, -6.54, 2.9);
+        controller.setLookaheadLine(new PurePursuitLayerController.PurePursuitLookaheadData(-8.842, 1.34, -6.54, 2.9));
         controller.setWaypoints(waypoints, upSampled, smoothed);
 
-        Assert.assertEquals(6, controller.mMarkers.getChildren().size());
+        Assertions.assertEquals(6, controller.mMarkers.getChildren().size());
 
         Circle circle;
 
         circle = (Circle) controller.mMarkers.getChildren().get(0);
-        Assert.assertEquals(219.1, circle.getCenterX(), EPSILON);
-        Assert.assertEquals(87.2, circle.getCenterY(), EPSILON);
+        Assertions.assertEquals(219.1, circle.getCenterX(), EPSILON);
+        Assertions.assertEquals(87.2, circle.getCenterY(), EPSILON);
 
         circle = (Circle) controller.mMarkers.getChildren().get(1);
-        Assert.assertEquals(149.1, circle.getCenterX(), EPSILON);
-        Assert.assertEquals(95.2, circle.getCenterY(), EPSILON);
+        Assertions.assertEquals(149.1, circle.getCenterX(), EPSILON);
+        Assertions.assertEquals(95.2, circle.getCenterY(), EPSILON);
 
         Rectangle rectangle;
         rectangle = (Rectangle) controller.mMarkers.getChildren().get(2);
-        Assert.assertEquals(141.24, rectangle.getX(), EPSILON);
-        Assert.assertEquals(364.2, rectangle.getY(), EPSILON);
+        Assertions.assertEquals(141.24, rectangle.getX(), EPSILON);
+        Assertions.assertEquals(364.2, rectangle.getY(), EPSILON);
 
         rectangle = (Rectangle) controller.mMarkers.getChildren().get(3);
-        Assert.assertEquals(230.21, rectangle.getX(), EPSILON);
-        Assert.assertEquals(364.8, rectangle.getY(), EPSILON);
+        Assertions.assertEquals(230.21, rectangle.getX(), EPSILON);
+        Assertions.assertEquals(364.8, rectangle.getY(), EPSILON);
 
         circle = (Circle) controller.mMarkers.getChildren().get(4);
-        Assert.assertEquals(10.9, circle.getCenterX(), EPSILON);
-        Assert.assertEquals(364.2, circle.getCenterY(), EPSILON);
+        Assertions.assertEquals(10.9, circle.getCenterX(), EPSILON);
+        Assertions.assertEquals(364.2, circle.getCenterY(), EPSILON);
 
         circle = (Circle) controller.mMarkers.getChildren().get(5);
-        Assert.assertEquals(260.6, circle.getCenterX(), EPSILON);
-        Assert.assertEquals(364.8, circle.getCenterY(), EPSILON);
+        Assertions.assertEquals(260.6, circle.getCenterX(), EPSILON);
+        Assertions.assertEquals(364.8, circle.getCenterY(), EPSILON);
     }
 }

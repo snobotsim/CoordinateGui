@@ -6,6 +6,7 @@
   
   <rule ref="category/java/bestpractices.xml">
     <exclude name="GuardLogStatement" />
+    <exclude name="JUnitTestsShouldIncludeAssert" />
   </rule>
   <rule ref="category/java/design.xml">
     <exclude name="ExcessiveImports" />

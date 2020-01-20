@@ -1,9 +1,7 @@
 package org.snobot.coordinate_gui.shuffleboard.widgets;
 
-import java.util.List;
 import java.util.Map;
 
-import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.shuffleboard.data.PurePursuitData;
 import org.snobot.coordinate_gui.shuffleboard.data.SmartDashboardNames;
 import org.snobot.nt.pure_pursuit_plotter.PurePursuitPlotsController;
@@ -38,7 +36,7 @@ public class PurePursuitPlotsWidget extends SimpleAnnotatedWidget<PurePursuitDat
             final Map<String, Object> changes = newData.changesFrom(oldData);
             if (changes.containsKey(SmartDashboardNames.sPURE_PURSUIT_SMOOTHED))
             {
-                handleNewIdealPoints(newData.getSmoothedPoints());
+                mOverviewContainerController.setIdealPath(newData.getSmoothedPoints());
             }
 
             if (changes.containsKey(SmartDashboardNames.sPURE_PURSUIT_CURRENT_POINT))
@@ -53,11 +51,6 @@ public class PurePursuitPlotsWidget extends SimpleAnnotatedWidget<PurePursuitDat
     public Pane getView()
     {
         return mRoot;
-    }
-
-    private void handleNewIdealPoints(List<Coordinate> aSmoothedPoints)
-    {
-        mOverviewContainerController.setIdealPath(aSmoothedPoints);
     }
 
     private void handleNewPoint(PurePursuitPointInfo aData)
