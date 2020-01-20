@@ -84,23 +84,23 @@ public class PurePursuitDataTest
         Coordinate ideal;
 
         ideal = waypoints.get(0);
-        Assertions.assertEquals(0.0, ideal.mX, EPSILON);
-        Assertions.assertEquals(0.0, ideal.mY, EPSILON);
+        Assertions.assertEquals(0.0, ideal.mPosition.mX, EPSILON);
+        Assertions.assertEquals(0.0, ideal.mPosition.mY, EPSILON);
         Assertions.assertEquals(0.0, ideal.mAngle, EPSILON);
 
         ideal = waypoints.get(1);
-        Assertions.assertEquals(0.0, ideal.mX, EPSILON);
-        Assertions.assertEquals(74, ideal.mY, EPSILON);
+        Assertions.assertEquals(0.0, ideal.mPosition.mX, EPSILON);
+        Assertions.assertEquals(74, ideal.mPosition.mY, EPSILON);
         Assertions.assertEquals(0.0, ideal.mAngle, EPSILON);
 
         ideal = waypoints.get(2);
-        Assertions.assertEquals(92.45, ideal.mX, EPSILON);
-        Assertions.assertEquals(-19.4, ideal.mY, EPSILON);
+        Assertions.assertEquals(92.45, ideal.mPosition.mX, EPSILON);
+        Assertions.assertEquals(-19.4, ideal.mPosition.mY, EPSILON);
         Assertions.assertEquals(0.0, ideal.mAngle, EPSILON);
 
         ideal = waypoints.get(3);
-        Assertions.assertEquals(-84.24, ideal.mX, EPSILON);
-        Assertions.assertEquals(-72.4, ideal.mY, EPSILON);
+        Assertions.assertEquals(-84.24, ideal.mPosition.mX, EPSILON);
+        Assertions.assertEquals(-72.4, ideal.mPosition.mY, EPSILON);
         Assertions.assertEquals(0.0, ideal.mAngle, EPSILON);
     }
 
@@ -117,8 +117,8 @@ public class PurePursuitDataTest
         Coordinate ideal;
 
         ideal = waypoints.get(0);
-        Assertions.assertEquals(74, ideal.mX, EPSILON);
-        Assertions.assertEquals(92.45, ideal.mY, EPSILON);
+        Assertions.assertEquals(74, ideal.mPosition.mX, EPSILON);
+        Assertions.assertEquals(92.45, ideal.mPosition.mY, EPSILON);
         Assertions.assertEquals(0.0, ideal.mAngle, EPSILON);
     }
 
@@ -135,8 +135,8 @@ public class PurePursuitDataTest
         Coordinate ideal;
 
         ideal = waypoints.get(0);
-        Assertions.assertEquals(-19.4, ideal.mX, EPSILON);
-        Assertions.assertEquals(-84.24, ideal.mY, EPSILON);
+        Assertions.assertEquals(-19.4, ideal.mPosition.mX, EPSILON);
+        Assertions.assertEquals(-84.24, ideal.mPosition.mY, EPSILON);
         Assertions.assertEquals(0.0, ideal.mAngle, EPSILON);
     }
 }

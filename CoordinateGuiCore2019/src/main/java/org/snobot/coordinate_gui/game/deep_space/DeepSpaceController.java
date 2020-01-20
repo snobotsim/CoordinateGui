@@ -2,9 +2,9 @@ package org.snobot.coordinate_gui.game.deep_space;
 
 import java.util.List;
 
-import javafx.geometry.Point2D;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
+import org.snobot.coordinate_gui.model.Position2dDistance;
 import org.snobot.coordinate_gui.ui.layers.BaseGuiController;
 import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController;
 import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController.Ray;
@@ -135,9 +135,9 @@ public class DeepSpaceController extends BaseGuiController
         mTrajectoryConfigController.addPoint(mPixelConverter, aCoordinate);
     }
 
-    public void setGoToXYPosition(Point2D aPoint)
+    public void setGoToXYPosition(Position2dDistance aPosition)
     {
-        mGoToPositionController.setGoToXYPosition(mPixelConverter, aPoint);
+        mGoToPositionController.setGoToXYPosition(mPixelConverter, aPosition);
     }
 
     public void setPurePursuitWaypoints(List<Coordinate> aCoordinates, List<Coordinate> aUpSampled, List<Coordinate> aSmoothed)
@@ -145,8 +145,8 @@ public class DeepSpaceController extends BaseGuiController
         mPurePursuitController.setWaypoints(aCoordinates, aUpSampled, aSmoothed);
     }
 
-    public void setPurePursuitLookahead(PurePursuitLayerController.PurePursuitLookaheadData aData)
+    public void setPurePursuitLookahead(Position2dDistance aRobot, Position2dDistance aLookahead)
     {
-        mPurePursuitController.setLookaheadLine(aData);
+        mPurePursuitController.setLookaheadLine(aRobot, aLookahead);
     }
 }

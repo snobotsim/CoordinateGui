@@ -4,6 +4,7 @@ package org.snobot.coordinate_gui.shuffleboard;
 import java.util.Map;
 
 import org.snobot.coordinate_gui.game.deep_space.DeepSpaceController;
+import org.snobot.coordinate_gui.model.Position2dDistance;
 import org.snobot.coordinate_gui.shuffleboard.data.CoordinateDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.DeepSpaceCoordinateGuiData;
 import org.snobot.coordinate_gui.shuffleboard.data.GoToPositionDataType;
@@ -82,7 +83,9 @@ public class CoordinateGuiWidget extends ComplexAnnotatedWidget<DeepSpaceCoordin
         PurePursuitLayerController.PurePursuitLookaheadData lookaheadData = aPurePursuitData.toLookaheadData();
         if (lookaheadData != null)
         {
-            mFieldController.setPurePursuitLookahead(lookaheadData);
+            String[] lookahead = aPurePursuitData.getLookaheadString().split(",");
+            mFieldController.setPurePursuitLookahead(new Position2dDistance(Double.parseDouble(lookahead[0]), Double.parseDouble(lookahead[1])),
+                new Position2dDistance(Double.parseDouble(lookahead[2]), Double.parseDouble(lookahead[3])));
         }
     }
 

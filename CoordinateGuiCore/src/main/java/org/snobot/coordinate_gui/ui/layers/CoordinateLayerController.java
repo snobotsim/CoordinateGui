@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
 import org.snobot.coordinate_gui.model.PixelConverter;
+import org.snobot.coordinate_gui.model.Position2dPixels;
 import org.snobot.coordinate_gui.ui.render_props.CoordinateLayerRenderProps;
 
 import javafx.fxml.FXML;
@@ -65,8 +66,9 @@ public class CoordinateLayerController
 
             Circle circle = new Circle(mRenderProperties.getPointSize());
             circle.setFill(color);
-            circle.setCenterX(mPixelConverter.convertFieldXFeetToPixels(coord.mX));
-            circle.setCenterY(mPixelConverter.convertFieldYFeetToPixels(coord.mY));
+            Position2dPixels asPixels = mPixelConverter.convertDistanceToPixels(coord.mPosition);
+            circle.setCenterX(asPixels.mX);
+            circle.setCenterY(asPixels.mY);
             mCoordinates.getChildren().add(circle);
 
             ++coordinateCtr;

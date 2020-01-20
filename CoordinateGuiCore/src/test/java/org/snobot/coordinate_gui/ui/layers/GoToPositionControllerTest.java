@@ -1,12 +1,12 @@
 package org.snobot.coordinate_gui.ui.layers;
 
-import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.shape.Polygon;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.snobot.coordinate_gui.TestablePixelConverterFactory;
 import org.snobot.coordinate_gui.model.PixelConverter;
+import org.snobot.coordinate_gui.model.Position2dDistance;
 
 public class GoToPositionControllerTest
 {
@@ -40,7 +40,7 @@ public class GoToPositionControllerTest
         GoToPositionController controller = new TestableGoToPositionController();
         controller.initialize();
 
-        controller.setGoToXYPosition(converter, new Point2D(5.42, -9.42));
+        controller.setGoToXYPosition(converter, new Position2dDistance(5.42, -9.42));
         Assertions.assertEquals(1, controller.mPosition.getChildren().size());
 
         Polygon icon = (Polygon) controller.mPosition.getChildren().get(0);

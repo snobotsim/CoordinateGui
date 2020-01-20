@@ -16,6 +16,8 @@ import javafx.scene.input.DataFormat;
 import javafx.scene.input.TransferMode;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
+import org.snobot.coordinate_gui.model.Position2dDistance;
+import org.snobot.coordinate_gui.model.Position2dPixels;
 
 public class TrajectoryConfigLayerController
 {
@@ -69,7 +71,7 @@ public class TrajectoryConfigLayerController
             mY = new SimpleDoubleProperty();
             mAngle = new SimpleDoubleProperty();
 
-            setPosition(mCoordinate.mX, mCoordinate.mY);
+            setPosition(mCoordinate.mPosition);
             setAngle(mCoordinate.mAngle);
 
             mIcon = new Polygon(0.0, SIZE / 3, SIZE, 0.0, 0.0, -SIZE / 3);
@@ -99,17 +101,15 @@ public class TrajectoryConfigLayerController
         /**
          * Sets a new position for the coordinate, in feet.
          * 
-         * @param aX
-         *            The X position
-         * @param aY
-         *            The Y position
+         * @param aPosition
+         *            The position
          */
-        public final void setPosition(double aX, double aY)
+        public final void setPosition(Position2dDistance aPosition)
         {
-            mCoordinate.mX = aX;
-            mCoordinate.mY = aY;
-            mX.set(mPixelConverter.convertFieldXFeetToPixels(mCoordinate.mX));
-            mY.set(mPixelConverter.convertFieldYFeetToPixels(mCoordinate.mY));
+            mCoordinate.mPosition = aPosition;
+            Position2dPixels asPixels = mPixelConverter.convertDistanceToPixels(aPosition);
+            mX.set(asPixels.mX);
+            mY.set(asPixels.mY);
         }
 
         public final void setAngle(double aAngle)

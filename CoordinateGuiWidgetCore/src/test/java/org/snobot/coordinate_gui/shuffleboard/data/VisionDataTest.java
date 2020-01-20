@@ -25,28 +25,28 @@ public class VisionDataTest
         CameraRayLayerController.Ray ray;
 
         ray = rays.get(0);
-        Assertions.assertEquals(0.0, ray.mXStart * 12, EPSILON);
-        Assertions.assertEquals(1.0, ray.mYStart * 12, EPSILON);
-        Assertions.assertEquals(2.0, ray.mXEnd * 12, EPSILON);
-        Assertions.assertEquals(3.0, ray.mYEnd * 12, EPSILON);
+        Assertions.assertEquals(0.0, ray.mStart.mX * 12, EPSILON);
+        Assertions.assertEquals(1.0, ray.mStart.mY * 12, EPSILON);
+        Assertions.assertEquals(2.0, ray.mEnd.mX * 12, EPSILON);
+        Assertions.assertEquals(3.0, ray.mEnd.mY * 12, EPSILON);
 
         ray = rays.get(1);
-        Assertions.assertEquals(1.23, ray.mXStart * 12, EPSILON);
-        Assertions.assertEquals(125.6, ray.mYStart * 12, EPSILON);
-        Assertions.assertEquals(64.35, ray.mXEnd * 12, EPSILON);
-        Assertions.assertEquals(90.52, ray.mYEnd * 12, EPSILON);
+        Assertions.assertEquals(1.23, ray.mStart.mX * 12, EPSILON);
+        Assertions.assertEquals(125.6, ray.mStart.mY * 12, EPSILON);
+        Assertions.assertEquals(64.35, ray.mEnd.mX * 12, EPSILON);
+        Assertions.assertEquals(90.52, ray.mEnd.mY * 12, EPSILON);
 
         ray = rays.get(2);
-        Assertions.assertEquals(18.42, ray.mXStart * 12, EPSILON);
-        Assertions.assertEquals(85.52, ray.mYStart * 12, EPSILON);
-        Assertions.assertEquals(71.24, ray.mXEnd * 12, EPSILON);
-        Assertions.assertEquals(92.5, ray.mYEnd * 12, EPSILON);
+        Assertions.assertEquals(18.42, ray.mStart.mX * 12, EPSILON);
+        Assertions.assertEquals(85.52, ray.mStart.mY * 12, EPSILON);
+        Assertions.assertEquals(71.24, ray.mEnd.mX * 12, EPSILON);
+        Assertions.assertEquals(92.5, ray.mEnd.mY * 12, EPSILON);
 
         ray = rays.get(3);
-        Assertions.assertEquals(1.23, ray.mXStart * 12, EPSILON);
-        Assertions.assertEquals(125.6, ray.mYStart * 12, EPSILON);
-        Assertions.assertEquals(64.35, ray.mXEnd * 12, EPSILON);
-        Assertions.assertEquals(90.52, ray.mYEnd * 12, EPSILON);
+        Assertions.assertEquals(1.23, ray.mStart.mX * 12, EPSILON);
+        Assertions.assertEquals(125.6, ray.mStart.mY * 12, EPSILON);
+        Assertions.assertEquals(64.35, ray.mEnd.mX * 12, EPSILON);
+        Assertions.assertEquals(90.52, ray.mEnd.mY * 12, EPSILON);
 
 //        Assertions.assertEquals(2.78, coordinate.mX, EPSILON);
 //        Assertions.assertEquals(-12.95, coordinate.mY, EPSILON);

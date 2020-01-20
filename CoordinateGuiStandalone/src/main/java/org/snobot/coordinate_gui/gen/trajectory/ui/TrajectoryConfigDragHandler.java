@@ -2,6 +2,8 @@ package org.snobot.coordinate_gui.gen.trajectory.ui;
 
 import org.snobot.coordinate_gui.game.deep_space.DeepSpaceController;
 import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.model.Position2dDistance;
+import org.snobot.coordinate_gui.model.Position2dPixels;
 import org.snobot.coordinate_gui.ui.layers.TrajectoryConfigLayerController;
 import org.snobot.coordinate_gui.ui.layers.TrajectoryConfigLayerController.CoodrinateWrapper;
 
@@ -32,16 +34,17 @@ public class TrajectoryConfigDragHandler
             {
                 if (selectedCoordinate != null)
                 {
-                    double x = aFieldController.getPixelConverter().convertFieldXPixelsToFeet(event.getX());
-                    double y = aFieldController.getPixelConverter().convertFieldYPixelsToFeet(event.getY());
-                    selectedCoordinate.setPosition(x, y);
+                    Position2dPixels asPixels = new Position2dPixels(event.getX(), event.getY());
+                    selectedCoordinate.setPosition(aFieldController.getPixelConverter().convertPixelsToFeet(asPixels));
                 }
             }
             else if (dragboard.hasContent(TrajectoryConfigLayerController.ANGLE_LINE))
             {
-                double x = aFieldController.getPixelConverter().convertFieldXPixelsToFeet(event.getX());
-                double y = aFieldController.getPixelConverter().convertFieldYPixelsToFeet(event.getY());
-                double angle = Math.toDegrees(Math.atan2(x - selectedCoordinate.mCoordinate.mX, y - selectedCoordinate.mCoordinate.mY));
+                Position2dPixels asPixels = new Position2dPixels(event.getX(), event.getY());
+                Position2dDistance asDistance = aFieldController.getPixelConverter().convertPixelsToFeet(asPixels);
+                double x = asDistance.mX;
+                double y = asDistance.mY;
+                double angle = Math.toDegrees(Math.atan2(x - selectedCoordinate.mCoordinate.mPosition.mX, y - selectedCoordinate.mCoordinate.mPosition.mY));
                 selectedCoordinate.setAngle(angle);
             }
             event.consume();
@@ -53,9 +56,8 @@ public class TrajectoryConfigDragHandler
             MenuItem addPointItem = new MenuItem("Append New Point");
             addPointItem.setOnAction(selectionEvent ->
             {
-                double x = aFieldController.getPixelConverter().convertFieldXPixelsToFeet(contextMenuEvent.getX());
-                double y = aFieldController.getPixelConverter().convertFieldYPixelsToFeet(contextMenuEvent.getY());
-                aFieldController.addIdealTrajectory(new Coordinate(x, y, 0));
+                Position2dPixels asPixels = new Position2dPixels(contextMenuEvent.getX(), contextMenuEvent.getY());
+                aFieldController.addIdealTrajectory(new Coordinate(aFieldController.getPixelConverter().convertPixelsToFeet(asPixels), 0));
             });
 
             menu.getItems().add(addPointItem);

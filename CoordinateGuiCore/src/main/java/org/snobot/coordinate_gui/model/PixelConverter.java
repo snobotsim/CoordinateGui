@@ -23,24 +23,30 @@ public class PixelConverter
         return aFeet * mImageScaleFactor;
     }
 
-    public double convertFieldXFeetToPixels(double aFeet)
+    /**
+     * Converts a distance to pixels.
+     * @param aDistance The distance
+     * @return The distance, converted to field pixels
+     */
+    public Position2dPixels convertDistanceToPixels(Position2dDistance aDistance)
     {
-        return mXCenterPixels - convertFeetToPixels(mXCenterFeet - aFeet);
+        double x = mXCenterPixels - convertFeetToPixels(mXCenterFeet - aDistance.mX);
+        double y = convertFeetToPixels(mYCenterFeet - aDistance.mY);
+
+        return new Position2dPixels(x, y);
     }
 
-    public double convertFieldYFeetToPixels(double aFeet)
+    /**
+     * Converts field pixels into distance units.
+     * @param aPixels The pixels
+     * @return The distance
+     */
+    public Position2dDistance convertPixelsToFeet(Position2dPixels aPixels)
     {
-        return convertFeetToPixels(mYCenterFeet - aFeet);
-    }
+        double x = mXCenterFeet - (mXCenterPixels - aPixels.mX / mScale.getX()) / mImageScaleFactor;
+        double y = mYCenterFeet - aPixels.mY / mScale.getY() / mImageScaleFactor;
 
-    public double convertFieldXPixelsToFeet(double aX)
-    {
-        return mXCenterFeet - (mXCenterPixels - aX / mScale.getX()) / mImageScaleFactor;
-    }
-
-    public double convertFieldYPixelsToFeet(double aY)
-    {
-        return mYCenterFeet - aY / mScale.getY() / mImageScaleFactor;
+        return new Position2dDistance(x, y);
     }
 
     /**

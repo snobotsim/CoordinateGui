@@ -9,6 +9,7 @@ import org.snobot.coordinate_gui.TestablePixelConverterFactory;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
 import org.snobot.coordinate_gui.model.PixelConverter;
+import org.snobot.coordinate_gui.model.Position2dDistance;
 import org.snobot.coordinate_gui.ui.render_props.CoordinateLayerRenderProps;
 
 public class CoordinateLayerControllerTest
@@ -33,12 +34,12 @@ public class CoordinateLayerControllerTest
         DataProvider<Coordinate> dataProvider = new DataProvider<>(pointMemory);
         controller.setup(renderProps, dataProvider, converter);
 
-        dataProvider.addData(new Coordinate(12.41, 24.41, 0));
-        dataProvider.addData(new Coordinate(0, 0, 0));
-        dataProvider.addData(new Coordinate(-13.5, 27, 0));
-        dataProvider.addData(new Coordinate(13.5, 27, 0));
-        dataProvider.addData(new Coordinate(-13.5, -27, 0));
-        dataProvider.addData(new Coordinate(13.5, -27, 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(12.41, 24.41), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(0, 0), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(-13.5, 27), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(13.5, 27), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(-13.5, -27), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(13.5, -27), 0));
 
         controller.render();
 
@@ -61,12 +62,12 @@ public class CoordinateLayerControllerTest
         DataProvider<Coordinate> dataProvider = new DataProvider<>(pointMemory);
         controller.setup(renderProps, dataProvider, converter);
 
-        dataProvider.addData(new Coordinate(12.41, 24.41, 0));
-        dataProvider.addData(new Coordinate(0, 0, 0));
-        dataProvider.addData(new Coordinate(-13.5, 27, 0));
-        dataProvider.addData(new Coordinate(13.5, 27, 0));
-        dataProvider.addData(new Coordinate(-13.5, -27, 0));
-        dataProvider.addData(new Coordinate(13.5, -27, 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(12.41, 24.41), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(0, 0), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(-13.5, 27), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(13.5, 27), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(-13.5, -27), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(13.5, -27), 0));
 
         controller.render();
 

@@ -6,6 +6,8 @@ import org.snobot.coordinate_gui.model.PixelConverter;
 import javafx.fxml.FXML;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import org.snobot.coordinate_gui.model.Position2dDistance;
+import org.snobot.coordinate_gui.model.Position2dPixels;
 
 public class RobotPositionLayerController
 {
@@ -62,13 +64,15 @@ public class RobotPositionLayerController
     public void setPosition(PixelConverter aPixelConverter, Coordinate aPosition)
     {
         mRobot.setRotate(aPosition.mAngle);
-        mRobot.setX(aPixelConverter.convertFieldXFeetToPixels(aPosition.mX - mRobotWidth / 2));
-        mRobot.setY(aPixelConverter.convertFieldYFeetToPixels(aPosition.mY + mRobotHeight / 2));
+        Position2dDistance robotDimensions = new Position2dDistance(aPosition.mPosition.mX - mRobotWidth / 2, aPosition.mPosition.mY + mRobotHeight / 2);
+        Position2dPixels robotAsPixels = aPixelConverter.convertDistanceToPixels(robotDimensions);
+        mRobot.setX(robotAsPixels.mX);
+        mRobot.setY(robotAsPixels.mY);
 
-
+        Position2dPixels asPixels = aPixelConverter.convertDistanceToPixels(aPosition.mPosition);
         mOrientationArrow.setRotate(aPosition.mAngle);
-        mOrientationArrow.setTranslateX(aPixelConverter.convertFieldXFeetToPixels(aPosition.mX));
-        mOrientationArrow.setTranslateY(aPixelConverter.convertFieldYFeetToPixels(aPosition.mY));
+        mOrientationArrow.setTranslateX(asPixels.mX);
+        mOrientationArrow.setTranslateY(asPixels.mY);
     }
 
 }

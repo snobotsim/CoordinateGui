@@ -23,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import org.snobot.coordinate_gui.model.Position2dDistance;
 
 public class PurePursuitGenController
 {
@@ -129,7 +130,7 @@ public class PurePursuitGenController
         List<PurePursuitWaypoint> waypoints = new ArrayList<>();
         for (Coordinate coordinate : aInput)
         {
-            waypoints.add(new PurePursuitWaypoint(coordinate.mX * 12.0, coordinate.mY * 12));
+            waypoints.add(new PurePursuitWaypoint(coordinate.mPosition.mX * 12.0, coordinate.mPosition.mY * 12));
         }
         
         return waypoints;
@@ -140,7 +141,7 @@ public class PurePursuitGenController
         List<Coordinate> waypoints = new ArrayList<>();
         for (PurePursuitWaypoint coordinate : aInput)
         {
-            waypoints.add(new Coordinate(coordinate.mX / 12, coordinate.mY / 12, 0));
+            waypoints.add(new Coordinate(new Position2dDistance(coordinate.mX / 12, coordinate.mY / 12), 0));
         }
 
         return waypoints;

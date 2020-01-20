@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.model.Position2dDistance;
 import org.snobot.coordinate_gui.ui.layers.PurePursuitLayerController;
 import org.snobot.nt.pure_pursuit_plotter.PurePursuitPointInfo;
 
@@ -107,7 +108,7 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
         {
             double x = Double.parseDouble(tokenizer.nextToken());
             double y = Double.parseDouble(tokenizer.nextToken());
-            Coordinate coordinate = new Coordinate(x, y, 0);
+            Coordinate coordinate = new Coordinate(new Position2dDistance(x, y), 0);
             output.add(coordinate);
         }
 

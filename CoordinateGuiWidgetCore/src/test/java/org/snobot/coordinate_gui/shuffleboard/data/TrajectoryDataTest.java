@@ -26,13 +26,13 @@ public class TrajectoryDataTest
             Coordinate ideal;
 
             ideal = idealCoordinates.get(0);
-            Assertions.assertEquals(12.13, ideal.mX * 12, EPSILON);
-            Assertions.assertEquals(11.89, ideal.mY * 12, EPSILON);
+            Assertions.assertEquals(12.13, ideal.mPosition.mX * 12, EPSILON);
+            Assertions.assertEquals(11.89, ideal.mPosition.mY * 12, EPSILON);
             Assertions.assertEquals(79.98, ideal.mAngle, EPSILON);
 
             ideal = idealCoordinates.get(1);
-            Assertions.assertEquals(7.13, ideal.mX * 12, EPSILON);
-            Assertions.assertEquals(2.89, ideal.mY * 12, EPSILON);
+            Assertions.assertEquals(7.13, ideal.mPosition.mX * 12, EPSILON);
+            Assertions.assertEquals(2.89, ideal.mPosition.mY * 12, EPSILON);
             Assertions.assertEquals(98.98, ideal.mAngle, EPSILON);
         }
 
@@ -44,18 +44,18 @@ public class TrajectoryDataTest
             Coordinate waypoint;
 
             waypoint = waypoints.get(0);
-            Assertions.assertEquals(8.312, waypoint.mX * 12, EPSILON);
-            Assertions.assertEquals(913.12, waypoint.mY * 12, EPSILON);
+            Assertions.assertEquals(8.312, waypoint.mPosition.mX * 12, EPSILON);
+            Assertions.assertEquals(913.12, waypoint.mPosition.mY * 12, EPSILON);
             Assertions.assertEquals(1116.1217849148436, waypoint.mAngle, EPSILON);
 
             waypoint = waypoints.get(1);
-            Assertions.assertEquals(175.4, waypoint.mX * 12, EPSILON);
-            Assertions.assertEquals(85.2, waypoint.mY * 12, EPSILON);
+            Assertions.assertEquals(175.4, waypoint.mPosition.mX * 12, EPSILON);
+            Assertions.assertEquals(85.2, waypoint.mPosition.mY * 12, EPSILON);
             Assertions.assertEquals(630.8265324390363, waypoint.mAngle, EPSILON);
 
             waypoint = waypoints.get(2);
-            Assertions.assertEquals(89.52, waypoint.mX * 12, EPSILON);
-            Assertions.assertEquals(87.0, waypoint.mY * 12, EPSILON);
+            Assertions.assertEquals(89.52, waypoint.mPosition.mX * 12, EPSILON);
+            Assertions.assertEquals(87.0, waypoint.mPosition.mY * 12, EPSILON);
             Assertions.assertEquals(1375.0987083139757, waypoint.mAngle, EPSILON);
 
 //        Assertions.assertEquals(2.78, coordinate.mX, EPSILON);

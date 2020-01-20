@@ -27,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import org.snobot.coordinate_gui.model.Position2dDistance;
 
 public class TrajectoryGenController
 {
@@ -164,7 +165,7 @@ public class TrajectoryGenController
             for (int i = 0; i < coordinates.size(); ++i)
             {
                 Coordinate coord = coordinates.get(i);
-                pointsArray[i] = new Waypoint(coord.mY, coord.mX, Math.toRadians(coord.mAngle));
+                pointsArray[i] = new Waypoint(coord.mPosition.mY, coord.mPosition.mX, Math.toRadians(coord.mAngle));
             }
 
             Trajectory.Config config = new Trajectory.Config(
@@ -180,7 +181,7 @@ public class TrajectoryGenController
             List<Coordinate> idealCoordinates = new ArrayList<>();
             for (Segment segment : trajectory.segments)
             {
-                idealCoordinates.add(new Coordinate(segment.y, segment.x, Math.toDegrees(segment.heading)));
+                idealCoordinates.add(new Coordinate(new Position2dDistance(segment.y, segment.x), Math.toDegrees(segment.heading)));
             }
 
             mFieldController.setIdealTrajectory(idealCoordinates);

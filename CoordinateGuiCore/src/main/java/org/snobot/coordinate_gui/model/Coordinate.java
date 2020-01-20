@@ -6,11 +6,8 @@ package org.snobot.coordinate_gui.model;
  */
 public class Coordinate
 {
-    /** The x coordinate, in feet. */
-    public double mX;
-
-    /** The y coordinate, in feet. */
-    public double mY;
+    /** The (x, y) position. */
+    public Position2dDistance mPosition;
 
     /** The angle of the coordinate, in degrees. */
     public double mAngle;
@@ -20,7 +17,7 @@ public class Coordinate
      */
     public Coordinate()
     {
-        this(0.0, 0.0, 0.0);
+        this(new Position2dDistance(0, 0), 0.0);
     }
 
     /**
@@ -29,26 +26,24 @@ public class Coordinate
      */
     public Coordinate(Coordinate aCopy)
     {
-        this(aCopy.mX, aCopy.mY, aCopy.mAngle);
+        this(aCopy.mPosition, aCopy.mAngle);
     }
 
     /**
      * Constructor.  Sets the (x,y,angle) to the given values
-     * @param aX The x coordinate
-     * @param aY The y coordinate
+     * @param aPosition The (X, Y) position
      * @param aAngle The angle
      */
-    public Coordinate(double aX, double aY, double aAngle)
+    public Coordinate(Position2dDistance aPosition, double aAngle)
     {
-        this.mX = aX;
-        this.mY = aY;
+        this.mPosition = aPosition;
         this.mAngle = aAngle;
     }
 
     @Override
     public String toString()
     {
-        return "Coordinate{" + "x=" + mX + ", y=" + mY + ", angle=" + mAngle + '}';
+        return "Coordinate{" + "position=" + mPosition + ", angle=" + mAngle + '}';
     }
     
     

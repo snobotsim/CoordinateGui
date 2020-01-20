@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
 import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.model.Position2dDistance;
 import org.snobot.coordinate_gui.shuffleboard.widgets.IdealSplineSerializer;
 import org.snobot.nt.spline_plotter.SplineSegment;
 
@@ -119,7 +120,7 @@ public class TrajectoryData extends ComplexData<TrajectoryData>
             double x = Double.parseDouble(tokenizer.nextToken());
             double y = Double.parseDouble(tokenizer.nextToken());
             double angle = Math.toDegrees(Double.parseDouble(tokenizer.nextToken()));
-            Coordinate coordinate = new Coordinate(x / 12.0, y / 12.0, angle);
+            Coordinate coordinate = new Coordinate(new Position2dDistance(x / 12.0, y / 12.0), angle);
             coordinates.add(coordinate);
         }
 
@@ -137,7 +138,7 @@ public class TrajectoryData extends ComplexData<TrajectoryData>
 
         for (SplineSegment splineSegment : segments)
         {
-            coordinates.add(new Coordinate(splineSegment.mAverageX / 12.0, splineSegment.mAverageY / 12.0, splineSegment.mRobotHeading));
+            coordinates.add(new Coordinate(new Position2dDistance(splineSegment.mAverageX / 12.0, splineSegment.mAverageY / 12.0), splineSegment.mRobotHeading));
         }
 
         return coordinates;

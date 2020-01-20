@@ -97,10 +97,11 @@ public class VisionData extends ComplexData<VisionData>
         {
             CameraRayLayerController.Ray ray = new CameraRayLayerController.Ray();
 
-            ray.mXStart = Double.parseDouble(tokenizer.nextToken()) / 12;
-            ray.mYStart = Double.parseDouble(tokenizer.nextToken()) / 12;
-            ray.mXEnd = Double.parseDouble(tokenizer.nextToken()) / 12;
-            ray.mYEnd = Double.parseDouble(tokenizer.nextToken()) / 12;
+            ray.mStart.mX = Double.parseDouble(tokenizer.nextToken()) / 12;
+            ray.mStart.mY = Double.parseDouble(tokenizer.nextToken()) / 12;
+            ray.mEnd.mX = Double.parseDouble(tokenizer.nextToken()) / 12;
+            ray.mEnd.mY = Double.parseDouble(tokenizer.nextToken()) / 12;
+
 
             rays.add(ray);
         }

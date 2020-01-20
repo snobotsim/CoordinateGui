@@ -13,28 +13,39 @@ public class PixelConverterTest
     {
         PixelConverter converter = TestablePixelConverterFactory.setupPortraitMode();
 
+        Position2dPixels asPixels;
+        Position2dDistance asDistance;
+
         // Top Left Corner
-        Assertions.assertEquals(0, converter.convertFieldXFeetToPixels(-13.5), EPSILON);
-        Assertions.assertEquals(0, converter.convertFieldYFeetToPixels(27), EPSILON);
-        Assertions.assertEquals(-13.5, converter.convertFieldXPixelsToFeet(0), EPSILON);
-        Assertions.assertEquals(27, converter.convertFieldYPixelsToFeet(0), EPSILON);
+        asPixels = converter.convertDistanceToPixels(new Position2dDistance(-13.5, 27));
+        asDistance = converter.convertPixelsToFeet(new Position2dPixels(0, 0));
+        Assertions.assertEquals(0, asPixels.mX, EPSILON);
+        Assertions.assertEquals(0, asPixels.mY, EPSILON);
+        Assertions.assertEquals(-13.5, asDistance.mX, EPSILON);
+        Assertions.assertEquals(27, asDistance.mY, EPSILON);
 
         // Top Right Corner
-        Assertions.assertEquals(270, converter.convertFieldXFeetToPixels(13.5), EPSILON);
-        Assertions.assertEquals(0, converter.convertFieldYFeetToPixels(27), EPSILON);
-        Assertions.assertEquals(13.5, converter.convertFieldXPixelsToFeet(270), EPSILON);
-        Assertions.assertEquals(27, converter.convertFieldYPixelsToFeet(0), EPSILON);
+        asPixels = converter.convertDistanceToPixels(new Position2dDistance(13.5, 27));
+        asDistance = converter.convertPixelsToFeet(new Position2dPixels(270, 0));
+        Assertions.assertEquals(270, asPixels.mX, EPSILON);
+        Assertions.assertEquals(0, asPixels.mY, EPSILON);
+        Assertions.assertEquals(13.5, asDistance.mX, EPSILON);
+        Assertions.assertEquals(27, asDistance.mY, EPSILON);
 
         // Bottom Left Corner
-        Assertions.assertEquals(0, converter.convertFieldXFeetToPixels(-13.5), EPSILON);
-        Assertions.assertEquals(540, converter.convertFieldYFeetToPixels(-27), EPSILON);
-        Assertions.assertEquals(-13.5, converter.convertFieldXPixelsToFeet(0), EPSILON);
-        Assertions.assertEquals(-27, converter.convertFieldYPixelsToFeet(540), EPSILON);
+        asPixels = converter.convertDistanceToPixels(new Position2dDistance(-13.5, -27));
+        asDistance = converter.convertPixelsToFeet(new Position2dPixels(0, 540));
+        Assertions.assertEquals(0, asPixels.mX, EPSILON);
+        Assertions.assertEquals(540, asPixels.mY, EPSILON);
+        Assertions.assertEquals(-13.5, asDistance.mX, EPSILON);
+        Assertions.assertEquals(-27, asDistance.mY, EPSILON);
 
         // Bottom Right Corner
-        Assertions.assertEquals(270, converter.convertFieldXFeetToPixels(13.5), EPSILON);
-        Assertions.assertEquals(540, converter.convertFieldYFeetToPixels(-27), EPSILON);
-        Assertions.assertEquals(13.5, converter.convertFieldXPixelsToFeet(270), EPSILON);
-        Assertions.assertEquals(-27, converter.convertFieldYPixelsToFeet(540), EPSILON);
+        asPixels = converter.convertDistanceToPixels(new Position2dDistance(13.5, -27));
+        asDistance = converter.convertPixelsToFeet(new Position2dPixels(270, 540));
+        Assertions.assertEquals(270, asPixels.mX, EPSILON);
+        Assertions.assertEquals(540, asPixels.mY, EPSILON);
+        Assertions.assertEquals(13.5, asDistance.mX, EPSILON);
+        Assertions.assertEquals(-27, asDistance.mY, EPSILON);
     }
 }

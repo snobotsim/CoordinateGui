@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.model.Position2dDistance;
 
 public class PathfinderConfigLoader
 {
@@ -52,7 +53,7 @@ public class PathfinderConfigLoader
                 double y = pathweaverX - 27;
                 double angle = Math.toDegrees(Math.atan2(pathweaverTangentY, pathweaverTangentX));
 
-                output.add(new Coordinate(x, y, angle));
+                output.add(new Coordinate(new Position2dDistance(x, y), angle));
             }
         }
         catch (IOException ex)

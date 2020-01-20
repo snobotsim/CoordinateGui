@@ -21,8 +21,8 @@ public class CoordinateDataTest
         dataMap.put(SmartDashboardNames.sY_POSITION, -12.95 * 12);
 
         Coordinate coordinate = new CoordinateData(dataMap).toCoord();
-        Assertions.assertEquals(2.78, coordinate.mX, EPSILON);
-        Assertions.assertEquals(-12.95, coordinate.mY, EPSILON);
+        Assertions.assertEquals(2.78, coordinate.mPosition.mX, EPSILON);
+        Assertions.assertEquals(-12.95, coordinate.mPosition.mY, EPSILON);
         Assertions.assertEquals(98.73, coordinate.mAngle, EPSILON);
     }
 }

@@ -11,6 +11,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import org.snobot.coordinate_gui.model.Position2dDistance;
+import org.snobot.coordinate_gui.model.Position2dPixels;
 
 public class PurePursuitLayerController
 {
@@ -55,15 +57,19 @@ public class PurePursuitLayerController
     /**
      * Sets the line representing the lookahead distance.
      * 
-     * @param aLookaheadConfig
-     *            The lookahead data
+     * @param aRobotPosition
+     *            The robots position
+     * @param aLookaheadPosition
+     *            The lookahead position
      */
-    public void setLookaheadLine(PurePursuitLookaheadData aLookaheadConfig)
+    public void setLookaheadLine(Position2dDistance aRobotPosition, Position2dDistance aLookaheadPosition)
     {
-        mLookaheadLine.setStartX(mPixelConverter.convertFieldXFeetToPixels(aLookaheadConfig.mRobotX));
-        mLookaheadLine.setStartY(mPixelConverter.convertFieldYFeetToPixels(aLookaheadConfig.mRobotY));
-        mLookaheadLine.setEndX(mPixelConverter.convertFieldXFeetToPixels(aLookaheadConfig.mLookaheadX));
-        mLookaheadLine.setEndY(mPixelConverter.convertFieldYFeetToPixels(aLookaheadConfig.mLookaheadY));
+        Position2dPixels robot = mPixelConverter.convertDistanceToPixels(aRobotPosition);
+        Position2dPixels lookahead = mPixelConverter.convertDistanceToPixels(aLookaheadPosition);
+        mLookaheadLine.setStartX(robot.mX);
+        mLookaheadLine.setStartY(robot.mY);
+        mLookaheadLine.setEndX(lookahead.mX);
+        mLookaheadLine.setEndY(lookahead.mY);
     }
 
     /**
@@ -82,10 +88,12 @@ public class PurePursuitLayerController
 
         for (Coordinate coordinate : aWaypoints)
         {
+            Position2dPixels asPixels = mPixelConverter.convertDistanceToPixels(coordinate.mPosition);
+
             Circle circle = new Circle();
             circle.setRadius(10);
-            circle.setCenterX(mPixelConverter.convertFieldXFeetToPixels(coordinate.mX));
-            circle.setCenterY(mPixelConverter.convertFieldYFeetToPixels(coordinate.mY));
+            circle.setCenterX(asPixels.mX);
+            circle.setCenterY(asPixels.mY);
             circle.setStroke(Color.RED);
             circle.setFill(Color.TRANSPARENT);
             mMarkers.getChildren().add(circle);
@@ -93,20 +101,24 @@ public class PurePursuitLayerController
 
         for (Coordinate coordinate : aUpSampled)
         {
+            Position2dPixels asPixels = mPixelConverter.convertDistanceToPixels(coordinate.mPosition);
+
             Rectangle rectangle = new Rectangle();
             rectangle.setHeight(5);
             rectangle.setWidth(5);
-            rectangle.setX(mPixelConverter.convertFieldXFeetToPixels(coordinate.mX));
-            rectangle.setY(mPixelConverter.convertFieldYFeetToPixels(coordinate.mY));
+            rectangle.setX(asPixels.mX);
+            rectangle.setY(asPixels.mY);
             rectangle.setFill(Color.ORANGE);
             mMarkers.getChildren().add(rectangle);
         }
         for (Coordinate coordinate : aSmoothed)
         {
+            Position2dPixels asPixels = mPixelConverter.convertDistanceToPixels(coordinate.mPosition);
+
             Circle circle = new Circle();
             circle.setRadius(5);
-            circle.setCenterX(mPixelConverter.convertFieldXFeetToPixels(coordinate.mX));
-            circle.setCenterY(mPixelConverter.convertFieldYFeetToPixels(coordinate.mY));
+            circle.setCenterX(asPixels.mX);
+            circle.setCenterY(asPixels.mY);
             circle.setFill(Color.GREEN);
             mMarkers.getChildren().add(circle);
         }

@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import org.snobot.coordinate_gui.model.Position2dDistance;
+import org.snobot.coordinate_gui.model.Position2dPixels;
 
 public class CameraRayLayerController
 {
@@ -28,16 +30,14 @@ public class CameraRayLayerController
 
         for (Ray ray : aRays)
         {
-            double xStart = aPixelConerter.convertFieldXFeetToPixels(ray.mXStart);
-            double yStart = aPixelConerter.convertFieldYFeetToPixels(ray.mYStart);
-            double xEnd = aPixelConerter.convertFieldXFeetToPixels(ray.mXEnd);
-            double yEnd = aPixelConerter.convertFieldYFeetToPixels(ray.mYEnd);
+            Position2dPixels start = aPixelConerter.convertDistanceToPixels(ray.mStart);
+            Position2dPixels end = aPixelConerter.convertDistanceToPixels(ray.mEnd);
 
             Line line = new Line();
-            line.setStartX(xStart);
-            line.setStartY(yStart);
-            line.setEndX(xEnd);
-            line.setEndY(yEnd);
+            line.setStartX(start.mX);
+            line.setStartY(start.mY);
+            line.setEndX(end.mX);
+            line.setEndY(end.mY);
             line.setStrokeWidth(3.0);
             line.setStroke(Color.GREENYELLOW);
             
@@ -49,44 +49,35 @@ public class CameraRayLayerController
     @SuppressWarnings("PMD.DataClass")
     public static class Ray
     {
-        public double mXStart;
-        public double mYStart;
-        public double mXEnd;
-        public double mYEnd;
+        public Position2dDistance mStart;
+        public Position2dDistance mEnd;
 
         public Ray()
         {
-
+            mStart = new Position2dDistance(0, 0);
+            mEnd = new Position2dDistance(0, 0);
         }
 
         /**
          * Constructor.
          * 
-         * @param aXStart
-         *            Starting x position in feet. Typically would be the robot
+         * @param aStart
+         *            Starting position in feet. Typically would be the robot
          *            position
-         * @param aYStart
-         *            Starting y position in feet. Typically would be the robot
-         *            position
-         * @param aXEnd
-         *            End x position in feet. Typically would be the target
-         *            position
-         * @param aYEnd
-         *            End y position in feet. Typically would be the target
+         * @param aEnd
+         *            End position in feet. Typically would be the target
          *            position
          */
-        public Ray(double aXStart, double aYStart, double aXEnd, double aYEnd)
+        public Ray(Position2dDistance aStart, Position2dDistance aEnd)
         {
-            mXStart = aXStart;
-            mYStart = aYStart;
-            mXEnd = aXEnd;
-            mYEnd = aYEnd;
+            mStart = aStart;
+            mEnd = aEnd;
         }
 
         @Override
         public String toString()
         {
-            return "Ray [mXStart=" + mXStart + ", mYStart=" + mYStart + ", mXEnd=" + mXEnd + ", mYEnd=" + mYEnd + "]";
+            return "Ray [mStart=" + mStart + ", mEnd=" + mEnd + "]";
         }
     }
 }
