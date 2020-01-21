@@ -19,24 +19,18 @@ public class PurePursuitLayerController
     @SuppressWarnings("PMD.DataClass")
     public static class PurePursuitLookaheadData
     {
-        public final double mRobotX;
-        public final double mRobotY;
-        public final double mLookaheadX;
-        public final double mLookaheadY;
+        public final Position2dDistance mRobot;
+        public final Position2dDistance mLookahead;
 
         /**
          * Constructor.
-         * @param aRobotX Robots X
-         * @param aRobotY Robots Y
-         * @param aLookaheadX Lookahead X
-         * @param aLookaheadY Lookahead Y
+         * @param aRobot Robots Coordinate
+         * @param aLookahead Lookahead Coordinate
          */
-        public PurePursuitLookaheadData(double aRobotX, double aRobotY, double aLookaheadX, double aLookaheadY)
+        public PurePursuitLookaheadData(Position2dDistance aRobot, Position2dDistance aLookahead)
         {
-            mRobotX = aRobotX;
-            mRobotY = aRobotY;
-            mLookaheadX = aLookaheadX;
-            mLookaheadY = aLookaheadY;
+            mRobot = aRobot;
+            mLookahead = aLookahead;
         }
     }
 
@@ -57,15 +51,13 @@ public class PurePursuitLayerController
     /**
      * Sets the line representing the lookahead distance.
      * 
-     * @param aRobotPosition
-     *            The robots position
-     * @param aLookaheadPosition
-     *            The lookahead position
+     * @param aLookaheadData
+     *            The data
      */
-    public void setLookaheadLine(Position2dDistance aRobotPosition, Position2dDistance aLookaheadPosition)
+    public void setLookaheadLine(PurePursuitLookaheadData aLookaheadData)
     {
-        Position2dPixels robot = mPixelConverter.convertDistanceToPixels(aRobotPosition);
-        Position2dPixels lookahead = mPixelConverter.convertDistanceToPixels(aLookaheadPosition);
+        Position2dPixels robot = mPixelConverter.convertDistanceToPixels(aLookaheadData.mRobot);
+        Position2dPixels lookahead = mPixelConverter.convertDistanceToPixels(aLookaheadData.mLookahead);
         mLookaheadLine.setStartX(robot.mX);
         mLookaheadLine.setStartY(robot.mY);
         mLookaheadLine.setEndX(lookahead.mX);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
+import org.snobot.coordinate_gui.model.PixelConverter;
 import org.snobot.coordinate_gui.model.Position2dDistance;
 import org.snobot.coordinate_gui.ui.layers.BaseGuiController;
 import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController;
@@ -61,7 +62,7 @@ public class DeepSpaceController extends BaseGuiController
      */
     public DeepSpaceController()
     {
-        super(FIELD_IMAGE_PATH, FIELD_WIDTH, FIELD_HEIGHT);
+        super(FIELD_IMAGE_PATH, FIELD_WIDTH, FIELD_HEIGHT, PixelConverter.Orientation.Portrait, PixelConverter.OriginPosition.CenterField);
 
         mCoordinatesRenderProperties = new CoordinateLayerRenderProps(100, 5, Color.ORANGERED, true);
         mCoordinatesDataProvider = new DataProvider<>(1000);
@@ -145,8 +146,8 @@ public class DeepSpaceController extends BaseGuiController
         mPurePursuitController.setWaypoints(aCoordinates, aUpSampled, aSmoothed);
     }
 
-    public void setPurePursuitLookahead(Position2dDistance aRobot, Position2dDistance aLookahead)
+    public void setPurePursuitLookahead(PurePursuitLayerController.PurePursuitLookaheadData aData)
     {
-        mPurePursuitController.setLookaheadLine(aRobot, aLookahead);
+        mPurePursuitController.setLookaheadLine(aData);
     }
 }

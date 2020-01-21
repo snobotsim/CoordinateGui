@@ -2,6 +2,7 @@ package org.snobot.coordinate_gui.game.steamworks;
 
 import java.util.List;
 
+import org.snobot.coordinate_gui.model.PixelConverter;
 import org.snobot.coordinate_gui.ui.layers.BaseGuiController;
 import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController;
 import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController.Ray;
@@ -30,7 +31,7 @@ public class CoordinateGui2017 extends BaseGuiController
      */
     public CoordinateGui2017()
     {
-        super(FIELD_IMAGE_PATH, FIELD_WIDTH, FIELD_HEIGHT);
+        super(FIELD_IMAGE_PATH, FIELD_WIDTH, FIELD_HEIGHT, PixelConverter.Orientation.Portrait, PixelConverter.OriginPosition.CenterField);
     }
 
     @Override

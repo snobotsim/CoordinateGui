@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
+import org.snobot.coordinate_gui.model.PixelConverter;
 import org.snobot.coordinate_gui.ui.layers.BaseGuiController;
 import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController;
 import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController.Ray;
@@ -40,7 +41,7 @@ public class InfiniteRechargeController extends BaseGuiController
      */
     public InfiniteRechargeController()
     {
-        super(FIELD_IMAGE_PATH, FIELD_WIDTH, FIELD_HEIGHT);
+        super(FIELD_IMAGE_PATH, FIELD_WIDTH, FIELD_HEIGHT, PixelConverter.Orientation.Portrait, PixelConverter.OriginPosition.CenterField);
 
         mCoordinatesRenderProperties = new CoordinateLayerRenderProps(100, 5, Color.ORANGERED, true);
         mCoordinatesDataProvider = new DataProvider<>(1000);

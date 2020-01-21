@@ -23,7 +23,7 @@ public class GoToPositionControllerTest
     @Test
     public void testNullPoint()
     {
-        PixelConverter converter = TestablePixelConverterFactory.setupPortraitMode();
+        PixelConverter converter = TestablePixelConverterFactory.setupPortraitModeOriginAtCenter();
 
         GoToPositionController controller = new TestableGoToPositionController();
         controller.initialize();
@@ -35,7 +35,7 @@ public class GoToPositionControllerTest
     @Test
     public void testValidPoint()
     {
-        PixelConverter converter = TestablePixelConverterFactory.setupPortraitMode();
+        PixelConverter converter = TestablePixelConverterFactory.setupPortraitModeOriginAtCenter();
 
         GoToPositionController controller = new TestableGoToPositionController();
         controller.initialize();

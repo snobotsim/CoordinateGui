@@ -1,5 +1,6 @@
 package org.snobot.coordinate_gui.game.powerup;
 
+import org.snobot.coordinate_gui.model.PixelConverter;
 import org.snobot.coordinate_gui.ui.layers.BaseGuiController;
 import org.snobot.coordinate_gui.ui.layers.RobotPositionLayerController;
 
@@ -23,7 +24,7 @@ public class CoordinateGui2018 extends BaseGuiController
      */
     public CoordinateGui2018()
     {
-        super(FIELD_IMAGE_PATH, FIELD_WIDTH, FIELD_HEIGHT);
+        super(FIELD_IMAGE_PATH, FIELD_WIDTH, FIELD_HEIGHT, PixelConverter.Orientation.Portrait, PixelConverter.OriginPosition.CenterField);
     }
 
     @Override

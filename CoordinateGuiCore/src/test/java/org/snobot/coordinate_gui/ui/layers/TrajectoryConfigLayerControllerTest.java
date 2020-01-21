@@ -25,7 +25,7 @@ public class TrajectoryConfigLayerControllerTest
     @Test
     public void testController()
     {
-        PixelConverter converter = TestablePixelConverterFactory.setupPortraitMode();
+        PixelConverter converter = TestablePixelConverterFactory.setupPortraitModeOriginAtCenter();
 
         TestableTrajectoryConfigLayerController controller = new TestableTrajectoryConfigLayerController();
 

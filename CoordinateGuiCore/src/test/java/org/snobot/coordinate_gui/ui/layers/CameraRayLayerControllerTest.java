@@ -28,7 +28,7 @@ public class CameraRayLayerControllerTest
     {
         TestableCameraRayLayerController rayController = new TestableCameraRayLayerController();
 
-        PixelConverter converter = TestablePixelConverterFactory.setupPortraitMode();
+        PixelConverter converter = TestablePixelConverterFactory.setupPortraitModeOriginAtCenter();
         List<CameraRayLayerController.Ray> rays = new ArrayList<>();
 
         rays.add(new CameraRayLayerController.Ray(new Position2dDistance(0, -2), new Position2dDistance(5, 5)));

@@ -28,7 +28,7 @@ public class CoordinateLayerControllerTest
     public void testSinglePoint()
     {
         int pointMemory = 1;
-        PixelConverter converter = TestablePixelConverterFactory.setupPortraitMode();
+        PixelConverter converter = TestablePixelConverterFactory.setupPortraitModeOriginAtCenter();
         CoordinateLayerController controller = new TestableCoordinateLayerController();
         CoordinateLayerRenderProps renderProps = new CoordinateLayerRenderProps(pointMemory, 5, Color.WHEAT, true);
         DataProvider<Coordinate> dataProvider = new DataProvider<>(pointMemory);
@@ -56,7 +56,7 @@ public class CoordinateLayerControllerTest
     public void testMultiplePoints()
     {
         int pointMemory = 20;
-        PixelConverter converter = TestablePixelConverterFactory.setupPortraitMode();
+        PixelConverter converter = TestablePixelConverterFactory.setupPortraitModeOriginAtCenter();
         CoordinateLayerController controller = new TestableCoordinateLayerController();
         CoordinateLayerRenderProps renderProps = new CoordinateLayerRenderProps(pointMemory, 5, Color.WHEAT, true);
         DataProvider<Coordinate> dataProvider = new DataProvider<>(pointMemory);

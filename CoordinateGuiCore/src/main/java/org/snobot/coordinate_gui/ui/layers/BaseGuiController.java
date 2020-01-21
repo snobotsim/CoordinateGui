@@ -12,8 +12,8 @@ import javafx.scene.transform.Scale;
 public class BaseGuiController
 {
     private final String mFieldImageUrl;
-    private final double mFieldWidthFeet;
-    private final double mFieldHeightFeet;
+    private final double mFieldShortDimension;
+    private final double mFieldLongDimension;
 
     protected final PixelConverter mPixelConverter;
 
@@ -26,12 +26,12 @@ public class BaseGuiController
     @FXML
     protected Group mLayers;
 
-    protected BaseGuiController(String aFieldImageUrl, double aFiieldWidthFeet, double aFieldHeightFeet)
+    protected BaseGuiController(String aFieldImageUrl, double aShortDirection, double aLongDirection, PixelConverter.Orientation aOrientation, PixelConverter.OriginPosition aOriginPosition)
     {
         mFieldImageUrl = aFieldImageUrl;
-        mFieldWidthFeet = aFiieldWidthFeet;
-        mFieldHeightFeet = aFieldHeightFeet;
-        mPixelConverter = new PixelConverter(aFiieldWidthFeet / 2, aFieldHeightFeet / 2);
+        mFieldShortDimension = aShortDirection;
+        mFieldLongDimension = aLongDirection;
+        mPixelConverter = new PixelConverter(mFieldShortDimension, mFieldLongDimension, aOrientation, aOriginPosition);
     }
 
     /**
@@ -54,7 +54,7 @@ public class BaseGuiController
                         mTopPane.widthProperty(), mTopPane.heightProperty()));
 
         mLayers.getTransforms().add(scale);
-        mPixelConverter.setImageScale(scale, fieldImage.getWidth(), fieldImage.getHeight(), mFieldWidthFeet, mFieldHeightFeet);
+        mPixelConverter.setImageScale(scale, fieldImage.getWidth(), fieldImage.getHeight(), mFieldShortDimension, mFieldLongDimension);
     }
 
     public PixelConverter getPixelConverter()

@@ -36,10 +36,10 @@ public class PurePursuitDataTest
         PurePursuitData data = new PurePursuitData(dataMap);
         PurePursuitLayerController.PurePursuitLookaheadData lookaheadData = data.toLookaheadData();
 
-        Assertions.assertEquals(12.47, lookaheadData.mRobotX, EPSILON);
-        Assertions.assertEquals(-48.41, lookaheadData.mRobotY, EPSILON);
-        Assertions.assertEquals(78.24, lookaheadData.mLookaheadX, EPSILON);
-        Assertions.assertEquals(-9, lookaheadData.mLookaheadY, EPSILON);
+        Assertions.assertEquals(12.47, lookaheadData.mRobot.mX, EPSILON);
+        Assertions.assertEquals(-48.41, lookaheadData.mRobot.mY, EPSILON);
+        Assertions.assertEquals(78.24, lookaheadData.mLookahead.mX, EPSILON);
+        Assertions.assertEquals(-9, lookaheadData.mLookahead.mY, EPSILON);
     }
 
     @Test

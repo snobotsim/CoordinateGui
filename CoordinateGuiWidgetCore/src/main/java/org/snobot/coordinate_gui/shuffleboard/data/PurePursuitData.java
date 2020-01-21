@@ -172,8 +172,9 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
         if (!lookaheadString.isEmpty())
         {
             String[] lookahead = getLookaheadString().split(",");
-            PurePursuitLayerController.PurePursuitLookaheadData data = new PurePursuitLayerController.PurePursuitLookaheadData(Double.parseDouble(lookahead[0]), Double.parseDouble(lookahead[1]),
-                Double.parseDouble(lookahead[2]), Double.parseDouble(lookahead[3]));
+            Position2dDistance robotPosition = new Position2dDistance(Double.parseDouble(lookahead[0]), Double.parseDouble(lookahead[1]));
+            Position2dDistance lookaheadPoint = new Position2dDistance(Double.parseDouble(lookahead[2]), Double.parseDouble(lookahead[3]));
+            PurePursuitLayerController.PurePursuitLookaheadData data = new PurePursuitLayerController.PurePursuitLookaheadData(robotPosition, lookaheadPoint);
             return data;
         }
         return null;

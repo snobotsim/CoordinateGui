@@ -25,7 +25,7 @@ public class RobotPositionLayerControllerTest
     @Test
     public void testController()
     {
-        PixelConverter converter = TestablePixelConverterFactory.setupPortraitMode();
+        PixelConverter converter = TestablePixelConverterFactory.setupPortraitModeOriginAtCenter();
 
         RobotPositionLayerController controller = new TestableRobotPositionLayerController();
         controller.setRobotDimensions(converter, 10, 15);

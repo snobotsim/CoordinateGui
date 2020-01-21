@@ -30,7 +30,7 @@ public class PurePursuitLayerControllerTest
     @Test
     public void testController()
     {
-        PixelConverter converter = TestablePixelConverterFactory.setupPortraitMode();
+        PixelConverter converter = TestablePixelConverterFactory.setupPortraitModeOriginAtCenter();
 
         PurePursuitLayerController controller = new TestablePurePursuitLayerController();
         controller.setup(converter);
@@ -47,7 +47,10 @@ public class PurePursuitLayerControllerTest
         smoothed.add(new Coordinate(new Position2dDistance(-12.41, -9.42), 95.67));
         smoothed.add(new Coordinate(new Position2dDistance(12.56, -9.48), 0));
 
-        controller.setLookaheadLine(new Position2dDistance(-8.842, 1.34), new Position2dDistance(-6.54, 2.9));
+        PurePursuitLayerController.PurePursuitLookaheadData lookaheadData = new PurePursuitLayerController.PurePursuitLookaheadData(
+            new Position2dDistance(-8.842, 1.34),
+            new Position2dDistance(-6.54, 2.9));
+        controller.setLookaheadLine(lookaheadData);
         controller.setWaypoints(waypoints, upSampled, smoothed);
 
         Assertions.assertEquals(6, controller.mMarkers.getChildren().size());

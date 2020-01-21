@@ -4,18 +4,69 @@ import javafx.scene.transform.Scale;
 
 public class PixelConverter
 {
-    protected double mXCenterFeet;
-    protected double mYCenterFeet;
+    public enum Orientation
+    {
+        Landscape,
+        Portrait,
+    }
 
-    protected double mXCenterPixels;
+    public enum OriginPosition
+    {
+        CenterField,
+        AlwaysIncreasing,
+    }
+
+    protected final double mXCenterFeet;
+    protected final double mYCenterFeet;
+    protected final double mHeightMultiplier;
+
+    protected double mWidthPixels;
+    protected double mHeightPixels;
     protected double mImageScaleFactor;
 
     protected Scale mScale;
 
-    public PixelConverter(double aFieldCenterX, double aFieldCenterY)
+    protected final Orientation mOrientation;
+
+    /**
+     * Constructor.
+     * @param aFieldShortDimension The shorter dimension of the field
+     * @param aFieldLongDimension The longer dimension of the field
+     * @param aOrientation The orientation
+     * @param aOriginPosition Where the origin should be
+     */
+    public PixelConverter(double aFieldShortDimension, double aFieldLongDimension, Orientation aOrientation, OriginPosition aOriginPosition)
     {
-        mXCenterFeet = aFieldCenterX;
-        mYCenterFeet = aFieldCenterY;
+        mOrientation = aOrientation;
+        if (aOrientation == Orientation.Landscape)
+        {
+            mHeightMultiplier = -1;
+            if (aOriginPosition == OriginPosition.CenterField)
+            {
+                mXCenterFeet = aFieldLongDimension / 2;
+                mYCenterFeet = aFieldShortDimension / 2;
+            }
+            else
+            {
+                mXCenterFeet = aFieldLongDimension;
+                mYCenterFeet = aFieldShortDimension;
+            }
+        }
+        else
+        {
+            mHeightMultiplier = 1;
+            if (aOriginPosition == OriginPosition.CenterField)
+            {
+                mXCenterFeet = aFieldShortDimension / 2;
+                mYCenterFeet = aFieldLongDimension / 2;
+            }
+            else
+            {
+                mXCenterFeet = aFieldShortDimension;
+                mYCenterFeet = aFieldLongDimension;
+            }
+        }
+
     }
 
     public double convertFeetToPixels(double aFeet)
@@ -30,10 +81,18 @@ public class PixelConverter
      */
     public Position2dPixels convertDistanceToPixels(Position2dDistance aDistance)
     {
-        double x = mXCenterPixels - convertFeetToPixels(mXCenterFeet - aDistance.mX);
-        double y = convertFeetToPixels(mYCenterFeet - aDistance.mY);
+        double x = mWidthPixels - convertFeetToPixels(mXCenterFeet - aDistance.mX);
+        double y;
+        if (mOrientation == Orientation.Portrait)
+        {
+            y = convertFeetToPixels(mYCenterFeet - aDistance.mY);
+        }
+        else
+        {
+            y = mHeightPixels - convertFeetToPixels(mYCenterFeet - aDistance.mY);
+        }
 
-        return new Position2dPixels(x, y);
+        return new Position2dPixels(x, mHeightMultiplier *  y);
     }
 
     /**
@@ -43,10 +102,19 @@ public class PixelConverter
      */
     public Position2dDistance convertPixelsToFeet(Position2dPixels aPixels)
     {
-        double x = mXCenterFeet - (mXCenterPixels - aPixels.mX / mScale.getX()) / mImageScaleFactor;
-        double y = mYCenterFeet - aPixels.mY / mScale.getY() / mImageScaleFactor;
+        double x = mXCenterFeet - (mWidthPixels - aPixels.mX / mScale.getX()) / mImageScaleFactor;
+        double y;
 
-        return new Position2dDistance(x, y);
+        if (mOrientation == Orientation.Portrait)
+        {
+            y = mYCenterFeet - aPixels.mY / mScale.getY() / mImageScaleFactor;
+        }
+        else
+        {
+            y = mYCenterFeet - (mHeightPixels - aPixels.mY / mScale.getY()) / mImageScaleFactor;
+        }
+
+        return new Position2dDistance(x, mHeightMultiplier * y);
     }
 
     /**
@@ -70,6 +138,7 @@ public class PixelConverter
 
         mScale = aScale;
         mImageScaleFactor = Math.min(horizontalScaleFactor, verticalScaleFactor);
-        mXCenterPixels = aWidthFeet * mImageScaleFactor;
+        mWidthPixels = aWidthFeet * mImageScaleFactor;
+        mHeightPixels = aHeightFeet * mImageScaleFactor;
     }
 }
