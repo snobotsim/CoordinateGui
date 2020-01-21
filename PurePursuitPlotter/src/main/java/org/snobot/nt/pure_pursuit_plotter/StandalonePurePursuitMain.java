@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.Position2dDistance;
 
 public final class StandalonePurePursuitMain
@@ -65,7 +66,7 @@ public final class StandalonePurePursuitMain
         for (int i = -20; i < 20; ++i)
         {
             double x = i + 5;
-            pathPoints.add(new Coordinate(new Position2dDistance(x, i * i), 0));
+            pathPoints.add(new Coordinate(new Position2dDistance(x, i * i, Distance.Unit.FEET), 0));
         }
 
         aOverviewController.setIdealPath(pathPoints);
@@ -82,11 +83,11 @@ public final class StandalonePurePursuitMain
                 {
                     Coordinate ideal = pathPoints.get(i);
                     PurePursuitPointInfo point = new PurePursuitPointInfo(i);
-                    point.mX = ideal.mPosition.mX * .8;
-                    point.mY = ideal.mPosition.mY * .7;
+                    point.mX = ideal.mPosition.mX.as(Distance.Unit.FEET) * .8;
+                    point.mY = ideal.mPosition.mY.as(Distance.Unit.FEET) * .7;
                     point.mLeftVelocity = i * .8;
                     point.mLeftGoalVelocity = i * i * .7;
-                    point.mRightVelocity = ideal.mPosition.mX * .8 + 6;
+                    point.mRightVelocity = ideal.mPosition.mX.as(Distance.Unit.FEET) * .8 + 6;
                     point.mRightGoalVelocity = i * i + 9;
 
                     actuals.add(point);

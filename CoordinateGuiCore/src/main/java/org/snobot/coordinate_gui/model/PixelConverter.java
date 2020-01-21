@@ -4,6 +4,8 @@ import javafx.scene.transform.Scale;
 
 public class PixelConverter
 {
+    private static final Distance.Unit CONVERSION_UNIT = Distance.Unit.FEET;
+
     public enum Orientation
     {
         Landscape,
@@ -16,8 +18,8 @@ public class PixelConverter
         AlwaysIncreasing,
     }
 
-    protected final double mXCenterFeet;
-    protected final double mYCenterFeet;
+    protected final Distance mXCenterFeet;
+    protected final Distance mYCenterFeet;
     protected final double mHeightMultiplier;
 
     protected double mWidthPixels;
@@ -35,7 +37,7 @@ public class PixelConverter
      * @param aOrientation The orientation
      * @param aOriginPosition Where the origin should be
      */
-    public PixelConverter(double aFieldShortDimension, double aFieldLongDimension, Orientation aOrientation, OriginPosition aOriginPosition)
+    public PixelConverter(Distance aFieldShortDimension, Distance aFieldLongDimension, Orientation aOrientation, OriginPosition aOriginPosition)
     {
         mOrientation = aOrientation;
         if (aOrientation == Orientation.Landscape)
@@ -43,8 +45,8 @@ public class PixelConverter
             mHeightMultiplier = -1;
             if (aOriginPosition == OriginPosition.CenterField)
             {
-                mXCenterFeet = aFieldLongDimension / 2;
-                mYCenterFeet = aFieldShortDimension / 2;
+                mXCenterFeet = Distance.divide(aFieldLongDimension, 2);
+                mYCenterFeet = Distance.divide(aFieldShortDimension, 2);
             }
             else
             {
@@ -57,8 +59,8 @@ public class PixelConverter
             mHeightMultiplier = 1;
             if (aOriginPosition == OriginPosition.CenterField)
             {
-                mXCenterFeet = aFieldShortDimension / 2;
-                mYCenterFeet = aFieldLongDimension / 2;
+                mXCenterFeet = Distance.divide(aFieldShortDimension, 2);
+                mYCenterFeet = Distance.divide(aFieldLongDimension, 2);
             }
             else
             {
@@ -69,9 +71,10 @@ public class PixelConverter
 
     }
 
-    public double convertFeetToPixels(double aFeet)
+    public double convertFeetToPixels(Distance aDistance)
     {
-        return aFeet * mImageScaleFactor;
+        double output = aDistance.as(CONVERSION_UNIT) * mImageScaleFactor;
+        return output;
     }
 
     /**
@@ -81,15 +84,17 @@ public class PixelConverter
      */
     public Position2dPixels convertDistanceToPixels(Position2dDistance aDistance)
     {
-        double x = mWidthPixels - convertFeetToPixels(mXCenterFeet - aDistance.mX);
+        Distance relativeX = Distance.subtract(mXCenterFeet, aDistance.mX);
+        Distance relativeY = Distance.subtract(mYCenterFeet, aDistance.mY);
+        double x = mWidthPixels - convertFeetToPixels(relativeX);
         double y;
         if (mOrientation == Orientation.Portrait)
         {
-            y = convertFeetToPixels(mYCenterFeet - aDistance.mY);
+            y = convertFeetToPixels(relativeY);
         }
         else
         {
-            y = mHeightPixels - convertFeetToPixels(mYCenterFeet - aDistance.mY);
+            y = mHeightPixels - convertFeetToPixels(relativeY);
         }
 
         return new Position2dPixels(x, mHeightMultiplier *  y);
@@ -100,21 +105,21 @@ public class PixelConverter
      * @param aPixels The pixels
      * @return The distance
      */
-    public Position2dDistance convertPixelsToFeet(Position2dPixels aPixels)
+    public Position2dDistance convertPixelsToDistance(Position2dPixels aPixels)
     {
-        double x = mXCenterFeet - (mWidthPixels - aPixels.mX / mScale.getX()) / mImageScaleFactor;
+        double x = mXCenterFeet.as(CONVERSION_UNIT) - (mWidthPixels - aPixels.mX / mScale.getX()) / mImageScaleFactor;
         double y;
 
         if (mOrientation == Orientation.Portrait)
         {
-            y = mYCenterFeet - aPixels.mY / mScale.getY() / mImageScaleFactor;
+            y = mYCenterFeet.as(CONVERSION_UNIT) - aPixels.mY / mScale.getY() / mImageScaleFactor;
         }
         else
         {
-            y = mYCenterFeet - (mHeightPixels - aPixels.mY / mScale.getY()) / mImageScaleFactor;
+            y = mYCenterFeet.as(CONVERSION_UNIT) - (mHeightPixels - aPixels.mY / mScale.getY()) / mImageScaleFactor;
         }
 
-        return new Position2dDistance(x, mHeightMultiplier * y);
+        return new Position2dDistance(x, mHeightMultiplier * y, CONVERSION_UNIT);
     }
 
     /**
@@ -131,14 +136,14 @@ public class PixelConverter
      * @param aHeightFeet
      *            The height of the field, in feet
      */
-    public void setImageScale(Scale aScale, double aWidthPixels, double aHeightPixels, double aWidthFeet, double aHeightFeet)
+    public void setImageScale(Scale aScale, double aWidthPixels, double aHeightPixels, Distance aWidthFeet, Distance aHeightFeet)
     {
-        double horizontalScaleFactor = aWidthPixels / aWidthFeet;
-        double verticalScaleFactor = aHeightPixels / aHeightFeet;
+        double horizontalScaleFactor = aWidthPixels / aWidthFeet.as(CONVERSION_UNIT);
+        double verticalScaleFactor = aHeightPixels / aHeightFeet.as(CONVERSION_UNIT);
 
         mScale = aScale;
         mImageScaleFactor = Math.min(horizontalScaleFactor, verticalScaleFactor);
-        mWidthPixels = aWidthFeet * mImageScaleFactor;
-        mHeightPixels = aHeightFeet * mImageScaleFactor;
+        mWidthPixels = aWidthFeet.as(CONVERSION_UNIT) * mImageScaleFactor;
+        mHeightPixels = aHeightFeet.as(CONVERSION_UNIT) * mImageScaleFactor;
     }
 }

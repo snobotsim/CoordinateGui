@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.Position2dDistance;
 
 public class GoToPositionData extends ComplexData<GoToPositionData>
@@ -90,14 +91,15 @@ public class GoToPositionData extends ComplexData<GoToPositionData>
 
     /**
      * Converts this to the data model the gui core understands.
+     * @param aDistanceUnit the distance units to use
      * @return The new value
      */
-    public Position2dDistance toCoordinate()
+    public Position2dDistance toCoordinate(Distance.Unit aDistanceUnit)
     {
         if (getX() == null || getY() == null)
         {
             return null;
         }
-        return new Position2dDistance(getX() / 12, getY() / 12);
+        return new Position2dDistance(getX(), getY(), aDistanceUnit);
     }
 }

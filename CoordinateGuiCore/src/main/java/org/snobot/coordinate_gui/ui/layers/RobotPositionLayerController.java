@@ -1,6 +1,7 @@
 package org.snobot.coordinate_gui.ui.layers;
 
 import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.PixelConverter;
 
 import javafx.fxml.FXML;
@@ -19,8 +20,8 @@ public class RobotPositionLayerController
     @FXML
     protected Polygon mOrientationArrow;
 
-    private double mRobotWidth; // Feet
-    private double mRobotHeight; // Feet
+    private Distance mRobotWidth; // Feet
+    private Distance mRobotHeight; // Feet
 
     /**
      * Sets the size of the robot.
@@ -32,7 +33,7 @@ public class RobotPositionLayerController
      * @param aHeight
      *            Height of the robot, in feet
      */
-    public void setRobotDimensions(PixelConverter aPixelConverter, double aWidth, double aHeight)
+    public void setRobotDimensions(PixelConverter aPixelConverter, Distance aWidth, Distance aHeight)
     {
         mRobotWidth = aWidth;
         mRobotHeight = aHeight;
@@ -64,7 +65,7 @@ public class RobotPositionLayerController
     public void setPosition(PixelConverter aPixelConverter, Coordinate aPosition)
     {
         mRobot.setRotate(aPosition.mAngle);
-        Position2dDistance robotDimensions = new Position2dDistance(aPosition.mPosition.mX - mRobotWidth / 2, aPosition.mPosition.mY + mRobotHeight / 2);
+        Position2dDistance robotDimensions = new Position2dDistance(Distance.half_sub(aPosition.mPosition.mX, mRobotWidth), Distance.half_add(aPosition.mPosition.mY, mRobotHeight));
         Position2dPixels robotAsPixels = aPixelConverter.convertDistanceToPixels(robotDimensions);
         mRobot.setX(robotAsPixels.mX);
         mRobot.setY(robotAsPixels.mY);

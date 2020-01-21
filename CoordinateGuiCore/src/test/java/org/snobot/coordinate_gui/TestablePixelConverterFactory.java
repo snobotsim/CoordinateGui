@@ -1,6 +1,7 @@
 package org.snobot.coordinate_gui;
 
 import javafx.scene.transform.Scale;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.PixelConverter;
 
 public final class TestablePixelConverterFactory
@@ -16,11 +17,11 @@ public final class TestablePixelConverterFactory
      */
     public static PixelConverter setupPortraitModeOriginAtCenter()
     {
-        final double longDim = 54;
-        final double shortDim = 27;
+        final Distance longDim = Distance.fromFeet(54);
+        final Distance shortDim = Distance.fromFeet(27);
 
         PixelConverter converter = new PixelConverter(shortDim, longDim, PixelConverter.Orientation.Portrait, PixelConverter.OriginPosition.CenterField);
-        converter.setImageScale(new Scale(), shortDim * 10, longDim * 10, shortDim, longDim);
+        converter.setImageScale(new Scale(), shortDim.asFeet() * 10, longDim.asFeet() * 10, shortDim, longDim);
 
         return converter;
     }
@@ -31,11 +32,11 @@ public final class TestablePixelConverterFactory
      */
     public static PixelConverter setupPortraitModeOriginAtBottomLeft()
     {
-        final double longDim = 54;
-        final double shortDim = 27;
+        final Distance longDim = Distance.fromFeet(54);
+        final Distance shortDim = Distance.fromFeet(27);
 
         PixelConverter converter = new PixelConverter(shortDim, longDim, PixelConverter.Orientation.Portrait, PixelConverter.OriginPosition.AlwaysIncreasing);
-        converter.setImageScale(new Scale(), shortDim * 10, longDim * 10, shortDim, longDim);
+        converter.setImageScale(new Scale(), shortDim.asFeet() * 10, longDim.asFeet() * 10, shortDim, longDim);
 
         return converter;
     }
@@ -46,11 +47,11 @@ public final class TestablePixelConverterFactory
      */
     public static PixelConverter setupLandscapeModeOriginAtPathWeaver()
     {
-        final double longDim = 54;
-        final double shortDim = 27;
+        final Distance longDim = Distance.fromFeet(54);
+        final Distance shortDim = Distance.fromFeet(27);
 
         PixelConverter converter = new PixelConverter(shortDim, longDim, PixelConverter.Orientation.Landscape, PixelConverter.OriginPosition.AlwaysIncreasing);
-        converter.setImageScale(new Scale(), longDim * 10, shortDim * 10, longDim, shortDim);
+        converter.setImageScale(new Scale(), longDim.asFeet() * 10, shortDim.asFeet() * 10, longDim, shortDim);
 
         return converter;
     }

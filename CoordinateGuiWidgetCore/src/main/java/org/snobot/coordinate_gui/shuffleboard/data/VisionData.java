@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController;
 
 public class VisionData extends ComplexData<VisionData>
@@ -86,9 +87,10 @@ public class VisionData extends ComplexData<VisionData>
 
     /**
      * Converts this to the data model the gui core understands.
+     * @param aDistanceUnit the distance units to use
      * @return The new value
      */
-    public List<CameraRayLayerController.Ray> toRays()
+    public List<CameraRayLayerController.Ray> toRays(Distance.Unit aDistanceUnit)
     {
         List<CameraRayLayerController.Ray> rays = new ArrayList<>();
 
@@ -97,10 +99,10 @@ public class VisionData extends ComplexData<VisionData>
         {
             CameraRayLayerController.Ray ray = new CameraRayLayerController.Ray();
 
-            ray.mStart.mX = Double.parseDouble(tokenizer.nextToken()) / 12;
-            ray.mStart.mY = Double.parseDouble(tokenizer.nextToken()) / 12;
-            ray.mEnd.mX = Double.parseDouble(tokenizer.nextToken()) / 12;
-            ray.mEnd.mY = Double.parseDouble(tokenizer.nextToken()) / 12;
+            ray.mStart.mX = Distance.from(Double.parseDouble(tokenizer.nextToken()), aDistanceUnit);
+            ray.mStart.mY = Distance.from(Double.parseDouble(tokenizer.nextToken()), aDistanceUnit);
+            ray.mEnd.mX = Distance.from(Double.parseDouble(tokenizer.nextToken()), aDistanceUnit);
+            ray.mEnd.mY = Distance.from(Double.parseDouble(tokenizer.nextToken()), aDistanceUnit);
 
 
             rays.add(ray);

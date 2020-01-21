@@ -1,5 +1,6 @@
 package org.snobot.coordinate_gui.ui.layers;
 
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.PixelConverter;
 
 import javafx.beans.binding.Bindings;
@@ -12,8 +13,8 @@ import javafx.scene.transform.Scale;
 public class BaseGuiController
 {
     private final String mFieldImageUrl;
-    private final double mFieldShortDimension;
-    private final double mFieldLongDimension;
+    private final Distance mFieldShortDimension;
+    private final Distance mFieldLongDimension;
 
     protected final PixelConverter mPixelConverter;
 
@@ -26,7 +27,7 @@ public class BaseGuiController
     @FXML
     protected Group mLayers;
 
-    protected BaseGuiController(String aFieldImageUrl, double aShortDirection, double aLongDirection, PixelConverter.Orientation aOrientation, PixelConverter.OriginPosition aOriginPosition)
+    protected BaseGuiController(String aFieldImageUrl, Distance aShortDirection, Distance aLongDirection, PixelConverter.Orientation aOrientation, PixelConverter.OriginPosition aOriginPosition)
     {
         mFieldImageUrl = aFieldImageUrl;
         mFieldShortDimension = aShortDirection;

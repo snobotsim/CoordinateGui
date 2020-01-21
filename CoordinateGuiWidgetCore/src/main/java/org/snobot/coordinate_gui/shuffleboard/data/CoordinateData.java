@@ -5,6 +5,7 @@ import java.util.Map;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
 import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.Position2dDistance;
 
 public class CoordinateData extends ComplexData<CoordinateData>
@@ -105,14 +106,13 @@ public class CoordinateData extends ComplexData<CoordinateData>
 
     /**
      * Converts this to the data model the gui core understands.
+     * @param aDistanceUnit the distance units to use
      * @return The new value
      */
-    public Coordinate toCoord()
+    public Coordinate toCoord(Distance.Unit aDistanceUnit)
     {
-        double x = getX() / 12;
-        double y = getY() / 12;
         double angle = getAngle();
 
-        return new Coordinate(new Position2dDistance(x, y), angle);
+        return new Coordinate(new Position2dDistance(getX(), getY(), aDistanceUnit), angle);
     }
 }

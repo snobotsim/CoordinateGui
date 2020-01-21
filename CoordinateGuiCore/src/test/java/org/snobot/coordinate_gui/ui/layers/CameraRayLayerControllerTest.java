@@ -5,6 +5,7 @@ import javafx.scene.shape.Line;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.snobot.coordinate_gui.TestablePixelConverterFactory;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.PixelConverter;
 import org.snobot.coordinate_gui.model.Position2dDistance;
 
@@ -31,8 +32,8 @@ public class CameraRayLayerControllerTest
         PixelConverter converter = TestablePixelConverterFactory.setupPortraitModeOriginAtCenter();
         List<CameraRayLayerController.Ray> rays = new ArrayList<>();
 
-        rays.add(new CameraRayLayerController.Ray(new Position2dDistance(0, -2), new Position2dDistance(5, 5)));
-        rays.add(new CameraRayLayerController.Ray(new Position2dDistance(13, -26), new Position2dDistance(0, 0)));
+        rays.add(new CameraRayLayerController.Ray(new Position2dDistance(0, -2, Distance.Unit.FEET), new Position2dDistance(5, 5, Distance.Unit.FEET)));
+        rays.add(new CameraRayLayerController.Ray(new Position2dDistance(13, -26, Distance.Unit.FEET), new Position2dDistance(0, 0, Distance.Unit.FEET)));
 
         rayController.setRays(converter, rays);
         Assertions.assertEquals(2, rayController.mRays.getChildren().size());

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.snobot.coordinate_gui.TestablePixelConverterFactory;
 import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.PixelConverter;
 import org.snobot.coordinate_gui.model.Position2dDistance;
 
@@ -28,10 +29,10 @@ public class RobotPositionLayerControllerTest
         PixelConverter converter = TestablePixelConverterFactory.setupPortraitModeOriginAtCenter();
 
         RobotPositionLayerController controller = new TestableRobotPositionLayerController();
-        controller.setRobotDimensions(converter, 10, 15);
+        controller.setRobotDimensions(converter, Distance.fromFeet(10), Distance.fromFeet(15));
         controller.initialize();
 
-        controller.setPosition(converter, new Coordinate(new Position2dDistance(1.451, 6.512), -65.53));
+        controller.setPosition(converter, new Coordinate(new Position2dDistance(1.451, 6.512, Distance.Unit.FEET), -65.53));
 
         controller.mRobot.getX();
         Assertions.assertEquals(99.51, controller.mRobot.getX(), EPSILON);

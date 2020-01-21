@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.Position2dDistance;
 import org.snobot.coordinate_gui.ui.layers.PurePursuitLayerController;
 import org.snobot.nt.pure_pursuit_plotter.PurePursuitPointInfo;
@@ -108,7 +109,7 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
         {
             double x = Double.parseDouble(tokenizer.nextToken());
             double y = Double.parseDouble(tokenizer.nextToken());
-            Coordinate coordinate = new Coordinate(new Position2dDistance(x, y), 0);
+            Coordinate coordinate = new Coordinate(new Position2dDistance(x, y, Distance.Unit.FEET), 0);
             output.add(coordinate);
         }
 
@@ -164,16 +165,17 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
 
     /**
      * Converts this to the data model the gui core understands.
+     * @param aDistanceUnit the distance units to use
      * @return The new value
      */
-    public PurePursuitLayerController.PurePursuitLookaheadData toLookaheadData()
+    public PurePursuitLayerController.PurePursuitLookaheadData toLookaheadData(Distance.Unit aDistanceUnit)
     {
         String lookaheadString = getLookaheadString();
         if (!lookaheadString.isEmpty())
         {
             String[] lookahead = getLookaheadString().split(",");
-            Position2dDistance robotPosition = new Position2dDistance(Double.parseDouble(lookahead[0]), Double.parseDouble(lookahead[1]));
-            Position2dDistance lookaheadPoint = new Position2dDistance(Double.parseDouble(lookahead[2]), Double.parseDouble(lookahead[3]));
+            Position2dDistance robotPosition = new Position2dDistance(Double.parseDouble(lookahead[0]), Double.parseDouble(lookahead[1]), aDistanceUnit);
+            Position2dDistance lookaheadPoint = new Position2dDistance(Double.parseDouble(lookahead[2]), Double.parseDouble(lookahead[3]), aDistanceUnit);
             PurePursuitLayerController.PurePursuitLookaheadData data = new PurePursuitLayerController.PurePursuitLookaheadData(robotPosition, lookaheadPoint);
             return data;
         }

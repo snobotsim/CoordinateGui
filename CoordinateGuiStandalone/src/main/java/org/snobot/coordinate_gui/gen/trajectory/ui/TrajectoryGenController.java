@@ -27,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.Position2dDistance;
 
 public class TrajectoryGenController
@@ -159,13 +160,15 @@ public class TrajectoryGenController
         List<Coordinate> coordinates = mFieldController.getWaypoints();
         TrajectoryConfig pathConfig = mPathParamsController.getPathParams();
 
+        Distance.Unit unit = Distance.Unit.INCH;
+
         if (coordinates != null)
         {
             Waypoint[] pointsArray = new Waypoint[coordinates.size()];
             for (int i = 0; i < coordinates.size(); ++i)
             {
                 Coordinate coord = coordinates.get(i);
-                pointsArray[i] = new Waypoint(coord.mPosition.mY, coord.mPosition.mX, Math.toRadians(coord.mAngle));
+                pointsArray[i] = new Waypoint(coord.mPosition.mY.as(unit), coord.mPosition.mX.as(unit), Math.toRadians(coord.mAngle));
             }
 
             Trajectory.Config config = new Trajectory.Config(
@@ -181,7 +184,7 @@ public class TrajectoryGenController
             List<Coordinate> idealCoordinates = new ArrayList<>();
             for (Segment segment : trajectory.segments)
             {
-                idealCoordinates.add(new Coordinate(new Position2dDistance(segment.y, segment.x), Math.toDegrees(segment.heading)));
+                idealCoordinates.add(new Coordinate(new Position2dDistance(segment.y, segment.x, Distance.Unit.FEET), Math.toDegrees(segment.heading)));
             }
 
             mFieldController.setIdealTrajectory(idealCoordinates);

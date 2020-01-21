@@ -3,6 +3,7 @@ package org.snobot.coordinate_gui.shuffleboard.data;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.ui.layers.PurePursuitLayerController;
 import org.snobot.nt.pure_pursuit_plotter.PurePursuitPointInfo;
 
@@ -21,7 +22,7 @@ public class PurePursuitDataTest
         dataMap.put(SmartDashboardNames.sPURE_PURSUIT_LOOKAHEAD, "");
 
         PurePursuitData data = new PurePursuitData(dataMap);
-        PurePursuitLayerController.PurePursuitLookaheadData lookaheadData = data.toLookaheadData();
+        PurePursuitLayerController.PurePursuitLookaheadData lookaheadData = data.toLookaheadData(Distance.Unit.FEET);
 
         Assertions.assertNull(lookaheadData);
 
@@ -34,12 +35,12 @@ public class PurePursuitDataTest
         dataMap.put(SmartDashboardNames.sPURE_PURSUIT_LOOKAHEAD, "12.47,-48.41,78.24,-9");
 
         PurePursuitData data = new PurePursuitData(dataMap);
-        PurePursuitLayerController.PurePursuitLookaheadData lookaheadData = data.toLookaheadData();
+        PurePursuitLayerController.PurePursuitLookaheadData lookaheadData = data.toLookaheadData(Distance.Unit.FEET);
 
-        Assertions.assertEquals(12.47, lookaheadData.mRobot.mX, EPSILON);
-        Assertions.assertEquals(-48.41, lookaheadData.mRobot.mY, EPSILON);
-        Assertions.assertEquals(78.24, lookaheadData.mLookahead.mX, EPSILON);
-        Assertions.assertEquals(-9, lookaheadData.mLookahead.mY, EPSILON);
+        Assertions.assertEquals(Distance.fromFeet(12.47), lookaheadData.mRobot.mX);
+        Assertions.assertEquals(Distance.fromFeet(-48.41), lookaheadData.mRobot.mY);
+        Assertions.assertEquals(Distance.fromFeet(78.24), lookaheadData.mLookahead.mX);
+        Assertions.assertEquals(Distance.fromFeet(-9), lookaheadData.mLookahead.mY);
     }
 
     @Test
@@ -84,23 +85,23 @@ public class PurePursuitDataTest
         Coordinate ideal;
 
         ideal = waypoints.get(0);
-        Assertions.assertEquals(0.0, ideal.mPosition.mX, EPSILON);
-        Assertions.assertEquals(0.0, ideal.mPosition.mY, EPSILON);
+        Assertions.assertEquals(Distance.fromFeet(0.0), ideal.mPosition.mX);
+        Assertions.assertEquals(Distance.fromFeet(0.0), ideal.mPosition.mY);
         Assertions.assertEquals(0.0, ideal.mAngle, EPSILON);
 
         ideal = waypoints.get(1);
-        Assertions.assertEquals(0.0, ideal.mPosition.mX, EPSILON);
-        Assertions.assertEquals(74, ideal.mPosition.mY, EPSILON);
+        Assertions.assertEquals(Distance.fromFeet(0.00), ideal.mPosition.mX);
+        Assertions.assertEquals(Distance.fromFeet(74), ideal.mPosition.mY);
         Assertions.assertEquals(0.0, ideal.mAngle, EPSILON);
 
         ideal = waypoints.get(2);
-        Assertions.assertEquals(92.45, ideal.mPosition.mX, EPSILON);
-        Assertions.assertEquals(-19.4, ideal.mPosition.mY, EPSILON);
+        Assertions.assertEquals(Distance.fromFeet(92.45), ideal.mPosition.mX);
+        Assertions.assertEquals(Distance.fromFeet(-19.4), ideal.mPosition.mY);
         Assertions.assertEquals(0.0, ideal.mAngle, EPSILON);
 
         ideal = waypoints.get(3);
-        Assertions.assertEquals(-84.24, ideal.mPosition.mX, EPSILON);
-        Assertions.assertEquals(-72.4, ideal.mPosition.mY, EPSILON);
+        Assertions.assertEquals(Distance.fromFeet(-84.24), ideal.mPosition.mX);
+        Assertions.assertEquals(Distance.fromFeet(-72.40), ideal.mPosition.mY);
         Assertions.assertEquals(0.0, ideal.mAngle, EPSILON);
     }
 
@@ -117,8 +118,8 @@ public class PurePursuitDataTest
         Coordinate ideal;
 
         ideal = waypoints.get(0);
-        Assertions.assertEquals(74, ideal.mPosition.mX, EPSILON);
-        Assertions.assertEquals(92.45, ideal.mPosition.mY, EPSILON);
+        Assertions.assertEquals(Distance.fromFeet(74), ideal.mPosition.mX);
+        Assertions.assertEquals(Distance.fromFeet(92.450), ideal.mPosition.mY);
         Assertions.assertEquals(0.0, ideal.mAngle, EPSILON);
     }
 
@@ -135,8 +136,8 @@ public class PurePursuitDataTest
         Coordinate ideal;
 
         ideal = waypoints.get(0);
-        Assertions.assertEquals(-19.4, ideal.mPosition.mX, EPSILON);
-        Assertions.assertEquals(-84.24, ideal.mPosition.mY, EPSILON);
+        Assertions.assertEquals(Distance.fromFeet(-19.4), ideal.mPosition.mX);
+        Assertions.assertEquals(Distance.fromFeet(-84.24), ideal.mPosition.mY);
         Assertions.assertEquals(0.0, ideal.mAngle, EPSILON);
     }
 }

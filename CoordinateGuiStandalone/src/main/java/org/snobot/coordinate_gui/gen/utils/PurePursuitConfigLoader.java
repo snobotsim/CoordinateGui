@@ -13,6 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.snobot.coordinate_gui.gen.pure_pursuit.model.PurePursuitConfig;
 import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.Position2dDistance;
 import org.yaml.snakeyaml.Yaml;
 
@@ -48,7 +49,7 @@ public class PurePursuitConfigLoader
                     mConfig = new PurePursuitConfig(upSampleSpacing, turnSmoothing);
                     for (List<Number> waypointYaml : (List<List<Number>>) yamlContents.get("waypoints"))
                     {
-                        mCoordinates.add(new Coordinate(new Position2dDistance(waypointYaml.get(0).doubleValue() / 12.0, waypointYaml.get(1).doubleValue() / 12.0), 0));
+                        mCoordinates.add(new Coordinate(new Position2dDistance(waypointYaml.get(0).doubleValue(), waypointYaml.get(1).doubleValue(), Distance.Unit.FEET), 0));
                     }
                 }
             }

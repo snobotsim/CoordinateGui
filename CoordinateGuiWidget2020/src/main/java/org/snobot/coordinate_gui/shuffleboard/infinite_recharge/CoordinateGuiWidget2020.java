@@ -4,6 +4,7 @@ package org.snobot.coordinate_gui.shuffleboard.infinite_recharge;
 import java.util.Map;
 
 import org.snobot.coordinate_gui.game.infinite_recharge.InfiniteRechargeController;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.shuffleboard.data.CoordinateDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.SmartDashboardNames;
 import org.snobot.coordinate_gui.shuffleboard.data.VisionDataType;
@@ -19,6 +20,8 @@ import javafx.scene.layout.Pane;
 @ParametrizedController("CoordinateGuiWidget.fxml")
 public class CoordinateGuiWidget2020 extends ComplexAnnotatedWidget<InfiniteRechargeCoordinateGuiData>
 {
+    private static final Distance.Unit DISTANCE_UNIT = Distance.Unit.INCH;
+
     @FXML
     private Pane mRoot;
 
@@ -37,12 +40,12 @@ public class CoordinateGuiWidget2020 extends ComplexAnnotatedWidget<InfiniteRech
 
             if (changes.containsKey(CoordinateDataType.NAME + "/" + SmartDashboardNames.sROBOT_POSITION_CTR))
             {
-                mFieldController.addRobotPosition(newData.getRobotPosition().toCoord());
+                mFieldController.addRobotPosition(newData.getRobotPosition().toCoord(DISTANCE_UNIT));
             }
 
             if (changes.containsKey(VisionDataType.NAME + "/" + SmartDashboardNames.sCAMERA_POSITIONS))
             {
-                mFieldController.setCameraRays(newData.getVisionData().toRays());
+                mFieldController.setCameraRays(newData.getVisionData().toRays(DISTANCE_UNIT));
             }
         });
     }

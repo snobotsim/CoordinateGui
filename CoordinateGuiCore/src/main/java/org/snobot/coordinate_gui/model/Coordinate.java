@@ -17,7 +17,7 @@ public class Coordinate
      */
     public Coordinate()
     {
-        this(new Position2dDistance(0, 0), 0.0);
+        this(new Position2dDistance(0, 0, Distance.Unit.FEET), 0.0);
     }
 
     /**

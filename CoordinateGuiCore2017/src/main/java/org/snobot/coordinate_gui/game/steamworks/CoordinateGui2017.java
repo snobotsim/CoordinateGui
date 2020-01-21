@@ -2,6 +2,7 @@ package org.snobot.coordinate_gui.game.steamworks;
 
 import java.util.List;
 
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.PixelConverter;
 import org.snobot.coordinate_gui.ui.layers.BaseGuiController;
 import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController;
@@ -14,11 +15,11 @@ public class CoordinateGui2017 extends BaseGuiController
 {
     private static final String FIELD_IMAGE_PATH = "/org/snobot/coordinate_gui/game/steamworks/2017Field.png";
 
-    private static final double FIELD_WIDTH = 27;
-    private static final double FIELD_HEIGHT = 54;
+    private static final Distance FIELD_WIDTH = Distance.fromFeet(27);
+    private static final Distance FIELD_HEIGHT = Distance.fromFeet(54);
 
-    private static final double ROBOT_WIDTH = 36 / 12.0;
-    private static final double ROBOT_HEIGHT = 44 / 12.0;
+    private static final Distance ROBOT_WIDTH = Distance.fromFeet(36);
+    private static final Distance ROBOT_HEIGHT = Distance.fromFeet(44);
 
     @FXML
     private CameraRayLayerController mCameraLayerController;

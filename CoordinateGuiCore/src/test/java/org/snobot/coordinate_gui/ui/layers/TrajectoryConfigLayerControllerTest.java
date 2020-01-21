@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.snobot.coordinate_gui.TestablePixelConverterFactory;
 import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.PixelConverter;
 import org.snobot.coordinate_gui.model.Position2dDistance;
 
@@ -29,9 +30,9 @@ public class TrajectoryConfigLayerControllerTest
 
         TestableTrajectoryConfigLayerController controller = new TestableTrajectoryConfigLayerController();
 
-        controller.addPoint(converter, new Coordinate(new Position2dDistance(0, 0), 0));
-        controller.addPoint(converter, new Coordinate(new Position2dDistance(-9.52, 18.54), 13));
-        controller.addPoint(converter, new Coordinate(new Position2dDistance(-10.12, 21.74), 13));
+        controller.addPoint(converter, new Coordinate(new Position2dDistance(0, 0, Distance.Unit.FEET), 0));
+        controller.addPoint(converter, new Coordinate(new Position2dDistance(-9.52, 18.54, Distance.Unit.FEET), 13));
+        controller.addPoint(converter, new Coordinate(new Position2dDistance(-10.12, 21.74, Distance.Unit.FEET), 13));
 
         Assertions.assertEquals(3, controller.getWaypoints().size());
         Assertions.assertEquals(6, controller.mPathPoints.getChildren().size());

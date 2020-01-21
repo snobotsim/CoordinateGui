@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.PixelConverter;
 import org.snobot.coordinate_gui.model.Position2dDistance;
 import org.snobot.coordinate_gui.ui.layers.BaseGuiController;
@@ -62,7 +63,7 @@ public class DeepSpaceController extends BaseGuiController
      */
     public DeepSpaceController()
     {
-        super(FIELD_IMAGE_PATH, FIELD_WIDTH, FIELD_HEIGHT, PixelConverter.Orientation.Portrait, PixelConverter.OriginPosition.CenterField);
+        super(FIELD_IMAGE_PATH, Distance.fromFeet(FIELD_WIDTH), Distance.fromFeet(FIELD_HEIGHT), PixelConverter.Orientation.Portrait, PixelConverter.OriginPosition.CenterField);
 
         mCoordinatesRenderProperties = new CoordinateLayerRenderProps(100, 5, Color.ORANGERED, true);
         mCoordinatesDataProvider = new DataProvider<>(1000);
@@ -75,7 +76,7 @@ public class DeepSpaceController extends BaseGuiController
     public void initialize()
     {
         super.initialize();
-        mRobotPositionController.setRobotDimensions(mPixelConverter, ROBOT_WIDTH, ROBOT_HEIGHT);
+        mRobotPositionController.setRobotDimensions(mPixelConverter, Distance.fromFeet(ROBOT_WIDTH), Distance.fromFeet(ROBOT_HEIGHT));
 
         mFadingCoordinatesController.setup(mCoordinatesRenderProperties, mCoordinatesDataProvider, mPixelConverter);
         mIdealTrajectoryCoordinatesController.setup(mIdealTrajectoryRenderProperties, mIdealTrajectoryDataProvider, mPixelConverter);

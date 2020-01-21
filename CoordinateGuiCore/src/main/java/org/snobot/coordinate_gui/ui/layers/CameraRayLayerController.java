@@ -2,6 +2,7 @@ package org.snobot.coordinate_gui.ui.layers;
 
 import java.util.List;
 
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.PixelConverter;
 
 import javafx.fxml.FXML;
@@ -54,8 +55,8 @@ public class CameraRayLayerController
 
         public Ray()
         {
-            mStart = new Position2dDistance(0, 0);
-            mEnd = new Position2dDistance(0, 0);
+            mStart = new Position2dDistance(0, 0, Distance.Unit.FEET);
+            mEnd = new Position2dDistance(0, 0, Distance.Unit.FEET);
         }
 
         /**

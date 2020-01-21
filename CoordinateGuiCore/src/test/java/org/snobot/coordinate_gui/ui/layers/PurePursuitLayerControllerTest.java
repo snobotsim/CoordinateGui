@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.snobot.coordinate_gui.TestablePixelConverterFactory;
 import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.PixelConverter;
 import org.snobot.coordinate_gui.model.Position2dDistance;
 
@@ -36,20 +37,20 @@ public class PurePursuitLayerControllerTest
         controller.setup(converter);
 
         List<Coordinate> waypoints = new ArrayList<>();
-        waypoints.add(new Coordinate(new Position2dDistance(8.41, 18.28), -48.93));
-        waypoints.add(new Coordinate(new Position2dDistance(1.41, 17.48), 38.93));
+        waypoints.add(new Coordinate(new Position2dDistance(8.41, 18.28, Distance.Unit.FEET), -48.93));
+        waypoints.add(new Coordinate(new Position2dDistance(1.41, 17.48, Distance.Unit.FEET), 38.93));
 
         List<Coordinate> upSampled = new ArrayList<>();
-        upSampled.add(new Coordinate(new Position2dDistance(.624, -9.42), 179));
-        upSampled.add(new Coordinate(new Position2dDistance(9.521, -9.48), -179));
+        upSampled.add(new Coordinate(new Position2dDistance(.624, -9.42, Distance.Unit.FEET), 179));
+        upSampled.add(new Coordinate(new Position2dDistance(9.521, -9.48, Distance.Unit.FEET), -179));
 
         List<Coordinate> smoothed = new ArrayList<>();
-        smoothed.add(new Coordinate(new Position2dDistance(-12.41, -9.42), 95.67));
-        smoothed.add(new Coordinate(new Position2dDistance(12.56, -9.48), 0));
+        smoothed.add(new Coordinate(new Position2dDistance(-12.41, -9.42, Distance.Unit.FEET), 95.67));
+        smoothed.add(new Coordinate(new Position2dDistance(12.56, -9.48, Distance.Unit.FEET), 0));
 
         PurePursuitLayerController.PurePursuitLookaheadData lookaheadData = new PurePursuitLayerController.PurePursuitLookaheadData(
-            new Position2dDistance(-8.842, 1.34),
-            new Position2dDistance(-6.54, 2.9));
+            new Position2dDistance(-8.842, 1.34, Distance.Unit.FEET),
+            new Position2dDistance(-6.54, 2.9, Distance.Unit.FEET));
         controller.setLookaheadLine(lookaheadData);
         controller.setWaypoints(waypoints, upSampled, smoothed);
 

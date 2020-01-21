@@ -7,6 +7,7 @@ import org.snobot.coordinate_gui.model.Coordinate;
 import javafx.fxml.FXML;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
+import org.snobot.coordinate_gui.model.Distance;
 
 public class PurePursuitXYPositionGraphController
 {
@@ -45,7 +46,7 @@ public class PurePursuitXYPositionGraphController
 
         for (Coordinate coord : aCoordinates)
         {
-            mIdeal.getData().add(new XYChart.Data<Double, Double>(coord.mPosition.mX, coord.mPosition.mY));
+            mIdeal.getData().add(new XYChart.Data<Double, Double>(coord.mPosition.mX.as(Distance.Unit.FEET), coord.mPosition.mY.as(Distance.Unit.FEET)));
         }
     }
 
