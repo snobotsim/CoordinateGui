@@ -20,4 +20,10 @@ public class Position2dDistance
         mX = aX;
         mY = aY;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Position2dDistance{mX=" + mX + ", mY=" + mY + '}';
+    }
 }

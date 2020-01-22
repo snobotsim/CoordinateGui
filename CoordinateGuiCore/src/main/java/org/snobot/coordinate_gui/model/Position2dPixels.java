@@ -14,4 +14,10 @@ public class Position2dPixels
         mX = aX;
         mY = aY;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Position2dPixels{mX=" + mX + ", mY=" + mY + '}';
+    }
 }

@@ -32,13 +32,17 @@ public class PixelConverter
 
     /**
      * Constructor.
-     * @param aFieldShortDimension The shorter dimension of the field
-     * @param aFieldLongDimension The longer dimension of the field
+     * @param aDimension1 One of the two dimensions (width, height)
+     * @param aDimension2 One of the two dimensions (width, height)
      * @param aOrientation The orientation
      * @param aOriginPosition Where the origin should be
      */
-    public PixelConverter(Distance aFieldShortDimension, Distance aFieldLongDimension, Orientation aOrientation, OriginPosition aOriginPosition)
+    public PixelConverter(Distance aDimension1, Distance aDimension2, Orientation aOrientation, OriginPosition aOriginPosition)
     {
+        Distance aFieldShortDimension;
+        Distance aFieldLongDimension;
+        aFieldShortDimension = aDimension1.as(CONVERSION_UNIT) > aDimension2.as(CONVERSION_UNIT) ? aDimension2 : aDimension1;
+        aFieldLongDimension = aDimension1.as(CONVERSION_UNIT) > aDimension2.as(CONVERSION_UNIT) ? aDimension1 : aDimension2;
         mOrientation = aOrientation;
         if (aOrientation == Orientation.Landscape)
         {
@@ -145,5 +149,20 @@ public class PixelConverter
         mImageScaleFactor = Math.min(horizontalScaleFactor, verticalScaleFactor);
         mWidthPixels = aWidthFeet.as(CONVERSION_UNIT) * mImageScaleFactor;
         mHeightPixels = aHeightFeet.as(CONVERSION_UNIT) * mImageScaleFactor;
+    }
+
+    /**
+     * Gets the angle.
+     * @param aAngle The input angle
+     * @return The converted angle
+     */
+    public double convertHeading(double aAngle)
+    {
+        if (mOrientation == Orientation.Portrait)
+        {
+            return aAngle;
+        }
+
+        return 90 - aAngle;
     }
 }

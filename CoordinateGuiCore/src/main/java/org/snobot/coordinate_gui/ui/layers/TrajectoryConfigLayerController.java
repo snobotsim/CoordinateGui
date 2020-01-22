@@ -72,7 +72,7 @@ public class TrajectoryConfigLayerController
             mAngle = new SimpleDoubleProperty();
 
             setPosition(mCoordinate.mPosition);
-            setAngle(mCoordinate.mAngle);
+            setAngle(aPixelConverter.convertHeading(mCoordinate.mAngle));
 
             mIcon = new Polygon(0.0, SIZE / 3, SIZE, 0.0, 0.0, -SIZE / 3);
             mIcon.setLayoutX(-(mIcon.getLayoutBounds().getMaxX() + mIcon.getLayoutBounds().getMinX()) / 2 - X_OFFSET);
@@ -114,7 +114,7 @@ public class TrajectoryConfigLayerController
 
         public final void setAngle(double aAngle)
         {
-            mCoordinate.mAngle = aAngle;
+//            mCoordinate.mAngle = aAngle;
             mAngle.set(aAngle - 90);
         }
 

@@ -19,11 +19,13 @@ public class InfiniteRechargeController extends BaseGuiController
 {
     private static final String FIELD_IMAGE_PATH = "/org/snobot/coordinate_gui/game/infinite_recharge/2020Field.png";
 
-    private static final Distance FIELD_WIDTH = Distance.fromFeet(27);
-    private static final Distance FIELD_HEIGHT = Distance.fromFeet(54);
+//    private static final Distance LONG_DIM = Distance.fromFeet(52 + 5.25 / 12);
+//    private static final Distance SHORT_DIM = Distance.fromFeet(26 + 11.25 / 12);
+    private static final Distance LONG_DIM = Distance.fromFeet(54);
+    private static final Distance SHORT_DIM = Distance.fromFeet(27);
 
-    private static final Distance ROBOT_WIDTH = Distance.fromFeet(36);
-    private static final Distance ROBOT_HEIGHT = Distance.fromFeet(44);
+    private static final Distance ROBOT_WIDTH = Distance.fromInches(36);
+    private static final Distance ROBOT_HEIGHT = Distance.fromInches(44);
 
     @FXML
     private RobotPositionLayerController mRobotPositionController;
@@ -42,7 +44,7 @@ public class InfiniteRechargeController extends BaseGuiController
      */
     public InfiniteRechargeController()
     {
-        super(FIELD_IMAGE_PATH, FIELD_WIDTH, FIELD_HEIGHT, PixelConverter.Orientation.Portrait, PixelConverter.OriginPosition.CenterField);
+        super(FIELD_IMAGE_PATH, LONG_DIM, SHORT_DIM, PixelConverter.Orientation.Landscape, PixelConverter.OriginPosition.AlwaysIncreasing);
 
         mCoordinatesRenderProperties = new CoordinateLayerRenderProps(100, 5, Color.ORANGERED, true);
         mCoordinatesDataProvider = new DataProvider<>(1000);

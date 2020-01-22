@@ -45,7 +45,7 @@ public class Coordinate
     {
         return "Coordinate{" + "position=" + mPosition + ", angle=" + mAngle + '}';
     }
-    
-    
+
+
 
 }
