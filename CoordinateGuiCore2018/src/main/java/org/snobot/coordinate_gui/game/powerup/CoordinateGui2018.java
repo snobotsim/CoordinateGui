@@ -3,9 +3,6 @@ package org.snobot.coordinate_gui.game.powerup;
 import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.PixelConverter;
 import org.snobot.coordinate_gui.ui.layers.BaseGuiController;
-import org.snobot.coordinate_gui.ui.layers.RobotPositionLayerController;
-
-import javafx.fxml.FXML;
 
 public class CoordinateGui2018 extends BaseGuiController
 {

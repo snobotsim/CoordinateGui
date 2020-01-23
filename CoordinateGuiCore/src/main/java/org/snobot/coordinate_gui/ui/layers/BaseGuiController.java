@@ -17,6 +17,7 @@ import org.snobot.coordinate_gui.ui.render_props.CoordinateLayerRenderProps;
 
 import java.util.List;
 
+@SuppressWarnings("PMD.TooManyFields")
 public class BaseGuiController
 {
     private final String mFieldImageUrl;
@@ -64,7 +65,10 @@ public class BaseGuiController
     @FXML
     private PurePursuitLayerController mPurePursuitController;
 
-    protected BaseGuiController(String aFieldImageUrl, Distance aShortDirection, Distance aLongDirection, Distance aRobotWidth, Distance aRobotHeight, PixelConverter.Orientation aOrientation, PixelConverter.OriginPosition aOriginPosition)
+    protected BaseGuiController(String aFieldImageUrl,
+                                Distance aShortDirection, Distance aLongDirection,
+                                Distance aRobotWidth, Distance aRobotHeight,
+                                PixelConverter.Orientation aOrientation, PixelConverter.OriginPosition aOriginPosition)
     {
         mFieldImageUrl = aFieldImageUrl;
         mFieldShortDimension = aShortDirection;

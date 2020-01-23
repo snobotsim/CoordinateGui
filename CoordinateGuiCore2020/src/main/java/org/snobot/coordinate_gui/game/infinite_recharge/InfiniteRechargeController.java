@@ -1,19 +1,8 @@
 package org.snobot.coordinate_gui.game.infinite_recharge;
 
-import javafx.fxml.FXML;
-import javafx.scene.paint.Color;
-import org.snobot.coordinate_gui.model.Coordinate;
-import org.snobot.coordinate_gui.model.DataProvider;
 import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.PixelConverter;
 import org.snobot.coordinate_gui.ui.layers.BaseGuiController;
-import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController;
-import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController.Ray;
-import org.snobot.coordinate_gui.ui.layers.CoordinateLayerController;
-import org.snobot.coordinate_gui.ui.layers.RobotPositionLayerController;
-import org.snobot.coordinate_gui.ui.render_props.CoordinateLayerRenderProps;
-
-import java.util.List;
 
 public class InfiniteRechargeController extends BaseGuiController
 {
