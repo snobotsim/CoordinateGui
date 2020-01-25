@@ -12,8 +12,12 @@ buildscript
         {
             return "win"
         }
+        else if(OperatingSystem.current().isLinux())
+        {
+            return "linux"
+        }
 
-        return "linux"
+        return "osx"
     }
 }
 
@@ -46,6 +50,6 @@ ext {
 	SpotBugsTask = com.github.spotbugs.SpotBugsTask
 	coordinateGuiBase = ""
     
-    publishing_url = "${rootDir}/build/publishing"
+    publishing_url = "${rootDir}/build/maven_repo"
     publishing_version = "3.0.0"
 }
