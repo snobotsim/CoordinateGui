@@ -1,5 +1,5 @@
 
-import org.gradle.nativeplatform.platform.OperatingSystem
+import org.gradle.internal.os.OperatingSystem;;
 
 buildscript
 {
@@ -8,7 +8,7 @@ buildscript
     }
 
     ext.getJavaFxPlatform = {
-        if(OperatingSystem.isWindows())
+        if(OperatingSystem.current().isWindows())
         {
             return "win"
         }
