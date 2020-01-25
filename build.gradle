@@ -1,8 +1,19 @@
 
+import org.gradle.nativeplatform.platform.OperatingSystem
+
 buildscript
 {
     ext.getShuffleboardVersion = {
         return "2020.1.2"
+    }
+
+    ext.getJavaFxPlatform = {
+        if(OperatingSystem.isWindows())
+        {
+            return "win"
+        }
+
+        return "linux"
     }
 }
 
