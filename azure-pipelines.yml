@@ -11,7 +11,7 @@ resources:
 stages:
   - stage: Build
     jobs:
-      -
+
       - job: Linux
         pool:
           vmImage: 'Ubuntu 16.04'
