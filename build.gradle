@@ -49,7 +49,12 @@ allprojects {
 ext {
 	SpotBugsTask = com.github.spotbugs.SpotBugsTask
 	coordinateGuiBase = ""
-    
-    publishing_url = "${rootDir}/build/maven_repo"
+
+    if(project.findProperty("publishing_url")) {
+        publishing_url = uri(project.publishing_url)
+        println publishing_url
+    } else {
+        publishing_url = "${rootDir}/build/maven_repo"
+    }
     publishing_version = "3.0.0"
 }

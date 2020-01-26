@@ -16,7 +16,7 @@ jobs:
       with:
         java-version: 1.11
     - name: Build with Gradle
-      run: ./gradlew build publish
+      run: ./gradlew build publish --Ppublishing_url=https://maven.pkg.github.com/snobotsim
     - name: Get Artifacts
       uses: actions/upload-artifact@v1
       with:
