@@ -20,9 +20,7 @@ public final class InfiniteRechargeCoordinateGuiDataType extends ComplexDataType
     public Function<Map<String, Object>, InfiniteRechargeCoordinateGuiData> fromMap()
     {
         return map ->
-        {
-            return new InfiniteRechargeCoordinateGuiData(map);
-        };
+            new InfiniteRechargeCoordinateGuiData(map);
     }
 
     @Override

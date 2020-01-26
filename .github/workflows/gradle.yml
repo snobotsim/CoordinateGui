@@ -1,0 +1,28 @@
+name: Java CI
+
+on: [push]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest] #, macos-latest, windows-latest]
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.11
+
+    - name: Build
+      run: ./gradlew build
+
+#    - name: Publish
+#      if: github.ref  == 'master'
+#      run: gradle publish -Ppublishing_url=https://maven.pkg.github.com/snobotsim/CoordinateGui
+#      env:
+#        USERNAME: ${{ github.actor }}
+#        PASSWORD: ${{ secrets.GITHUB_TOKEN }}
