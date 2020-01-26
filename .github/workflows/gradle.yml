@@ -18,10 +18,10 @@ jobs:
         java-version: 1.11
 
     - name: Build
-      run: ./gradlew build publish -Ppublishing_url=https://maven.pkg.github.com/snobotsim
+      run: ./gradlew build
 
     - name: Publish
-      run: gradle publish
+      run: gradle publish -Ppublishing_url=https://maven.pkg.github.com/snobotsim
       env:
         USERNAME: ${{ github.actor }}
         PASSWORD: ${{ secrets.GITHUB_TOKEN }}
