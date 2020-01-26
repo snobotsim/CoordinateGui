@@ -1,8 +1,23 @@
 
+import org.gradle.internal.os.OperatingSystem;;
+
 buildscript
 {
     ext.getShuffleboardVersion = {
         return "2020.1.2"
+    }
+
+    ext.getJavaFxPlatform = {
+        if(OperatingSystem.current().isWindows())
+        {
+            return "win"
+        }
+        else if(OperatingSystem.current().isLinux())
+        {
+            return "linux"
+        }
+
+        return "mac"
     }
 }
 
@@ -35,6 +50,6 @@ ext {
 	SpotBugsTask = com.github.spotbugs.SpotBugsTask
 	coordinateGuiBase = ""
     
-    publishing_url = "${rootDir}/build/publishing"
+    publishing_url = "${rootDir}/build/maven_repo"
     publishing_version = "3.0.0"
 }

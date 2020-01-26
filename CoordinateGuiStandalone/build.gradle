@@ -20,10 +20,10 @@ dependencies {
 
     compile 'org.yaml:snakeyaml:1.18'
 
-    compile "org.openjfx:javafx-base:11:win"
-    compile "org.openjfx:javafx-graphics:11:win"
-    compile "org.openjfx:javafx-controls:11:win"
-    compile "org.openjfx:javafx-fxml:11:win"
+    compile "org.openjfx:javafx-base:11:" + getJavaFxPlatform()
+    compile "org.openjfx:javafx-graphics:11:" + getJavaFxPlatform()
+    compile "org.openjfx:javafx-controls:11:" + getJavaFxPlatform()
+    compile "org.openjfx:javafx-fxml:11:" + getJavaFxPlatform()
     
     compile "jaci.pathfinder:Pathfinder-Java:2019.1.10"
     compile "jaci.pathfinder:Pathfinder-JNI:2019.1.10:windowsx86-64"
