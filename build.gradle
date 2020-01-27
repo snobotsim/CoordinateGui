@@ -1,14 +1,29 @@
 
+import org.gradle.internal.os.OperatingSystem;;
+
 buildscript
 {
     ext.getShuffleboardVersion = {
         return "2020.1.2"
     }
+
+    ext.getJavaFxPlatform = {
+        if(OperatingSystem.current().isWindows())
+        {
+            return "win"
+        }
+        else if(OperatingSystem.current().isLinux())
+        {
+            return "linux"
+        }
+
+        return "mac"
+    }
 }
 
 plugins {
 	id "java"
-	id "com.github.spotbugs" version "1.6.9"
+//	id "com.github.spotbugs" version "1.6.9"
 	id "eclipse"
 }
 
@@ -32,9 +47,14 @@ allprojects {
 }
 
 ext {
-	SpotBugsTask = com.github.spotbugs.SpotBugsTask
+//	SpotBugsTask = com.github.spotbugs.SpotBugsTask
 	coordinateGuiBase = ""
-    
-    publishing_url = "${rootDir}/build/publishing"
+
+    if(project.findProperty("publishing_url")) {
+        publishing_url = uri(project.publishing_url)
+        println publishing_url
+    } else {
+        publishing_url = "${rootDir}/build/maven_repo"
+    }
     publishing_version = "3.0.0"
 }
