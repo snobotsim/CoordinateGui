@@ -89,7 +89,7 @@ public class BaseGuiController
         mIdealTrajectoryRenderProperties = new CoordinateLayerRenderProps(100, 1, Color.YELLOWGREEN, false);
         mIdealTrajectoryDataProvider = new DataProvider<>();
 
-        mIdealRamseteRenderProperties = new CoordinateLayerRenderProps(100, 1, Color.DARKRED, false);
+        mIdealRamseteRenderProperties = new CoordinateLayerRenderProps(100, 5, Color.DARKRED, false);
         mIdealRamseteDataProvider = new DataProvider<>();
     }
 

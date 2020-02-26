@@ -1,8 +1,15 @@
 package org.snobot.coordinate_gui.shuffleboard.data;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
+import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.model.Distance;
+import org.snobot.coordinate_gui.model.Velocity;
+import org.snobot.nt.ramsete_plotter.RamsetePlotDeserializer;
+import org.snobot.nt.ramsete_plotter.RamsetePointInfo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RamseteControllerData extends ComplexData<RamseteControllerData>
@@ -87,5 +94,23 @@ public class RamseteControllerData extends ComplexData<RamseteControllerData>
     public String getRealPoints()
     {
         return mMeasuredSpline;
+    }
+
+    /**
+     * Converts the serialized string into coordinate points.
+     * @param aDistanceUnit The distance unit
+     * @return The converted coordinates
+     */
+    public List<Coordinate> toIdealCoordinates(Distance.Unit aDistanceUnit)
+    {
+        Velocity.Unit velocityUnit = Velocity.Unit.INCH_PER_SEC; // Note: velocity doesn't matter for this, so hardcode it
+        List<RamsetePointInfo> ramsetePoints = RamsetePlotDeserializer.deserializeIdealPoints(mIdealSpline, aDistanceUnit, velocityUnit);
+
+        List<Coordinate> coordinates = new ArrayList<>();
+        for (RamsetePointInfo point : ramsetePoints)
+        {
+            coordinates.add(new Coordinate(point.mPosition, point.mHeading));
+        }
+        return coordinates;
     }
 }

@@ -9,6 +9,7 @@ import org.snobot.coordinate_gui.shuffleboard.data.CoordinateDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.GoToPositionDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.PurePursuitData;
 import org.snobot.coordinate_gui.shuffleboard.data.PurePursuitDataType;
+import org.snobot.coordinate_gui.shuffleboard.data.RamseteControllerDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.SmartDashboardNames;
 import org.snobot.coordinate_gui.shuffleboard.data.TrajectoryDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.VisionDataType;
@@ -92,6 +93,11 @@ public class BaseCoordinateGuiWidget<DataType extends BaseCoordinateGuiData, Con
         if (aChanges.containsKey(TrajectoryDataType.NAME + "/" + SmartDashboardNames.sSPLINE_IDEAL_POINTS))
         {
             mFieldController.setIdealTrajectory(aNewData.getTrajectoryData().toIdealCoordinates(mDistanceUnit));
+        }
+
+        if (aChanges.containsKey(RamseteControllerDataType.NAME + "/" + SmartDashboardNames.sRAMSETE_IDEAL_POINTS))
+        {
+            mFieldController.setIdealRamsete(aNewData.getRamseteData().toIdealCoordinates(mDistanceUnit));
         }
 
         if (aChanges.containsKey(PurePursuitDataType.NAME + "/" + SmartDashboardNames.sPURE_PURSUIT_SMOOTHED)
