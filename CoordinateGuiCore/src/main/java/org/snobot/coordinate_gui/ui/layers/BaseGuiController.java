@@ -119,6 +119,7 @@ public class BaseGuiController
 
         mFadingCoordinatesController.setup(mCoordinatesRenderProperties, mCoordinatesDataProvider, mPixelConverter);
         mIdealTrajectoryCoordinatesController.setup(mIdealTrajectoryRenderProperties, mIdealTrajectoryDataProvider, mPixelConverter);
+        mIdealRamseteCoordinatesController.setup(mIdealRamseteRenderProperties, mIdealRamseteDataProvider, mPixelConverter);
         mPurePursuitController.setup(mPixelConverter);
     }
 

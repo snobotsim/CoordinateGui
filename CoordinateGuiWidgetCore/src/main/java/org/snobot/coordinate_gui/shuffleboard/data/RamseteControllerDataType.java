@@ -5,7 +5,7 @@ import edu.wpi.first.shuffleboard.api.data.ComplexDataType;
 import java.util.Map;
 import java.util.function.Function;
 
-public class RamseteControllerDataType extends ComplexDataType<RamseteControllerData>
+public final class RamseteControllerDataType extends ComplexDataType<RamseteControllerData>
 {
     public static final RamseteControllerDataType INSTANCE = new RamseteControllerDataType();
     public static final String NAME = SmartDashboardNames.sRAMSETE_NAMESPACE;

@@ -28,6 +28,8 @@ public class RamsetePlotsController
     @FXML
     private RamseteHeadingGraphController mHeadingController;
 
+    private double mLastMeasuredTime;
+
     /**
      * Clears the actuals from the plots.
      */
@@ -39,14 +41,28 @@ public class RamsetePlotsController
         mHeadingController.clearActuals();
     }
 
-    public void setIdeal(List<RamsetePointInfo> pathPoints, Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)
+    /**
+     * Sets the ideal points.
+     *
+     * @param aPathPoints The point data
+     * @param aVelocityUnit The velocity unit represented in the data
+     * @param aDistanceUnit The distance unit represented in the data
+     */
+    public void setIdeal(List<RamsetePointInfo> aPathPoints, Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)
     {
-        mXYController.setIdeal(pathPoints, aDistanceUnit);
-        mLeftVelocityController.setIdeal(pathPoints, aVelocityUnit);
-        mRightVelocityController.setIdeal(pathPoints, aVelocityUnit);
-        mHeadingController.setIdeal(pathPoints);
+        mXYController.setIdeal(aPathPoints, aDistanceUnit);
+        mLeftVelocityController.setIdeal(aPathPoints, aVelocityUnit);
+        mRightVelocityController.setIdeal(aPathPoints, aVelocityUnit);
+        mHeadingController.setIdeal(aPathPoints);
     }
 
+    /**
+     * Addes a measured point.
+     *
+     * @param aActual The point data
+     * @param aVelocityUnit The velocity unit represented in the data
+     * @param aDistanceUnit The distance unit represented in the data
+     */
     public void addPoint(RamseteInstantaneousPoint aActual, Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)
     {
         mXYController.setActual(aActual, aDistanceUnit);
@@ -55,7 +71,7 @@ public class RamsetePlotsController
         mHeadingController.setActual(aActual);
     }
 
-    public void clear()
+    private void clear()
     {
         mXYController.clearActuals();
         mLeftVelocityController.clearActuals();
@@ -63,36 +79,47 @@ public class RamsetePlotsController
         mHeadingController.clearActuals();
     }
 
-    public void setPath(String idealPoints, Distance.Unit decodeUnit, Velocity.Unit aVelocityUnit)
+    /**
+     * Sets the ideal path for hte controller.
+     * @param aIdealPoints The serialized data
+     * @param aVelocityUnit The velocity unit represented in the data
+     * @param aDistanceUnit The distance unit represented in the data
+     */
+    public void setPath(String aIdealPoints, Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)
     {
         List<RamsetePointInfo> points = new ArrayList<>();
-        StringTokenizer tokenizer = new StringTokenizer(idealPoints, ",");
+        StringTokenizer tokenizer = new StringTokenizer(aIdealPoints, ",");
 
         while (tokenizer.hasMoreElements())
         {
-            RamsetePointInfo segment = deserializePoint(tokenizer, decodeUnit, aVelocityUnit);
-            if(segment != null)
+            RamsetePointInfo segment = deserializePoint(tokenizer, aDistanceUnit, aVelocityUnit);
+            if (segment != null)
             {
                 points.add(segment);
             }
         }
 
-        setIdeal(points, decodeUnit, aVelocityUnit);
+        setIdeal(points, aDistanceUnit, aVelocityUnit);
     }
 
-    public void addMeasuredPoint(String realPoints, Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)
+    /**
+     * Adds a point measured by the robot.
+     * @param aRealPoints The serialized data
+     * @param aVelocityUnit The velocity unit represented in the data
+     * @param aDistanceUnit The distance unit represented in the data
+     */
+    public void addMeasuredPoint(String aRealPoints, Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)
     {
-        StringTokenizer tokenizer = new StringTokenizer(realPoints, ",");
+        StringTokenizer tokenizer = new StringTokenizer(aRealPoints, ",");
         RamseteInstantaneousPoint point = deserializeInsteantaneousPoint(tokenizer, aDistanceUnit, aVelocityUnit);
-        System.out.println("Adding measured " + point);
-        if(point.mTime < .03)
+
+        if (point.mTime == 0 || point.mTime < mLastMeasuredTime)
         {
             clear();
         }
-        else
-        {
-            addPoint(point, aDistanceUnit, aVelocityUnit);
-        }
+        mLastMeasuredTime = point.mTime;
+
+        addPoint(point, aDistanceUnit, aVelocityUnit);
     }
 
     private RamseteInstantaneousPoint deserializeInsteantaneousPoint(StringTokenizer aTokenizer, Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)

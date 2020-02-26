@@ -3,9 +3,7 @@ package org.snobot.nt.ramsete_plotter.plots;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.Velocity;
-import org.snobot.nt.ramsete_plotter.RamseteInstantaneousPoint;
 import org.snobot.nt.ramsete_plotter.RamsetePointInfo;
 
 import java.util.List;
@@ -41,20 +39,21 @@ public class RamseteVelocityGraphController
      * @param aPoints
      *            The points
      */
-    public void setIdeal(List<RamsetePointInfo> aPoints, Velocity.Unit aDecodeUnit)
+    public void setIdeal(List<RamsetePointInfo> aPoints, Velocity.Unit aVelocityUnit)
     {
         mIdealRobotVelocity.getData().clear();
         clearActuals();
 
         for (RamsetePointInfo point : aPoints)
         {
-            mIdealRobotVelocity.getData().add(new XYChart.Data<>(point.mTime, point.mVelocity.as(aDecodeUnit)));
+            mIdealRobotVelocity.getData().add(new XYChart.Data<>(point.mTime, point.mVelocity.as(aVelocityUnit)));
         }
     }
 
-    public void setActual(double aTime, Velocity aIdealVelocity, Velocity aMeasuredVelocity, Velocity.Unit decodeUnit) {
-        mIdealVelocity.getData().add(new XYChart.Data<>(aTime, aIdealVelocity.as(decodeUnit)));
-        mActualVelocity.getData().add(new XYChart.Data<>(aTime, aMeasuredVelocity.as(decodeUnit)));
+    public void setActual(double aTime, Velocity aIdealVelocity, Velocity aMeasuredVelocity, Velocity.Unit aVelocityUnit)
+    {
+        mIdealVelocity.getData().add(new XYChart.Data<>(aTime, aIdealVelocity.as(aVelocityUnit)));
+        mActualVelocity.getData().add(new XYChart.Data<>(aTime, aMeasuredVelocity.as(aVelocityUnit)));
     }
 
     public void clearActuals()

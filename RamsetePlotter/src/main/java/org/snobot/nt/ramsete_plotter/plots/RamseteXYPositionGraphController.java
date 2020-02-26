@@ -3,7 +3,6 @@ package org.snobot.nt.ramsete_plotter.plots;
 import javafx.fxml.FXML;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
-import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.nt.ramsete_plotter.RamseteInstantaneousPoint;
 import org.snobot.nt.ramsete_plotter.RamsetePointInfo;
@@ -40,14 +39,14 @@ public class RamseteXYPositionGraphController
      * @param aCoordinates
      *            the coordinates
      */
-    public void setIdeal(List<RamsetePointInfo> aCoordinates, Distance.Unit decodeUnit)
+    public void setIdeal(List<RamsetePointInfo> aCoordinates, Distance.Unit aDistanceUnit)
     {
         mIdeal.getData().clear();
         clearActuals();
 
         for (RamsetePointInfo coord : aCoordinates)
         {
-            mIdeal.getData().add(new XYChart.Data<>(coord.mPosition.mX.as(decodeUnit), coord.mPosition.mY.as(decodeUnit)));
+            mIdeal.getData().add(new XYChart.Data<>(coord.mPosition.mX.as(aDistanceUnit), coord.mPosition.mY.as(aDistanceUnit)));
         }
     }
 
@@ -56,7 +55,8 @@ public class RamseteXYPositionGraphController
         mActual.getData().clear();
     }
 
-    public void setActual(RamseteInstantaneousPoint aActual, Distance.Unit decodeUnit) {
-        mActual.getData().add(new XYChart.Data<>(aActual.mMeasuredPosition.mX.as(decodeUnit), aActual.mMeasuredPosition.mY.as(decodeUnit)));
+    public void setActual(RamseteInstantaneousPoint aActual, Distance.Unit aDistanceUnit)
+    {
+        mActual.getData().add(new XYChart.Data<>(aActual.mMeasuredPosition.mX.as(aDistanceUnit), aActual.mMeasuredPosition.mY.as(aDistanceUnit)));
     }
 }

@@ -7,11 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.Position2dDistance;
 import org.snobot.coordinate_gui.model.Velocity;
-import org.snobot.nt.ramsete_plotter.RamsetePlotsController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -86,9 +84,8 @@ public final class StandaloneRamseteMain
             {
                 List<RamseteInstantaneousPoint> actuals = new ArrayList<>();
 
-                for (int i = 0; i < pathPoints.size(); ++i)
+                for (RamsetePointInfo ideal : pathPoints)
                 {
-                    RamsetePointInfo ideal = pathPoints.get(i);
                     RamseteInstantaneousPoint point = new RamseteInstantaneousPoint(
                         ideal.mTime + .01,
                         ideal.mHeading * 1.2,

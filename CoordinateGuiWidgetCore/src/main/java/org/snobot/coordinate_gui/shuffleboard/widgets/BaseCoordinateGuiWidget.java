@@ -91,7 +91,6 @@ public class BaseCoordinateGuiWidget<DataType extends BaseCoordinateGuiData, Con
 
         if (aChanges.containsKey(TrajectoryDataType.NAME + "/" + SmartDashboardNames.sSPLINE_IDEAL_POINTS))
         {
-            System.out.println("Getting coordinates: " + aNewData.getTrajectoryData().toIdealCoordinates(mDistanceUnit));
             mFieldController.setIdealTrajectory(aNewData.getTrajectoryData().toIdealCoordinates(mDistanceUnit));
         }
 

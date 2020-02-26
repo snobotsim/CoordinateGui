@@ -9,13 +9,9 @@ import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.Velocity;
 import org.snobot.coordinate_gui.shuffleboard.data.RamseteControllerData;
 import org.snobot.coordinate_gui.shuffleboard.data.SmartDashboardNames;
-import org.snobot.coordinate_gui.shuffleboard.data.TrajectoryData;
 import org.snobot.nt.ramsete_plotter.RamsetePlotsController;
-import org.snobot.nt.spline_plotter.SplineSegment;
-import org.snobot.nt.spline_plotter.TrajectoryPlotsController;
 
 import java.util.Map;
-import java.util.StringTokenizer;
 
 @Description(name = "Ramsete Plots", dataTypes = RamseteControllerData.class)
 @ParametrizedController("RamsetePlotsWidget.fxml")
@@ -29,8 +25,6 @@ public class RamsetePlotsWidget extends SimpleAnnotatedWidget<RamseteControllerD
 
     @FXML
     private RamsetePlotsController mOverviewContainerController;
-
-    private int mLastIndex;
 
     public RamsetePlotsWidget()
     {

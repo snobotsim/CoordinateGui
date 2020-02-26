@@ -44,7 +44,6 @@ public class RamseteHeadingGraphController
 
         for (RamsetePointInfo point : aPoints)
         {
-            System.out.println(point.mHeading);
             mIdealHeading.getData().add(new XYChart.Data<>(point.mTime, point.mHeading));
         }
     }
