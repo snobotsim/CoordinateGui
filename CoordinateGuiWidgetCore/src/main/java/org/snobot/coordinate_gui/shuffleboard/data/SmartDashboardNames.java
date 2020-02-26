@@ -25,6 +25,11 @@ public class SmartDashboardNames
     public static final String sSPLINE_REAL_POINT = "Real Spline Point";
     public static final String sSPLINE_WAYPOINTS = "Spline Waypoints";
 
+    // Ramsete sub-table
+    public static final String sRAMSETE_NAMESPACE = "Ramsete Namespace";
+    public static final String sRAMSETE_IDEAL_POINTS = "Ideal";
+    public static final String sRAMSETE_REAL_POINT = "Measured";
+
     // Pure-Pursuit table
     public static final String sPURE_PERSUIT_TABLE_TYPE = "PurePursuit";
     public static final String sPURE_PURSUIT_WAYPOINTS = "Waypoints";

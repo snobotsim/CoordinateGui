@@ -67,6 +67,8 @@ public class BaseCoordinateGuiWidget<DataType extends BaseCoordinateGuiData, Con
     protected void handleChange(DataType aNewData, final Map<String, Object> aChanges)
     {
 
+        //System.out.println("Getting coordinate data" + aChanges);
+        //System.out.println(aNewData);
         if (aChanges.containsKey(CoordinateDataType.NAME + "/" + SmartDashboardNames.sROBOT_POSITION_CTR))
         {
             mFieldController.addRobotPosition(aNewData.getRobotPosition().toCoord(mDistanceUnit));
@@ -89,6 +91,7 @@ public class BaseCoordinateGuiWidget<DataType extends BaseCoordinateGuiData, Con
 
         if (aChanges.containsKey(TrajectoryDataType.NAME + "/" + SmartDashboardNames.sSPLINE_IDEAL_POINTS))
         {
+            System.out.println("Getting coordinates: " + aNewData.getTrajectoryData().toIdealCoordinates(mDistanceUnit));
             mFieldController.setIdealTrajectory(aNewData.getTrajectoryData().toIdealCoordinates(mDistanceUnit));
         }
 

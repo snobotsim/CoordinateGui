@@ -12,3 +12,5 @@ include 'CoordinateGuiWidget2019'
 include 'CoordinateGuiWidget2020'
 include 'TrajectoryPlotter'
 include 'PurePursuitPlotter'
+include 'RamsetePlotter'
+

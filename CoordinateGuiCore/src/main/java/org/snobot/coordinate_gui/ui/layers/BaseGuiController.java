@@ -35,6 +35,9 @@ public class BaseGuiController
     private final DataProvider<Coordinate> mIdealTrajectoryDataProvider;
     private final CoordinateLayerRenderProps mIdealTrajectoryRenderProperties;
 
+    private final DataProvider<Coordinate> mIdealRamseteDataProvider;
+    private final CoordinateLayerRenderProps mIdealRamseteRenderProperties;
+
     @FXML
     protected Pane mTopPane;
 
@@ -63,6 +66,9 @@ public class BaseGuiController
     private CoordinateLayerController mIdealTrajectoryCoordinatesController;
 
     @FXML
+    private CoordinateLayerController mIdealRamseteCoordinatesController;
+
+    @FXML
     private PurePursuitLayerController mPurePursuitController;
 
     protected BaseGuiController(String aFieldImageUrl,
@@ -82,6 +88,9 @@ public class BaseGuiController
 
         mIdealTrajectoryRenderProperties = new CoordinateLayerRenderProps(100, 1, Color.YELLOWGREEN, false);
         mIdealTrajectoryDataProvider = new DataProvider<>();
+
+        mIdealRamseteRenderProperties = new CoordinateLayerRenderProps(100, 1, Color.DARKRED, false);
+        mIdealRamseteDataProvider = new DataProvider<>();
     }
 
     /**
@@ -172,6 +181,22 @@ public class BaseGuiController
             mIdealTrajectoryDataProvider.addData(coord);
         }
         mIdealTrajectoryCoordinatesController.render();
+    }
+
+    /**
+     * Sets the ideal trajectory to draw on the display.
+     *
+     * @param aCoordinates
+     *            The ideal trajectory
+     */
+    public void setIdealRamsete(List<Coordinate> aCoordinates)
+    {
+        mIdealRamseteDataProvider.clear();
+        for (Coordinate coord : aCoordinates)
+        {
+            mIdealRamseteDataProvider.addData(coord);
+        }
+        mIdealRamseteCoordinatesController.render();
     }
 
     public TrajectoryConfigLayerController.CoodrinateWrapper getSelectedWaypoint()

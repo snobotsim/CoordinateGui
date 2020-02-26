@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane  maxHeight="-Infinity" 
+            maxWidth="-Infinity" 
+            prefHeight="768.0" 
+            prefWidth="1024.0" 
+            xmlns="http://javafx.com/javafx/10.0.1" 
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.snobot.nt.ramsete_plotter.RamsetePlotsController"
+            fx:id="mPane">
+  <center>
+    <TabPane fx:id="mTabPane" xmlns="http://javafx.com/javafx/8.0.40" tabClosingPolicy="UNAVAILABLE">
+      <Tab text="Heading">
+        <fx:include fx:id="mHeading" source="/org/snobot/nt/ramsete_plotter/plots/ramsete_heading_graph.fxml"/>
+      </Tab>
+      <Tab text="XY">
+        <fx:include fx:id="mXY" source="/org/snobot/nt/ramsete_plotter/plots/ramsete_xy_position_graph.fxml"/>
+      </Tab>
+      <Tab text="Left Velocity">
+        <fx:include fx:id="mLeftVelocity" source="/org/snobot/nt/ramsete_plotter/plots/ramsete_velocity_graph.fxml"/>
+      </Tab>
+      <Tab text="Right Velocity">
+        <fx:include fx:id="mRightVelocity" source="/org/snobot/nt/ramsete_plotter/plots/ramsete_velocity_graph.fxml"/>
+      </Tab>
+    </TabPane>
+  </center>
+
+</BorderPane>
