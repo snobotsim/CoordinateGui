@@ -12,6 +12,7 @@ public class BaseCoordinateGuiData extends ComplexData<BaseCoordinateGuiData>
     private final VisionData mVisionData;
     private final TrajectoryData mTrajectoryData;
     private final PurePursuitData mPurePursuitData;
+    private final RamseteControllerData mRamseteData;
 
     /**
      * Constructor.
@@ -23,6 +24,7 @@ public class BaseCoordinateGuiData extends ComplexData<BaseCoordinateGuiData>
         mTrajectoryData = new TrajectoryData();
         mGoToPositionData = new GoToPositionData();
         mPurePursuitData = new PurePursuitData();
+        mRamseteData = new RamseteControllerData();
     }
 
     /**
@@ -38,7 +40,7 @@ public class BaseCoordinateGuiData extends ComplexData<BaseCoordinateGuiData>
         mTrajectoryData = new TrajectoryData(TrajectoryDataType.NAME + "/", aMap);
         mGoToPositionData = new GoToPositionData(GoToPositionDataType.NAME + "/", aMap);
         mPurePursuitData = new PurePursuitData(PurePursuitDataType.NAME + "/", aMap);
-
+        mRamseteData = new RamseteControllerData(RamseteControllerDataType.NAME + "/", aMap);
     }
 
     @Override
@@ -50,6 +52,7 @@ public class BaseCoordinateGuiData extends ComplexData<BaseCoordinateGuiData>
         map.putAll(mTrajectoryData.asMap(TrajectoryDataType.NAME + "/"));
         map.putAll(mGoToPositionData.asMap(GoToPositionDataType.NAME + "/"));
         map.putAll(mPurePursuitData.asMap(PurePursuitDataType.NAME + "/"));
+        map.putAll(mRamseteData.asMap(RamseteControllerDataType.NAME + "/"));
         return map;
     }
 
@@ -76,5 +79,23 @@ public class BaseCoordinateGuiData extends ComplexData<BaseCoordinateGuiData>
     public PurePursuitData getPurePursuitData()
     {
         return mPurePursuitData;
+    }
+
+    public RamseteControllerData getRamseteData()
+    {
+        return mRamseteData;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "BaseCoordinateGuiData{"
+            + "mCoordinateData=" + mCoordinateData
+            + ", mGoToPositionData=" + mGoToPositionData
+            + ", mVisionData=" + mVisionData
+            + ", mTrajectoryData=" + mTrajectoryData
+            + ", mPurePursuitData=" + mPurePursuitData
+            + ", mRamseteData=" + mRamseteData
+            + '}';
     }
 }

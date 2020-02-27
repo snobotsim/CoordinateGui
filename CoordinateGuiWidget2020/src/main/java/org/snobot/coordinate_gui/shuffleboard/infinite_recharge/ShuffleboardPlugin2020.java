@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.snobot.coordinate_gui.shuffleboard.data.CoordinateDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.PurePursuitDataType;
+import org.snobot.coordinate_gui.shuffleboard.data.RamseteControllerDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.TrajectoryDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.VisionDataType;
 import org.snobot.coordinate_gui.shuffleboard.infinite_recharge.data.InfiniteRechargeCoordinateGuiDataType;
 import org.snobot.coordinate_gui.shuffleboard.widgets.PurePursuitPlotsWidget;
+import org.snobot.coordinate_gui.shuffleboard.widgets.RamsetePlotsWidget;
 import org.snobot.coordinate_gui.shuffleboard.widgets.TrajectoryPlotsWidget;
 
 import com.google.common.collect.ImmutableList;
@@ -28,7 +30,8 @@ public class ShuffleboardPlugin2020 extends Plugin
         return ImmutableList.of(
                 WidgetType.forAnnotatedWidget(CoordinateGuiWidget2020.class),
                 WidgetType.forAnnotatedWidget(TrajectoryPlotsWidget.class),
-                WidgetType.forAnnotatedWidget(PurePursuitPlotsWidget.class));
+                WidgetType.forAnnotatedWidget(PurePursuitPlotsWidget.class),
+                WidgetType.forAnnotatedWidget(RamsetePlotsWidget.class));
 
     }
 
@@ -36,7 +39,12 @@ public class ShuffleboardPlugin2020 extends Plugin
     public List<DataType> getDataTypes()
     {
         return ImmutableList.of(
-                InfiniteRechargeCoordinateGuiDataType.INSTANCE, CoordinateDataType.INSTANCE, VisionDataType.INSTANCE, TrajectoryDataType.INSTANCE, PurePursuitDataType.INSTANCE);
+                InfiniteRechargeCoordinateGuiDataType.INSTANCE,
+                CoordinateDataType.INSTANCE,
+                VisionDataType.INSTANCE,
+                TrajectoryDataType.INSTANCE,
+                PurePursuitDataType.INSTANCE,
+                RamseteControllerDataType.INSTANCE);
     }
 
 }

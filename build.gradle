@@ -56,5 +56,5 @@ ext {
     } else {
         publishing_url = "${rootDir}/build/maven_repo"
     }
-    publishing_version = "3.0.0"
+    publishing_version = "3.0.1"
 }
