@@ -37,7 +37,7 @@ task customFatJar(type: Jar) {
     }
     
     from configurations.compile.collect {
-        println "Compile: " + it
+//        println "Compile: " + it
         if(it.toString().contains("org.apache.logging")) {
             FileTree filtered = zipTree(it).matching { unused ->
                 exclude "org/apache/logging/log4j/core/appender/mom/kafka/KafkaManager*.class"
@@ -54,10 +54,12 @@ task customFatJar(type: Jar) {
                 exclude "org/apache/logging/log4j/util/Activator*.class"
                 exclude "META-INF/**/*.class"
             }
-            
+
+            println "  Log4j: " + it
             filtered
         }
-        else if(it.toString().contains("CoordinateGui")) {
+        else if(it.toString().startsWith("${rootDir}")) {
+            println "  CoordinateGui: " + it
             zipTree(it)
         }
         else {
