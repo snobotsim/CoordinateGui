@@ -8,6 +8,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.trajectory.Trajectory;
+import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,10 +23,6 @@ import org.snobot.coordinate_gui.gen.utils.PathfinderConfigLoader;
 import org.snobot.coordinate_gui.gen.utils.TrajectoryConfigLoader;
 import org.snobot.coordinate_gui.model.Coordinate;
 
-import jaci.pathfinder.Pathfinder;
-import jaci.pathfinder.Trajectory;
-import jaci.pathfinder.Trajectory.Segment;
-import jaci.pathfinder.Waypoint;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
@@ -164,27 +164,22 @@ public class TrajectoryGenController
 
         if (coordinates != null)
         {
-            Waypoint[] pointsArray = new Waypoint[coordinates.size()];
-            for (int i = 0; i < coordinates.size(); ++i)
+            List<Pose2d> poses = new ArrayList<>();
+            for (Coordinate coordinate : coordinates)
             {
-                Coordinate coord = coordinates.get(i);
-                pointsArray[i] = new Waypoint(coord.mPosition.mY.as(unit), coord.mPosition.mX.as(unit), Math.toRadians(coord.mAngle));
+                poses.add(new Pose2d(coordinate.mPosition.mX.as(unit), coordinate.mPosition.mY.as(unit), Rotation2d.fromDegrees(coordinate.mAngle)));
             }
-
-            Trajectory.Config config = new Trajectory.Config(
-                    Trajectory.FitMethod.HERMITE_CUBIC, 
-                    Trajectory.Config.SAMPLES_FAST, 
-                    .02,
-                    pathConfig.mMaxVelocity, 
-                    pathConfig.mMaxAcceleration, 
-                    1e6);
-
-            Trajectory trajectory = Pathfinder.generate(pointsArray, config);
+            Trajectory trajectory = TrajectoryGenerator.generateTrajectory(
+                    poses.get(0),
+                    List.of(),
+                    poses.get(poses.size() - 1),
+                    new edu.wpi.first.wpilibj.trajectory.TrajectoryConfig(pathConfig.mMaxVelocity, pathConfig.mMaxAcceleration)
+            );
 
             List<Coordinate> idealCoordinates = new ArrayList<>();
-            for (Segment segment : trajectory.segments)
+            for (Trajectory.State segment : trajectory.getStates())
             {
-                idealCoordinates.add(new Coordinate(new Position2dDistance(segment.y, segment.x, Distance.Unit.FEET), Math.toDegrees(segment.heading)));
+                idealCoordinates.add(new Coordinate(new Position2dDistance(segment.poseMeters.getX(), segment.poseMeters.getY(), Distance.Unit.FEET), segment.poseMeters.getRotation().getDegrees()));
             }
 
             mFieldController.setIdealTrajectory(idealCoordinates);
