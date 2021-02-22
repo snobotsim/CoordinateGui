@@ -16,6 +16,7 @@ public class PixelConverter
     {
         CenterField,
         AlwaysIncreasing,
+        BottomLeft,
     }
 
     protected final Distance mXCenterFeet;
@@ -29,6 +30,7 @@ public class PixelConverter
     protected Scale mScale;
 
     protected final Orientation mOrientation;
+    protected final OriginPosition mOriginPosition;
 
     /**
      * Constructor.
@@ -37,6 +39,7 @@ public class PixelConverter
      * @param aOrientation The orientation
      * @param aOriginPosition Where the origin should be
      */
+    @SuppressWarnings("PMD.CyclomaticComplexity")
     public PixelConverter(Distance aDimension1, Distance aDimension2, Orientation aOrientation, OriginPosition aOriginPosition)
     {
         Distance aFieldShortDimension;
@@ -44,32 +47,47 @@ public class PixelConverter
         aFieldShortDimension = aDimension1.as(CONVERSION_UNIT) > aDimension2.as(CONVERSION_UNIT) ? aDimension2 : aDimension1;
         aFieldLongDimension = aDimension1.as(CONVERSION_UNIT) > aDimension2.as(CONVERSION_UNIT) ? aDimension1 : aDimension2;
         mOrientation = aOrientation;
+        mOriginPosition = aOriginPosition;
+
         if (aOrientation == Orientation.Landscape)
         {
-            mHeightMultiplier = -1;
-            if (aOriginPosition == OriginPosition.CenterField)
+            switch (aOriginPosition)
             {
+            case CenterField:
+                mHeightMultiplier = -1;
                 mXCenterFeet = Distance.divide(aFieldLongDimension, 2);
                 mYCenterFeet = Distance.divide(aFieldShortDimension, 2);
-            }
-            else
-            {
+                break;
+            case AlwaysIncreasing:
+                mHeightMultiplier = -1;
                 mXCenterFeet = aFieldLongDimension;
                 mYCenterFeet = aFieldShortDimension;
+                break;
+            case BottomLeft:
+                mHeightMultiplier = 1;
+                mXCenterFeet = aFieldLongDimension;
+                mYCenterFeet = Distance.mult(aFieldShortDimension, 1);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown origin " + aOriginPosition);
             }
         }
         else
         {
             mHeightMultiplier = 1;
-            if (aOriginPosition == OriginPosition.CenterField)
+            switch (aOriginPosition)
             {
+            case CenterField:
                 mXCenterFeet = Distance.divide(aFieldShortDimension, 2);
                 mYCenterFeet = Distance.divide(aFieldLongDimension, 2);
-            }
-            else
-            {
+                break;
+            case AlwaysIncreasing:
+            case BottomLeft:
                 mXCenterFeet = aFieldShortDimension;
                 mYCenterFeet = aFieldLongDimension;
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown origin " + aOriginPosition);
             }
         }
 
@@ -92,7 +110,7 @@ public class PixelConverter
         Distance relativeY = Distance.subtract(mYCenterFeet, aDistance.mY);
         double x = mWidthPixels - convertFeetToPixels(relativeX);
         double y;
-        if (mOrientation == Orientation.Portrait)
+        if (mOrientation == Orientation.Portrait || mOriginPosition == OriginPosition.BottomLeft)
         {
             y = convertFeetToPixels(relativeY);
         }

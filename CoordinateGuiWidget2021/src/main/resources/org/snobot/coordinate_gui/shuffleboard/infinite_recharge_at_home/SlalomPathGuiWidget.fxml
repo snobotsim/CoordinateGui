@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<StackPane fx:id="mRoot" minHeight="200" minWidth="200" prefHeight="200" prefWidth="200" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.snobot.coordinate_gui.shuffleboard.infinite_recharge_at_home.SlalomPathGuiWidget2021">
+
+    <children>
+        <fx:include fx:id="mField" source="/org/snobot/coordinate_gui/game/infinite_recharge_at_home/slalom_field.fxml" />
+    </children>
+</StackPane>
