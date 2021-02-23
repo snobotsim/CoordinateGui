@@ -6,10 +6,7 @@ public class SmartDashboardNames
 
     // Robot Position sub-table
     public static final String sROBOT_POSITION_TABLE_TYPE = "RobotPosition";
-    public static final String sX_POSITION = "X";
-    public static final String sY_POSITION = "Y";
-    public static final String sORIENTATION = "Angle";
-    public static final String sROBOT_POSITION_CTR = "Ctr";
+    public static final String sROBOT_POSITION = "position";
 
     // Go to position sub-table
     public static final String sGO_TO_POSITION_TABLE_TYPE = "GoToPosition";

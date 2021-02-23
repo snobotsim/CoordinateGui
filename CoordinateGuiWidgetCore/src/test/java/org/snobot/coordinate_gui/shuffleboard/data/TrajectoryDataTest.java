@@ -17,8 +17,8 @@ public class TrajectoryDataTest
     public void testConversion()
     {
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put(SmartDashboardNames.sSPLINE_IDEAL_POINTS, "12.34,6.64,12.86,5.89,79.98,12.13,11.89,6.34,23.64,31.86,77.89,98.98,7.13,2.89");
-        dataMap.put(SmartDashboardNames.sSPLINE_WAYPOINTS, "8.312,913.12,19.48,175.4,85.2,11.01,89.52,87,24");
+        dataMap.put(SmartDashboardNames.sSPLINE_IDEAL_POINTS, new double[]{12.34, 6.64, 12.86, 5.89, 79.98, 12.13, 11.89, 6.34, 23.64, 31.86, 77.89, 98.98, 7.13, 2.89});
+        dataMap.put(SmartDashboardNames.sSPLINE_WAYPOINTS, new double[]{8.312, 913.12, 19.48, 175.4, 85.2, 11.01, 89.52, 87, 24});
 
         List<Coordinate> idealCoordinates = new TrajectoryData(dataMap).toIdealCoordinates(Distance.Unit.FEET);
         Assertions.assertEquals(2, idealCoordinates.size());

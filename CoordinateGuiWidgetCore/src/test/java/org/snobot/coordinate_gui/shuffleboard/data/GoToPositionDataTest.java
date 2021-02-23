@@ -14,7 +14,7 @@ public class GoToPositionDataTest
     public void testEmptyConversion()
     {
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put(SmartDashboardNames.sCAMERA_POSITIONS, "");
+        dataMap.put(SmartDashboardNames.sCAMERA_POSITIONS, new double[]{});
 
         Position2dDistance coordinate = new GoToPositionData(dataMap).toCoordinate(Distance.Unit.FEET);
         Assertions.assertNull(coordinate);
@@ -24,7 +24,7 @@ public class GoToPositionDataTest
     public void testRealConversion()
     {
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put(SmartDashboardNames.sCAMERA_POSITIONS, "1.23,54.41");
+        dataMap.put(SmartDashboardNames.sCAMERA_POSITIONS, new double[]{1.23, 54.41});
 
         Position2dDistance coordinate = new GoToPositionData(dataMap).toCoordinate(Distance.Unit.FEET);
         Assertions.assertEquals(Distance.fromFeet(1.23), coordinate.mX);

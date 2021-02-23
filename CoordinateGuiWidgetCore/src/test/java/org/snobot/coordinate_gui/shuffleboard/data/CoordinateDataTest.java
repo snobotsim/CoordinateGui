@@ -16,10 +16,7 @@ public class CoordinateDataTest
     public void testConversion()
     {
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put(SmartDashboardNames.sROBOT_POSITION_CTR, 1.0);
-        dataMap.put(SmartDashboardNames.sORIENTATION, 98.73);
-        dataMap.put(SmartDashboardNames.sX_POSITION, 2.78);
-        dataMap.put(SmartDashboardNames.sY_POSITION, -12.95);
+        dataMap.put(SmartDashboardNames.sROBOT_POSITION, new double[]{2.78, -12.95, 98.73, 1});
 
         Coordinate coordinate = new CoordinateData(dataMap).toCoord(Distance.Unit.FEET);
         Assertions.assertEquals(Distance.fromFeet(2.78), coordinate.mPosition.mX);

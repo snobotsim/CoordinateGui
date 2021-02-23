@@ -2,7 +2,6 @@ package org.snobot.coordinate_gui.shuffleboard.infinite_recharge_at_home;
 
 import java.util.List;
 
-import org.snobot.coordinate_gui.game.infinite_recharge_at_home.GalacticSearchBController;
 import org.snobot.coordinate_gui.shuffleboard.data.CoordinateDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.PurePursuitDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.RamseteControllerDataType;

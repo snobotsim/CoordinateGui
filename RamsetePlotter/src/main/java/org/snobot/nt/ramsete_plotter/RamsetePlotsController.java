@@ -78,29 +78,26 @@ public class RamsetePlotsController
      * @param aVelocityUnit The velocity unit represented in the data
      * @param aDistanceUnit The distance unit represented in the data
      */
-    public void setPath(String aIdealPoints, Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)
+    public void setPath(List<RamsetePointInfo> aIdealPoints, Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)
     {
-        List<RamsetePointInfo> points = RamsetePlotDeserializer.deserializeIdealPoints(aIdealPoints, aDistanceUnit, aVelocityUnit);
-        setIdeal(points, aDistanceUnit, aVelocityUnit);
+        setIdeal(aIdealPoints, aDistanceUnit, aVelocityUnit);
     }
 
     /**
      * Adds a point measured by the robot.
-     * @param aRealPoints The serialized data
+     * @param aPoint The serialized data
      * @param aVelocityUnit The velocity unit represented in the data
      * @param aDistanceUnit The distance unit represented in the data
      */
-    public void addMeasuredPoint(String aRealPoints, Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)
+    public void addMeasuredPoint(RamseteInstantaneousPoint aPoint, Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)
     {
-        RamseteInstantaneousPoint point = RamsetePlotDeserializer.deserializeInstantaneousPoint(aRealPoints, aDistanceUnit, aVelocityUnit);
-
-        if (point.mTime == 0 || point.mTime < mLastMeasuredTime)
+        if (aPoint.mTime == 0 || aPoint.mTime < mLastMeasuredTime)
         {
             clear();
         }
-        mLastMeasuredTime = point.mTime;
+        mLastMeasuredTime = aPoint.mTime;
 
-        addPoint(point, aDistanceUnit, aVelocityUnit);
+        addPoint(aPoint, aDistanceUnit, aVelocityUnit);
     }
 
 }

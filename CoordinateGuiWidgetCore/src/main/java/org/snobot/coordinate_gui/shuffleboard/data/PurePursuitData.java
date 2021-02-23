@@ -1,10 +1,5 @@
 package org.snobot.coordinate_gui.shuffleboard.data;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringTokenizer;
 
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.Distance;
@@ -14,17 +9,25 @@ import org.snobot.nt.pure_pursuit_plotter.PurePursuitPointInfo;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class PurePursuitData extends ComplexData<PurePursuitData>
 {
-    private final String mWaypoints;
-    private final String mUpSampledPoints;
-    private final String mSmoothedPoints;
-    private final String mLookaheadPoints;
-    private final String mCurrentPoint;
+    private static final double[] DEFAULT_VALUE = new double[]{};
+
+    private final double[] mWaypoints;
+    private final double[] mUpSampledPoints;
+    private final double[] mSmoothedPoints;
+    private final double[] mLookaheadPoints;
+    private final double[] mCurrentPoint;
 
     public PurePursuitData()
     {
-        this("", "", "", "", "");
+        this(DEFAULT_VALUE, DEFAULT_VALUE, DEFAULT_VALUE, DEFAULT_VALUE, DEFAULT_VALUE);
     }
 
     /**
@@ -48,11 +51,11 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
      */
     public PurePursuitData(String aPrefix, Map<String, Object> aMap)
     {
-        this((String) aMap.getOrDefault(aPrefix + SmartDashboardNames.sPURE_PURSUIT_WAYPOINTS, ""),
-                (String) aMap.getOrDefault(aPrefix + SmartDashboardNames.sPURE_PURSUIT_UP_SAMPLED, ""),
-                (String) aMap.getOrDefault(aPrefix + SmartDashboardNames.sPURE_PURSUIT_SMOOTHED, ""),
-                (String) aMap.getOrDefault(aPrefix + SmartDashboardNames.sPURE_PURSUIT_LOOKAHEAD, ""),
-                (String) aMap.getOrDefault(aPrefix + SmartDashboardNames.sPURE_PURSUIT_CURRENT_POINT, ""));
+        this((double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sPURE_PURSUIT_WAYPOINTS, DEFAULT_VALUE),
+                (double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sPURE_PURSUIT_UP_SAMPLED, DEFAULT_VALUE),
+                (double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sPURE_PURSUIT_SMOOTHED, DEFAULT_VALUE),
+                (double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sPURE_PURSUIT_LOOKAHEAD, DEFAULT_VALUE),
+                (double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sPURE_PURSUIT_CURRENT_POINT, DEFAULT_VALUE));
     }
 
     /**
@@ -67,13 +70,13 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
      * @param aLookahead
      *            The lookahead data
      */
-    public PurePursuitData(String aWaypointString, String aUpSampledString, String aSmoothedString, String aLookahead, String aCurrentPoint)
+    public PurePursuitData(double[] aWaypointString, double[] aUpSampledString, double[] aSmoothedString, double[] aLookahead, double[] aCurrentPoint)
     {
-        mWaypoints = aWaypointString;
-        mUpSampledPoints = aUpSampledString;
-        mSmoothedPoints = aSmoothedString;
-        mLookaheadPoints = aLookahead;
-        mCurrentPoint = aCurrentPoint;
+        mWaypoints = Arrays.copyOf(aWaypointString, aWaypointString.length);
+        mUpSampledPoints = Arrays.copyOf(aUpSampledString, aUpSampledString.length);
+        mSmoothedPoints = Arrays.copyOf(aSmoothedString, aSmoothedString.length);
+        mLookaheadPoints = Arrays.copyOf(aLookahead, aLookahead.length);
+        mCurrentPoint = Arrays.copyOf(aCurrentPoint, aCurrentPoint.length);
     }
 
     @Override
@@ -100,15 +103,14 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
         return map;
     }
 
-    private List<Coordinate> convert(String aInput)
+    private List<Coordinate> convert(double[] aInput)
     {
         List<Coordinate> output = new ArrayList<>();
 
-        StringTokenizer tokenizer = new StringTokenizer(aInput, ",");
-        while (tokenizer.countTokens() >= 2)
+        for (int i = 0; i < aInput.length;)
         {
-            double x = Double.parseDouble(tokenizer.nextToken());
-            double y = Double.parseDouble(tokenizer.nextToken());
+            double x = aInput[i++];
+            double y = aInput[i++];
             Coordinate coordinate = new Coordinate(new Position2dDistance(x, y, Distance.Unit.FEET), 0);
             output.add(coordinate);
         }
@@ -131,10 +133,10 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
         return convert(mSmoothedPoints);
     }
 
-    public String getLookaheadString()
-    {
-        return mLookaheadPoints;
-    }
+//    public String getLookaheadString()
+//    {
+//        return mLookaheadPoints;
+//    }
 
     /**
      * Gets the last point sent by the pure pursuit command.
@@ -144,21 +146,19 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
      */
     public PurePursuitPointInfo getCurrentPoint()
     {
-        StringTokenizer tokenizer = new StringTokenizer(mCurrentPoint, ",");
-
-        if (tokenizer.countTokens() < 7) // NOPMD
+        if (mCurrentPoint.length < 7) // NOPMD
         {
             return new PurePursuitPointInfo(-1);
         }
 
-        PurePursuitPointInfo output = new PurePursuitPointInfo(Integer.parseInt(tokenizer.nextToken()));
+        PurePursuitPointInfo output = new PurePursuitPointInfo((int) mCurrentPoint[0]);
 
-        output.mX = Double.parseDouble(tokenizer.nextToken());
-        output.mY = Double.parseDouble(tokenizer.nextToken());
-        output.mLeftVelocity = Double.parseDouble(tokenizer.nextToken());
-        output.mLeftGoalVelocity = Double.parseDouble(tokenizer.nextToken());
-        output.mRightVelocity = Double.parseDouble(tokenizer.nextToken());
-        output.mRightGoalVelocity = Double.parseDouble(tokenizer.nextToken());
+        output.mX = mCurrentPoint[1];
+        output.mY = mCurrentPoint[2];
+        output.mLeftVelocity = mCurrentPoint[3];
+        output.mLeftGoalVelocity = mCurrentPoint[4];
+        output.mRightVelocity = mCurrentPoint[5];
+        output.mRightGoalVelocity = mCurrentPoint[6];
 
         return output;
     }
@@ -170,12 +170,10 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
      */
     public PurePursuitLayerController.PurePursuitLookaheadData toLookaheadData(Distance.Unit aDistanceUnit)
     {
-        String lookaheadString = getLookaheadString();
-        if (!lookaheadString.isEmpty())
+        if (mLookaheadPoints.length != 0)
         {
-            String[] lookahead = getLookaheadString().split(",");
-            Position2dDistance robotPosition = new Position2dDistance(Double.parseDouble(lookahead[0]), Double.parseDouble(lookahead[1]), aDistanceUnit);
-            Position2dDistance lookaheadPoint = new Position2dDistance(Double.parseDouble(lookahead[2]), Double.parseDouble(lookahead[3]), aDistanceUnit);
+            Position2dDistance robotPosition = new Position2dDistance(mLookaheadPoints[0], mLookaheadPoints[1], aDistanceUnit);
+            Position2dDistance lookaheadPoint = new Position2dDistance(mLookaheadPoints[2], mLookaheadPoints[3], aDistanceUnit);
             PurePursuitLayerController.PurePursuitLookaheadData data = new PurePursuitLayerController.PurePursuitLookaheadData(robotPosition, lookaheadPoint);
             return data;
         }

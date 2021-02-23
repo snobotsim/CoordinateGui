@@ -2,11 +2,7 @@ package org.snobot.coordinate_gui.shuffleboard.widgets;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.snobot.nt.spline_plotter.SplineSegment;
 
 /**
@@ -17,8 +13,6 @@ import org.snobot.nt.spline_plotter.SplineSegment;
  */
 public final class IdealSplineSerializer
 {
-    private static final Logger sLOGGER = LogManager.getLogger(IdealSplineSerializer.class);
-
     /**
      * Constructor, private because the static functions should be used.
      */
@@ -30,20 +24,21 @@ public final class IdealSplineSerializer
     /**
      * De-Serializes a list of spline segments from the given string.
      * 
-     * @param aString
+     * @param aData
      *            The string to de-serialize
      * 
      * @return The path to drive
      */
-    public static List<SplineSegment> deserializePath(String aString)
+    public static List<SplineSegment> deserializePath(double[] aData)
     {
         List<SplineSegment> points = new ArrayList<>();
-        StringTokenizer tokenizer = new StringTokenizer(aString, ",");
 
-        while (tokenizer.hasMoreElements())
+        int dataPtr = 0;
+        while (dataPtr < aData.length)
         {
-            SplineSegment segment = deserializePathPoint(tokenizer);
+            SplineSegment segment = deserializePathPoint(aData, dataPtr);
             points.add(segment);
+            dataPtr += 7;
         }
 
         return points;
@@ -91,29 +86,24 @@ public final class IdealSplineSerializer
     /**
      * De-serializes a spline point from the given string.
      * 
-     * @param aTokenizer
-     *            The tokenizer containing the point to parse
+     * @param aData
+     *            The data
      * 
      * @return The de-serialized point
      */
-    public static SplineSegment deserializePathPoint(StringTokenizer aTokenizer)
+    @SuppressWarnings("PMD.AvoidReassigningParameters")
+    public static SplineSegment deserializePathPoint(double[] aData, int aDataPtr)
     {
         SplineSegment point = new SplineSegment();
 
-        try
-        {
-            point.mLeftSidePosition = Double.parseDouble(aTokenizer.nextToken());
-            point.mLeftSideVelocity = Double.parseDouble(aTokenizer.nextToken());
-            point.mRightSidePosition = Double.parseDouble(aTokenizer.nextToken());
-            point.mRightSideVelocity = Double.parseDouble(aTokenizer.nextToken());
-            point.mRobotHeading = Double.parseDouble(aTokenizer.nextToken());
-            point.mAverageX = Double.parseDouble(aTokenizer.nextToken());
-            point.mAverageY = Double.parseDouble(aTokenizer.nextToken());
-        }
-        catch (NumberFormatException ex)
-        {
-            sLOGGER.log(Level.ERROR, "", ex);
-        }
+        point.mLeftSidePosition = aData[aDataPtr++];
+        point.mLeftSideVelocity = aData[aDataPtr++];
+        point.mRightSidePosition = aData[aDataPtr++];
+        point.mRightSideVelocity = aData[aDataPtr++];
+        point.mRobotHeading = aData[aDataPtr++];
+        point.mAverageX = aData[aDataPtr++];
+        point.mAverageY = aData[aDataPtr++];
+
 
         return point;
     }
