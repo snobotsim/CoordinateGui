@@ -67,9 +67,6 @@ public class BaseCoordinateGuiWidget<DataType extends BaseCoordinateGuiData, Con
 
     protected void handleChange(DataType aNewData, final Map<String, Object> aChanges)
     {
-
-        System.out.println("Getting coordinate data" + aChanges); // NOPMD
-        System.out.println(aNewData); // NOPMD
         if (aChanges.containsKey(CoordinateDataType.NAME + "/" + SmartDashboardNames.sROBOT_POSITION))
         {
             mFieldController.addRobotPosition(aNewData.getRobotPosition().toCoord(mDistanceUnit));
