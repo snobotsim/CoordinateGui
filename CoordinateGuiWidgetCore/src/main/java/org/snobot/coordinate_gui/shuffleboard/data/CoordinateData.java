@@ -1,5 +1,6 @@
 package org.snobot.coordinate_gui.shuffleboard.data;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,14 +11,13 @@ import org.snobot.coordinate_gui.model.Position2dDistance;
 
 public class CoordinateData extends ComplexData<CoordinateData>
 {
-    private final double mX;
-    private final double mY;
-    private final double mAngle;
-    private final double mCtr;
+    private static final double[] DEFAULT_VALUE = new double[]{0, 0, 0};
+
+    private final double[] mData;
 
     public CoordinateData()
     {
-        this(0, 0, 0, 0);
+        this(DEFAULT_VALUE);
     }
 
     /**
@@ -41,29 +41,18 @@ public class CoordinateData extends ComplexData<CoordinateData>
      */
     public CoordinateData(String aPrefix, Map<String, Object> aMap)
     {
-        this(
-                (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.sX_POSITION, 0.0), 
-                (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.sY_POSITION, 0.0),
-                (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.sORIENTATION, 0.0),
-                (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.sROBOT_POSITION_CTR, 0.0));
+        this((double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sROBOT_POSITION, DEFAULT_VALUE));
     }
 
     /**
      * Constructor.
      * 
-     * @param aX
-     *            The X position
-     * @param aY
-     *            The Y position
-     * @param aAngle
-     *            The angle of the robot, relative to north
+     * @param aData
+     *            The coordinate data
      */
-    public CoordinateData(double aX, double aY, double aAngle, double aCtr)
+    public CoordinateData(double[] aData)
     {
-        mX = aX;
-        mY = aY;
-        mAngle = aAngle;
-        mCtr = aCtr;
+        mData = Arrays.copyOf(aData, aData.length);
     }
 
     @Override
@@ -82,26 +71,8 @@ public class CoordinateData extends ComplexData<CoordinateData>
     public Map<String, Object> asMap(String aPrefix)
     {
         Map<String, Object> map = new HashMap<>();
-        map.put(aPrefix + SmartDashboardNames.sX_POSITION, mX);
-        map.put(aPrefix + SmartDashboardNames.sY_POSITION, mY);
-        map.put(aPrefix + SmartDashboardNames.sORIENTATION, mAngle);
-        map.put(aPrefix + SmartDashboardNames.sROBOT_POSITION_CTR, mCtr);
+        map.put(aPrefix + SmartDashboardNames.sROBOT_POSITION, mData);
         return map;
-    }
-
-    public double getX()
-    {
-        return mX;
-    }
-
-    public double getY()
-    {
-        return mY;
-    }
-
-    public double getAngle()
-    {
-        return mAngle;
     }
 
     /**
@@ -111,8 +82,6 @@ public class CoordinateData extends ComplexData<CoordinateData>
      */
     public Coordinate toCoord(Distance.Unit aDistanceUnit)
     {
-        double angle = getAngle();
-
-        return new Coordinate(new Position2dDistance(getX(), getY(), aDistanceUnit), angle);
+        return new Coordinate(new Position2dDistance(mData[0], mData[1], aDistanceUnit), mData[2]);
     }
 }

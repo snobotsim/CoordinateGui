@@ -1,10 +1,11 @@
 package org.snobot.coordinate_gui.shuffleboard.data;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.logging.Logger;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
 import org.snobot.coordinate_gui.model.Distance;
@@ -12,11 +13,12 @@ import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController;
 
 public class VisionData extends ComplexData<VisionData>
 {
-    private final String mValue;
+    private static final double[] DEFAULT_DATA = new double[]{};
+    private final double[] mData;
 
     public VisionData()
     {
-        this("");
+        this(DEFAULT_DATA);
     }
 
     /**
@@ -40,18 +42,18 @@ public class VisionData extends ComplexData<VisionData>
      */
     public VisionData(String aPrefix, Map<String, Object> aMap)
     {
-        this((String) aMap.getOrDefault(aPrefix + SmartDashboardNames.sCAMERA_POSITIONS, ""));
+        this((double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sCAMERA_POSITIONS, DEFAULT_DATA));
     }
 
     /**
      * Constructor.
      * 
-     * @param aValue
+     * @param aData
      *            The vision data
      */
-    public VisionData(String aValue)
+    public VisionData(double[] aData)
     {
-        mValue = aValue;
+        mData = Arrays.copyOf(aData, aData.length);
     }
 
     @Override
@@ -70,19 +72,14 @@ public class VisionData extends ComplexData<VisionData>
     public Map<String, Object> asMap(String aPrefix)
     {
         Map<String, Object> map = new HashMap<>();
-        map.put(aPrefix + SmartDashboardNames.sCAMERA_POSITIONS, mValue);
+        map.put(aPrefix + SmartDashboardNames.sCAMERA_POSITIONS, mData);
         return map;
-    }
-
-    public String getValue()
-    {
-        return mValue;
     }
 
     @Override
     public String toString()
     {
-        return "VisionData [mValue=" + mValue + "]";
+        return "VisionData [mValue=" + Arrays.toString(mData) + "]";
     }
 
     /**
@@ -93,20 +90,19 @@ public class VisionData extends ComplexData<VisionData>
     public List<CameraRayLayerController.Ray> toRays(Distance.Unit aDistanceUnit)
     {
         List<CameraRayLayerController.Ray> rays = new ArrayList<>();
+        Logger.getLogger(VisionData.class.getName()).severe("Getting camera data... " + Arrays.toString(mData));
 
-        StringTokenizer tokenizer = new StringTokenizer(getValue(), ",");
-        while (tokenizer.countTokens() >= 4)
+        for (int i = 0; i < mData.length;)
         {
             CameraRayLayerController.Ray ray = new CameraRayLayerController.Ray();
-
-            ray.mStart.mX = Distance.from(Double.parseDouble(tokenizer.nextToken()), aDistanceUnit);
-            ray.mStart.mY = Distance.from(Double.parseDouble(tokenizer.nextToken()), aDistanceUnit);
-            ray.mEnd.mX = Distance.from(Double.parseDouble(tokenizer.nextToken()), aDistanceUnit);
-            ray.mEnd.mY = Distance.from(Double.parseDouble(tokenizer.nextToken()), aDistanceUnit);
-
-
+            ray.mStart.mX = Distance.from(mData[i++], aDistanceUnit);
+            ray.mStart.mY = Distance.from(mData[i++], aDistanceUnit);
+            ray.mEnd.mX = Distance.from(mData[i++], aDistanceUnit);
+            ray.mEnd.mY = Distance.from(mData[i++], aDistanceUnit);
             rays.add(ray);
         }
+
+        Logger.getLogger(VisionData.class.getName()).severe("--Got " + rays);
         return rays;
     }
 }

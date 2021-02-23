@@ -1,10 +1,10 @@
 package org.snobot.coordinate_gui.shuffleboard.data;
 
+import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
 import org.snobot.coordinate_gui.model.Coordinate;
@@ -15,13 +15,15 @@ import org.snobot.nt.spline_plotter.SplineSegment;
 
 public class TrajectoryData extends ComplexData<TrajectoryData>
 {
-    private final String mIdealSpline;
-    private final String mMeasuredSpline;
-    private final String mSplineWaypoints;
+    private static final double[] DEFAULT_VALUE = new double[]{};
+
+    private final double[] mIdealSpline;
+    private final double[] mMeasuredSpline;
+    private final double[] mSplineWaypoints;
 
     public TrajectoryData()
     {
-        this("", "", "");
+        this(DEFAULT_VALUE, DEFAULT_VALUE, DEFAULT_VALUE);
     }
 
     /**
@@ -46,9 +48,9 @@ public class TrajectoryData extends ComplexData<TrajectoryData>
     public TrajectoryData(String aPrefix, Map<String, Object> aMap)
     {
         this(
-                (String) aMap.getOrDefault(aPrefix + SmartDashboardNames.sSPLINE_IDEAL_POINTS, ""),
-                (String) aMap.getOrDefault(aPrefix + SmartDashboardNames.sSPLINE_REAL_POINT, ""),
-                (String) aMap.getOrDefault(aPrefix + SmartDashboardNames.sSPLINE_WAYPOINTS, ""));
+                (double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sSPLINE_IDEAL_POINTS, DEFAULT_VALUE),
+                (double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sSPLINE_REAL_POINT, DEFAULT_VALUE),
+                (double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sSPLINE_WAYPOINTS, DEFAULT_VALUE));
     }
 
     /**
@@ -62,13 +64,13 @@ public class TrajectoryData extends ComplexData<TrajectoryData>
      *            A string representing the serialized waypoints
      */
     public TrajectoryData(
-            String aIdealSpline,
-            String aMeasuredSpline,
-            String aSplineWaypoints)
+            double[] aIdealSpline,
+            double[] aMeasuredSpline,
+            double[] aSplineWaypoints)
     {
-        mIdealSpline = aIdealSpline;
-        mMeasuredSpline = aMeasuredSpline;
-        mSplineWaypoints = aSplineWaypoints;
+        mIdealSpline = Arrays.copyOf(aIdealSpline, aIdealSpline.length);
+        mMeasuredSpline = Arrays.copyOf(aMeasuredSpline, aMeasuredSpline.length);
+        mSplineWaypoints = Arrays.copyOf(aSplineWaypoints, aSplineWaypoints.length);
     }
 
     @Override
@@ -93,21 +95,6 @@ public class TrajectoryData extends ComplexData<TrajectoryData>
         return map;
     }
 
-    public String getIdealSpline()
-    {
-        return mIdealSpline;
-    }
-
-    public String getMeasuredSpline()
-    {
-        return mMeasuredSpline;
-    }
-
-    public String getSplineWaypoints()
-    {
-        return mSplineWaypoints;
-    }
-
     /**
      * Converts this to the data model the gui core understands.
      * @return The new value
@@ -115,12 +102,14 @@ public class TrajectoryData extends ComplexData<TrajectoryData>
     public List<Coordinate> toWaypoints(Distance.Unit aDistanceUnit)
     {
         List<Coordinate> coordinates = new ArrayList<>();
-        StringTokenizer tokenizer = new StringTokenizer(getSplineWaypoints(), ",");
-        while (tokenizer.countTokens() >= 3)
+
+        int dataPtr = 0;
+
+        while (dataPtr < mSplineWaypoints.length)
         {
-            double x = Double.parseDouble(tokenizer.nextToken());
-            double y = Double.parseDouble(tokenizer.nextToken());
-            double angle = Math.toDegrees(Double.parseDouble(tokenizer.nextToken()));
+            double x = mSplineWaypoints[dataPtr++];
+            double y = mSplineWaypoints[dataPtr++];
+            double angle = Math.toDegrees(mSplineWaypoints[dataPtr++]);
             Coordinate coordinate = new Coordinate(new Position2dDistance(x, y, aDistanceUnit), angle);
             coordinates.add(coordinate);
         }
@@ -136,7 +125,7 @@ public class TrajectoryData extends ComplexData<TrajectoryData>
     public List<Coordinate> toIdealCoordinates(Distance.Unit aDistanceUnit)
     {
         List<Coordinate> coordinates = new ArrayList<>();
-        List<SplineSegment> segments = IdealSplineSerializer.deserializePath(getIdealSpline());
+        List<SplineSegment> segments = IdealSplineSerializer.deserializePath(mIdealSpline);
 
         for (SplineSegment splineSegment : segments)
         {
@@ -144,5 +133,20 @@ public class TrajectoryData extends ComplexData<TrajectoryData>
         }
 
         return coordinates;
+    }
+
+    public List<SplineSegment> getIdealSpline()
+    {
+        return IdealSplineSerializer.deserializePath(mIdealSpline);
+    }
+
+    public int getMeasurementIndex()
+    {
+        return (int) mMeasuredSpline[0];
+    }
+
+    public SplineSegment getMeasurementSegment()
+    {
+        return IdealSplineSerializer.deserializePathPoint(mMeasuredSpline, 1);
     }
 }

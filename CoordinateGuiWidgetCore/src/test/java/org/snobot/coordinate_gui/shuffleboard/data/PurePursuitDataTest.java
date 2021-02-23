@@ -19,7 +19,7 @@ public class PurePursuitDataTest
     public void testInvalidLookahead()
     {
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put(SmartDashboardNames.sPURE_PURSUIT_LOOKAHEAD, "");
+        dataMap.put(SmartDashboardNames.sPURE_PURSUIT_LOOKAHEAD, new double[]{});
 
         PurePursuitData data = new PurePursuitData(dataMap);
         PurePursuitLayerController.PurePursuitLookaheadData lookaheadData = data.toLookaheadData(Distance.Unit.FEET);
@@ -32,7 +32,7 @@ public class PurePursuitDataTest
     public void testGoodLookahead()
     {
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put(SmartDashboardNames.sPURE_PURSUIT_LOOKAHEAD, "12.47,-48.41,78.24,-9");
+        dataMap.put(SmartDashboardNames.sPURE_PURSUIT_LOOKAHEAD, new double[]{12.47, -48.41, 78.24, -9});
 
         PurePursuitData data = new PurePursuitData(dataMap);
         PurePursuitLayerController.PurePursuitLookaheadData lookaheadData = data.toLookaheadData(Distance.Unit.FEET);
@@ -47,7 +47,7 @@ public class PurePursuitDataTest
     public void testInvalidCurrentPoint()
     {
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put(SmartDashboardNames.sPURE_PURSUIT_CURRENT_POINT, "12.47");
+        dataMap.put(SmartDashboardNames.sPURE_PURSUIT_CURRENT_POINT, new double[]{12.47});
 
         PurePursuitData data = new PurePursuitData(dataMap);
         PurePursuitPointInfo info = data.getCurrentPoint();
@@ -58,7 +58,7 @@ public class PurePursuitDataTest
     public void testValidCurrentPoint()
     {
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put(SmartDashboardNames.sPURE_PURSUIT_CURRENT_POINT, "12,-48.41,78.24,-9,25,8.14,-84.1");
+        dataMap.put(SmartDashboardNames.sPURE_PURSUIT_CURRENT_POINT, new double[]{12, -48.41, 78.24, -9, 25, 8.14, -84.1});
 
         PurePursuitData data = new PurePursuitData(dataMap);
         PurePursuitPointInfo info = data.getCurrentPoint();
@@ -76,7 +76,7 @@ public class PurePursuitDataTest
     public void testValidWaypoints()
     {
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put(SmartDashboardNames.sPURE_PURSUIT_WAYPOINTS, "0,0,0,74,92.45,-19.4,-84.24,-72.4");
+        dataMap.put(SmartDashboardNames.sPURE_PURSUIT_WAYPOINTS, new double[]{0, 0, 0, 74, 92.45, -19.4, -84.24, -72.4});
 
         PurePursuitData data = new PurePursuitData(dataMap);
         List<Coordinate> waypoints = data.getWaypoints();
@@ -109,7 +109,7 @@ public class PurePursuitDataTest
     public void testValidUpsampled()
     {
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put(SmartDashboardNames.sPURE_PURSUIT_UP_SAMPLED, "74,92.45");
+        dataMap.put(SmartDashboardNames.sPURE_PURSUIT_UP_SAMPLED, new double[]{74, 92.45});
 
         PurePursuitData data = new PurePursuitData(dataMap);
         List<Coordinate> waypoints = data.getUpSampledPoints();
@@ -127,7 +127,7 @@ public class PurePursuitDataTest
     public void testValidSmoothed()
     {
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put(SmartDashboardNames.sPURE_PURSUIT_SMOOTHED, "-19.4,-84.24");
+        dataMap.put(SmartDashboardNames.sPURE_PURSUIT_SMOOTHED, new double[]{-19.4, -84.24});
 
         PurePursuitData data = new PurePursuitData(dataMap);
         List<Coordinate> waypoints = data.getSmoothedPoints();

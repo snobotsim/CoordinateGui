@@ -1,5 +1,6 @@
 package org.snobot.coordinate_gui.shuffleboard.data;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,13 +10,15 @@ import org.snobot.coordinate_gui.model.Position2dDistance;
 
 public class GoToPositionData extends ComplexData<GoToPositionData>
 {
-    private final String mPositionCsv;
+    private static final double[] DEFAULT_VALUE = new double[]{0, 0};
+
+    private final double[] mData;
     private final Double mX;
     private final Double mY;
 
     public GoToPositionData()
     {
-        this("0,0");
+        this(DEFAULT_VALUE);
     }
 
     public GoToPositionData(Map<String, Object> aMap)
@@ -25,24 +28,23 @@ public class GoToPositionData extends ComplexData<GoToPositionData>
 
     public GoToPositionData(String aPrefix, Map<String, Object> aMap)
     {
-        this((String) aMap.getOrDefault(aPrefix + SmartDashboardNames.sGO_TO_POSITION_POSITIONS, ""));
+        this((double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sGO_TO_POSITION_POSITIONS, DEFAULT_VALUE));
     }
 
     /**
      * Constructor.
      * 
-     * @param aPositionString
+     * @param aData
      *            The CSV representation of the coordinate data
      */
-    public GoToPositionData(String aPositionString)
+    public GoToPositionData(double[] aData)
     {
-        mPositionCsv = aPositionString;
+        mData = Arrays.copyOf(aData, aData.length);
 
-        if (!mPositionCsv.isEmpty())
+        if (aData.length == 2) // NOPMD
         {
-            String[] pieces = aPositionString.split(",");
-            mX = Double.parseDouble(pieces[0]);
-            mY = Double.parseDouble(pieces[1]);
+            mX = mData[0];
+            mY = mData[1];
         }
         else
         {
@@ -67,7 +69,7 @@ public class GoToPositionData extends ComplexData<GoToPositionData>
     public Map<String, Object> asMap(String aPrefix)
     {
         Map<String, Object> map = new HashMap<>();
-        map.put(aPrefix + SmartDashboardNames.sGO_TO_POSITION_POSITIONS, mPositionCsv);
+        map.put(aPrefix + SmartDashboardNames.sGO_TO_POSITION_POSITIONS, mData);
         return map;
     }
 

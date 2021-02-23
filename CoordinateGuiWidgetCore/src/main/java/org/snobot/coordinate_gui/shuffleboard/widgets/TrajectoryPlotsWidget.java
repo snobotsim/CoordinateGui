@@ -1,11 +1,9 @@
 package org.snobot.coordinate_gui.shuffleboard.widgets;
 
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import org.snobot.coordinate_gui.shuffleboard.data.SmartDashboardNames;
 import org.snobot.coordinate_gui.shuffleboard.data.TrajectoryData;
-import org.snobot.nt.spline_plotter.SplineSegment;
 import org.snobot.nt.spline_plotter.TrajectoryPlotsController;
 
 import edu.wpi.first.shuffleboard.api.widget.Description;
@@ -37,7 +35,7 @@ public class TrajectoryPlotsWidget extends SimpleAnnotatedWidget<TrajectoryData>
             final Map<String, Object> changes = newData.changesFrom(oldData);
             if (changes.containsKey(SmartDashboardNames.sSPLINE_IDEAL_POINTS))
             {
-                mOverviewContainerController.setPath(IdealSplineSerializer.deserializePath(newData.getIdealSpline()));
+                mOverviewContainerController.setPath(newData.getIdealSpline());
             }
             if (changes.containsKey(SmartDashboardNames.sSPLINE_REAL_POINT))
             {
@@ -54,9 +52,7 @@ public class TrajectoryPlotsWidget extends SimpleAnnotatedWidget<TrajectoryData>
 
     private void handleNewRealPoint(TrajectoryData aData)
     {
-        StringTokenizer tokenizer = new StringTokenizer(aData.getMeasuredSpline(), ",");
-
-        int index = Integer.parseInt(tokenizer.nextElement().toString());
+        int index = aData.getMeasurementIndex();
 
         if (index == 0 || index < mLastIndex)
         {
@@ -65,8 +61,7 @@ public class TrajectoryPlotsWidget extends SimpleAnnotatedWidget<TrajectoryData>
 
         if (index > mLastIndex)
         {
-            SplineSegment segment = IdealSplineSerializer.deserializePathPoint(tokenizer);
-            mOverviewContainerController.setPoint(index, segment);
+            mOverviewContainerController.setPoint(index, aData.getMeasurementSegment());
         }
         mLastIndex = index;
     }

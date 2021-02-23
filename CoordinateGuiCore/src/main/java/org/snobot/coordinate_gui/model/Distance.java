@@ -10,7 +10,7 @@ public final class Distance
         INCH, FEET, CENTIMETERS, METERS
     }
 
-    private static final Unit DEFAULT_UNIT = Unit.FEET;
+    private static final Unit DEFAULT_UNIT = Unit.METERS;
 
     private static double INCHES_PER_METER = 0.0254;
     private static double FEET_PER_METER = 0.3048;

@@ -43,11 +43,11 @@ public class RamsetePlotsWidget extends SimpleAnnotatedWidget<RamseteControllerD
             final Map<String, Object> changes = newData.changesFrom(oldData);
             if (changes.containsKey(SmartDashboardNames.sRAMSETE_IDEAL_POINTS))
             {
-                mOverviewContainerController.setPath(newData.getIdealPoints(), mDistanceUnit, mVelocityUnit);
+                mOverviewContainerController.setPath(newData.getIdealPoints(mDistanceUnit, mVelocityUnit), mDistanceUnit, mVelocityUnit);
             }
             if (changes.containsKey(SmartDashboardNames.sRAMSETE_REAL_POINT))
             {
-                mOverviewContainerController.addMeasuredPoint(newData.getRealPoints(), mDistanceUnit, mVelocityUnit);
+                mOverviewContainerController.addMeasuredPoint(newData.getRealPoints(mDistanceUnit, mVelocityUnit), mDistanceUnit, mVelocityUnit);
             }
         });
     }

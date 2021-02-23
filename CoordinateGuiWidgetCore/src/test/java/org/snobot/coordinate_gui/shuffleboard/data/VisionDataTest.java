@@ -15,7 +15,11 @@ public class VisionDataTest
     public void testConversion()
     {
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put(SmartDashboardNames.sCAMERA_POSITIONS, "0,1,2,3,1.23,125.6,64.35,90.52,18.42,85.52,71.24,92.5,1.23,125.6,64.35,90.52");
+        dataMap.put(SmartDashboardNames.sCAMERA_POSITIONS, new double[]{
+            0, 1, 2, 3,
+            1.23, 125.6, 64.35, 90.52,
+            18.42, 85.52, 71.24, 92.5,
+            1.23, 125.6, 64.35, 90.52});
 
         List<CameraRayLayerController.Ray> rays = new VisionData(dataMap).toRays(Distance.Unit.FEET);
 

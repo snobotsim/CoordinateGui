@@ -6,7 +6,7 @@
       <PatternLayout pattern="%highlight{%d{yyyy-MM-dd HH:mm:ss} %-5p %c:%L - %m%n}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=black, DEBUG=green bold, TRACE=blue}"/>
     </Console>
 
-    <RollingFile name="SnobotSimRollingFile" fileName="${sys:user.home}/ShuffleBoard/snobot_sim/${date:yyyyMMdd_HHmmss}.log" filePattern="logs/snobot_sim/${date:yyyy-MMdd_HHmm}/app-%d{yyyy-MMdd_HHmm}-%i.log.gz">
+    <RollingFile name="SnobotSimRollingFile" fileName="${sys:user.home}/Shuffleboard/snobot_sim/${date:yyyyMMdd_HHmmss}.log" filePattern="logs/snobot_sim/${date:yyyy-MMdd_HHmm}/app-%d{yyyy-MMdd_HHmm}-%i.log.gz">
       <PatternLayout>
         <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</Pattern>
       </PatternLayout>
