@@ -10,7 +10,7 @@ import edu.wpi.first.shuffleboard.api.widget.ParametrizedController;
 import javafx.fxml.FXML;
 import org.snobot.coordinate_gui.shuffleboard.widgets.BaseCoordinateGuiWidget;
 
-@Description(name = "InfiniteRechargeGui", dataTypes = {InfiniteRechargeCoordinateGuiData.class})
+@Description(name = "CoordinateGuiInfiniteRecharge", dataTypes = {InfiniteRechargeCoordinateGuiData.class})
 @ParametrizedController("InfiniteRechargeGuiWidget.fxml")
 public class InfiniteRechargeGuiWidget2021 extends BaseCoordinateGuiWidget<InfiniteRechargeCoordinateGuiData, InfiniteRechargeAtHomeController>
 {

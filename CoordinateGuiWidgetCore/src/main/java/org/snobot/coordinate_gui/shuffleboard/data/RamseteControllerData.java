@@ -91,16 +91,6 @@ public class RamseteControllerData extends ComplexData<RamseteControllerData>
         return map;
     }
 
-//    public double[] getIdealPoints()
-//    {
-//        return mIdealSpline;
-//    }
-//
-//    public double[] getRealPoints()
-//    {
-//        return mMeasuredSpline;
-//    }
-
     /**
      * Converts the serialized string into coordinate points.
      * @param aDistanceUnit The distance unit

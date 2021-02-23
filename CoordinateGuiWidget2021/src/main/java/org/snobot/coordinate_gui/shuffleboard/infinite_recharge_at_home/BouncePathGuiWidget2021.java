@@ -10,8 +10,8 @@ import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.shuffleboard.infinite_recharge_at_home.data.InfiniteRechargeCoordinateGuiData;
 import org.snobot.coordinate_gui.shuffleboard.widgets.BaseCoordinateGuiWidget;
 
-@Description(name = "BouncePathGui", dataTypes = {InfiniteRechargeCoordinateGuiData.class})
-@ParametrizedController("CoordinateGuiWidget.fxml")
+@Description(name = "CoordinateGuiBounce", dataTypes = {InfiniteRechargeCoordinateGuiData.class})
+@ParametrizedController("BouncePathGuiWidget.fxml")
 public class BouncePathGuiWidget2021 extends BaseCoordinateGuiWidget<InfiniteRechargeCoordinateGuiData, InfiniteRechargeAtHomeController>
 {
     @FXML

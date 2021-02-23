@@ -133,11 +133,6 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
         return convert(mSmoothedPoints);
     }
 
-//    public String getLookaheadString()
-//    {
-//        return mLookaheadPoints;
-//    }
-
     /**
      * Gets the last point sent by the pure pursuit command.
      * 

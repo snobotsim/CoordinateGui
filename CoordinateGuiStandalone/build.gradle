@@ -25,11 +25,6 @@ dependencies {
     compile "org.openjfx:javafx-graphics:11:" + getJavaFxPlatform()
     compile "org.openjfx:javafx-controls:11:" + getJavaFxPlatform()
     compile "org.openjfx:javafx-fxml:11:" + getJavaFxPlatform()
-    
-//    compile "jaci.pathfinder:Pathfinder-Java:2019.1.10"
-//    compile "jaci.pathfinder:Pathfinder-JNI:2019.1.10:windowsx86-64"
-//    compile "jaci.pathfinder:Pathfinder-CoreJNI:2019.1.10:windowsx86-64"
-//    compile "jaci.jniloader:JNILoader:1.0.1"
 }
 
 mainClassName = "org.snobot.coordinate_gui.Main"

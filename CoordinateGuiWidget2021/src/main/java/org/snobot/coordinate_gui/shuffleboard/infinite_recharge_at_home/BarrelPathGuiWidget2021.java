@@ -10,7 +10,7 @@ import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.shuffleboard.infinite_recharge_at_home.data.InfiniteRechargeCoordinateGuiData;
 import org.snobot.coordinate_gui.shuffleboard.widgets.BaseCoordinateGuiWidget;
 
-@Description(name = "BarrelPathGui", dataTypes = {InfiniteRechargeCoordinateGuiData.class})
+@Description(name = "CoordinateGuiBarrelPath", dataTypes = {InfiniteRechargeCoordinateGuiData.class})
 @ParametrizedController("BarrelPathGuiWidget.fxml")
 public class BarrelPathGuiWidget2021 extends BaseCoordinateGuiWidget<InfiniteRechargeCoordinateGuiData, InfiniteRechargeAtHomeController>
 {

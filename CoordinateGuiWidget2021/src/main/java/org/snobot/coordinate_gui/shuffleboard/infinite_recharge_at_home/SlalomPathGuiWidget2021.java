@@ -10,7 +10,7 @@ import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.shuffleboard.infinite_recharge_at_home.data.InfiniteRechargeCoordinateGuiData;
 import org.snobot.coordinate_gui.shuffleboard.widgets.BaseCoordinateGuiWidget;
 
-@Description(name = "SlalomPathGui", dataTypes = {InfiniteRechargeCoordinateGuiData.class})
+@Description(name = "CoordinateGuiSlalomPath", dataTypes = {InfiniteRechargeCoordinateGuiData.class})
 @ParametrizedController("SlalomPathGuiWidget.fxml")
 public class SlalomPathGuiWidget2021 extends BaseCoordinateGuiWidget<InfiniteRechargeCoordinateGuiData, InfiniteRechargeAtHomeController>
 {

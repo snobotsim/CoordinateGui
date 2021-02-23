@@ -95,21 +95,6 @@ public class TrajectoryData extends ComplexData<TrajectoryData>
         return map;
     }
 
-//    public double[] getIdealSpline()
-//    {
-//        return mIdealSpline;
-//    }
-//
-//    public double[] getMeasuredSpline()
-//    {
-//        return mMeasuredSpline;
-//    }
-//
-//    public double[] getSplineWaypoints()
-//    {
-//        return mSplineWaypoints;
-//    }
-
     /**
      * Converts this to the data model the gui core understands.
      * @return The new value

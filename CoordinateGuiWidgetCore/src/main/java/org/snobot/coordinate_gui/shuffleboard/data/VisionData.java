@@ -76,11 +76,6 @@ public class VisionData extends ComplexData<VisionData>
         return map;
     }
 
-//    public String getValue()
-//    {
-//        return mValue;
-//    }
-
     @Override
     public String toString()
     {

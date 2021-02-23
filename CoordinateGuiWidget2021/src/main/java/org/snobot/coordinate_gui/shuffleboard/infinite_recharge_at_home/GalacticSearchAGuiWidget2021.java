@@ -10,7 +10,7 @@ import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.shuffleboard.infinite_recharge_at_home.data.InfiniteRechargeCoordinateGuiData;
 import org.snobot.coordinate_gui.shuffleboard.widgets.BaseCoordinateGuiWidget;
 
-@Description(name = "GalacticSearchAGui", dataTypes = {InfiniteRechargeCoordinateGuiData.class})
+@Description(name = "CoordinateGuiGalacticSearchA", dataTypes = {InfiniteRechargeCoordinateGuiData.class})
 @ParametrizedController("GalacticSearchAGuiWidget.fxml")
 public class GalacticSearchAGuiWidget2021 extends BaseCoordinateGuiWidget<InfiniteRechargeCoordinateGuiData, InfiniteRechargeAtHomeController>
 {

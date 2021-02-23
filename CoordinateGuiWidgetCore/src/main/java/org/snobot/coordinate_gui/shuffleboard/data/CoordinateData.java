@@ -75,21 +75,6 @@ public class CoordinateData extends ComplexData<CoordinateData>
         return map;
     }
 
-//    public double getX()
-//    {
-//        return mX;
-//    }
-//
-//    public double getY()
-//    {
-//        return mY;
-//    }
-//
-//    public double getAngle()
-//    {
-//        return mAngle;
-//    }
-
     /**
      * Converts this to the data model the gui core understands.
      * @param aDistanceUnit the distance units to use
