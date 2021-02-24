@@ -3,6 +3,7 @@ package org.snobot.coordinate_gui.shuffleboard.data;
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.Distance;
+import org.snobot.coordinate_gui.model.Position2dDistance;
 import org.snobot.coordinate_gui.model.Velocity;
 import org.snobot.nt.ramsete_plotter.RamseteInstantaneousPoint;
 import org.snobot.nt.ramsete_plotter.RamsetePlotDeserializer;
@@ -19,12 +20,13 @@ public class RamseteControllerData extends ComplexData<RamseteControllerData>
 {
     private static final double[] DEFAULT_VALUE = new double[]{};
 
-    private final double[] mIdealSpline;
+    private final String mIdealSpline;
     private final double[] mMeasuredSpline;
+    private final double[] mWaypoints;
 
     public RamseteControllerData()
     {
-        this(DEFAULT_VALUE, DEFAULT_VALUE);
+        this("", DEFAULT_VALUE, DEFAULT_VALUE);
     }
 
     /**
@@ -47,11 +49,13 @@ public class RamseteControllerData extends ComplexData<RamseteControllerData>
      *            A string representing the serialized measured spline
      */
     public RamseteControllerData(
-        double[] aIdealSpline,
-        double[] aMeasuredSpline)
+            String aIdealSpline,
+        double[] aMeasuredSpline,
+        double[] aWaypoints)
     {
-        mIdealSpline = Arrays.copyOf(aIdealSpline, aIdealSpline.length);
+        mIdealSpline = aIdealSpline;
         mMeasuredSpline = Arrays.copyOf(aMeasuredSpline, aMeasuredSpline.length);
+        mWaypoints = Arrays.copyOf(aWaypoints, aWaypoints.length);
     }
 
 
@@ -66,8 +70,9 @@ public class RamseteControllerData extends ComplexData<RamseteControllerData>
     public RamseteControllerData(String aPrefix, Map<String, Object> aMap)
     {
         this(
-            (double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sRAMSETE_IDEAL_POINTS, DEFAULT_VALUE),
-            (double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sRAMSETE_REAL_POINT, DEFAULT_VALUE));
+            (String) aMap.getOrDefault(aPrefix + SmartDashboardNames.sRAMSETE_IDEAL_POINTS, ""),
+            (double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sRAMSETE_REAL_POINT, DEFAULT_VALUE),
+            (double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sRAMSETE_WAYPOINTS, DEFAULT_VALUE));
     }
 
     @Override
@@ -88,6 +93,7 @@ public class RamseteControllerData extends ComplexData<RamseteControllerData>
         Map<String, Object> map = new HashMap<>();
         map.put(aPrefix + SmartDashboardNames.sRAMSETE_IDEAL_POINTS, mIdealSpline);
         map.put(aPrefix + SmartDashboardNames.sRAMSETE_REAL_POINT, mMeasuredSpline);
+        map.put(aPrefix + SmartDashboardNames.sRAMSETE_WAYPOINTS, mWaypoints);
         return map;
     }
 
@@ -117,5 +123,24 @@ public class RamseteControllerData extends ComplexData<RamseteControllerData>
     public RamseteInstantaneousPoint getRealPoints(Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)
     {
         return RamsetePlotDeserializer.deserializeInstantaneousPoint(mMeasuredSpline, aDistanceUnit, aVelocityUnit);
+    }
+
+    /**
+     * Gets the waypoints.
+     *
+     * @param aDistanceUnit The distance unit
+     * @return The waypoints
+     */
+    public List<Coordinate> getWaypoints(Distance.Unit aDistanceUnit)
+    {
+        List<Coordinate> waypoints = new ArrayList<>();
+
+        int dataPtr = 0;
+        while (dataPtr < mWaypoints.length)
+        {
+            waypoints.add(new Coordinate(new Position2dDistance(mWaypoints[dataPtr++], mWaypoints[dataPtr++], aDistanceUnit), mWaypoints[dataPtr++]));
+        }
+
+        return waypoints;
     }
 }

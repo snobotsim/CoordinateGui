@@ -14,4 +14,11 @@ dependencies {
     compile "org.openjfx:javafx-controls:11:" + getJavaFxPlatform()
     compile "org.openjfx:javafx-fxml:11:" + getJavaFxPlatform()
 
+    testCompile 'org.junit.jupiter:junit-jupiter-api:5.5.1'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
+    testCompile 'org.junit.jupiter:junit-jupiter-params:5.5.1'
+
+    testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
+    testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
+
 }

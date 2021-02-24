@@ -11,6 +11,8 @@ import org.snobot.coordinate_gui.model.Position2dDistance;
 import org.snobot.coordinate_gui.ui.layers.BaseGuiController;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class StandaloneMain
 {
@@ -41,6 +43,12 @@ public final class StandaloneMain
             robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(30), Distance.fromFeet(15)), 0));
             robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(15)), 0));
 
+            List<Coordinate> waypoints = new ArrayList<>();
+            waypoints.add(new Coordinate(new Position2dDistance(Distance.fromFeet(1), Distance.fromFeet(1)), 0));
+            waypoints.add(new Coordinate(new Position2dDistance(Distance.fromFeet(2), Distance.fromFeet(2)), 45));
+            waypoints.add(new Coordinate(new Position2dDistance(Distance.fromFeet(5), Distance.fromFeet(4)), 90));
+
+            robotController.setRamseteWaypoints(waypoints);
 //            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(0)), 0));
 //            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(27), Distance.fromFeet(0)), 0));
 //            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(52), Distance.fromFeet(0)), 0));

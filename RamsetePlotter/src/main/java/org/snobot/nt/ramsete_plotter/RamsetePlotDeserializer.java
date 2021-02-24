@@ -1,14 +1,20 @@
 package org.snobot.nt.ramsete_plotter;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.snobot.coordinate_gui.model.Distance;
 import org.snobot.coordinate_gui.model.Position2dDistance;
 import org.snobot.coordinate_gui.model.Velocity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 public final class RamsetePlotDeserializer
 {
+    private static final Logger sLOGGER = LogManager.getLogger(RamsetePlotDeserializer.class);
+
     private RamsetePlotDeserializer()
     {
 
@@ -48,31 +54,41 @@ public final class RamsetePlotDeserializer
      * @param aVelocityUnit The velocity unit
      * @return The deserialized message
      */
-    public static List<RamsetePointInfo> deserializeIdealPoints(double[] aIdealPoints, Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)
+    public static List<RamsetePointInfo> deserializeIdealPoints(String aIdealPoints, Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)
     {
 
-
         List<RamsetePointInfo> points = new ArrayList<>();
+        StringTokenizer tokenizer = new StringTokenizer(aIdealPoints, ",");
 
-        int dataPtr = 0;
-        while (dataPtr < aIdealPoints.length)
+        while (tokenizer.hasMoreElements())
         {
-            points.add(deserializePoint(aIdealPoints, dataPtr, aDistanceUnit, aVelocityUnit));
-            dataPtr += 5;
+            RamsetePointInfo segment = RamsetePlotDeserializer.deserializePoint(tokenizer, aDistanceUnit, aVelocityUnit);
+            if (segment != null)
+            {
+                points.add(segment);
+            }
         }
 
         return points;
     }
 
-    @SuppressWarnings("PMD")
-    private static RamsetePointInfo deserializePoint(double[] aData, int aDataPtr, Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)
+    private static RamsetePointInfo deserializePoint(StringTokenizer aTokenizer, Distance.Unit aDistanceUnit, Velocity.Unit aVelocityUnit)
     {
-        double time = aData[aDataPtr++];
-        double velocity = aData[aDataPtr++];
-        double x = aData[aDataPtr++];
-        double y = aData[aDataPtr++];
-        double heading = aData[aDataPtr++];
+        try
+        {
+            double time = Double.parseDouble(aTokenizer.nextToken());
+            double velocity = Double.parseDouble(aTokenizer.nextToken());
+            double x = Double.parseDouble(aTokenizer.nextToken());
+            double y = Double.parseDouble(aTokenizer.nextToken());
+            double heading = Double.parseDouble(aTokenizer.nextToken());
 
-        return new RamsetePointInfo(time, Velocity.from(velocity, aVelocityUnit), new Position2dDistance(x, y, aDistanceUnit), heading);
+            return new RamsetePointInfo(time, Velocity.from(velocity, aVelocityUnit), new Position2dDistance(x, y, aDistanceUnit), heading);
+        }
+        catch (NumberFormatException ex)
+        {
+            sLOGGER.log(Level.ERROR, "", ex);
+        }
+
+        return null;
     }
 }

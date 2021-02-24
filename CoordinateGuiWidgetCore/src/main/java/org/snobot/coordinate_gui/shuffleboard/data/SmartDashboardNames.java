@@ -26,6 +26,7 @@ public class SmartDashboardNames
     public static final String sRAMSETE_NAMESPACE = "Ramsete Namespace";
     public static final String sRAMSETE_IDEAL_POINTS = "Ideal";
     public static final String sRAMSETE_REAL_POINT = "Measured";
+    public static final String sRAMSETE_WAYPOINTS = "Waypoints";
 
     // Pure-Pursuit table
     public static final String sPURE_PERSUIT_TABLE_TYPE = "PurePursuit";

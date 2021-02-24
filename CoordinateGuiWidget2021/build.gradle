@@ -105,12 +105,6 @@ publishing {
     repositories {
         maven {
             url publishing_url
-//           if(project.findProperty("publishing_url")) {
-//               credentials {
-//                   username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-//                   password = project.findProperty("gpr.key") ?: System.getenv("PASSWORD")
-//               }
-//           }
         }
     }
     publications {

@@ -65,6 +65,7 @@ public class BaseCoordinateGuiWidget<DataType extends BaseCoordinateGuiData, Con
         }
     }
 
+    @SuppressWarnings({"PMD.CyclomaticComplexity", "PMD.NPathComplexity"})
     protected void handleChange(DataType aNewData, final Map<String, Object> aChanges)
     {
         if (aChanges.containsKey(CoordinateDataType.NAME + "/" + SmartDashboardNames.sROBOT_POSITION))
@@ -95,6 +96,11 @@ public class BaseCoordinateGuiWidget<DataType extends BaseCoordinateGuiData, Con
         if (aChanges.containsKey(RamseteControllerDataType.NAME + "/" + SmartDashboardNames.sRAMSETE_IDEAL_POINTS))
         {
             mFieldController.setIdealRamsete(aNewData.getRamseteData().toIdealCoordinates(mDistanceUnit));
+        }
+
+        if (aChanges.containsKey(RamseteControllerDataType.NAME + "/" + SmartDashboardNames.sRAMSETE_WAYPOINTS))
+        {
+            mFieldController.setRamseteWaypoints(aNewData.getRamseteData().getWaypoints(mDistanceUnit));
         }
 
         if (aChanges.containsKey(PurePursuitDataType.NAME + "/" + SmartDashboardNames.sPURE_PURSUIT_SMOOTHED)

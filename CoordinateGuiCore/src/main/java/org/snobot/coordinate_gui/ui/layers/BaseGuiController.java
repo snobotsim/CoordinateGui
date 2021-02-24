@@ -71,6 +71,9 @@ public class BaseGuiController
     @FXML
     private PurePursuitLayerController mPurePursuitController;
 
+    @FXML
+    private WaypointLayerController mRamseteWaypointsController;
+
     protected BaseGuiController(String aFieldImageUrl,
                                 Distance aShortDirection, Distance aLongDirection,
                                 Distance aRobotWidth, Distance aRobotHeight,
@@ -126,17 +129,6 @@ public class BaseGuiController
     public PixelConverter getPixelConverter()
     {
         return mPixelConverter;
-    }
-
-    /**
-     * Sets the rays seen by the camera.
-     *
-     * @param aRays
-     *            The rays
-     */
-    public void setRays(List<CameraRayLayerController.Ray> aRays)
-    {
-        mCameraLayerController.setRays(mPixelConverter, aRays);
     }
 
 
@@ -198,6 +190,11 @@ public class BaseGuiController
             mIdealRamseteDataProvider.addData(coord);
         }
         mIdealRamseteCoordinatesController.render();
+    }
+
+    public void setRamseteWaypoints(List<Coordinate> aWaypoints)
+    {
+        mRamseteWaypointsController.setWaypoints(mPixelConverter, aWaypoints);
     }
 
     public TrajectoryConfigLayerController.CoodrinateWrapper getSelectedWaypoint()
