@@ -19,6 +19,6 @@ public class SlalomPathGuiWidget2021 extends BaseCoordinateGuiWidget<InfiniteRec
 
     public SlalomPathGuiWidget2021()
     {
-        super(Distance.Unit.METERS);
+        super(Distance.Unit.Meters);
     }
 }

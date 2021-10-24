@@ -21,7 +21,7 @@ public class VisionDataTest
             18.42, 85.52, 71.24, 92.5,
             1.23, 125.6, 64.35, 90.52});
 
-        List<CameraRayLayerController.Ray> rays = new VisionData(dataMap).toRays(Distance.Unit.FEET);
+        List<CameraRayLayerController.Ray> rays = new VisionData(dataMap).toRays(Distance.Unit.Feet);
 
         Assertions.assertEquals(4, rays.size());
 

@@ -13,7 +13,7 @@ import org.snobot.coordinate_gui.ui.layers.CameraRayLayerController;
 
 public class VisionData extends ComplexData<VisionData>
 {
-    private static final double[] DEFAULT_DATA = new double[]{};
+    private static final double[] DEFAULT_DATA = {};
     private final double[] mData;
 
     public VisionData()
@@ -87,6 +87,7 @@ public class VisionData extends ComplexData<VisionData>
      * @param aDistanceUnit the distance units to use
      * @return The new value
      */
+    @SuppressWarnings("PMD.AvoidReassigningLoopVariables")
     public List<CameraRayLayerController.Ray> toRays(Distance.Unit aDistanceUnit)
     {
         List<CameraRayLayerController.Ray> rays = new ArrayList<>();

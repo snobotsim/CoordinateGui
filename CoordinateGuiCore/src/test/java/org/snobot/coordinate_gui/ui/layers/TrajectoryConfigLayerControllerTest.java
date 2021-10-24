@@ -30,9 +30,9 @@ public class TrajectoryConfigLayerControllerTest
 
         TestableTrajectoryConfigLayerController controller = new TestableTrajectoryConfigLayerController();
 
-        controller.addPoint(converter, new Coordinate(new Position2dDistance(0, 0, Distance.Unit.FEET), 0));
-        controller.addPoint(converter, new Coordinate(new Position2dDistance(-9.52, 18.54, Distance.Unit.FEET), 13));
-        controller.addPoint(converter, new Coordinate(new Position2dDistance(-10.12, 21.74, Distance.Unit.FEET), 13));
+        controller.addPoint(converter, new Coordinate(new Position2dDistance(0, 0, Distance.Unit.Feet), 0));
+        controller.addPoint(converter, new Coordinate(new Position2dDistance(-9.52, 18.54, Distance.Unit.Feet), 13));
+        controller.addPoint(converter, new Coordinate(new Position2dDistance(-10.12, 21.74, Distance.Unit.Feet), 13));
 
         Assertions.assertEquals(3, controller.getWaypoints().size());
         Assertions.assertEquals(6, controller.mPathPoints.getChildren().size());

@@ -19,6 +19,6 @@ public class BarrelPathGuiWidget2021 extends BaseCoordinateGuiWidget<InfiniteRec
 
     public BarrelPathGuiWidget2021()
     {
-        super(Distance.Unit.METERS);
+        super(Distance.Unit.Meters);
     }
 }

@@ -15,6 +15,6 @@ public class CoordinateGuiWidget2019 extends BaseCoordinateGuiWidget<DeepSpaceCo
 {
     public CoordinateGuiWidget2019()
     {
-        super(Distance.Unit.INCH);
+        super(Distance.Unit.Inch);
     }
 }

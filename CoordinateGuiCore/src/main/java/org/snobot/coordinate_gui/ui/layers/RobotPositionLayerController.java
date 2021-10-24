@@ -65,7 +65,7 @@ public class RobotPositionLayerController
     public void setPosition(PixelConverter aPixelConverter, Coordinate aPosition)
     {
         mRobot.setRotate(aPixelConverter.convertHeading(aPosition.mAngle));
-        Position2dDistance robotDimensions = new Position2dDistance(Distance.half_sub(aPosition.mPosition.mX, mRobotWidth), Distance.half_add(aPosition.mPosition.mY, mRobotHeight));
+        Position2dDistance robotDimensions = new Position2dDistance(Distance.halfSub(aPosition.mPosition.mX, mRobotWidth), Distance.halfAdd(aPosition.mPosition.mY, mRobotHeight));
         Position2dPixels robotAsPixels = aPixelConverter.convertDistanceToPixels(robotDimensions);
         mRobot.setX(robotAsPixels.mX);
         mRobot.setY(robotAsPixels.mY);

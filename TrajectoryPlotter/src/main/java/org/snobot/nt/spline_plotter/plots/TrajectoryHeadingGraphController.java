@@ -35,6 +35,7 @@ public class TrajectoryHeadingGraphController
      * @param aHeadings
      *            The heading
      */
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public void setPath(List<Double> aHeadings)
     {
         mIdealHeading.getData().clear();

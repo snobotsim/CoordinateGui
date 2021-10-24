@@ -20,7 +20,7 @@ public class TrajectoryDataTest
         dataMap.put(SmartDashboardNames.sSPLINE_IDEAL_POINTS, new double[]{12.34, 6.64, 12.86, 5.89, 79.98, 12.13, 11.89, 6.34, 23.64, 31.86, 77.89, 98.98, 7.13, 2.89});
         dataMap.put(SmartDashboardNames.sSPLINE_WAYPOINTS, new double[]{8.312, 913.12, 19.48, 175.4, 85.2, 11.01, 89.52, 87, 24});
 
-        List<Coordinate> idealCoordinates = new TrajectoryData(dataMap).toIdealCoordinates(Distance.Unit.FEET);
+        List<Coordinate> idealCoordinates = new TrajectoryData(dataMap).toIdealCoordinates(Distance.Unit.Feet);
         Assertions.assertEquals(2, idealCoordinates.size());
 
         {
@@ -38,7 +38,7 @@ public class TrajectoryDataTest
         }
 
         {
-            List<Coordinate> waypoints = new TrajectoryData(dataMap).toWaypoints(Distance.Unit.FEET);
+            List<Coordinate> waypoints = new TrajectoryData(dataMap).toWaypoints(Distance.Unit.Feet);
 
             Assertions.assertEquals(3, waypoints.size());
 

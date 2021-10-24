@@ -19,6 +19,6 @@ public class CoordinateGuiWidget2020 extends BaseCoordinateGuiWidget<InfiniteRec
 
     public CoordinateGuiWidget2020()
     {
-        super(Distance.Unit.INCH);
+        super(Distance.Unit.Inch);
     }
 }

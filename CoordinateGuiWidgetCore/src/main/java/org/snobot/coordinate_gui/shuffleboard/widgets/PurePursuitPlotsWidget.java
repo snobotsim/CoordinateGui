@@ -31,7 +31,7 @@ public class PurePursuitPlotsWidget extends SimpleAnnotatedWidget<PurePursuitDat
     @FXML
     public void initialize()
     {
-        dataOrDefault.addListener((__, oldData, newData) ->
+        dataOrDefault.addListener((observable, oldData, newData) ->
         {
             final Map<String, Object> changes = newData.changesFrom(oldData);
             if (changes.containsKey(SmartDashboardNames.sPURE_PURSUIT_SMOOTHED))

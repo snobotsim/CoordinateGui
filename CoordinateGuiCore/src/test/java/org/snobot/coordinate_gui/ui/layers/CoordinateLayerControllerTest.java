@@ -19,7 +19,7 @@ public class CoordinateLayerControllerTest
 
     private static class TestableCoordinateLayerController extends CoordinateLayerController
     {
-        TestableCoordinateLayerController()
+        private TestableCoordinateLayerController()
         {
             mCoordinates = new Group();
         }
@@ -35,12 +35,12 @@ public class CoordinateLayerControllerTest
         DataProvider<Coordinate> dataProvider = new DataProvider<>(pointMemory);
         controller.setup(renderProps, dataProvider, converter);
 
-        dataProvider.addData(new Coordinate(new Position2dDistance(12.41, 24.41, Distance.Unit.FEET), 0));
-        dataProvider.addData(new Coordinate(new Position2dDistance(0, 0, Distance.Unit.FEET), 0));
-        dataProvider.addData(new Coordinate(new Position2dDistance(-13.5, 27, Distance.Unit.FEET), 0));
-        dataProvider.addData(new Coordinate(new Position2dDistance(13.5, 27, Distance.Unit.FEET), 0));
-        dataProvider.addData(new Coordinate(new Position2dDistance(-13.5, -27, Distance.Unit.FEET), 0));
-        dataProvider.addData(new Coordinate(new Position2dDistance(13.5, -27, Distance.Unit.FEET), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(12.41, 24.41, Distance.Unit.Feet), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(0, 0, Distance.Unit.Feet), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(-13.5, 27, Distance.Unit.Feet), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(13.5, 27, Distance.Unit.Feet), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(-13.5, -27, Distance.Unit.Feet), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(13.5, -27, Distance.Unit.Feet), 0));
 
         controller.render();
 
@@ -63,12 +63,12 @@ public class CoordinateLayerControllerTest
         DataProvider<Coordinate> dataProvider = new DataProvider<>(pointMemory);
         controller.setup(renderProps, dataProvider, converter);
 
-        dataProvider.addData(new Coordinate(new Position2dDistance(12.41, 24.41, Distance.Unit.FEET), 0));
-        dataProvider.addData(new Coordinate(new Position2dDistance(0, 0, Distance.Unit.FEET), 0));
-        dataProvider.addData(new Coordinate(new Position2dDistance(-13.5, 27, Distance.Unit.FEET), 0));
-        dataProvider.addData(new Coordinate(new Position2dDistance(13.5, 27, Distance.Unit.FEET), 0));
-        dataProvider.addData(new Coordinate(new Position2dDistance(-13.5, -27, Distance.Unit.FEET), 0));
-        dataProvider.addData(new Coordinate(new Position2dDistance(13.5, -27, Distance.Unit.FEET), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(12.41, 24.41, Distance.Unit.Feet), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(0, 0, Distance.Unit.Feet), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(-13.5, 27, Distance.Unit.Feet), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(13.5, 27, Distance.Unit.Feet), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(-13.5, -27, Distance.Unit.Feet), 0));
+        dataProvider.addData(new Coordinate(new Position2dDistance(13.5, -27, Distance.Unit.Feet), 0));
 
         controller.render();
 
