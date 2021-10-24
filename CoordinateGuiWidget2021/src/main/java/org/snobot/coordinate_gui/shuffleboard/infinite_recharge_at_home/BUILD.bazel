@@ -1,0 +1,22 @@
+load("//build_scripts:java_rules.bzl", "coordinate_gui_binary", "coordinate_gui_library", "coordinate_gui_widget")
+
+coordinate_gui_widget(
+    name = "infinite_recharge_at_home",
+    srcs = glob(
+        ["*.java"],
+    ),
+    package="org.snobot.coordinate_gui.shuffleboard.infinite_recharge_at_home",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//CoordinateGuiWidgetCore/src/main/java/org/snobot/coordinate_gui/shuffleboard",
+        "//CoordinateGuiWidget2021/src/main/java/org/snobot/coordinate_gui/shuffleboard/infinite_recharge_at_home/data",
+        "//CoordinateGuiCore2021/src/main/java/org/snobot/coordinate_gui/game/infinite_recharge_at_home",
+        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/model",
+        "//build_scripts/libs:javafx_fxml",
+        "@maven//:com_google_guava_guava",
+        "@__bazelrio_edu_wpi_first_shuffleboard_api//jar",
+    ],
+         resources = [
+             "//CoordinateGuiWidget2021/src/main/resources",
+         ]
+)

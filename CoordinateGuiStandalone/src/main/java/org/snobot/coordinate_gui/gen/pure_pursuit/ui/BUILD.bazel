@@ -1,0 +1,26 @@
+load("//build_scripts:java_rules.bzl", "coordinate_gui_binary", "coordinate_gui_library")
+
+coordinate_gui_library(
+    name = "ui",
+    srcs = glob(["*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "@maven//:org_apache_logging_log4j_log4j_api",
+        "@maven//:org_apache_logging_log4j_log4j_core",
+        "//CoordinateGuiStandalone/src/main/java/org/snobot/coordinate_gui/gen/pure_pursuit/model",
+        "//CoordinateGuiCore2019/src/main/java/org/snobot/coordinate_gui/game/deep_space",
+        "//CoordinateGuiStandalone/src/main/java/org/snobot/coordinate_gui/gen/ui",
+        "//CoordinateGuiStandalone/src/main/java/org/snobot/coordinate_gui/gen/utils",
+        "//CoordinateGuiStandalone/src/main/java/frc/robot/pure_pursuit",
+        "//build_scripts/libs:javafx_fxml",
+        "//build_scripts/libs:javafx_graphics",
+        "//build_scripts/libs:javafx_controls",
+        "//build_scripts/libs:javafx_base",
+#        "@maven//:org_yaml_snakeyaml",
+        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/model",
+#        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/ui/layers",
+    ],
+         resources = [
+             "//CoordinateGuiStandalone/src/main/resources",
+         ]
+)

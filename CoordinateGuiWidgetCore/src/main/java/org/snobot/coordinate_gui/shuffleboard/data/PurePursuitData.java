@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class PurePursuitData extends ComplexData<PurePursuitData>
 {
-    private static final double[] DEFAULT_VALUE = new double[]{};
+    private static final double[] DEFAULT_VALUE = {};
 
     private final double[] mWaypoints;
     private final double[] mUpSampledPoints;
@@ -103,6 +103,7 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
         return map;
     }
 
+    @SuppressWarnings("PMD.AvoidReassigningLoopVariables")
     private List<Coordinate> convert(double[] aInput)
     {
         List<Coordinate> output = new ArrayList<>();
@@ -111,7 +112,7 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
         {
             double x = aInput[i++];
             double y = aInput[i++];
-            Coordinate coordinate = new Coordinate(new Position2dDistance(x, y, Distance.Unit.FEET), 0);
+            Coordinate coordinate = new Coordinate(new Position2dDistance(x, y, Distance.Unit.Feet), 0);
             output.add(coordinate);
         }
 
@@ -169,8 +170,7 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
         {
             Position2dDistance robotPosition = new Position2dDistance(mLookaheadPoints[0], mLookaheadPoints[1], aDistanceUnit);
             Position2dDistance lookaheadPoint = new Position2dDistance(mLookaheadPoints[2], mLookaheadPoints[3], aDistanceUnit);
-            PurePursuitLayerController.PurePursuitLookaheadData data = new PurePursuitLayerController.PurePursuitLookaheadData(robotPosition, lookaheadPoint);
-            return data;
+            return new PurePursuitLayerController.PurePursuitLookaheadData(robotPosition, lookaheadPoint);
         }
         return null;
     }

@@ -33,7 +33,7 @@ public final class RamsetePlotDeserializer
         double idealLeft = aSerialized[dataPtr++];
         double idealRight = aSerialized[dataPtr++];
         double measuredLeft = aSerialized[dataPtr++];
-        double measuredRight = aSerialized[dataPtr++];
+        double measuredRight = aSerialized[dataPtr++]; // NOPMD(UnusedAssignment)
 
         return new RamseteInstantaneousPoint(time, heading, new Position2dDistance(x, y, aDistanceUnit),
             Velocity.from(idealLeft, aVelocityUnit), Velocity.from(idealRight, aVelocityUnit),

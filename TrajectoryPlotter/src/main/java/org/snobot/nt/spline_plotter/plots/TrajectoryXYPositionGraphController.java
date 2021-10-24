@@ -37,6 +37,7 @@ public class TrajectoryXYPositionGraphController
      * @param aY
      *            The ideal Y positions
      */
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public void setPath(List<Double> aX, List<Double> aY)
     {
         mIdeal.getData().clear();

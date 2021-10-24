@@ -15,7 +15,7 @@ import org.snobot.nt.spline_plotter.SplineSegment;
 
 public class TrajectoryData extends ComplexData<TrajectoryData>
 {
-    private static final double[] DEFAULT_VALUE = new double[]{};
+    private static final double[] DEFAULT_VALUE = {};
 
     private final double[] mIdealSpline;
     private final double[] mMeasuredSpline;

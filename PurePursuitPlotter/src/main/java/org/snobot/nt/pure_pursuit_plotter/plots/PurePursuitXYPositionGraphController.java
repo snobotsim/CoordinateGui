@@ -46,7 +46,7 @@ public class PurePursuitXYPositionGraphController
 
         for (Coordinate coord : aCoordinates)
         {
-            mIdeal.getData().add(new XYChart.Data<Double, Double>(coord.mPosition.mX.as(Distance.Unit.FEET), coord.mPosition.mY.as(Distance.Unit.FEET)));
+            mIdeal.getData().add(new XYChart.Data<Double, Double>(coord.mPosition.mX.as(Distance.Unit.Feet), coord.mPosition.mY.as(Distance.Unit.Feet)));
         }
     }
 

@@ -28,8 +28,8 @@ public class RamsetePlotsWidget extends SimpleAnnotatedWidget<RamseteControllerD
 
     public RamsetePlotsWidget()
     {
-        mDistanceUnit = Distance.Unit.INCH;
-        mVelocityUnit = Velocity.Unit.INCH_PER_SEC;
+        mDistanceUnit = Distance.Unit.Inch;
+        mVelocityUnit = Velocity.Unit.InchPerSec;
     }
 
     /**
@@ -38,7 +38,7 @@ public class RamsetePlotsWidget extends SimpleAnnotatedWidget<RamseteControllerD
     @FXML
     public void initialize()
     {
-        dataOrDefault.addListener((__, oldData, newData) ->
+        dataOrDefault.addListener((observable, oldData, newData) ->
         {
             final Map<String, Object> changes = newData.changesFrom(oldData);
             if (changes.containsKey(SmartDashboardNames.sRAMSETE_IDEAL_POINTS))

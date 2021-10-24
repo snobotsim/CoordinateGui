@@ -1,0 +1,20 @@
+load("//build_scripts:java_rules.bzl", "coordinate_gui_binary", "coordinate_gui_library")
+
+coordinate_gui_library(
+    name = "utils",
+    srcs = glob(["*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "@maven//:org_apache_logging_log4j_log4j_api",
+        "@maven//:org_apache_logging_log4j_log4j_core",
+#        "//build_scripts/libs:javafx_graphics",
+#        "//build_scripts/libs:javafx_controls",
+#        "//build_scripts/libs:javafx_fxml",
+#        "//build_scripts/libs:javafx_base",
+        "@maven//:org_yaml_snakeyaml",
+        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/model",
+        "//CoordinateGuiStandalone/src/main/java/org/snobot/coordinate_gui/gen/pure_pursuit/model",
+        "//CoordinateGuiStandalone/src/main/java/org/snobot/coordinate_gui/gen/trajectory/model",
+#        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/ui/layers",
+    ],
+)

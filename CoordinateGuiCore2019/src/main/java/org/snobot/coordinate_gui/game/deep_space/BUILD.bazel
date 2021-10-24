@@ -1,0 +1,14 @@
+load("//build_scripts:java_rules.bzl", "coordinate_gui_library")
+
+coordinate_gui_library(
+    name = "deep_space",
+    srcs = glob(["*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/model",
+        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/ui/layers",
+    ],
+         resources = [
+             "//CoordinateGuiCore2019/src/main/resources",
+         ]
+)

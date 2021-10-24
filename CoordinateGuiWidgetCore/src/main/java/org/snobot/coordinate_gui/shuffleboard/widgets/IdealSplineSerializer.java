@@ -102,7 +102,7 @@ public final class IdealSplineSerializer
         point.mRightSideVelocity = aData[aDataPtr++];
         point.mRobotHeading = aData[aDataPtr++];
         point.mAverageX = aData[aDataPtr++];
-        point.mAverageY = aData[aDataPtr++];
+        point.mAverageY = aData[aDataPtr++]; // NOPMD(UnusedAssignment)
 
 
         return point;

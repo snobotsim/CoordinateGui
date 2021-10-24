@@ -54,7 +54,7 @@ public class PathfinderConfigLoader
                 double y = pathweaverX - 27;
                 double angle = Math.toDegrees(Math.atan2(pathweaverTangentY, pathweaverTangentX));
 
-                output.add(new Coordinate(new Position2dDistance(x, y, Distance.Unit.FEET), angle));
+                output.add(new Coordinate(new Position2dDistance(x, y, Distance.Unit.Feet), angle));
             }
         }
         catch (IOException ex)

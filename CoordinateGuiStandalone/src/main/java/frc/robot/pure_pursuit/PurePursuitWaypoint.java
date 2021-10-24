@@ -40,17 +40,18 @@ public class PurePursuitWaypoint
     @Override
     public String toString()
     {
-        String output = "PurePursuitWaypoint [mX=" + mX + ", mY=" + mY;
+        StringBuilder output = new StringBuilder(50);
+        output.append("PurePursuitWaypoint [mX=").append(mX).append(", mY=").append(mY);
 
         if (mPreCalculatedValuesValid)
         {
-            output += ", mPrecalculatedVelocity=" + mPrecalculatedVelocity;
-            output += ", mPrecalculatedCurvature=" + mPrecalculatedCurvature;
+            output.append(", mPrecalculatedVelocity=").append(mPrecalculatedVelocity);
+            output.append(", mPrecalculatedCurvature=").append(mPrecalculatedCurvature);
         }
 
-        output += "]";
+        output.append(']');
 
-        return output;
+        return output.toString();
     }
 
     /**

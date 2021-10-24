@@ -1,0 +1,31 @@
+load("//build_scripts:java_rules.bzl", "coordinate_gui_binary", "coordinate_gui_library")
+
+coordinate_gui_library(
+    name = "infinite_recharge_at_home",
+    srcs = glob(
+        ["*.java"],
+        exclude = ["StandaloneMain.java"],
+    ),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/model",
+        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/ui/layers",
+    ],
+         resources = [
+             "//CoordinateGuiCore2021/src/main/resources",
+         ]
+)
+
+coordinate_gui_binary(
+    name = "StandaloneMain",
+    srcs = ["StandaloneMain.java"],
+    #    main_class = "TODO_BAZEL",
+    deps = [
+        ":infinite_recharge_at_home",
+        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/model",
+        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/ui/layers",
+        "//build_scripts/libs:javafx_base",
+        "//build_scripts/libs:javafx_fxml",
+        "//build_scripts/libs:javafx_graphics",
+    ],
+)

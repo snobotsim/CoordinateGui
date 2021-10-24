@@ -1,0 +1,14 @@
+load("//build_scripts:java_rules.bzl", "coordinate_gui_binary", "coordinate_gui_library")
+
+coordinate_gui_library(
+    name = "model",
+    srcs = glob(["*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "@maven//:org_apache_logging_log4j_log4j_api",
+        "@maven//:org_apache_logging_log4j_log4j_core",
+        "@maven//:org_yaml_snakeyaml",
+#        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/model",
+#        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/ui/layers",
+    ],
+)

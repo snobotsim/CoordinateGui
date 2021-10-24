@@ -56,12 +56,12 @@ public final class StandaloneMain
     public static void tempFillOutData(TrajectoryPlotsController aOverviewController) // NOPMD
     {
 
-        final List<SplineSegment> path_points = new ArrayList<SplineSegment>();
+        final List<SplineSegment> pathPoints = new ArrayList<>();
 
         SplineSegment p;
 
         p = new SplineSegment();
-        path_points.add(p);
+        pathPoints.add(p);
 
         double radius = 1.7;
         double angleMult = .1;
@@ -70,49 +70,49 @@ public final class StandaloneMain
         {
             p = new SplineSegment();
             p.mLeftSideVelocity = 0 + i * .7;
-            p.mLeftSidePosition = path_points.get(path_points.size() - 1).mLeftSidePosition + p.mLeftSideVelocity * .02;
+            p.mLeftSidePosition = pathPoints.get(pathPoints.size() - 1).mLeftSidePosition + p.mLeftSideVelocity * .02;
             p.mRightSideVelocity = p.mLeftSideVelocity;
             p.mRightSidePosition = p.mLeftSidePosition;
             p.mRobotHeading = i;
             p.mAverageX = (radius * i) * Math.sin(angleMult * i);
             p.mAverageY = (radius * i) * Math.cos(angleMult * i);
 
-            path_points.add(p);
+            pathPoints.add(p);
         }
         for (int i = 0; i < 20; ++i)
         {
             p = new SplineSegment();
             p.mLeftSideVelocity = 7.0;
-            p.mLeftSidePosition = path_points.get(path_points.size() - 1).mLeftSidePosition + p.mLeftSideVelocity * .02;
+            p.mLeftSidePosition = pathPoints.get(pathPoints.size() - 1).mLeftSidePosition + p.mLeftSideVelocity * .02;
             p.mRightSideVelocity = p.mLeftSideVelocity;
             p.mRightSidePosition = p.mLeftSidePosition;
             p.mRobotHeading = i;
             p.mAverageX = (radius * i) * Math.sin(angleMult * i);
             p.mAverageY = (radius * i) * Math.cos(angleMult * i);
-            path_points.add(p);
+            pathPoints.add(p);
         }
         for (int i = 0; i < 10; ++i)
         {
             p = new SplineSegment();
             p.mLeftSideVelocity = 7 - i * .7;
-            p.mLeftSidePosition = path_points.get(path_points.size() - 1).mLeftSidePosition + p.mLeftSideVelocity * .02;
+            p.mLeftSidePosition = pathPoints.get(pathPoints.size() - 1).mLeftSidePosition + p.mLeftSideVelocity * .02;
             p.mRightSideVelocity = p.mLeftSideVelocity;
             p.mRightSidePosition = p.mLeftSidePosition;
             p.mRobotHeading = i;
             p.mAverageX = (radius * i) * Math.sin(angleMult * i);
             p.mAverageY = (radius * i) * Math.cos(angleMult * i);
-            path_points.add(p);
+            pathPoints.add(p);
         }
 
         p = new SplineSegment();
         p.mLeftSideVelocity = 0;
-        p.mLeftSidePosition = path_points.get(path_points.size() - 1).mLeftSidePosition + p.mLeftSideVelocity * .02;
+        p.mLeftSidePosition = pathPoints.get(pathPoints.size() - 1).mLeftSidePosition + p.mLeftSideVelocity * .02;
         p.mRightSideVelocity = p.mLeftSideVelocity;
         p.mRightSidePosition = p.mLeftSidePosition;
         p.mRobotHeading = 0;
-        path_points.add(p);
+        pathPoints.add(p);
 
-        aOverviewController.setPath(path_points);
+        aOverviewController.setPath(pathPoints);
 
         Thread t = new Thread(new Runnable() // NOPMD
         {
@@ -122,9 +122,9 @@ public final class StandaloneMain
             {
                 List<SplineSegment> actuals = new ArrayList<SplineSegment>();
 
-                for (int i = 0; i < path_points.size(); ++i)
+                for (int i = 0; i < pathPoints.size(); ++i)
                 {
-                    SplineSegment p = path_points.get(i);
+                    SplineSegment p = pathPoints.get(i);
                     p.mLeftSideVelocity *= .9;
                     p.mLeftSidePosition = 0;
                     p.mRightSideVelocity = p.mLeftSideVelocity * .5;

@@ -1,0 +1,19 @@
+load("//build_scripts:java_rules.bzl", "coordinate_gui_binary", "coordinate_gui_library")
+
+coordinate_gui_binary(
+    name = "Main",
+    srcs = ["Main.java"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//build_scripts/libs:javafx_base",
+        "//build_scripts/libs:javafx_fxml",
+        "//build_scripts/libs:javafx_graphics",
+        "//CoordinateGuiStandalone/src/main/java/org/snobot/coordinate_gui/gen/pure_pursuit/ui",
+        "//CoordinateGuiCore2019/src/main/java/org/snobot/coordinate_gui/game/deep_space",
+#        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/model",
+#        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/ui/layers",
+    ],
+               resources = [
+                   "//CoordinateGuiStandalone/src/main/resources",
+               ]
+)

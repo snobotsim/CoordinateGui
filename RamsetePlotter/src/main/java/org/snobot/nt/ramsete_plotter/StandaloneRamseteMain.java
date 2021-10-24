@@ -59,10 +59,10 @@ public final class StandaloneRamseteMain
      */
     public static void tempFillOutData(RamsetePlotsController aOverviewController) // NOPMD
     {
-        Distance.Unit distanceUnit = Distance.Unit.FEET;
-        Velocity.Unit velocityUnit = Velocity.Unit.FEET_PER_SEC;
+        Distance.Unit distanceUnit = Distance.Unit.Feet;
+        Velocity.Unit velocityUnit = Velocity.Unit.FeetPerSec;
 
-        final List<RamsetePointInfo> pathPoints = new ArrayList<RamsetePointInfo>();
+        final List<RamsetePointInfo> pathPoints = new ArrayList<>();
 
         for (int i = 0; i < 20; ++i)
         {
@@ -90,8 +90,8 @@ public final class StandaloneRamseteMain
                         ideal.mTime + .01,
                         ideal.mHeading * 1.2,
                         new Position2dDistance(
-                            ideal.mPosition.mX.as(Distance.Unit.FEET) + 5,
-                            ideal.mPosition.mY.as(Distance.Unit.FEET), Distance.Unit.FEET),
+                            ideal.mPosition.mX.as(Distance.Unit.Feet) + 5,
+                            ideal.mPosition.mY.as(Distance.Unit.Feet), Distance.Unit.Feet),
                         Velocity.from(ideal.mVelocity.as(velocityUnit) * .8, velocityUnit),
                         Velocity.from(ideal.mVelocity.as(velocityUnit) * -.8, velocityUnit),
                         Velocity.from(ideal.mVelocity.as(velocityUnit) * .4, velocityUnit),

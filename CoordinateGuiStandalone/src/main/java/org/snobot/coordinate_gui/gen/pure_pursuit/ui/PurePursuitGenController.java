@@ -131,7 +131,7 @@ public class PurePursuitGenController
         List<PurePursuitWaypoint> waypoints = new ArrayList<>();
         for (Coordinate coordinate : aInput)
         {
-            waypoints.add(new PurePursuitWaypoint(coordinate.mPosition.mX.as(Distance.Unit.FEET), coordinate.mPosition.mY.as(Distance.Unit.FEET)));
+            waypoints.add(new PurePursuitWaypoint(coordinate.mPosition.mX.as(Distance.Unit.Feet), coordinate.mPosition.mY.as(Distance.Unit.Feet)));
         }
         
         return waypoints;

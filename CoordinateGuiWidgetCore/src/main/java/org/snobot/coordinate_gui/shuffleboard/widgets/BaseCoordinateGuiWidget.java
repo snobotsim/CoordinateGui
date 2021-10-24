@@ -45,7 +45,7 @@ public class BaseCoordinateGuiWidget<DataType extends BaseCoordinateGuiData, Con
     @FXML
     public void initialize()
     {
-        dataOrDefault.addListener((__, oldData, newData) ->
+        dataOrDefault.addListener((observable, oldData, newData) ->
         {
             final Map<String, Object> changes = newData.changesFrom(oldData);
 

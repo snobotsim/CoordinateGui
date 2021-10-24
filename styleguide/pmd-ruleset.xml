@@ -3,17 +3,67 @@
          xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
-  
+
+  <description>PMD Rules</description>
+
   <rule ref="category/java/bestpractices.xml">
     <exclude name="GuardLogStatement" />
     <exclude name="JUnitTestsShouldIncludeAssert" />
+    <exclude name="JUnit5TestShouldBePackagePrivate" />
     <exclude name="UseVarargs"/>
   </rule>
+
+  <rule ref="category/java/codestyle.xml/ShortClassName">
+    <properties>
+      <property name="minimum" value="4" />
+    </properties>
+  </rule>
+
+
+  <rule ref="category/java/codestyle.xml/FieldNamingConventions">
+    <properties>
+      <property name="publicConstantPattern" value="s?[A-Z_]+" />
+      <property name="constantPattern" value="s?[A-Z_]+" />
+      <property name="enumConstantPattern" value="[A-Z][a-z][a-zA-Z_]+" />
+      <property name="finalFieldPattern"
+                value="m[A-Z][a-zA-Z0-9]*" />
+      <property name="defaultFieldPattern"
+                value="m[A-Z][a-zA-Z0-9]*" />
+    </properties>
+  </rule>
+
+  <rule ref="category/java/codestyle.xml/ClassNamingConventions">
+    <properties>
+      <property name="utilityClassPattern"
+                value="[A-Z][a-zA-Z0-9]*" />
+    </properties>
+  </rule>
+
+  <rule ref="category/java/codestyle.xml">
+    <exclude name="MethodArgumentCouldBeFinal" />
+    <exclude name="LocalVariableCouldBeFinal" />
+    <exclude name="GenericsNaming" />
+    <exclude name="AtLeastOneConstructor" />
+    <exclude name="LongVariable" />
+    <exclude name="ShortVariable" />
+    <exclude name="OnlyOneReturn" />
+    <exclude name="UseUnderscoresInNumericLiterals" />
+<!--    <exclude name="UselessParentheses" />-->
+    <exclude name="CallSuperInConstructor" />
+<!--    <exclude name="ShortClassName" />-->
+<!--    <exclude name="ConfusingTernary" />-->
+<!--    <exclude name="BooleanGetMethodName" />-->
+  </rule>
+
   <rule ref="category/java/design.xml">
     <exclude name="ExcessiveImports" />
     <exclude name="LawOfDemeter" />
     <exclude name="LoosePackageCoupling" />
   </rule>
+
+  <!-- <rule ref="category/java/documentation.xml"> -->
+  <!-- </rule> -->
+
   <rule ref="category/java/errorprone.xml">
     <exclude name="BeanMembersShouldSerialize" />
     <exclude name="DataflowAnomalyAnalysis" />
@@ -23,5 +73,10 @@
   <rule ref="category/java/multithreading.xml">
     <exclude name="UseConcurrentHashMap" />
   </rule>
+
+  <rule ref="category/java/performance.xml" >
+    <exclude name="AvoidInstantiatingObjectsInLoops" />
+  </rule>
+
   <rule ref="category/java/security.xml" />
 </ruleset>

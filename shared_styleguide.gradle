@@ -15,7 +15,7 @@ checkstyle {
 }
 
 pmd {
-    toolVersion = '6.10.0'
+    toolVersion = '6.39.0'
     consoleOutput  = true
     reportsDir = file("${project.buildDir}/reports/pmd")
     ruleSetFiles = files(file("$rootDir/styleguide/pmd-ruleset.xml"))
@@ -28,7 +28,7 @@ pmd {
 //  effort = "max"
 //}
 jacoco {
-    toolVersion = "0.8.4"
+    toolVersion = "0.8.6"
 }
 
 jacocoTestReport {

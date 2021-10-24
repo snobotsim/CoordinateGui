@@ -30,7 +30,7 @@ public class TrajectoryPlotsWidget extends SimpleAnnotatedWidget<TrajectoryData>
     @FXML
     public void initialize()
     {
-        dataOrDefault.addListener((__, oldData, newData) ->
+        dataOrDefault.addListener((observable, oldData, newData) ->
         {
             final Map<String, Object> changes = newData.changesFrom(oldData);
             if (changes.containsKey(SmartDashboardNames.sSPLINE_IDEAL_POINTS))

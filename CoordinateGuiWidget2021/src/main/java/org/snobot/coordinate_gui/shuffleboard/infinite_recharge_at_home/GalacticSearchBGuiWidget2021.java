@@ -19,6 +19,6 @@ public class GalacticSearchBGuiWidget2021 extends BaseCoordinateGuiWidget<Infini
 
     public GalacticSearchBGuiWidget2021()
     {
-        super(Distance.Unit.METERS);
+        super(Distance.Unit.Meters);
     }
 }

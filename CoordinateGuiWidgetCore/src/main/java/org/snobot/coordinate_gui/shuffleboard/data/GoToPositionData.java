@@ -10,7 +10,7 @@ import org.snobot.coordinate_gui.model.Position2dDistance;
 
 public class GoToPositionData extends ComplexData<GoToPositionData>
 {
-    private static final double[] DEFAULT_VALUE = new double[]{0, 0};
+    private static final double[] DEFAULT_VALUE = {0, 0};
 
     private final double[] mData;
     private final Double mX;

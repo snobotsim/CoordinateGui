@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class RamseteControllerData extends ComplexData<RamseteControllerData>
 {
-    private static final double[] DEFAULT_VALUE = new double[]{};
+    private static final double[] DEFAULT_VALUE = {};
 
     private final double[] mIdealSpline;
     private final double[] mMeasuredSpline;
@@ -98,7 +98,7 @@ public class RamseteControllerData extends ComplexData<RamseteControllerData>
      */
     public List<Coordinate> toIdealCoordinates(Distance.Unit aDistanceUnit)
     {
-        Velocity.Unit velocityUnit = Velocity.Unit.INCH_PER_SEC; // Note: velocity doesn't matter for this, so hardcode it
+        Velocity.Unit velocityUnit = Velocity.Unit.InchPerSec; // Note: velocity doesn't matter for this, so hardcode it
         List<RamsetePointInfo> ramsetePoints = RamsetePlotDeserializer.deserializeIdealPoints(mIdealSpline, aDistanceUnit, velocityUnit);
 
         List<Coordinate> coordinates = new ArrayList<>();

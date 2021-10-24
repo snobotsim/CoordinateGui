@@ -1,0 +1,13 @@
+load("//build_scripts:java_rules.bzl", "coordinate_gui_library")
+
+coordinate_gui_library(
+    name = "model",
+    srcs = glob(["*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        #            "@maven_javafx//:org_openjfx_javafx_base",
+        "//build_scripts/libs:javafx_graphics",
+        "//build_scripts/libs:javafx_fxml",
+        #            "@maven_javafx//:org_openjfx_javafx_graphics",
+    ],
+)

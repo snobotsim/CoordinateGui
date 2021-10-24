@@ -1,0 +1,7 @@
+load("//build_scripts:java_rules.bzl", "coordinate_gui_binary", "coordinate_gui_library")
+
+filegroup(
+    name = "resources",
+    visibility = ["//visibility:public"],
+    srcs = glob(["**"])
+)

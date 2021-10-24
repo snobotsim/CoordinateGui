@@ -1,0 +1,16 @@
+load("//build_scripts:java_rules.bzl", "coordinate_gui_binary", "coordinate_gui_library")
+
+coordinate_gui_library(
+    name = "data",
+    srcs = glob(
+        ["*.java"],
+    ),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//CoordinateGuiWidgetCore/src/main/java/org/snobot/coordinate_gui/shuffleboard",
+        "@__bazelrio_edu_wpi_first_shuffleboard_api//jar",
+    ],
+         resources = [
+             "//CoordinateGuiWidget2019/src/main/resources",
+         ]
+)

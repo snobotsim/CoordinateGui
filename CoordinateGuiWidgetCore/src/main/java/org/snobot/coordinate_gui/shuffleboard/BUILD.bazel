@@ -1,0 +1,18 @@
+load("//build_scripts:java_rules.bzl", "coordinate_gui_binary", "coordinate_gui_library")
+
+coordinate_gui_library(
+    name = "shuffleboard",
+    srcs = glob(["data/*.java", "widgets/*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+            "@maven//:org_fxmisc_easybind_easybind",
+        "@__bazelrio_edu_wpi_first_shuffleboard_api//jar",
+        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/model",
+        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/ui/layers",
+        "//TrajectoryPlotter/src/main/java/org/snobot/nt/spline_plotter",
+        "//RamsetePlotter/src/main/java/org/snobot/nt/ramsete_plotter",
+        "//PurePursuitPlotter/src/main/java/org/snobot/nt/pure_pursuit_plotter",
+        "//build_scripts/libs:javafx_fxml",
+        "//build_scripts/libs:javafx_graphics",
+    ],
+)

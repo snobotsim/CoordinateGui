@@ -32,7 +32,7 @@ public class RobotPositionLayerControllerTest
         controller.setRobotDimensions(converter, Distance.fromFeet(10), Distance.fromFeet(15));
         controller.initialize();
 
-        controller.setPosition(converter, new Coordinate(new Position2dDistance(1.451, 6.512, Distance.Unit.FEET), -65.53));
+        controller.setPosition(converter, new Coordinate(new Position2dDistance(1.451, 6.512, Distance.Unit.Feet), -65.53));
 
         controller.mRobot.getX();
         Assertions.assertEquals(99.51, controller.mRobot.getX(), EPSILON);

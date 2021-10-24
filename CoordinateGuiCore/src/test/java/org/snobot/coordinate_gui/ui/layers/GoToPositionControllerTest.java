@@ -41,7 +41,7 @@ public class GoToPositionControllerTest
         GoToPositionController controller = new TestableGoToPositionController();
         controller.initialize();
 
-        controller.setGoToXYPosition(converter, new Position2dDistance(5.42, -9.42, Distance.Unit.FEET));
+        controller.setGoToXYPosition(converter, new Position2dDistance(5.42, -9.42, Distance.Unit.Feet));
         Assertions.assertEquals(1, controller.mPosition.getChildren().size());
 
         Polygon icon = (Polygon) controller.mPosition.getChildren().get(0);

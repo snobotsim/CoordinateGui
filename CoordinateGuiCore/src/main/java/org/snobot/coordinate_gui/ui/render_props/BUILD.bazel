@@ -1,0 +1,14 @@
+load("//build_scripts:java_rules.bzl", "coordinate_gui_library")
+
+coordinate_gui_library(
+    name = "render_props",
+    srcs = glob(["*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        #        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/model",
+        #            "@maven_javafx//:org_openjfx_javafx_base",
+        "//build_scripts/libs:javafx_graphics",
+        #            "@maven_javafx//:org_openjfx_javafx_fxml",
+        #            "@maven_javafx//:org_openjfx_javafx_graphics",
+    ],
+)

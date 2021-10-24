@@ -1,0 +1,37 @@
+load("//build_scripts:java_rules.bzl", "coordinate_gui_binary", "coordinate_gui_library")
+
+coordinate_gui_library(
+    name = "pure_pursuit_plotter",
+    srcs = glob(["plots/*.java", "*.java"], exclude=["StandalonePurePursuitMain.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+#        "@__bazelrio_edu_wpi_first_shuffleboard_api//jar",
+#        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/model",
+#        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/ui/layers",
+        "//build_scripts/libs:javafx_base",
+        "//build_scripts/libs:javafx_fxml",
+        "//build_scripts/libs:javafx_graphics",
+        "//build_scripts/libs:javafx_controls",
+#        "//build_scripts/libs:javafx_graphics",
+        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/model",
+#        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/ui/layers",
+    ],
+    resources = ["//PurePursuitPlotter/src/main/resources"]
+)
+
+
+coordinate_gui_binary(
+    name = "StandalonePurePursuitMain",
+    srcs = ["StandalonePurePursuitMain.java"],
+    #    main_class = "TODO_BAZEL",
+    deps = [
+        ":pure_pursuit_plotter",
+        "//build_scripts/libs:javafx_fxml",
+        "//build_scripts/libs:javafx_graphics",
+        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/model",
+#        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/model",
+#        "//build_scripts/libs:javafx_base",
+#        "//build_scripts/libs:javafx_fxml",
+#        "//build_scripts/libs:javafx_graphics",
+    ],
+)

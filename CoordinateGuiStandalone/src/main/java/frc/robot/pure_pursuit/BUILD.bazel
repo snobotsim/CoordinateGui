@@ -1,0 +1,11 @@
+load("//build_scripts:java_rules.bzl", "coordinate_gui_binary", "coordinate_gui_library")
+
+coordinate_gui_library(
+    name = "pure_pursuit",
+    srcs = glob(["*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+#        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/model",
+#        "//CoordinateGuiCore/src/main/java/org/snobot/coordinate_gui/ui/layers",
+    ],
+)

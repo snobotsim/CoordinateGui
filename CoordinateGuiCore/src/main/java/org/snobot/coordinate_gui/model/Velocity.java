@@ -7,14 +7,14 @@ public final class Velocity
 {
     public enum Unit
     {
-        INCH_PER_SEC, FEET_PER_SEC, CENTIMETERS_PER_SEC, METERS_PER_SEC
+        InchPerSec, FeetPerSec, CentimetersPerSec, MetersPerSec
     }
 
-    private static final Unit DEFAULT_UNIT = Unit.FEET_PER_SEC;
+    private static final Unit DEFAULT_UNIT = Unit.FeetPerSec;
 
-    private static double INCHES_PER_METER = 0.0254;
-    private static double FEET_PER_METER = 0.3048;
-    private static double CM_PER_METER = 1e-2;
+    private static final double INCHES_PER_METER = 0.0254;
+    private static final double FEET_PER_METER = 0.3048;
+    private static final double CM_PER_METER = 1e-2;
 
     private final double mMetersPerSec;
 
@@ -41,13 +41,13 @@ public final class Velocity
     {
         switch (aUnit)
         {
-        case CENTIMETERS_PER_SEC:
+        case CentimetersPerSec:
             return fromCentimeters(aVelocity);
-        case FEET_PER_SEC:
+        case FeetPerSec:
             return fromFeet(aVelocity);
-        case INCH_PER_SEC:
+        case InchPerSec:
             return fromInches(aVelocity);
-        case METERS_PER_SEC:
+        case MetersPerSec:
             return fromMeters(aVelocity);
         default:
             throw new RuntimeException("Unknown enumeration"); // NOPMD
@@ -105,17 +105,17 @@ public final class Velocity
      *            The enumerated unit
      * @return The raw distance
      */
-    public double as(Unit aUnit)
+    public double as(Unit aUnit) // NOPMD(ShortMethodName)
     {
         switch (aUnit)
         {
-        case CENTIMETERS_PER_SEC:
+        case CentimetersPerSec:
             return asCentimeters();
-        case FEET_PER_SEC:
+        case FeetPerSec:
             return asFeet();
-        case INCH_PER_SEC:
+        case InchPerSec:
             return asInches();
-        case METERS_PER_SEC:
+        case MetersPerSec:
             return asMeters();
         default:
             throw new RuntimeException("Unknown enumeration"); // NOPMD
