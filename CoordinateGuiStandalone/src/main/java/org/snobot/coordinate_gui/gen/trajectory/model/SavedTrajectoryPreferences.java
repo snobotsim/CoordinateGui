@@ -1,11 +1,12 @@
 package org.snobot.coordinate_gui.gen.trajectory.model;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
 import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -78,7 +79,7 @@ public class SavedTrajectoryPreferences
 
         if (configFile.exists())
         {
-            try (FileInputStream stream = new FileInputStream(configFile))
+            try (Reader stream = Files.newBufferedReader(configFile.toPath()))
             {
                 output = (SavedTrajectoryPreferences) yaml.load(stream);
             }
@@ -106,7 +107,8 @@ public class SavedTrajectoryPreferences
     public static void save(SavedTrajectoryPreferences aPreferences)
     {
         LOGGER.log(Level.INFO, "Saving config file " + PREFERENCES_FILE);
-        try (Writer writer = new OutputStreamWriter(new FileOutputStream(new File(PREFERENCES_FILE)), "UTF-8"))
+
+        try (Writer writer = new OutputStreamWriter(Files.newOutputStream(Paths.get(PREFERENCES_FILE)), "UTF-8"))
         {
             Yaml yaml = new Yaml();
             yaml.dump(aPreferences, writer);

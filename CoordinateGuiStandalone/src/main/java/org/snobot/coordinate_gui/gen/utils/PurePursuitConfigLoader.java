@@ -41,7 +41,7 @@ public class PurePursuitConfigLoader
             List<Map<String, Object>> contents = (List<Map<String, Object>>) yaml.load(reader);
             for (Map<String, Object> yamlContents : contents)
             {
-                if (yamlContents.get("type").equals("PurePursuit"))
+                if ("PurePursuit".equals(yamlContents.get("type")))
                 {
                     double upSampleSpacing = ((Number) yamlContents.get("path_separation")).doubleValue();
                     double turnSmoothing = ((Number) yamlContents.get("smoothing_wieght")).doubleValue();
@@ -49,7 +49,7 @@ public class PurePursuitConfigLoader
                     mConfig = new PurePursuitConfig(upSampleSpacing, turnSmoothing);
                     for (List<Number> waypointYaml : (List<List<Number>>) yamlContents.get("waypoints"))
                     {
-                        mCoordinates.add(new Coordinate(new Position2dDistance(waypointYaml.get(0).doubleValue(), waypointYaml.get(1).doubleValue(), Distance.Unit.FEET), 0));
+                        mCoordinates.add(new Coordinate(new Position2dDistance(waypointYaml.get(0).doubleValue(), waypointYaml.get(1).doubleValue(), Distance.Unit.Feet), 0));
                     }
                 }
             }

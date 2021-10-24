@@ -27,11 +27,6 @@ public class CoordinateLayerController
     protected DataProvider<Coordinate> mDataProvider;
     protected CoordinateLayerRenderProps mRenderProperties;
 
-    public CoordinateLayerController()
-    {
-
-    }
-
     /**
      * Sets the controller up.
      * 

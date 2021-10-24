@@ -1,13 +1,12 @@
 package org.snobot.coordinate_gui.gen.utils;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +35,8 @@ public final class TrajectoryConfigLoader
     @SuppressWarnings("unchecked")
     public void loadFile(File aFile)
     {
-        try (Reader fileReader = new InputStreamReader(new FileInputStream(aFile), "UTF-8"))
+
+        try (Reader fileReader = new InputStreamReader(Files.newInputStream(aFile.toPath()), "UTF-8"))
         {
             Yaml yaml = new Yaml();
             Map<String, Object> config = (Map<String, Object>) yaml.load(fileReader);
@@ -62,7 +62,7 @@ public final class TrajectoryConfigLoader
      */
     public void dumpFile(File aPath, List<Coordinate> aCoordinates, TrajectoryConfig aPathConfig)
     {
-        try (OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(aPath), StandardCharsets.UTF_8))
+        try (OutputStreamWriter fileWriter = new OutputStreamWriter(Files.newOutputStream(aPath.toPath()), StandardCharsets.UTF_8))
         {
             DumperOptions options = new DumperOptions();
             options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);

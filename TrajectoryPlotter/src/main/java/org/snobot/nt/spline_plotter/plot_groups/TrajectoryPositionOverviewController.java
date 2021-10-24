@@ -32,13 +32,13 @@ public class TrajectoryPositionOverviewController
      */
     public void setPath(List<SplineSegment> aPathPoints)
     {
-        List<Double> leftPos = new ArrayList<Double>();
-        List<Double> leftVel = new ArrayList<Double>();
-        List<Double> rightPos = new ArrayList<Double>();
-        List<Double> rightVel = new ArrayList<Double>();
-        List<Double> heading = new ArrayList<Double>();
-        List<Double> xPosition = new ArrayList<Double>();
-        List<Double> yPosition = new ArrayList<Double>();
+        List<Double> leftPos = new ArrayList<>();
+        List<Double> leftVel = new ArrayList<>();
+        List<Double> rightPos = new ArrayList<>();
+        List<Double> rightVel = new ArrayList<>();
+        List<Double> heading = new ArrayList<>();
+        List<Double> xPosition = new ArrayList<>();
+        List<Double> yPosition = new ArrayList<>();
 
         for (SplineSegment point : aPathPoints)
         {

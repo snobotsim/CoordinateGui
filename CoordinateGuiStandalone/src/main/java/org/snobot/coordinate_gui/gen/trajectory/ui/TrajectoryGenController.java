@@ -155,12 +155,13 @@ public class TrajectoryGenController
         generatePath();
     }
 
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     private void generatePath()
     {
         List<Coordinate> coordinates = mFieldController.getWaypoints();
         TrajectoryConfig pathConfig = mPathParamsController.getPathParams();
 
-        Distance.Unit unit = Distance.Unit.INCH;
+        Distance.Unit unit = Distance.Unit.Inch;
 
         if (coordinates != null)
         {
@@ -179,7 +180,7 @@ public class TrajectoryGenController
             List<Coordinate> idealCoordinates = new ArrayList<>();
             for (Trajectory.State segment : trajectory.getStates())
             {
-                idealCoordinates.add(new Coordinate(new Position2dDistance(segment.poseMeters.getX(), segment.poseMeters.getY(), Distance.Unit.FEET), segment.poseMeters.getRotation().getDegrees()));
+                idealCoordinates.add(new Coordinate(new Position2dDistance(segment.poseMeters.getX(), segment.poseMeters.getY(), Distance.Unit.Feet), segment.poseMeters.getRotation().getDegrees()));
             }
 
             mFieldController.setIdealTrajectory(idealCoordinates);

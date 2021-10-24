@@ -43,6 +43,7 @@ public class TrajectoryWheelGraphController
      * @param aVelocity
      *            The ideal velocity, in in/sec
      */
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public void setPath(List<Double> aPosition, List<Double> aVelocity)
     {
         mIdealPosition.getData().clear();

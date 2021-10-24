@@ -18,7 +18,7 @@ public class CoordinateDataTest
         Map<String, Object> dataMap = new HashMap<>();
         dataMap.put(SmartDashboardNames.sROBOT_POSITION, new double[]{2.78, -12.95, 98.73, 1});
 
-        Coordinate coordinate = new CoordinateData(dataMap).toCoord(Distance.Unit.FEET);
+        Coordinate coordinate = new CoordinateData(dataMap).toCoord(Distance.Unit.Feet);
         Assertions.assertEquals(Distance.fromFeet(2.78), coordinate.mPosition.mX);
         Assertions.assertEquals(Distance.fromFeet(-12.95), coordinate.mPosition.mY);
         Assertions.assertEquals(98.73, coordinate.mAngle, EPSILON);

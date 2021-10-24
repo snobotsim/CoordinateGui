@@ -47,7 +47,7 @@ public class CameraRayLayerController
         }
     }
 
-    @SuppressWarnings("PMD.DataClass")
+    @SuppressWarnings({"PMD.DataClass", "PMD.ShortClassName"})
     public static class Ray
     {
         public Position2dDistance mStart;
@@ -55,8 +55,8 @@ public class CameraRayLayerController
 
         public Ray()
         {
-            mStart = new Position2dDistance(0, 0, Distance.Unit.FEET);
-            mEnd = new Position2dDistance(0, 0, Distance.Unit.FEET);
+            mStart = new Position2dDistance(0, 0, Distance.Unit.Feet);
+            mEnd = new Position2dDistance(0, 0, Distance.Unit.Feet);
         }
 
         /**

@@ -22,7 +22,7 @@ public class PurePursuitDataTest
         dataMap.put(SmartDashboardNames.sPURE_PURSUIT_LOOKAHEAD, new double[]{});
 
         PurePursuitData data = new PurePursuitData(dataMap);
-        PurePursuitLayerController.PurePursuitLookaheadData lookaheadData = data.toLookaheadData(Distance.Unit.FEET);
+        PurePursuitLayerController.PurePursuitLookaheadData lookaheadData = data.toLookaheadData(Distance.Unit.Feet);
 
         Assertions.assertNull(lookaheadData);
 
@@ -35,7 +35,7 @@ public class PurePursuitDataTest
         dataMap.put(SmartDashboardNames.sPURE_PURSUIT_LOOKAHEAD, new double[]{12.47, -48.41, 78.24, -9});
 
         PurePursuitData data = new PurePursuitData(dataMap);
-        PurePursuitLayerController.PurePursuitLookaheadData lookaheadData = data.toLookaheadData(Distance.Unit.FEET);
+        PurePursuitLayerController.PurePursuitLookaheadData lookaheadData = data.toLookaheadData(Distance.Unit.Feet);
 
         Assertions.assertEquals(Distance.fromFeet(12.47), lookaheadData.mRobot.mX);
         Assertions.assertEquals(Distance.fromFeet(-48.41), lookaheadData.mRobot.mY);

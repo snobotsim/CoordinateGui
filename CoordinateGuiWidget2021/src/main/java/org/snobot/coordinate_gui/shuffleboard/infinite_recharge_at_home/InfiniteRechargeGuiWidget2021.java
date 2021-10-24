@@ -19,6 +19,6 @@ public class InfiniteRechargeGuiWidget2021 extends BaseCoordinateGuiWidget<Infin
 
     public InfiniteRechargeGuiWidget2021()
     {
-        super(Distance.Unit.METERS);
+        super(Distance.Unit.Meters);
     }
 }

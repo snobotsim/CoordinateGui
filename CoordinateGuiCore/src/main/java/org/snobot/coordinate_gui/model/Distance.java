@@ -7,14 +7,14 @@ public final class Distance
 {
     public enum Unit
     {
-        INCH, FEET, CENTIMETERS, METERS
+        Inch, Feet, Centimeters, Meters
     }
 
-    private static final Unit DEFAULT_UNIT = Unit.METERS;
+    private static final Unit DEFAULT_UNIT = Unit.Meters;
 
-    private static double INCHES_PER_METER = 0.0254;
-    private static double FEET_PER_METER = 0.3048;
-    private static double CM_PER_METER = 1e-2;
+    private static final double INCHES_PER_METER = 0.0254;
+    private static final double FEET_PER_METER = 0.3048;
+    private static final double CM_PER_METER = 1e-2;
 
     private final double mMeters;
 
@@ -41,13 +41,13 @@ public final class Distance
     {
         switch (aUnit)
         {
-        case CENTIMETERS:
+        case Centimeters:
             return fromCentimeters(aDistance);
-        case FEET:
+        case Feet:
             return fromFeet(aDistance);
-        case INCH:
+        case Inch:
             return fromInches(aDistance);
-        case METERS:
+        case Meters:
             return fromMeters(aDistance);
         default:
             throw new RuntimeException("Unknown enumeration"); // NOPMD
@@ -77,7 +77,7 @@ public final class Distance
 
     public static double atan2d(Distance aX1, Distance aX2, Distance aY1, Distance aY2)
     {
-        Unit conversionUnit = Unit.METERS;
+        Unit conversionUnit = Unit.Meters;
         return Math.toDegrees(Math.atan2(aX1.as(conversionUnit) - aX2.as(conversionUnit), aY1.as(conversionUnit) - aY2.as(conversionUnit)));
     }
 
@@ -111,17 +111,17 @@ public final class Distance
      *            The enumerated unit
      * @return The raw distance
      */
-    public double as(Unit aUnit)
+    public double as(Unit aUnit) // NOPMD(ShortMethodName)
     {
         switch (aUnit)
         {
-        case CENTIMETERS:
+        case Centimeters:
             return asCentimeters();
-        case FEET:
+        case Feet:
             return asFeet();
-        case INCH:
+        case Inch:
             return asInches();
-        case METERS:
+        case Meters:
             return asMeters();
         default:
             throw new RuntimeException("Unknown enumeration"); // NOPMD
@@ -153,12 +153,12 @@ public final class Distance
         return new Distance(aDistance.mMeters * aMult);
     }
 
-    public static Distance half_sub(Distance aLeft, Distance aHalf)
+    public static Distance halfSub(Distance aLeft, Distance aHalf)
     {
         return new Distance(aLeft.mMeters - aHalf.mMeters / 2);
     }
 
-    public static Distance half_add(Distance aLeft, Distance aHalf)
+    public static Distance halfAdd(Distance aLeft, Distance aHalf)
     {
         return new Distance(aLeft.mMeters + aHalf.mMeters / 2);
     }

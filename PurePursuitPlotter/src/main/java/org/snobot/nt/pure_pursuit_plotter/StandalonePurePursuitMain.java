@@ -61,12 +61,12 @@ public final class StandalonePurePursuitMain
     public static void tempFillOutData(PurePursuitPlotsController aOverviewController) // NOPMD
     {
 
-        final List<Coordinate> pathPoints = new ArrayList<Coordinate>();
+        final List<Coordinate> pathPoints = new ArrayList<>();
 
         for (int i = -20; i < 20; ++i)
         {
             double x = i + 5;
-            pathPoints.add(new Coordinate(new Position2dDistance(x, i * i, Distance.Unit.FEET), 0));
+            pathPoints.add(new Coordinate(new Position2dDistance(x, i * i, Distance.Unit.Feet), 0));
         }
 
         aOverviewController.setIdealPath(pathPoints);
@@ -83,11 +83,11 @@ public final class StandalonePurePursuitMain
                 {
                     Coordinate ideal = pathPoints.get(i);
                     PurePursuitPointInfo point = new PurePursuitPointInfo(i);
-                    point.mX = ideal.mPosition.mX.as(Distance.Unit.FEET) * .8;
-                    point.mY = ideal.mPosition.mY.as(Distance.Unit.FEET) * .7;
+                    point.mX = ideal.mPosition.mX.as(Distance.Unit.Feet) * .8;
+                    point.mY = ideal.mPosition.mY.as(Distance.Unit.Feet) * .7;
                     point.mLeftVelocity = i * .8;
                     point.mLeftGoalVelocity = i * i * .7;
-                    point.mRightVelocity = ideal.mPosition.mX.as(Distance.Unit.FEET) * .8 + 6;
+                    point.mRightVelocity = ideal.mPosition.mX.as(Distance.Unit.Feet) * .8 + 6;
                     point.mRightGoalVelocity = i * i + 9;
 
                     actuals.add(point);

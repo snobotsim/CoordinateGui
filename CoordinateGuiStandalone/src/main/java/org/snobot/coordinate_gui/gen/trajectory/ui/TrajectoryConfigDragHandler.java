@@ -43,10 +43,10 @@ public class TrajectoryConfigDragHandler
             {
                 Position2dPixels asPixels = new Position2dPixels(event.getX(), event.getY());
                 Position2dDistance asDistance = aFieldController.getPixelConverter().convertPixelsToDistance(asPixels);
-                double x = asDistance.mX.as(Distance.Unit.FEET);
-                double y = asDistance.mY.as(Distance.Unit.FEET);
-                double angle = Math.toDegrees(Math.atan2(x - selectedCoordinate.mCoordinate.mPosition.mX.as(Distance.Unit.FEET),
-                    y - selectedCoordinate.mCoordinate.mPosition.mY.as(Distance.Unit.FEET)));
+                double x = asDistance.mX.as(Distance.Unit.Feet);
+                double y = asDistance.mY.as(Distance.Unit.Feet);
+                double angle = Math.toDegrees(Math.atan2(x - selectedCoordinate.mCoordinate.mPosition.mX.as(Distance.Unit.Feet),
+                    y - selectedCoordinate.mCoordinate.mPosition.mY.as(Distance.Unit.Feet)));
                 selectedCoordinate.setAngle(angle);
             }
             event.consume();

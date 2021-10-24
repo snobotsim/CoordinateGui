@@ -19,6 +19,6 @@ public class BouncePathGuiWidget2021 extends BaseCoordinateGuiWidget<InfiniteRec
 
     public BouncePathGuiWidget2021()
     {
-        super(Distance.Unit.METERS);
+        super(Distance.Unit.Meters);
     }
 }

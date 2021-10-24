@@ -11,7 +11,7 @@ import org.snobot.coordinate_gui.model.Position2dDistance;
 
 public class CoordinateData extends ComplexData<CoordinateData>
 {
-    private static final double[] DEFAULT_VALUE = new double[]{0, 0, 0};
+    private static final double[] DEFAULT_VALUE = {0, 0, 0};
 
     private final double[] mData;
 

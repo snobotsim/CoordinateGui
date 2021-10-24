@@ -4,7 +4,7 @@ import javafx.scene.transform.Scale;
 
 public class PixelConverter
 {
-    private static final Distance.Unit CONVERSION_UNIT = Distance.Unit.FEET;
+    private static final Distance.Unit CONVERSION_UNIT = Distance.Unit.Feet;
 
     public enum Orientation
     {
@@ -95,8 +95,7 @@ public class PixelConverter
 
     public double convertFeetToPixels(Distance aDistance)
     {
-        double output = aDistance.as(CONVERSION_UNIT) * mImageScaleFactor;
-        return output;
+        return aDistance.as(CONVERSION_UNIT) * mImageScaleFactor;
     }
 
     /**

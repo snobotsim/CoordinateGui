@@ -32,8 +32,8 @@ public class CameraRayLayerControllerTest
         PixelConverter converter = TestablePixelConverterFactory.setupPortraitModeOriginAtCenter();
         List<CameraRayLayerController.Ray> rays = new ArrayList<>();
 
-        rays.add(new CameraRayLayerController.Ray(new Position2dDistance(0, -2, Distance.Unit.FEET), new Position2dDistance(5, 5, Distance.Unit.FEET)));
-        rays.add(new CameraRayLayerController.Ray(new Position2dDistance(13, -26, Distance.Unit.FEET), new Position2dDistance(0, 0, Distance.Unit.FEET)));
+        rays.add(new CameraRayLayerController.Ray(new Position2dDistance(0, -2, Distance.Unit.Feet), new Position2dDistance(5, 5, Distance.Unit.Feet)));
+        rays.add(new CameraRayLayerController.Ray(new Position2dDistance(13, -26, Distance.Unit.Feet), new Position2dDistance(0, 0, Distance.Unit.Feet)));
 
         rayController.setRays(converter, rays);
         Assertions.assertEquals(2, rayController.mRays.getChildren().size());

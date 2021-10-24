@@ -16,6 +16,14 @@ import org.snobot.coordinate_gui.model.Position2dPixels;
 
 public class PurePursuitLayerController
 {
+    @FXML
+    protected Group mMarkers;
+
+    @FXML
+    protected Line mLookaheadLine;
+
+    protected PixelConverter mPixelConverter;
+
     @SuppressWarnings("PMD.DataClass")
     public static class PurePursuitLookaheadData
     {
@@ -33,14 +41,6 @@ public class PurePursuitLayerController
             mLookahead = aLookahead;
         }
     }
-
-    @FXML
-    protected Group mMarkers;
-
-    @FXML
-    protected Line mLookaheadLine;
-
-    protected PixelConverter mPixelConverter;
 
     @FXML
     public void initialize()
@@ -74,6 +74,7 @@ public class PurePursuitLayerController
      * @param aSmoothed
      *            The upsampled points after smoothing
      */
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public void setWaypoints(List<Coordinate> aWaypoints, List<Coordinate> aUpSampled, List<Coordinate> aSmoothed)
     {
         mMarkers.getChildren().clear();
