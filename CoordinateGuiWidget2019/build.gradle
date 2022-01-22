@@ -26,10 +26,10 @@ dependencies {
 ////////////////////////////
 sourceSets.main.java.srcDir "${buildDir}/generated/java/"
 task generate_version() {
-    def generated_dir = file("$buildDir/generated/java/org/snobot/coordinate_gui/shuffleboard")
+    def generated_dir = file("$buildDir/generated/java/org/snobot/coordinate_gui/shuffleboard/deep_space")
     generated_dir.mkdirs()
     def output_file = file("$generated_dir/PluginVersion.java")
-    def file_template = """package org.snobot.coordinate_gui.shuffleboard;
+    def file_template = """package org.snobot.coordinate_gui.shuffleboard.deep_space;
 
 
 public class PluginVersion
