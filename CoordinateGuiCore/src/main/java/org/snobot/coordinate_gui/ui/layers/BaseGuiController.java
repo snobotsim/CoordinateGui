@@ -1,6 +1,7 @@
 package org.snobot.coordinate_gui.ui.layers;
 
 import javafx.scene.paint.Color;
+import org.snobot.coordinate_gui.model.FieldLoader;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
 import org.snobot.coordinate_gui.model.Distance;
@@ -20,7 +21,7 @@ import java.util.List;
 @SuppressWarnings("PMD.TooManyFields")
 public class BaseGuiController
 {
-    private final String mFieldImageUrl;
+    private final Image mFieldImage;
     private final Distance mFieldShortDimension;
     private final Distance mFieldLongDimension;
 
@@ -71,12 +72,30 @@ public class BaseGuiController
     @FXML
     private PurePursuitLayerController mPurePursuitController;
 
+    protected BaseGuiController(FieldLoader.FieldsConfig aFieldConfig)
+    {
+        this(new FieldLoader(aFieldConfig), Distance.fromInches(36), Distance.fromInches(44));
+    }
+
+    protected BaseGuiController(FieldLoader aFieldLoader, Distance aRobotWidth, Distance aRobotHeight)
+    {
+        this(aFieldLoader.getImage(), aFieldLoader.getShortDim(), aFieldLoader.getLongDim(), aRobotWidth, aRobotHeight, PixelConverter.Orientation.Landscape, PixelConverter.OriginPosition.BottomLeft);
+    }
+
     protected BaseGuiController(String aFieldImageUrl,
                                 Distance aShortDirection, Distance aLongDirection,
                                 Distance aRobotWidth, Distance aRobotHeight,
                                 PixelConverter.Orientation aOrientation, PixelConverter.OriginPosition aOriginPosition)
     {
-        mFieldImageUrl = aFieldImageUrl;
+        this(new Image(BaseGuiController.class.getResource(aFieldImageUrl).toExternalForm()), aShortDirection, aLongDirection, aRobotWidth, aRobotHeight, aOrientation, aOriginPosition);
+    }
+
+    protected BaseGuiController(Image aFieldImage,
+                                Distance aShortDirection, Distance aLongDirection,
+                                Distance aRobotWidth, Distance aRobotHeight,
+                                PixelConverter.Orientation aOrientation, PixelConverter.OriginPosition aOriginPosition)
+    {
+        mFieldImage = aFieldImage;
         mFieldShortDimension = aShortDirection;
         mFieldLongDimension = aLongDirection;
         mRobotWidth = aRobotWidth;
@@ -98,22 +117,21 @@ public class BaseGuiController
      */
     public void initialize()
     {
-        Image fieldImage = new Image(getClass().getResource(mFieldImageUrl).toExternalForm());
-        mFieldController.setFieldParameters(fieldImage);
+        mFieldController.setFieldParameters(mFieldImage);
 
         Scale scale = new Scale();
         scale.xProperty()
                 .bind(Bindings.createDoubleBinding(
-                    () -> Math.min(mTopPane.getWidth() / fieldImage.getWidth(), mTopPane.getHeight() / fieldImage.getHeight()),
+                    () -> Math.min(mTopPane.getWidth() / mFieldImage.getWidth(), mTopPane.getHeight() / mFieldImage.getHeight()),
                         mTopPane.widthProperty(), mTopPane.heightProperty()));
 
         scale.yProperty()
                 .bind(Bindings.createDoubleBinding(
-                    () -> Math.min(mTopPane.getWidth() / fieldImage.getWidth(), mTopPane.getHeight() / fieldImage.getHeight()),
+                    () -> Math.min(mTopPane.getWidth() / mFieldImage.getWidth(), mTopPane.getHeight() / mFieldImage.getHeight()),
                         mTopPane.widthProperty(), mTopPane.heightProperty()));
 
         mLayers.getTransforms().add(scale);
-        mPixelConverter.setImageScale(scale, fieldImage.getWidth(), fieldImage.getHeight(), mFieldShortDimension, mFieldLongDimension);
+        mPixelConverter.setImageScale(scale, mFieldImage.getWidth(), mFieldImage.getHeight(), mFieldShortDimension, mFieldLongDimension);
 
         mRobotPositionController.setRobotDimensions(mPixelConverter, mRobotWidth, mRobotHeight);
 
