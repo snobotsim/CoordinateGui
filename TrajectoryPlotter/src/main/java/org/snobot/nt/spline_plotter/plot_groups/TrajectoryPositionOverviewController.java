@@ -26,7 +26,7 @@ public class TrajectoryPositionOverviewController
 
     /**
      * Sets the spline segments.
-     * 
+     *
      * @param aPathPoints
      *            The segments
      */
@@ -59,7 +59,7 @@ public class TrajectoryPositionOverviewController
 
     /**
      * Sets a measured point.
-     * 
+     *
      * @param aIndex
      *            The index of this measurement
      * @param aSplineSegment

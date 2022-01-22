@@ -35,7 +35,7 @@ public class PurePursuitXYPositionGraphController
 
     /**
      * Sets the ideal path.
-     * 
+     *
      * @param aCoordinates
      *            the coordinates
      */
@@ -52,7 +52,7 @@ public class PurePursuitXYPositionGraphController
 
     /**
      * Sets the measured point.
-     * 
+     *
      * @param aX
      *            The X position, in inches
      * @param aY

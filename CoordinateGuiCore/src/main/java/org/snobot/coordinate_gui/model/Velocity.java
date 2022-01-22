@@ -29,7 +29,7 @@ public final class Velocity
 
     /**
      * Creates a velocity, using the specified unit.
-     * 
+     *
      * @param aVelocity
      *            The raw velocity, in the units provided with the other
      *            argument
@@ -100,7 +100,7 @@ public final class Velocity
 
     /**
      * Converts the distance to the given unit.
-     * 
+     *
      * @param aUnit
      *            The enumerated unit
      * @return The raw distance

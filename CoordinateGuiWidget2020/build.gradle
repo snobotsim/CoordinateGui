@@ -7,16 +7,16 @@ dependencies {
     implementation project("$coordinateGuiBase:CoordinateGuiCore")
     implementation project("$coordinateGuiBase:CoordinateGuiCore2020")
     implementation project("$coordinateGuiBase:CoordinateGuiWidgetCore")
-    
+
     implementation 'org.apache.logging.log4j:log4j-api:2.11.0'
     implementation 'org.apache.logging.log4j:log4j-core:2.11.0'
-    
+
     implementation "org.openjfx:javafx-base:11:" + getJavaFxPlatform()
     implementation "org.openjfx:javafx-graphics:11:" + getJavaFxPlatform()
     implementation "org.openjfx:javafx-controls:11:" + getJavaFxPlatform()
     implementation "org.openjfx:javafx-fxml:11:" + getJavaFxPlatform()
-    
-    
+
+
     implementation 'edu.wpi.first.shuffleboard:shuffleboard:' + getShuffleboardVersion()
     implementation 'edu.wpi.first.shuffleboard:api:' + getShuffleboardVersion()
 }
@@ -27,14 +27,14 @@ task customFatJar(type: Jar) {
         attributes 'Main-Class': 'com.baeldung.fatjar.Application'
     }
     baseName = 'CoordinateGuiShuffleboard2020'
-    
-    
+
+
     outputs.upToDateWhen {
         false
     }
-    
+
     from configurations.compileClasspath.collect {
-//        println "Compile: " + it
+        //        println "Compile: " + it
         if(it.toString().contains("org.apache.logging")) {
             FileTree filtered = zipTree(it).matching { unused ->
                 exclude "org/apache/logging/log4j/core/appender/mom/kafka/KafkaManager*.class"
@@ -60,11 +60,11 @@ task customFatJar(type: Jar) {
             zipTree(it)
         }
         else {
-//            println "  Ignoring it"
+            //            println "  Ignoring it"
             []
         }
     }
-    
+
     with jar
 }
 
@@ -87,38 +87,38 @@ task generate_version() {
 public class PluginVersion
 {
     public static final String VERSION = "${project.publishing_version}";
-} 
+}
 """
-    
+
     doLast {
         if (output_file.exists()) {
             output_file.delete()
         }
         output_file.write(file_template)
     }
-    
+
 }
 compileJava.dependsOn generate_version
 ////////////////////////////
 
 publishing {
-     repositories {
-       maven {
-           url publishing_url
-//           if(project.findProperty("publishing_url")) {
-//               credentials {
-//                   username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-//                   password = project.findProperty("gpr.key") ?: System.getenv("PASSWORD")
-//               }
-//           }
-       }
+    repositories {
+        maven {
+            url publishing_url
+            //           if(project.findProperty("publishing_url")) {
+            //               credentials {
+            //                   username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+            //                   password = project.findProperty("gpr.key") ?: System.getenv("PASSWORD")
+            //               }
+            //           }
+        }
     }
     publications {
         application(MavenPublication) {
             groupId = "org.snobot.coordinate_gui"
             artifactId = "CoordinateGuiWidget2020"
             version = publishing_version
-            
+
             artifact customFatJar
         }
     }

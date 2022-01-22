@@ -23,7 +23,7 @@ public class VisionData extends ComplexData<VisionData>
 
     /**
      * Constructor.
-     * 
+     *
      * @param aMap
      *            The map potentially containing the coordinate data
      */
@@ -34,7 +34,7 @@ public class VisionData extends ComplexData<VisionData>
 
     /**
      * Constructor.
-     * 
+     *
      * @param aPrefix
      *            Optional prefix to prepend the names with in the map
      * @param aMap
@@ -47,7 +47,7 @@ public class VisionData extends ComplexData<VisionData>
 
     /**
      * Constructor.
-     * 
+     *
      * @param aData
      *            The vision data
      */
@@ -64,7 +64,7 @@ public class VisionData extends ComplexData<VisionData>
 
     /**
      * Gets a representation of this data as a map.
-     * 
+     *
      * @param aPrefix
      *            The prefix to prepend to the field names
      * @return The map representation

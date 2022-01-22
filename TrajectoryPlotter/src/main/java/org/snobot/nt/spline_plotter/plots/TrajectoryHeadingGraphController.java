@@ -31,7 +31,7 @@ public class TrajectoryHeadingGraphController
 
     /**
      * Sets the ideal heading.
-     * 
+     *
      * @param aHeadings
      *            The heading
      */
@@ -49,7 +49,7 @@ public class TrajectoryHeadingGraphController
 
     /**
      * Sets a measured point.
-     * 
+     *
      * @param aIndex
      *            The index of the point
      * @param aHeading

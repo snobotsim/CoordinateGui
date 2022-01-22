@@ -8,20 +8,19 @@ dependencies {
     implementation project("$coordinateGuiBase:PurePursuitPlotter")
     implementation project("$coordinateGuiBase:TrajectoryPlotter")
     implementation project("$coordinateGuiBase:RamsetePlotter")
-    
+
     implementation 'org.apache.logging.log4j:log4j-api:2.11.0'
     implementation 'org.apache.logging.log4j:log4j-core:2.11.0'
-    
+
     implementation "org.openjfx:javafx-base:11:" + getJavaFxPlatform()
     implementation "org.openjfx:javafx-graphics:11:" + getJavaFxPlatform()
     implementation "org.openjfx:javafx-controls:11:" + getJavaFxPlatform()
     implementation "org.openjfx:javafx-fxml:11:" + getJavaFxPlatform()
 
-    
+
     implementation 'edu.wpi.first.shuffleboard:shuffleboard:' + getShuffleboardVersion()
     implementation 'edu.wpi.first.shuffleboard:api:' + getShuffleboardVersion()
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
-
 }

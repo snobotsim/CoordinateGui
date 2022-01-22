@@ -26,7 +26,7 @@ public class Vector2D
 
     /**
      * Calculates the normal vector for the input.
-     * 
+     *
      * @param aInput
      *            The vector to compute
      * @return The normal vector
@@ -40,7 +40,7 @@ public class Vector2D
 
     /**
      * Adds the two vectors together, returning a new vector as a result.
-     * 
+     *
      * @param aVector1
      *            The left vector
      * @param aVector2
@@ -62,7 +62,7 @@ public class Vector2D
 
     /**
      * Subtracts two vectors, returning a new vector as a result.
-     * 
+     *
      * @param aStart
      *            The left vector
      * @param aEnd
@@ -85,7 +85,7 @@ public class Vector2D
 
     /**
      * Multiplies the vector by the given scaler, returning a new vector.
-     * 
+     *
      * @param aInput
      *            The input vector
      * @param aMult

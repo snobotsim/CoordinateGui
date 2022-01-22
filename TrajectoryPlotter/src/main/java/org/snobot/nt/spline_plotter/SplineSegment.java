@@ -2,7 +2,7 @@ package org.snobot.nt.spline_plotter;
 
 /**
  * Container for the information on a single trajectory point.
- * 
+ *
  * @author PJ
  *
  */
@@ -41,7 +41,7 @@ public class SplineSegment
 
     /**
      * Constructor.
-     * 
+     *
      * @param aLeftPos
      *            The position of the left wheel
      * @param aLeftVel

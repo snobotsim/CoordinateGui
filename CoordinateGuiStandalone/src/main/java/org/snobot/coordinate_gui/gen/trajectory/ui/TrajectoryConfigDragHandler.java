@@ -18,7 +18,7 @@ public class TrajectoryConfigDragHandler
 
     /**
      * Constructor.
-     * 
+     *
      * @param aField
      *            The pane representing the field.
      * @param aFieldController

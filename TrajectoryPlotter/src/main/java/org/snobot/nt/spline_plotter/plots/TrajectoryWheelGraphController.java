@@ -37,7 +37,7 @@ public class TrajectoryWheelGraphController
 
     /**
      * Sets the spline center path, and the velocity.
-     * 
+     *
      * @param aPosition
      *            The ideal position, in inches
      * @param aVelocity
@@ -59,7 +59,7 @@ public class TrajectoryWheelGraphController
 
     /**
      * Sets a measured point from the robot.
-     * 
+     *
      * @param aIndex
      *            The index of this piont
      * @param aPosition

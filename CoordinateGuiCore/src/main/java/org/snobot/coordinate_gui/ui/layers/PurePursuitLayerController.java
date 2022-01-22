@@ -50,7 +50,7 @@ public class PurePursuitLayerController
 
     /**
      * Sets the line representing the lookahead distance.
-     * 
+     *
      * @param aLookaheadData
      *            The data
      */
@@ -66,7 +66,7 @@ public class PurePursuitLayerController
 
     /**
      * Sets the waypoint information.
-     * 
+     *
      * @param aWaypoints
      *            The waypoints
      * @param aUpSampled

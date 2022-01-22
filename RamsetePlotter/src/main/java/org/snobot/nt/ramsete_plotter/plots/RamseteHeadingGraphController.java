@@ -33,7 +33,7 @@ public class RamseteHeadingGraphController
 
     /**
      * Sets the ideal heading.
-     * 
+     *
      * @param aPoints
      *            The points
      */

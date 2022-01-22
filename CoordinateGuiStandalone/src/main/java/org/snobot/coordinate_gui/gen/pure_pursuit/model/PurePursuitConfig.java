@@ -12,7 +12,7 @@ public class PurePursuitConfig
 
     /**
      * Constructor.
-     * 
+     *
      * @param aUpSampleSpacing
      *            The spacing between up-samples
      * @param aTurnSmoothing

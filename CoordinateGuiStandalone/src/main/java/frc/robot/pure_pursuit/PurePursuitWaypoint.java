@@ -57,7 +57,7 @@ public class PurePursuitWaypoint
     /**
      * Sets the pre-calculated values used for later processing. Not all
      * waypoints have this, just ones in a path.
-     * 
+     *
      * @param aVelocity
      *            The velocity
      * @param aCurvature

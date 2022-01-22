@@ -34,7 +34,7 @@ task customFatJar(type: Jar) {
     }
 
     from configurations.compileClasspath.collect {
-//        println "Compile: " + it
+        //        println "Compile: " + it
         if(it.toString().contains("org.apache.logging")) {
             FileTree filtered = zipTree(it).matching { unused ->
                 exclude "org/apache/logging/log4j/core/appender/mom/kafka/KafkaManager*.class"
@@ -60,7 +60,7 @@ task customFatJar(type: Jar) {
             zipTree(it)
         }
         else {
-//            println "  Ignoring it"
+            //            println "  Ignoring it"
             []
         }
     }
@@ -87,7 +87,7 @@ task generate_version() {
 public class PluginVersion
 {
     public static final String VERSION = "${project.publishing_version}";
-} 
+}
 """
 
     doLast {
@@ -105,12 +105,12 @@ publishing {
     repositories {
         maven {
             url publishing_url
-//           if(project.findProperty("publishing_url")) {
-//               credentials {
-//                   username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-//                   password = project.findProperty("gpr.key") ?: System.getenv("PASSWORD")
-//               }
-//           }
+            //           if(project.findProperty("publishing_url")) {
+            //               credentials {
+            //                   username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+            //                   password = project.findProperty("gpr.key") ?: System.getenv("PASSWORD")
+            //               }
+            //           }
         }
     }
     publications {

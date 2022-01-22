@@ -32,7 +32,7 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
 
     /**
      * Constructor.
-     * 
+     *
      * @param aMap
      *            A data map, created from the widget
      */
@@ -43,7 +43,7 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
 
     /**
      * Constructor.
-     * 
+     *
      * @param aPrefix
      *            The prefix to prepend data names with
      * @param aMap
@@ -60,7 +60,7 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
 
     /**
      * Constructor.
-     * 
+     *
      * @param aWaypointString
      *            The original waypoints
      * @param aUpSampledString
@@ -87,7 +87,7 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
 
     /**
      * Gets a representation of the data as a map.
-     * 
+     *
      * @param aPrefix
      *            The prefix to prepend to the names
      * @return The representative map
@@ -136,7 +136,7 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
 
     /**
      * Gets the last point sent by the pure pursuit command.
-     * 
+     *
      * @return The last point, or a point with index of -1 if the data is
      *         invalid
      */
@@ -175,4 +175,3 @@ public class PurePursuitData extends ComplexData<PurePursuitData>
         return null;
     }
 }
-

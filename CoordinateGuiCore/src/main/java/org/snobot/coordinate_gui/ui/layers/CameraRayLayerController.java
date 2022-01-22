@@ -19,7 +19,7 @@ public class CameraRayLayerController
 
     /**
      * Sets the camera rays to draw.
-     * 
+     *
      * @param aPixelConerter
      *            The pixel-to-real world converter
      * @param aRays
@@ -41,7 +41,7 @@ public class CameraRayLayerController
             line.setEndY(end.mY);
             line.setStrokeWidth(3.0);
             line.setStroke(Color.GREENYELLOW);
-            
+
             mRays.getChildren().add(line);
 
         }
@@ -61,7 +61,7 @@ public class CameraRayLayerController
 
         /**
          * Constructor.
-         * 
+         *
          * @param aStart
          *            Starting position in feet. Typically would be the robot
          *            position

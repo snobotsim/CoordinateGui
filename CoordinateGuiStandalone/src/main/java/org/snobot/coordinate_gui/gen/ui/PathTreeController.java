@@ -30,7 +30,7 @@ public class PathTreeController
 
     /**
      * Constructor.
-     * 
+     *
      * @param aBaseDirectory
      *            Base directory
      * @param aListener
@@ -58,7 +58,7 @@ public class PathTreeController
 
     /**
      * Loads the paths into the tree by recursively going through aRootPath.
-     * 
+     *
      * @param aRootPath
      *            The Path to crawl
      */
@@ -86,7 +86,7 @@ public class PathTreeController
 
     /**
      * Updates the tree with the new path.
-     * 
+     *
      * @param aPath
      *            The path
      */

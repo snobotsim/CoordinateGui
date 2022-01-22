@@ -26,7 +26,7 @@ public class GoToPositionController
     /**
      * Sets the position of the display icon. Inputs can be null to indicate no
      * position.
-     * 
+     *
      * @param aPosition
      *            The position, in feet
      */

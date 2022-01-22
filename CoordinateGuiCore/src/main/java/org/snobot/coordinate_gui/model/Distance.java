@@ -29,7 +29,7 @@ public final class Distance
 
     /**
      * Creates a distance, using the specified unit.
-     * 
+     *
      * @param aDistance
      *            The raw distance, in the units provided with the other
      *            argument
@@ -106,7 +106,7 @@ public final class Distance
 
     /**
      * Converts the distance to the given unit.
-     * 
+     *
      * @param aUnit
      *            The enumerated unit
      * @return The raw distance

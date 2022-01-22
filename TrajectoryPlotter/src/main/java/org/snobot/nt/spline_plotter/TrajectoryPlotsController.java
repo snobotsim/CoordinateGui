@@ -73,7 +73,7 @@ public class TrajectoryPlotsController
 
     /**
      * Sets the spline segments.
-     * 
+     *
      * @param aPathPoints
      *            The segments
      */
@@ -126,7 +126,7 @@ public class TrajectoryPlotsController
 
     /**
      * Sets a measured point.
-     * 
+     *
      * @param aIndex
      *            The index of this measurement
      * @param aSplineSegment

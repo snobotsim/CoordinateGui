@@ -22,7 +22,7 @@ public class PathfinderConfigLoader
 
     /**
      * Loads a pathweaver file.
-     * 
+     *
      * @param aPath
      *            The file
      * @return The list of the coordinates in the file
