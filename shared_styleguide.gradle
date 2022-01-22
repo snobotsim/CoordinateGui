@@ -10,8 +10,7 @@ apply plugin:  "jacoco"
 
 checkstyle {
     toolVersion = "8.16"
-    configDir = file("${project.rootDir}/styleguide")
-    config = resources.text.fromFile(new File(configDir, "checkstyle.xml"))
+    configDirectory.set(file("${project.rootDir}/styleguide"))
 }
 
 pmd {

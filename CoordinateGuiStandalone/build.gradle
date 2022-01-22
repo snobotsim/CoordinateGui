@@ -12,19 +12,19 @@ repositories {
 
 apply from: "$rootDir/shared_styleguide.gradle"
 dependencies {
-    compile project("$coordinateGuiBase:CoordinateGuiCore")
-    compile project("$coordinateGuiBase:CoordinateGuiCore2019")
+    implementation project("$coordinateGuiBase:CoordinateGuiCore")
+    implementation project("$coordinateGuiBase:CoordinateGuiCore2019")
 
-    compile 'org.apache.logging.log4j:log4j-api:2.11.0'
-    compile 'org.apache.logging.log4j:log4j-core:2.11.0'
+    implementation 'org.apache.logging.log4j:log4j-api:2.11.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.11.0'
 
-    compile 'org.yaml:snakeyaml:1.18'
-    compile 'edu.wpi.first.wpimath:wpimath-java:' + getShuffleboardVersion()
+    implementation 'org.yaml:snakeyaml:1.18'
+    implementation 'edu.wpi.first.wpimath:wpimath-java:' + getShuffleboardVersion()
 
-    compile "org.openjfx:javafx-base:11:" + getJavaFxPlatform()
-    compile "org.openjfx:javafx-graphics:11:" + getJavaFxPlatform()
-    compile "org.openjfx:javafx-controls:11:" + getJavaFxPlatform()
-    compile "org.openjfx:javafx-fxml:11:" + getJavaFxPlatform()
+    implementation "org.openjfx:javafx-base:11:" + getJavaFxPlatform()
+    implementation "org.openjfx:javafx-graphics:11:" + getJavaFxPlatform()
+    implementation "org.openjfx:javafx-controls:11:" + getJavaFxPlatform()
+    implementation "org.openjfx:javafx-fxml:11:" + getJavaFxPlatform()
 }
 
 mainClassName = "org.snobot.coordinate_gui.Main"
