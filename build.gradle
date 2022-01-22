@@ -4,7 +4,10 @@ import org.gradle.internal.os.OperatingSystem;;
 buildscript
 {
     ext.getShuffleboardVersion = {
-        return "2021.2.2"
+        return getWpilibVersion()
+    }
+    ext.getWpilibVersion = {
+        return "2022.2.1"
     }
 
     ext.getJavaFxPlatform = {

@@ -8,10 +8,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.trajectory.Trajectory;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -174,7 +174,7 @@ public class TrajectoryGenController
                     poses.get(0),
                     List.of(),
                     poses.get(poses.size() - 1),
-                    new edu.wpi.first.wpilibj.trajectory.TrajectoryConfig(pathConfig.mMaxVelocity, pathConfig.mMaxAcceleration)
+                    new edu.wpi.first.math.trajectory.TrajectoryConfig(pathConfig.mMaxVelocity, pathConfig.mMaxAcceleration)
             );
 
             List<Coordinate> idealCoordinates = new ArrayList<>();

@@ -1,4 +1,4 @@
-package org.snobot.coordinate_gui.game.infinite_recharge_at_home;
+package org.snobot.coordinate_gui.game.steamworks;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,12 +20,7 @@ public final class StandaloneMain
         @Override
         public void start(Stage aPrimaryStage) throws IOException
         {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("barrel_roll_field.fxml"));
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("bounce_field.fxml"));
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("galactic_search_a.fxml"));
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("galactic_search_b.fxml"));
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("infinite_recharge_field.fxml"));
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("slalom_field.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("steamworks_field.fxml"));
 
             Pane root = loader.load();
             BaseGuiController robotController = loader.getController();
@@ -42,8 +37,8 @@ public final class StandaloneMain
 //            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(15)), 0));
 //            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(5), Distance.fromFeet(5)), 0));
 
-            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(0)), 0));
-//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(27), Distance.fromFeet(0)), 0));
+//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(0)), 0));
+            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(27)), 0));
 //            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(52), Distance.fromFeet(0)), 0));
 //            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(52), Distance.fromFeet(13.5)), 0));
 //            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(52), Distance.fromFeet(26)), 0));
