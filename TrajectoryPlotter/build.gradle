@@ -2,7 +2,7 @@
 apply plugin: "java"
 
 
-apply from: "$rootDir/shared_styleguide.gradle"
+
 dependencies {
     implementation "org.openjfx:javafx-base:11:" + getJavaFxPlatform()
     implementation "org.openjfx:javafx-graphics:11:" + getJavaFxPlatform()

@@ -10,7 +10,7 @@ repositories {
 }
 
 
-apply from: "$rootDir/shared_styleguide.gradle"
+
 dependencies {
     implementation project("$coordinateGuiBase:CoordinateGuiCore")
     implementation project("$coordinateGuiBase:CoordinateGuiCore2019")

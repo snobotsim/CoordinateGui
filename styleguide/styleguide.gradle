@@ -5,7 +5,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: "pmd"
 apply plugin: "checkstyle"
-apply plugin:  "jacoco"
+//apply plugin:  "jacoco"
 //apply plugin: 'com.github.spotbugs'
 
 checkstyle {
@@ -26,30 +26,30 @@ pmd {
 //  excludeFilter = file("$rootDir/styleguide/findbugs_suppressions.xml")
 //  effort = "max"
 //}
-jacoco {
-    toolVersion = "0.8.6"
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled true
-    }
-}
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                counter = 'LINE'
-                value = 'COVEREDRATIO'
-                minimum = 1.0
-            }
-        }
-    }
-}
+//jacoco {
+//    toolVersion = "0.8.6"
+//}
+//
+//jacocoTestReport {
+//    reports {
+//        xml.enabled true
+//        html.enabled true
+//    }
+//}
+//jacocoTestCoverageVerification {
+//    violationRules {
+//        rule {
+//            limit {
+//                counter = 'LINE'
+//                value = 'COVEREDRATIO'
+//                minimum = 1.0
+//            }
+//        }
+//    }
+//}
 
 test {
-//    useJUnitPlatform()
+    //    useJUnitPlatform()
     testLogging {
         events TestLogEvent.FAILED,
                 TestLogEvent.SKIPPED,
@@ -100,17 +100,17 @@ spotless {
         trimTrailingWhitespace()
         endWithNewline()
     }
-//    format 'xml', {
-//        target fileTree('.') {
-//            include '**/*.xml'
-//            include '**/*.fxml'
-//            exclude '**/build/**', '**/build-*/**', 'bazel-*/**', '.idea/**'
-//        }
-//        eclipseWtp('xml')
-//        trimTrailingWhitespace()
-//        indentWithSpaces(4)
-//        endWithNewline()
-//    }
+    //    format 'xml', {
+    //        target fileTree('.') {
+    //            include '**/*.xml'
+    //            include '**/*.fxml'
+    //            exclude '**/build/**', '**/build-*/**', 'bazel-*/**', '.idea/**'
+    //        }
+    //        eclipseWtp('xml')
+    //        trimTrailingWhitespace()
+    //        indentWithSpaces(4)
+    //        endWithNewline()
+    //    }
     format 'misc', {
         target fileTree('.') {
             include '**/*.md', '**/.gitignore', "**/*.yml", "**/*.yaml"

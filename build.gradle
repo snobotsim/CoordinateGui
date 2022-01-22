@@ -1,8 +1,7 @@
 
 import org.gradle.internal.os.OperatingSystem;;
 
-buildscript
-{
+buildscript {
     ext.getShuffleboardVersion = {
         return getWpilibVersion()
     }
@@ -11,12 +10,10 @@ buildscript
     }
 
     ext.getJavaFxPlatform = {
-        if(OperatingSystem.current().isWindows())
-        {
+        if(OperatingSystem.current().isWindows()) {
             return "win"
         }
-        else if(OperatingSystem.current().isLinux())
-        {
+        else if(OperatingSystem.current().isLinux()) {
             return "linux"
         }
 
@@ -25,9 +22,9 @@ buildscript
 }
 
 plugins {
-	id "java"
+    id "java"
     id 'com.diffplug.spotless' version '5.5.0' apply false
-	id "eclipse"
+    id "eclipse"
 }
 
 allprojects {
@@ -49,9 +46,13 @@ allprojects {
     }
 }
 
+allprojects {
+    apply from: "${rootDir}/styleguide/styleguide.gradle"
+}
+
 ext {
-//	SpotBugsTask = com.github.spotbugs.SpotBugsTask
-	coordinateGuiBase = ""
+    //	SpotBugsTask = com.github.spotbugs.SpotBugsTask
+    coordinateGuiBase = ""
 
     if(project.findProperty("publishing_url")) {
         publishing_url = uri(project.publishing_url)

@@ -1,7 +1,7 @@
 
 apply plugin: "java"
 
-apply from: "$rootDir/shared_styleguide.gradle"
+
 
 dependencies {
     implementation project("$coordinateGuiBase:CoordinateGuiCore")
