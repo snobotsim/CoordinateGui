@@ -21,19 +21,14 @@ public final class StandaloneMain
         {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("powerup_field.fxml"));
             Pane root = loader.load();
-            CoordinateGui2018 robotController = loader.getController();
+            PowerupController robotController = loader.getController();
 
             Scene scene = new Scene(root);
             aPrimaryStage.setScene(scene);
 
             aPrimaryStage.show();
-//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(0)), 0));
-//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(-27)), 0));
-            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(27), Distance.fromFeet(13.5)), -90));
-//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(0)), 0));
-//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(108), Distance.fromFeet(0)), 0));
-//            robotCotroller.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(54), Distance.fromFeet(27)), 0));
-//            robotCotroller.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(27)), 0));
+
+            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(0)), 0));
         }
     }
 

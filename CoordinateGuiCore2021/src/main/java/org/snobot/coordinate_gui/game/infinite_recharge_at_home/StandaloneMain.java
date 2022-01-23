@@ -35,19 +35,7 @@ public final class StandaloneMain
 
             aPrimaryStage.show();
 
-
-//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(0)), 0));
-//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(30), Distance.fromFeet(0)), 0));
-//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(30), Distance.fromFeet(15)), 0));
-//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(15)), 0));
-//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(5), Distance.fromFeet(5)), 0));
-
             robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(0)), 0));
-//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(27), Distance.fromFeet(0)), 0));
-//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(52), Distance.fromFeet(0)), 0));
-//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(52), Distance.fromFeet(13.5)), 0));
-//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(52), Distance.fromFeet(26)), 0));
-//            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(26)), 0));
         }
     }
 

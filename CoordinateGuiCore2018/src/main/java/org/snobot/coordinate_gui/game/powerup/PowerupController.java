@@ -3,12 +3,12 @@ package org.snobot.coordinate_gui.game.powerup;
 import org.snobot.coordinate_gui.model.FieldLoader;
 import org.snobot.coordinate_gui.ui.layers.BaseGuiController;
 
-public class CoordinateGui2018 extends BaseGuiController
+public class PowerupController extends BaseGuiController
 {
     /**
      * Constructor.
      */
-    public CoordinateGui2018()
+    public PowerupController()
     {
         super(FieldLoader.FieldsConfig.Year2018);
     }
