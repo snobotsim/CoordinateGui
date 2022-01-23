@@ -28,12 +28,12 @@ public class ShuffleboardPlugin2021 extends Plugin
     public List<ComponentType> getComponents()
     {
         return ImmutableList.of(
-                WidgetType.forAnnotatedWidget(BarrelGuiWidget2021.class),
-                WidgetType.forAnnotatedWidget(BounceGuiWidget2021.class),
-                WidgetType.forAnnotatedWidget(GalacticSearchAGuiWidget2021.class),
-                WidgetType.forAnnotatedWidget(GalacticSearchBGuiWidget2021.class),
-                WidgetType.forAnnotatedWidget(InfiniteRechargeAtHomeGuiWidget2021.class),
-                WidgetType.forAnnotatedWidget(SlalomGuiWidget2021.class),
+                WidgetType.forAnnotatedWidget(BarrelCoordinateGuiWidget.class),
+                WidgetType.forAnnotatedWidget(BounceCoordinateGuiWidget.class),
+                WidgetType.forAnnotatedWidget(GalacticSearchACoordinateGuiWidget.class),
+                WidgetType.forAnnotatedWidget(GalacticSearchBCoordinateGuiWidget.class),
+                WidgetType.forAnnotatedWidget(InfiniteRechargeAtHomeCoordinateGuiWidget.class),
+                WidgetType.forAnnotatedWidget(SlalomCoordinateGuiWidget.class),
 
                 WidgetType.forAnnotatedWidget(TrajectoryPlotsWidget.class),
                 WidgetType.forAnnotatedWidget(PurePursuitPlotsWidget.class),

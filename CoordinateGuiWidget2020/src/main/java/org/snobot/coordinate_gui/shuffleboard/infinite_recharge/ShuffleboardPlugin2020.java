@@ -28,7 +28,7 @@ public class ShuffleboardPlugin2020 extends Plugin
     public List<ComponentType> getComponents()
     {
         return ImmutableList.of(
-                WidgetType.forAnnotatedWidget(CoordinateGuiWidget2020.class),
+                WidgetType.forAnnotatedWidget(InfiniteRechargeCoordinateGuiWidget.class),
                 WidgetType.forAnnotatedWidget(TrajectoryPlotsWidget.class),
                 WidgetType.forAnnotatedWidget(PurePursuitPlotsWidget.class),
                 WidgetType.forAnnotatedWidget(RamsetePlotsWidget.class));

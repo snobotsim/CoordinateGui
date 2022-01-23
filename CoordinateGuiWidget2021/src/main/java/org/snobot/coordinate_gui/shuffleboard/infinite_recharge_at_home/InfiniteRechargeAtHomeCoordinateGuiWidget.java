@@ -11,13 +11,13 @@ import javafx.fxml.FXML;
 import org.snobot.coordinate_gui.shuffleboard.widgets.BaseCoordinateGuiWidget;
 
 @Description(name = "CoordinateGuiInfiniteRecharge", dataTypes = {InfiniteRechargeAtHomeCoordinateGuiData.class})
-@ParametrizedController("InfiniteRechargeGuiWidget.fxml")
-public class InfiniteRechargeAtHomeGuiWidget2021 extends BaseCoordinateGuiWidget<InfiniteRechargeAtHomeCoordinateGuiData, InfiniteRechargeAtHomeController>
+@ParametrizedController("InfiniteRechargeCoordinateGuiWidget.fxml")
+public class InfiniteRechargeAtHomeCoordinateGuiWidget extends BaseCoordinateGuiWidget<InfiniteRechargeAtHomeCoordinateGuiData, InfiniteRechargeAtHomeController>
 {
     @FXML
     protected InfiniteRechargeAtHomeController mFieldController;
 
-    public InfiniteRechargeAtHomeGuiWidget2021()
+    public InfiniteRechargeAtHomeCoordinateGuiWidget()
     {
         super(Distance.Unit.Meters);
     }

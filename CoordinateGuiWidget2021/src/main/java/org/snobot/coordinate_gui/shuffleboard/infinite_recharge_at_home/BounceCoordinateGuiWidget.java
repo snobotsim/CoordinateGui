@@ -11,13 +11,13 @@ import org.snobot.coordinate_gui.shuffleboard.infinite_recharge_at_home.data.Inf
 import org.snobot.coordinate_gui.shuffleboard.widgets.BaseCoordinateGuiWidget;
 
 @Description(name = "CoordinateGuiBounce", dataTypes = {InfiniteRechargeAtHomeCoordinateGuiData.class})
-@ParametrizedController("BounceGuiWidget.fxml")
-public class BounceGuiWidget2021 extends BaseCoordinateGuiWidget<InfiniteRechargeAtHomeCoordinateGuiData, InfiniteRechargeAtHomeController>
+@ParametrizedController("BounceCoordinateGuiWidget.fxml")
+public class BounceCoordinateGuiWidget extends BaseCoordinateGuiWidget<InfiniteRechargeAtHomeCoordinateGuiData, InfiniteRechargeAtHomeController>
 {
     @FXML
     protected BounceController mFieldController;
 
-    public BounceGuiWidget2021()
+    public BounceCoordinateGuiWidget()
     {
         super(Distance.Unit.Meters);
     }

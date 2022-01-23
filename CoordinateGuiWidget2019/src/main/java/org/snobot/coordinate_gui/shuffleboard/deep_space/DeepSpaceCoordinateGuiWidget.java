@@ -9,10 +9,10 @@ import edu.wpi.first.shuffleboard.api.widget.Description;
 import edu.wpi.first.shuffleboard.api.widget.ParametrizedController;
 
 @Description(name = "Coordinate GUI", dataTypes = {DeepSpaceCoordinateGuiData.class})
-@ParametrizedController("CoordinateGuiWidget.fxml")
-public class CoordinateGuiWidget2019 extends BaseCoordinateGuiWidget<DeepSpaceCoordinateGuiData, DeepSpaceController>
+@ParametrizedController("DeepSpaceCoordinateGuiWidget.fxml")
+public class DeepSpaceCoordinateGuiWidget extends BaseCoordinateGuiWidget<DeepSpaceCoordinateGuiData, DeepSpaceController>
 {
-    public CoordinateGuiWidget2019()
+    public DeepSpaceCoordinateGuiWidget()
     {
         super(Distance.Unit.Inch);
     }
