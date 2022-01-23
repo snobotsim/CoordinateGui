@@ -8,7 +8,7 @@ import org.snobot.coordinate_gui.shuffleboard.widgets.BaseCoordinateGuiWidget;
 import edu.wpi.first.shuffleboard.api.widget.Description;
 import edu.wpi.first.shuffleboard.api.widget.ParametrizedController;
 
-@Description(name = "Coordinate GUI", dataTypes = {InfiniteRechargeCoordinateGuiData.class})
+@Description(name = "InfiniteRecharge Coordinate GUI", dataTypes = {InfiniteRechargeCoordinateGuiData.class})
 @ParametrizedController("InfiniteRechargeCoordinateGuiWidget.fxml")
 public class InfiniteRechargeCoordinateGuiWidget extends BaseCoordinateGuiWidget<InfiniteRechargeCoordinateGuiData, InfiniteRechargeController>
 {

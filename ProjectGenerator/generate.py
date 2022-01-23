@@ -108,11 +108,12 @@ def main():
     configs.append(GenConfig(2018, "Powerup"))
     configs.append(GenConfig(2019, "DeepSpace"))
     configs.append(GenConfig(2020, "InfiniteRecharge"))
-    # configs.append(GenConfig(2021, "InfiniteRechargeAtHome", subfields = ["Barrel", "Bounce", "GalacticSearchA", "GalacticSearchB", "InfiniteRechargeAtHome", "Slalom"]))
+    configs.append(GenConfig(2021, "InfiniteRechargeAtHome", subfields = ["Barrel", "Bounce", "GalacticSearchA", "GalacticSearchB", "InfiniteRechargeAtHome", "Slalom"]))
+    configs.append(GenConfig(2022, "RapidReact"))
 
     for config in configs:
         generate_core_project(config)
-        # generate_widget_project(config)
+        generate_widget_project(config)
 
 
 

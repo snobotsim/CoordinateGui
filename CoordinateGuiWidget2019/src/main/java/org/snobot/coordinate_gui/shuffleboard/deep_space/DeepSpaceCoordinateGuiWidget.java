@@ -8,7 +8,7 @@ import org.snobot.coordinate_gui.shuffleboard.widgets.BaseCoordinateGuiWidget;
 import edu.wpi.first.shuffleboard.api.widget.Description;
 import edu.wpi.first.shuffleboard.api.widget.ParametrizedController;
 
-@Description(name = "Coordinate GUI", dataTypes = {DeepSpaceCoordinateGuiData.class})
+@Description(name = "DeepSpace Coordinate GUI", dataTypes = {DeepSpaceCoordinateGuiData.class})
 @ParametrizedController("DeepSpaceCoordinateGuiWidget.fxml")
 public class DeepSpaceCoordinateGuiWidget extends BaseCoordinateGuiWidget<DeepSpaceCoordinateGuiData, DeepSpaceController>
 {

@@ -1,4 +1,4 @@
-package org.snobot.coordinate_gui.game.infinite_recharge_at_home;
+package org.snobot.coordinate_gui.game.rapid_react;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,14 +19,9 @@ public final class StandaloneMain
         @Override
         public void start(Stage aPrimaryStage) throws IOException
         {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("barrel_field.fxml"));
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("bounce_field.fxml"));
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("galactic_search_a_field.fxml"));
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("galactic_search_b_field.fxml"));
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("infinite_recharge_at_home_field.fxml"));
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("slalom_field.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("rapid_react_field.fxml"));
             Pane root = loader.load();
-            InfiniteRechargeAtHomeController robotController = loader.getController();
+            RapidReactController robotController = loader.getController();
 
             Scene scene = new Scene(root);
             aPrimaryStage.setScene(scene);

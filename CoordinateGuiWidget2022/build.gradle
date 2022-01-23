@@ -1,0 +1,11 @@
+
+ext {
+    package_name = "org.snobot.coordinate_gui.shuffleboard.rapid_react"
+    base_name = 'CoordinateGuiShuffleboard2022'
+}
+
+dependencies {
+    implementation project("$coordinateGuiBase:CoordinateGuiCore2022")
+}
+
+apply from: "${rootDir}/widget_build.gradle"
