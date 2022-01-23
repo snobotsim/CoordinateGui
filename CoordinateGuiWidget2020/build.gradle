@@ -1,6 +1,6 @@
 
 ext {
-    package_name = "org.snobot.coordinate_gui.shuffleboard.deep_space"
+    package_name = "org.snobot.coordinate_gui.shuffleboard.infinite_recharge"
     base_name = 'CoordinateGuiShuffleboard2020'
 }
 
