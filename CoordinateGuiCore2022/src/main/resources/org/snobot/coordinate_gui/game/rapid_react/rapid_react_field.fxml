@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="mTopPane"
+      maxHeight="-Infinity"
+      maxWidth="-Infinity"
+      prefHeight="768.0"
+      prefWidth="1024.0"
+      xmlns="http://javafx.com/javafx/10.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.snobot.coordinate_gui.game.rapid_react.RapidReactController">
+    <children>
+        <Group fx:id="mLayers">
+            <fx:include fx:id="mField" source="/org/snobot/coordinate_gui/ui/layers/field_layer.fxml" />
+            <fx:include fx:id="mIdealTrajectoryCoordinates" source="/org/snobot/coordinate_gui/ui/layers/coordinate_layer.fxml" />
+            <fx:include fx:id="mIdealRamseteCoordinates" source="/org/snobot/coordinate_gui/ui/layers/coordinate_layer.fxml" />
+            <fx:include fx:id="mTrajectoryConfig" source="/org/snobot/coordinate_gui/ui/layers/trajectory_config_layer.fxml" />
+            <fx:include fx:id="mGoToPosition" source="/org/snobot/coordinate_gui/ui/layers/go_to_position_layer.fxml" />
+            <fx:include fx:id="mRobotPosition" source="/org/snobot/coordinate_gui/ui/layers/robot_position_layer.fxml"/>
+            <fx:include fx:id="mCameraLayer" source="/org/snobot/coordinate_gui/ui/layers/camera_ray_layer.fxml" />
+            <fx:include fx:id="mFadingCoordinates" source="/org/snobot/coordinate_gui/ui/layers/coordinate_layer.fxml" />
+            <fx:include fx:id="mPurePursuit" source="/org/snobot/coordinate_gui/ui/layers/pure_pursuit_layer.fxml" />
+        </Group>
+    </children>
+</Pane>

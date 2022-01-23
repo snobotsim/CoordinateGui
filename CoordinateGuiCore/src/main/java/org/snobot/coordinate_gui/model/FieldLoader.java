@@ -22,7 +22,7 @@ public class FieldLoader
         Year2019(FieldImages.k2019DeepSpaceFieldConfig),
         Year2020(FieldImages.k2020InfiniteRechargeFieldConfig),
         Year2021InfiniteRechargeAtHome(FieldImages.k2021InfiniteRechargeFieldConfig),
-        Year2021BarrelRace(FieldImages.k2021BarrelFieldConfig),
+        Year2021Barrel(FieldImages.k2021BarrelFieldConfig),
         Year2021Bounce(FieldImages.k2021BounceFieldConfig),
         Year2021GalacticSearchA(FieldImages.k2021GalacticSearchAFieldConfig),
         Year2021GalacticSearchB(FieldImages.k2021GalacticSearchBFieldConfig),

@@ -1,0 +1,12 @@
+
+ext {
+    package_name = "{{config.shuffleboard_package}}"
+    base_name = 'CoordinateGuiShuffleboard{{config.year}}'
+}
+
+dependencies {
+    implementation project("$coordinateGuiBase:CoordinateGuiCore{{config.year}}")
+}
+
+apply from: "${rootDir}/widget_build.gradle"
+

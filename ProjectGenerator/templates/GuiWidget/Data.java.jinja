@@ -1,0 +1,27 @@
+package {{config.shuffleboard_package}}.data;
+
+import java.util.Map;
+
+import org.snobot.coordinate_gui.shuffleboard.data.BaseCoordinateGuiData;
+
+public class {{config.game_name}}CoordinateGuiData extends BaseCoordinateGuiData
+{
+    /**
+     * Constructor.
+     */
+    public {{config.game_name}}CoordinateGuiData()
+    {
+    }
+
+    /**
+     * Constructor. Initializes the data from the map.
+     *
+     * @param aMap
+     *            The map from NetworkTables
+     */
+    public {{config.game_name}}CoordinateGuiData(Map<String, Object> aMap)
+    {
+        super(aMap);
+    }
+}
+

@@ -1,0 +1,33 @@
+package {{config.shuffleboard_package}}.data;
+
+import java.util.Map;
+import java.util.function.Function;
+
+import edu.wpi.first.shuffleboard.api.data.ComplexDataType;
+import org.snobot.coordinate_gui.shuffleboard.data.SmartDashboardNames;
+
+public final class {{config.game_name}}CoordinateGuiDataType extends ComplexDataType<{{config.game_name}}CoordinateGuiData>
+{
+    public static final {{config.game_name}}CoordinateGuiDataType INSTANCE = new {{config.game_name}}CoordinateGuiDataType();
+    private static final String NAME = SmartDashboardNames.sCOORDINATE_GUI_TABLE_TYPE;
+
+    private {{config.game_name}}CoordinateGuiDataType()
+    {
+        super(NAME, {{config.game_name}}CoordinateGuiData.class);
+    }
+
+    @Override
+    public Function<Map<String, Object>, {{config.game_name}}CoordinateGuiData> fromMap()
+    {
+        return map ->
+            new {{config.game_name}}CoordinateGuiData(map);
+    }
+
+    @Override
+    public {{config.game_name}}CoordinateGuiData getDefaultValue()
+    {
+        return new {{config.game_name}}CoordinateGuiData();
+    }
+
+}
+

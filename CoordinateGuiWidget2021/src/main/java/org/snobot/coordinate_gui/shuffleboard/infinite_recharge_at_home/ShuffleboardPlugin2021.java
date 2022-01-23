@@ -2,12 +2,12 @@ package org.snobot.coordinate_gui.shuffleboard.infinite_recharge_at_home;
 
 import java.util.List;
 
+import org.snobot.coordinate_gui.shuffleboard.infinite_recharge_at_home.data.InfiniteRechargeAtHomeCoordinateGuiDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.CoordinateDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.PurePursuitDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.RamseteControllerDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.TrajectoryDataType;
 import org.snobot.coordinate_gui.shuffleboard.data.VisionDataType;
-import org.snobot.coordinate_gui.shuffleboard.infinite_recharge_at_home.data.InfiniteRechargeCoordinateGuiDataType;
 import org.snobot.coordinate_gui.shuffleboard.widgets.PurePursuitPlotsWidget;
 import org.snobot.coordinate_gui.shuffleboard.widgets.RamsetePlotsWidget;
 import org.snobot.coordinate_gui.shuffleboard.widgets.TrajectoryPlotsWidget;
@@ -28,13 +28,12 @@ public class ShuffleboardPlugin2021 extends Plugin
     public List<ComponentType> getComponents()
     {
         return ImmutableList.of(
-                WidgetType.forAnnotatedWidget(BarrelPathGuiWidget2021.class),
-                WidgetType.forAnnotatedWidget(BouncePathGuiWidget2021.class),
-                WidgetType.forAnnotatedWidget(GalacticSearchAGuiWidget2021.class),
-                WidgetType.forAnnotatedWidget(GalacticSearchBGuiWidget2021.class),
-                WidgetType.forAnnotatedWidget(InfiniteRechargeGuiWidget2021.class),
-                WidgetType.forAnnotatedWidget(SlalomPathGuiWidget2021.class),
-
+                WidgetType.forAnnotatedWidget(BarrelCoordinateGuiWidget.class),
+                WidgetType.forAnnotatedWidget(BounceCoordinateGuiWidget.class),
+                WidgetType.forAnnotatedWidget(GalacticSearchACoordinateGuiWidget.class),
+                WidgetType.forAnnotatedWidget(GalacticSearchBCoordinateGuiWidget.class),
+                WidgetType.forAnnotatedWidget(InfiniteRechargeAtHomeCoordinateGuiWidget.class),
+                WidgetType.forAnnotatedWidget(SlalomCoordinateGuiWidget.class),
                 WidgetType.forAnnotatedWidget(TrajectoryPlotsWidget.class),
                 WidgetType.forAnnotatedWidget(PurePursuitPlotsWidget.class),
                 WidgetType.forAnnotatedWidget(RamsetePlotsWidget.class));
@@ -45,7 +44,7 @@ public class ShuffleboardPlugin2021 extends Plugin
     public List<DataType> getDataTypes()
     {
         return ImmutableList.of(
-                InfiniteRechargeCoordinateGuiDataType.INSTANCE,
+                InfiniteRechargeAtHomeCoordinateGuiDataType.INSTANCE,
                 CoordinateDataType.INSTANCE,
                 VisionDataType.INSTANCE,
                 TrajectoryDataType.INSTANCE,

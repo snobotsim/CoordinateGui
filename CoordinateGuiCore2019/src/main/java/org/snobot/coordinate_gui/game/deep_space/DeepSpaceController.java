@@ -11,6 +11,5 @@ public class DeepSpaceController extends BaseGuiController
     public DeepSpaceController()
     {
         super(FieldLoader.FieldsConfig.Year2019);
-
     }
 }
