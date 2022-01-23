@@ -1,0 +1,52 @@
+package {{config.game_package}};
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import org.snobot.coordinate_gui.model.Coordinate;
+import org.snobot.coordinate_gui.model.Distance;
+import org.snobot.coordinate_gui.model.Position2dDistance;
+
+import java.io.IOException;
+
+public final class StandaloneMain
+{
+    public static class PseudoMain extends Application
+    {
+
+        @Override
+        public void start(Stage aPrimaryStage) throws IOException
+        {
+            {%- for subfield in config.subfields %}
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("{{camel_to_snake(subfield)}}_field.fxml"));
+            {%- endfor %}
+            Pane root = loader.load();
+            {{config.game_name}}Controller robotController = loader.getController();
+
+            Scene scene = new Scene(root);
+            aPrimaryStage.setScene(scene);
+
+            aPrimaryStage.show();
+
+            robotController.addRobotPosition(new Coordinate(new Position2dDistance(Distance.fromFeet(0), Distance.fromFeet(0)), 0));
+        }
+    }
+
+    private StandaloneMain()
+    {
+
+    }
+
+    @SuppressWarnings("JavadocMethod")
+    public static void main(String[] aArgs)
+    {
+        // JavaFX 11+ uses GTK3 by default, and has problems on some display
+        // servers
+        // This flag forces JavaFX to use GTK2
+        // System.setProperty("jdk.gtk.version", "2");
+        Application.launch(PseudoMain.class, aArgs);
+    }
+}
+

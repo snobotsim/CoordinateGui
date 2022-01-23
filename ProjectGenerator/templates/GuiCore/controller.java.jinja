@@ -1,0 +1,16 @@
+package {{config.game_package}};
+
+import org.snobot.coordinate_gui.model.FieldLoader;
+import org.snobot.coordinate_gui.ui.layers.BaseGuiController;
+
+public class {{subfield}}Controller extends BaseGuiController
+{
+    /**
+     * Constructor.
+     */
+    public {{subfield}}Controller()
+    {
+        super(FieldLoader.FieldsConfig.Year{{config.year}}{%if config.game_name != subfield %}{{subfield}}{%endif%});
+    }
+}
+
