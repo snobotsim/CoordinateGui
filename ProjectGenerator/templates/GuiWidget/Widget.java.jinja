@@ -9,10 +9,10 @@ import edu.wpi.first.shuffleboard.api.widget.Description;
 import edu.wpi.first.shuffleboard.api.widget.ParametrizedController;
 
 @Description(name = "Coordinate GUI", dataTypes = {% raw %}{{% endraw %}{{config.game_name}}CoordinateGuiData.class})
-@ParametrizedController("CoordinateGuiWidget.fxml")
-public class {%if config.game_name == subfield %}CoordinateGuiWidget{%else%}{{subfield}}GuiWidget{%endif%}{{config.year}} extends BaseCoordinateGuiWidget<{{config.game_name}}CoordinateGuiData, {{config.game_name}}Controller>
+@ParametrizedController("{{subfield}}CoordinateGuiWidget.fxml")
+public class {{subfield}}CoordinateGuiWidget extends BaseCoordinateGuiWidget<{{config.game_name}}CoordinateGuiData, {{config.game_name}}Controller>
 {
-    public {%if config.game_name == subfield %}CoordinateGuiWidget{%else%}{{subfield}}GuiWidget{%endif%}{{config.year}}()
+    public {{subfield}}CoordinateGuiWidget()
     {
         super(Distance.Unit.Inch);
     }

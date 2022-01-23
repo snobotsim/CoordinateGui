@@ -29,7 +29,7 @@ public class ShuffleboardPlugin{{config.year}} extends Plugin
     {
         return ImmutableList.of(
         {%- for subfield in config.subfields %}
-                WidgetType.forAnnotatedWidget({{subfield}}GuiWidget.class),
+                WidgetType.forAnnotatedWidget({{subfield}}CoordinateGuiWidget.class),
         {%- endfor %}
                 WidgetType.forAnnotatedWidget(TrajectoryPlotsWidget.class),
                 WidgetType.forAnnotatedWidget(PurePursuitPlotsWidget.class),

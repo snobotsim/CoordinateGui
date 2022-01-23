@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.Group?>
+<?import javafx.scene.layout.Pane?>
 
 <Pane fx:id="mTopPane"
       maxHeight="-Infinity"

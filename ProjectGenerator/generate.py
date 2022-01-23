@@ -91,21 +91,12 @@ def generate_widget_project(config):
 
     data_type_output = os.path.join(src_root, package_as_dir, f"ShuffleboardPlugin{config.year}.java")
     render_and_write_template(config, template_dir, f"Plugin.java.jinja", data_type_output)
-    #
-    # if config.game_name == config.subfields[0]:
-    #     subfield = config.subfields[0]
-    #     resources_output = os.path.join(resource_root, package_as_dir, f"CoordinateGuiWidget.fxml")
-    #     render_and_write_template(config, template_dir, f"fxml.jinja", resources_output, subfield=subfield)
-    #
-    #     data_type_output = os.path.join(src_root, package_as_dir, f"CoordinateGuiWidget{config.year}.java")
-    #     render_and_write_template(config, template_dir, f"Widget.java.jinja", data_type_output, subfield=subfield)
-    # else:
+
     for subfield in config.subfields:
-        print("---", subfield)
-        resources_output = os.path.join(resource_root, package_as_dir, f"{subfield}GuiWidget.fxml")
+        resources_output = os.path.join(resource_root, package_as_dir, f"{subfield}CoordinateGuiWidget.fxml")
         render_and_write_template(config, template_dir, f"fxml.jinja", resources_output, subfield=subfield)
 
-        data_type_output = os.path.join(src_root, package_as_dir, f"{subfield}GuiWidget{config.year}.java")
+        data_type_output = os.path.join(src_root, package_as_dir, f"{subfield}CoordinateGuiWidget.java")
         render_and_write_template(config, template_dir, f"Widget.java.jinja", data_type_output, subfield=subfield)
 
 
@@ -117,11 +108,11 @@ def main():
     configs.append(GenConfig(2018, "Powerup"))
     configs.append(GenConfig(2019, "DeepSpace"))
     configs.append(GenConfig(2020, "InfiniteRecharge"))
-    configs.append(GenConfig(2021, "InfiniteRechargeAtHome", subfields = ["Barrel", "Bounce", "GalacticSearchA", "GalacticSearchB", "InfiniteRechargeAtHome", "Slalom"]))
+    # configs.append(GenConfig(2021, "InfiniteRechargeAtHome", subfields = ["Barrel", "Bounce", "GalacticSearchA", "GalacticSearchB", "InfiniteRechargeAtHome", "Slalom"]))
 
     for config in configs:
         generate_core_project(config)
-        generate_widget_project(config)
+        # generate_widget_project(config)
 
 
 
