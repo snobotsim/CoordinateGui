@@ -20,11 +20,11 @@ public final class StandaloneMain
         @Override
         public void start(Stage aPrimaryStage) throws IOException
         {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("barrel_roll_field.fxml"));
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("barrel_field.fxml"));
 //            FXMLLoader loader = new FXMLLoader(getClass().getResource("bounce_field.fxml"));
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("galactic_search_a.fxml"));
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("galactic_search_b.fxml"));
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("infinite_recharge_field.fxml"));
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("galactic_search_a_field.fxml"));
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("galactic_search_b_field.fxml"));
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("infinite_recharge_at_home_field.fxml"));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("slalom_field.fxml"));
 
             Pane root = loader.load();

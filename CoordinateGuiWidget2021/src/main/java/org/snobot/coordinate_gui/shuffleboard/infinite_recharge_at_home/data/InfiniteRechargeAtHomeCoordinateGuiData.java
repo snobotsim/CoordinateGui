@@ -4,12 +4,12 @@ import java.util.Map;
 
 import org.snobot.coordinate_gui.shuffleboard.data.BaseCoordinateGuiData;
 
-public class InfiniteRechargeCoordinateGuiData extends BaseCoordinateGuiData
+public class InfiniteRechargeAtHomeCoordinateGuiData extends BaseCoordinateGuiData
 {
     /**
      * Constructor.
      */
-    public InfiniteRechargeCoordinateGuiData()
+    public InfiniteRechargeAtHomeCoordinateGuiData()
     {
     }
 
@@ -19,7 +19,7 @@ public class InfiniteRechargeCoordinateGuiData extends BaseCoordinateGuiData
      * @param aMap
      *            The map from NetworkTables
      */
-    public InfiniteRechargeCoordinateGuiData(Map<String, Object> aMap)
+    public InfiniteRechargeAtHomeCoordinateGuiData(Map<String, Object> aMap)
     {
         super(aMap);
     }
