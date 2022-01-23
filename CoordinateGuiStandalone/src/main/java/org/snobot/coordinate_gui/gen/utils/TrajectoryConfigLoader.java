@@ -28,7 +28,7 @@ public final class TrajectoryConfigLoader
 
     /**
      * Loads a config file.
-     * 
+     *
      * @param aFile
      *            The path to the config file
      */
@@ -52,7 +52,7 @@ public final class TrajectoryConfigLoader
 
     /**
      * Dumps a trajectory config file.
-     * 
+     *
      * @param aPath
      *            The file to dump to
      * @param aCoordinates

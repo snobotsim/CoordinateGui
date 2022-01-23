@@ -133,7 +133,7 @@ public class PurePursuitGenController
         {
             waypoints.add(new PurePursuitWaypoint(coordinate.mPosition.mX.as(Distance.Unit.Feet), coordinate.mPosition.mY.as(Distance.Unit.Feet)));
         }
-        
+
         return waypoints;
     }
 

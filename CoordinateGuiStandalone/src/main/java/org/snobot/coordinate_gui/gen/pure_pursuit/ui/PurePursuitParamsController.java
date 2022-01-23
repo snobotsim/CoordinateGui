@@ -35,7 +35,7 @@ public class PurePursuitParamsController
 
     /**
      * Sets the path configuration parameters.
-     * 
+     *
      * @param aParams
      *            The parameters
      */
@@ -47,7 +47,7 @@ public class PurePursuitParamsController
 
     /**
      * Gets the params represented by the view.
-     * 
+     *
      * @return The config
      */
     public PurePursuitConfig getPathParams()

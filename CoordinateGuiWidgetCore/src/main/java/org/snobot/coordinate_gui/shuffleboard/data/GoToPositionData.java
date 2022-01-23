@@ -33,7 +33,7 @@ public class GoToPositionData extends ComplexData<GoToPositionData>
 
     /**
      * Constructor.
-     * 
+     *
      * @param aData
      *            The CSV representation of the coordinate data
      */
@@ -61,7 +61,7 @@ public class GoToPositionData extends ComplexData<GoToPositionData>
 
     /**
      * Gets a representation of the data as a map.
-     * 
+     *
      * @param aPrefix
      *            The prefix to prepend to the names
      * @return The representative map

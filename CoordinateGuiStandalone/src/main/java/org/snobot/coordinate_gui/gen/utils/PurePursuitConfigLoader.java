@@ -26,7 +26,7 @@ public class PurePursuitConfigLoader
 
     /**
      * Loads a pathweaver file.
-     * 
+     *
      * @param aPath
      *            The file
      */

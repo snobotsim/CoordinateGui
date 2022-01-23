@@ -31,7 +31,7 @@ public class TrajectoryXYPositionGraphController
 
     /**
      * Sets the spline center path, and the velocity.
-     * 
+     *
      * @param aX
      *            The ideal X positions
      * @param aY
@@ -51,7 +51,7 @@ public class TrajectoryXYPositionGraphController
 
     /**
      * Sets the measured point.
-     * 
+     *
      * @param aX
      *            The X position, in inches
      * @param aY

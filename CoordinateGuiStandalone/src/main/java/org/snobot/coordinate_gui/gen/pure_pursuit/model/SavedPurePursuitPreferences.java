@@ -53,7 +53,7 @@ public class SavedPurePursuitPreferences
 
     /**
      * Loads the preferences.
-     * 
+     *
      * @return The loaded preferences
      */
     public static SavedPurePursuitPreferences load()
@@ -88,7 +88,7 @@ public class SavedPurePursuitPreferences
 
     /**
      * Saves the preferences.
-     * 
+     *
      * @param aPreferences
      *            The preferences to save
      */

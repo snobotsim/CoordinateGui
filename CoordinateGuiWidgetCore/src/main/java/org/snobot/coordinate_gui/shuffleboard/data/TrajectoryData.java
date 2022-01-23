@@ -28,7 +28,7 @@ public class TrajectoryData extends ComplexData<TrajectoryData>
 
     /**
      * Constructor.
-     * 
+     *
      * @param aMap
      *            A data map, created from the widget
      */
@@ -39,7 +39,7 @@ public class TrajectoryData extends ComplexData<TrajectoryData>
 
     /**
      * Constructor.
-     * 
+     *
      * @param aPrefix
      *            The prefix to prepend data names with
      * @param aMap
@@ -55,7 +55,7 @@ public class TrajectoryData extends ComplexData<TrajectoryData>
 
     /**
      * Constructor.
-     * 
+     *
      * @param aIdealSpline
      *            A string representing the serialized ideal spline
      * @param aMeasuredSpline
@@ -81,7 +81,7 @@ public class TrajectoryData extends ComplexData<TrajectoryData>
 
     /**
      * Gets a representation of the data as a map.
-     * 
+     *
      * @param aPrefix
      *            The prefix to prepend to the names
      * @return The representative map

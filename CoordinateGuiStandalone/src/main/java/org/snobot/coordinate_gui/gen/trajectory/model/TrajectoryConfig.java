@@ -13,7 +13,7 @@ public class TrajectoryConfig
 
     /**
      * Constructor.
-     * 
+     *
      * @param aMaxVelocity
      *            The maximum velocity, in feet/sec
      * @param aMaxAcceleration

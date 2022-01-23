@@ -25,7 +25,7 @@ public class PurePursuitPlotsController
 
     /**
      * Adds the current point to the graph.
-     * 
+     *
      * @param aPoint
      *            The new point
      */

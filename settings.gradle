@@ -15,4 +15,3 @@ include 'CoordinateGuiWidget2021'
 include 'TrajectoryPlotter'
 include 'PurePursuitPlotter'
 include 'RamsetePlotter'
-

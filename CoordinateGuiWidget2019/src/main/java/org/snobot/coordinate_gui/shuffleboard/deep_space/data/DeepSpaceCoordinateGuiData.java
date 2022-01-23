@@ -1,15 +1,15 @@
-package org.snobot.coordinate_gui.shuffleboard.infinite_recharge_at_home.data;
+package org.snobot.coordinate_gui.shuffleboard.deep_space.data;
 
 import java.util.Map;
 
 import org.snobot.coordinate_gui.shuffleboard.data.BaseCoordinateGuiData;
 
-public class InfiniteRechargeCoordinateGuiData extends BaseCoordinateGuiData
+public class DeepSpaceCoordinateGuiData extends BaseCoordinateGuiData
 {
     /**
      * Constructor.
      */
-    public InfiniteRechargeCoordinateGuiData()
+    public DeepSpaceCoordinateGuiData()
     {
     }
 
@@ -19,7 +19,7 @@ public class InfiniteRechargeCoordinateGuiData extends BaseCoordinateGuiData
      * @param aMap
      *            The map from NetworkTables
      */
-    public InfiniteRechargeCoordinateGuiData(Map<String, Object> aMap)
+    public DeepSpaceCoordinateGuiData(Map<String, Object> aMap)
     {
         super(aMap);
     }

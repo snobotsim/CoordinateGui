@@ -145,9 +145,9 @@ public class PixelConverter
 
     /**
      * Updates the scale factor, based on the size of the window.
-     * 
+     *
      * @param aScale
-     * 
+     *
      * @param aWidthPixels
      *            The width of the panel, in pixels
      * @param aHeightPixels

@@ -29,7 +29,7 @@ public class CoordinateLayerController
 
     /**
      * Sets the controller up.
-     * 
+     *
      * @param aRenderProperties
      *            The render properties used to draw the coordinates
      * @param aDataProvider

@@ -2,12 +2,12 @@
 apply plugin: "java"
 
 
-apply from: "$rootDir/shared_styleguide.gradle"
+
 dependencies {
-    compile "org.openjfx:javafx-base:11:" + getJavaFxPlatform()
-    compile "org.openjfx:javafx-graphics:11:" + getJavaFxPlatform()
-    compile "org.openjfx:javafx-controls:11:" + getJavaFxPlatform()
-    compile "org.openjfx:javafx-fxml:11:" + getJavaFxPlatform()
-    
-    compile project("$coordinateGuiBase:CoordinateGuiCore")
+    implementation "org.openjfx:javafx-base:11:" + getJavaFxPlatform()
+    implementation "org.openjfx:javafx-graphics:11:" + getJavaFxPlatform()
+    implementation "org.openjfx:javafx-controls:11:" + getJavaFxPlatform()
+    implementation "org.openjfx:javafx-fxml:11:" + getJavaFxPlatform()
+
+    implementation project("$coordinateGuiBase:CoordinateGuiCore")
 }

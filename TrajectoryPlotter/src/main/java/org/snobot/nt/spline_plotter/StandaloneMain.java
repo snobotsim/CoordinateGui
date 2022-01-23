@@ -37,7 +37,7 @@ public final class StandaloneMain
 
     /**
      * Main Runner.
-     * 
+     *
      * @param aArgs
      *            optional arguments
      */

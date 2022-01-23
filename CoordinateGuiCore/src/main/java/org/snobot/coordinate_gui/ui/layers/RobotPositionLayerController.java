@@ -25,7 +25,7 @@ public class RobotPositionLayerController
 
     /**
      * Sets the size of the robot.
-     * 
+     *
      * @param aPixelConverter
      *            The pixel converter
      * @param aWidth
@@ -40,10 +40,10 @@ public class RobotPositionLayerController
 
         mRobot.setWidth(aPixelConverter.convertFeetToPixels(mRobotWidth));
         mRobot.setHeight(aPixelConverter.convertFeetToPixels(mRobotHeight));
-        
+
         mOrientationArrow.getPoints().addAll(
                 -ARROW_SIZE, ARROW_SIZE,
-                0.0, -ARROW_SIZE, 
+                0.0, -ARROW_SIZE,
                 ARROW_SIZE, ARROW_SIZE);
     }
 
@@ -56,7 +56,7 @@ public class RobotPositionLayerController
 
     /**
      * Sets the position of the robot to draw.
-     * 
+     *
      * @param aPixelConverter
      *            The pixel converter
      * @param aPosition

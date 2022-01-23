@@ -20,7 +20,7 @@ public class TrajectoryParamsController
 
     /**
      * Sets the path configuration parameters.
-     * 
+     *
      * @param aPathConfig
      *            The parameters
      */
@@ -33,7 +33,7 @@ public class TrajectoryParamsController
 
     /**
      * Gets the params represented by the view.
-     * 
+     *
      * @return The config
      */
     public TrajectoryConfig getPathParams()

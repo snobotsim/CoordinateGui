@@ -56,7 +56,7 @@ public class TrajectoryConfigLayerController
 
         /**
          * Constructor.
-         * 
+         *
          * @param aPixelConverter
          *            The pixel converter
          * @param aCoordinate
@@ -100,7 +100,7 @@ public class TrajectoryConfigLayerController
 
         /**
          * Sets a new position for the coordinate, in feet.
-         * 
+         *
          * @param aPosition
          *            The position
          */
@@ -132,7 +132,7 @@ public class TrajectoryConfigLayerController
 
     /**
      * Sets the trajectory "turning points" for the layer to draw.
-     * 
+     *
      * @param aPixelConverter
      *            The pixel converter utility
      * @param aTrajectoryPoints

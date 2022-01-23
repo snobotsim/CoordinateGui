@@ -10,7 +10,7 @@ public class PurePursuitPathGenerator
 
     /**
      * Constructor.
-     * 
+     *
      * @param aWaypoints
      *            The original waypoints to use
      * @param aSpacing

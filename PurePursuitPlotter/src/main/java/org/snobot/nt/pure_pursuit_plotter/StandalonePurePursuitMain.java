@@ -42,7 +42,7 @@ public final class StandalonePurePursuitMain
 
     /**
      * Main Runner.
-     * 
+     *
      * @param aArgs
      *            optional arguments
      */

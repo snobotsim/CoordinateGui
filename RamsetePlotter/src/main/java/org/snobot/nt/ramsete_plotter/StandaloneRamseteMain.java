@@ -41,7 +41,7 @@ public final class StandaloneRamseteMain
 
     /**
      * Main Runner.
-     * 
+     *
      * @param aArgs
      *            optional arguments
      */

@@ -65,7 +65,7 @@ public class SavedTrajectoryPreferences
 
     /**
      * Loads the last saved preferences.
-     * 
+     *
      * @return The preferences
      */
     public static SavedTrajectoryPreferences load()
@@ -100,7 +100,7 @@ public class SavedTrajectoryPreferences
 
     /**
      * Saves the preferences to a file.
-     * 
+     *
      * @param aPreferences
      *            The preferences to save
      */

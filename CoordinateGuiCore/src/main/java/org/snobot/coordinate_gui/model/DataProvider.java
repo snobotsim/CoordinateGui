@@ -21,7 +21,7 @@ public class DataProvider<DataType>
 
     /**
      * Constructor.
-     * 
+     *
      * @param aMaxPoints
      *            The absolute max number of points to hold on to
      */
@@ -40,7 +40,7 @@ public class DataProvider<DataType>
 
     /**
      * Adds data to the collection. Will trim the back if necessary
-     * 
+     *
      * @param aData
      *            The new data
      */

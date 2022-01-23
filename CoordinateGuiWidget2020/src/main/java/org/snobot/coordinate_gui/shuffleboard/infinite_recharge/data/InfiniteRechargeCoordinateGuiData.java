@@ -15,7 +15,7 @@ public class InfiniteRechargeCoordinateGuiData extends BaseCoordinateGuiData
 
     /**
      * Constructor. Initializes the data from the map.
-     * 
+     *
      * @param aMap
      *            The map from NetworkTables
      */

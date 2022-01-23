@@ -28,7 +28,7 @@ public class CoordinateLayerRenderProps
 
     /**
      * Gets the point color, based on how deep in the list it is.
-     * 
+     *
      * @param aCoordinateCounter
      *            The counter of which data point this is. Affects the opacity
      * @return The color to draw with

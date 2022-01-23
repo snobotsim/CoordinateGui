@@ -1,51 +1,11 @@
 
-apply plugin: "java"
-
-apply from: "$rootDir/shared_styleguide.gradle"
+ext {
+    package_name = "org.snobot.coordinate_gui.shuffleboard.deep_space"
+    base_name = 'CoordinateGuiShuffleboard2019'
+}
 
 dependencies {
-    compile project("$coordinateGuiBase:CoordinateGuiCore")
-    compile project("$coordinateGuiBase:CoordinateGuiCore2019")
-    compile project("$coordinateGuiBase:CoordinateGuiWidgetCore")
-    
-    compile 'org.apache.logging.log4j:log4j-api:2.11.0'
-    compile 'org.apache.logging.log4j:log4j-core:2.11.0'
-    
-    compile "org.openjfx:javafx-base:11:" + getJavaFxPlatform()
-    compile "org.openjfx:javafx-graphics:11:" + getJavaFxPlatform()
-    compile "org.openjfx:javafx-controls:11:" + getJavaFxPlatform()
-    compile "org.openjfx:javafx-fxml:11:" + getJavaFxPlatform()
-    
-    
-    compile 'edu.wpi.first.shuffleboard:shuffleboard:' + getShuffleboardVersion()
-    compile 'edu.wpi.first.shuffleboard:api:' + getShuffleboardVersion()
+    implementation project("$coordinateGuiBase:CoordinateGuiCore2019")
 }
 
-////////////////////////////
-// Generate Version Info
-////////////////////////////
-sourceSets.main.java.srcDir "${buildDir}/generated/java/"
-task generate_version() {
-    def generated_dir = file("$buildDir/generated/java/org/snobot/coordinate_gui/shuffleboard")
-    generated_dir.mkdirs()
-    def output_file = file("$generated_dir/PluginVersion.java")
-    def file_template = """package org.snobot.coordinate_gui.shuffleboard;
-
-
-public class PluginVersion
-{
-    public static final String VERSION = "${project.publishing_version}";
-} 
-"""
-    
-    doLast {
-        if (output_file.exists()) {
-            output_file.delete()
-        }
-        output_file.write(file_template)
-    }
-    
-}
-compileJava.dependsOn generate_version
-////////////////////////////
-
+apply from: "${rootDir}/widget_build.gradle"
