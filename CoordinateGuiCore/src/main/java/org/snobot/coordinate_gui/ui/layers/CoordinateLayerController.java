@@ -64,6 +64,12 @@ public class CoordinateLayerController
             Position2dPixels asPixels = mPixelConverter.convertDistanceToPixels(coord.mPosition);
             circle.setCenterX(asPixels.mX);
             circle.setCenterY(asPixels.mY);
+
+            if (color.getOpacity() < 0)
+            {
+                sLOGGER.log(Level.TRACE, "Points have become transparent, skipping the rest");
+                break;
+            }
             mCoordinates.getChildren().add(circle);
 
             ++coordinateCtr;

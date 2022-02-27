@@ -7,7 +7,7 @@ import java.util.List;
 
 public class DataProvider<DataType>
 {
-    public static final int sABSOLUTE_MAX_POINT_MEMORY = 1500; //50 updates/sec * 30 seconds
+    public static final int sABSOLUTE_MAX_POINT_MEMORY = 750; //50 updates/sec * 15 seconds
 
     protected final List<DataProviderListener<DataType>> mDataListeners;
     protected final Deque<DataType> mData;
