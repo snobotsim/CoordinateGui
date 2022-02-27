@@ -19,12 +19,12 @@ public class RamseteControllerData extends ComplexData<RamseteControllerData>
 {
     private static final double[] DEFAULT_VALUE = {};
 
-    private final double[] mIdealSpline;
+    private final String mIdealSpline;
     private final double[] mMeasuredSpline;
 
     public RamseteControllerData()
     {
-        this(DEFAULT_VALUE, DEFAULT_VALUE);
+        this("", DEFAULT_VALUE);
     }
 
     /**
@@ -47,10 +47,10 @@ public class RamseteControllerData extends ComplexData<RamseteControllerData>
      *            A string representing the serialized measured spline
      */
     public RamseteControllerData(
-        double[] aIdealSpline,
+        String aIdealSpline,
         double[] aMeasuredSpline)
     {
-        mIdealSpline = Arrays.copyOf(aIdealSpline, aIdealSpline.length);
+        mIdealSpline = aIdealSpline;
         mMeasuredSpline = Arrays.copyOf(aMeasuredSpline, aMeasuredSpline.length);
     }
 
@@ -66,7 +66,7 @@ public class RamseteControllerData extends ComplexData<RamseteControllerData>
     public RamseteControllerData(String aPrefix, Map<String, Object> aMap)
     {
         this(
-            (double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sRAMSETE_IDEAL_POINTS, DEFAULT_VALUE),
+            (String) aMap.getOrDefault(aPrefix + SmartDashboardNames.sRAMSETE_IDEAL_POINTS, ""),
             (double[]) aMap.getOrDefault(aPrefix + SmartDashboardNames.sRAMSETE_REAL_POINT, DEFAULT_VALUE));
     }
 

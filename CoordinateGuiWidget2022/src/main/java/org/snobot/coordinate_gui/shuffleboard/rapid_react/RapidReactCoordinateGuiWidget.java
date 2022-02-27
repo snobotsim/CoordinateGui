@@ -14,6 +14,6 @@ public class RapidReactCoordinateGuiWidget extends BaseCoordinateGuiWidget<Rapid
 {
     public RapidReactCoordinateGuiWidget()
     {
-        super(Distance.Unit.Inch);
+        super(Distance.Unit.Meters);
     }
 }

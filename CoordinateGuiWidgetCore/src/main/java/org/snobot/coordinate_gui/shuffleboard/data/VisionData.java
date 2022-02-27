@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import edu.wpi.first.shuffleboard.api.data.ComplexData;
 import org.snobot.coordinate_gui.model.Distance;
@@ -91,7 +90,6 @@ public class VisionData extends ComplexData<VisionData>
     public List<CameraRayLayerController.Ray> toRays(Distance.Unit aDistanceUnit)
     {
         List<CameraRayLayerController.Ray> rays = new ArrayList<>();
-        Logger.getLogger(VisionData.class.getName()).severe("Getting camera data... " + Arrays.toString(mData));
 
         for (int i = 0; i < mData.length;)
         {
@@ -103,7 +101,6 @@ public class VisionData extends ComplexData<VisionData>
             rays.add(ray);
         }
 
-        Logger.getLogger(VisionData.class.getName()).severe("--Got " + rays);
         return rays;
     }
 }

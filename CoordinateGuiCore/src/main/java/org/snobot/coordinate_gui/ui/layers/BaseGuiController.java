@@ -103,7 +103,7 @@ public class BaseGuiController
         mPixelConverter = new PixelConverter(mFieldShortDimension, mFieldLongDimension, aOrientation, aOriginPosition);
 
         mCoordinatesRenderProperties = new CoordinateLayerRenderProps(100, 5, Color.ORANGERED, true);
-        mCoordinatesDataProvider = new DataProvider<>(1000);
+        mCoordinatesDataProvider = new DataProvider<>(750);
 
         mIdealTrajectoryRenderProperties = new CoordinateLayerRenderProps(100, 1, Color.YELLOWGREEN, false);
         mIdealTrajectoryDataProvider = new DataProvider<>();
@@ -144,17 +144,6 @@ public class BaseGuiController
     public PixelConverter getPixelConverter()
     {
         return mPixelConverter;
-    }
-
-    /**
-     * Sets the rays seen by the camera.
-     *
-     * @param aRays
-     *            The rays
-     */
-    public void setRays(List<CameraRayLayerController.Ray> aRays)
-    {
-        mCameraLayerController.setRays(mPixelConverter, aRays);
     }
 
 
