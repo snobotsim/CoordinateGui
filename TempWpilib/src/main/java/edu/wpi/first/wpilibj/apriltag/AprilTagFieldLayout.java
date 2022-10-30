@@ -13,6 +13,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation3d;
+
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -152,9 +154,10 @@ public class AprilTagFieldLayout {
   }
 
   public static AprilTagFieldLayout fromResource(String resourcePath) throws IOException {
+    System.out.println(resourcePath);
     try (InputStream stream = AprilTagFields.class.getResourceAsStream(resourcePath);
          InputStreamReader reader = new InputStreamReader(stream)) {
-      return new ObjectMapper().readerFor(AprilTagFields.class).readValue(reader);
+      return new ObjectMapper().readerFor(AprilTagFieldLayout.class).readValue(reader);
     }
   }
 
@@ -180,7 +183,7 @@ public class AprilTagFieldLayout {
     return m_apriltags;
   }
 
-  @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonIgnoreProperties(ignoreUnknown = true)
   @JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
   private static class FieldDimensions {
     @SuppressWarnings("MemberName")

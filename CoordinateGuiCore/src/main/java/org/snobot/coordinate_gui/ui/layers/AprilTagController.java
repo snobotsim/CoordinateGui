@@ -28,7 +28,7 @@ import java.util.List;
 
 public class AprilTagController {
 
-    public static final String TEMP_FILE = "C:\\Users\\PJ\\Documents\\GitHub\\old_frc\\snobot_reusable\\CoordinateGui\\TempWpilib\\src\\main\\resources\\edu\\wpi\\first\\wpilibj\\apriltag\\rapid_react_tags.json";
+    public static final String TEMP_FILE = "C:\\Users\\PJ\\Documents\\GitHub\\old_frc\\snobot_reusable\\CoordinateGui\\TempWpilib\\src\\main\\resources\\edu\\wpi\\first\\wpilibj\\apriltag\\2022-rapidreact.json";
 
     @FXML
     protected Group mRays;
