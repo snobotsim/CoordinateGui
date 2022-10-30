@@ -12,6 +12,8 @@ repositories {
 }
 
 dependencies {
+    implementation 'edu.wpi.first.ntcore:ntcore-java:2022.4.1'
+
     implementation "org.ejml:ejml-simple:0.41"
     implementation "com.fasterxml.jackson.core:jackson-annotations:2.12.4"
     implementation "com.fasterxml.jackson.core:jackson-core:2.12.4"

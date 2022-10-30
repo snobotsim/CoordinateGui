@@ -18,4 +18,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
 
     implementation project(":TempWpilib")
+
+    implementation "org.photonvision:PhotonLib-java:v2023.1.1-beta-3"
+    implementation "org.photonvision:PhotonTargeting-java:v2023.1.1-beta-3"
 }
