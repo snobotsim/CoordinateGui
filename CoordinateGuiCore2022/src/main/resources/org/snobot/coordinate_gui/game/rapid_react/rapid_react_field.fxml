@@ -22,6 +22,7 @@
             <fx:include fx:id="mCameraLayer" source="/org/snobot/coordinate_gui/ui/layers/camera_ray_layer.fxml" />
             <fx:include fx:id="mFadingCoordinates" source="/org/snobot/coordinate_gui/ui/layers/coordinate_layer.fxml" />
             <fx:include fx:id="mPurePursuit" source="/org/snobot/coordinate_gui/ui/layers/pure_pursuit_layer.fxml" />
+            <fx:include fx:id="mAprilTag" source="/org/snobot/coordinate_gui/ui/layers/april_tag_layer.fxml" />
         </Group>
     </children>
 </Pane>

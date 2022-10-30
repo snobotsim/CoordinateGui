@@ -138,14 +138,29 @@ public final class Distance
         return new Distance(aD1.mMeters + aD2.mMeters);
     }
 
+    public Distance add(Distance aD2)
+    {
+        return new Distance(mMeters + aD2.mMeters);
+    }
+
     public static Distance subtract(Distance aD1, Distance aD2)
     {
         return new Distance(aD1.mMeters - aD2.mMeters);
     }
 
+    public Distance subtract(Distance aD2)
+    {
+        return new Distance(mMeters - aD2.mMeters);
+    }
+
     public static Distance divide(Distance aDistance, double aDivisor)
     {
         return new Distance(aDistance.mMeters / aDivisor);
+    }
+
+    public Distance divide(double aDivisor)
+    {
+        return new Distance(mMeters / aDivisor);
     }
 
     public static Distance mult(Distance aDistance, double aMult)

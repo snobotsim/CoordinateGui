@@ -72,6 +72,9 @@ public class BaseGuiController
     @FXML
     private PurePursuitLayerController mPurePursuitController;
 
+    @FXML
+    private AprilTagController mAprilTagController;
+
     protected BaseGuiController(FieldLoader.FieldsConfig aFieldConfig)
     {
         this(new FieldLoader(aFieldConfig), Distance.fromInches(36), Distance.fromInches(44));
@@ -139,6 +142,7 @@ public class BaseGuiController
         mIdealTrajectoryCoordinatesController.setup(mIdealTrajectoryRenderProperties, mIdealTrajectoryDataProvider, mPixelConverter);
         mIdealRamseteCoordinatesController.setup(mIdealRamseteRenderProperties, mIdealRamseteDataProvider, mPixelConverter);
         mPurePursuitController.setup(mPixelConverter);
+        mAprilTagController.setup(mPixelConverter);
     }
 
     public PixelConverter getPixelConverter()

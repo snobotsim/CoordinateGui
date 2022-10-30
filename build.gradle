@@ -33,6 +33,16 @@ allprojects {
             name = "WPI"
             url = "https://frcmaven.wpi.edu/artifactory/release/"
         }
+
+        maven {
+            name = "Phonton1"
+            url = "https://maven.photonvision.org/repository/internal"
+        }
+
+        maven {
+            name = "Phonton2"
+            url = "https://maven.photonvision.org/repository/snapshots"
+        }
     }
 }
 
