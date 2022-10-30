@@ -4,6 +4,7 @@
 
 package edu.wpi.first.math;
 
+@SuppressWarnings("PMD")
 public final class MathSharedStore {
   private static MathShared mathShared;
 

@@ -1,5 +1,6 @@
 package edu.wpi.first.wpilibj.apriltag;
 
+@SuppressWarnings("PMD")
 public enum AprilTagFields {
     k2022RapidReact("2022-rapidreact.json");
 

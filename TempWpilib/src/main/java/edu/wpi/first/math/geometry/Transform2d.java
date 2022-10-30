@@ -7,6 +7,7 @@ package edu.wpi.first.math.geometry;
 import java.util.Objects;
 
 /** Represents a transformation for a Pose2d. */
+@SuppressWarnings("PMD")
 public class Transform2d {
   private final Translation2d m_translation;
   private final Rotation2d m_rotation;

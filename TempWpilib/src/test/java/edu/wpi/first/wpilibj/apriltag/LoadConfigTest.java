@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class LoadConfigTest {
   @ParameterizedTest
   @EnumSource(AprilTagFields.class)
-  void testLoad(AprilTagFields field) {
+  public void testLoad(AprilTagFields field) {
     AprilTagFieldLayout layout = Assertions.assertDoesNotThrow(() -> AprilTagFieldLayout.fromField(field));
     assertFalse(layout.getTags().isEmpty());
 

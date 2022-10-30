@@ -20,6 +20,7 @@ import edu.wpi.first.math.numbers.N9;
  *
  * @param <N> The dimension of the vector to be constructed.
  */
+@SuppressWarnings("PMD")
 public class VecBuilder<N extends Num> extends MatBuilder<N, N1> {
   public VecBuilder(Nat<N> rows) {
     super(rows, Nat.N1());

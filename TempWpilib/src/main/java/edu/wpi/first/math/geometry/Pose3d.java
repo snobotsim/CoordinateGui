@@ -18,6 +18,7 @@ import edu.wpi.first.math.numbers.N3;
 import java.util.Objects;
 
 /** Represents a 3D pose containing translational and rotational elements. */
+@SuppressWarnings("PMD")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Pose3d implements Interpolatable<Pose3d> {

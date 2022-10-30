@@ -26,6 +26,7 @@ package org.photonvision;
 
 import edu.wpi.first.math.geometry.Pose2d;
 
+@SuppressWarnings("PMD")
 public class SimVisionTarget2 {
     Pose2d targetPos;
     double targetWidthMeters;

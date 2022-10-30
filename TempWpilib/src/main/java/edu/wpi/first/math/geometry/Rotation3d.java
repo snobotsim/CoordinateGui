@@ -23,6 +23,7 @@ import org.ejml.dense.row.factory.DecompositionFactory_DDRM;
 /** A rotation in a 3D coordinate frame represented by a quaternion. */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
+@SuppressWarnings("PMD")
 public class Rotation3d implements Interpolatable<Rotation3d> {
   private Quaternion m_q = new Quaternion();
 

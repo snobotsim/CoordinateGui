@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import edu.wpi.first.math.geometry.Pose3d;
 import java.util.Objects;
 
-@SuppressWarnings("MemberName")
+@SuppressWarnings({"MemberName", "PMD"})
 public class AprilTag {
   @JsonProperty(value = "ID")
   public int ID;

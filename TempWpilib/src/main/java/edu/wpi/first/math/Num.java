@@ -5,6 +5,7 @@
 package edu.wpi.first.math;
 
 /** A number expressed as a java class. */
+@SuppressWarnings("PMD")
 public abstract class Num {
   /**
    * The number this is backing.

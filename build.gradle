@@ -26,7 +26,6 @@ plugins {
     id 'com.diffplug.spotless' version '5.5.0' apply false
     id "eclipse"
     id 'edu.wpi.first.WpilibTools' version '0.10.0' apply false
-    id 'edu.wpi.first.wpilib.repositories.WPILibRepositoriesPlugin' version '2020.2'
 }
 
 allprojects {
@@ -74,17 +73,3 @@ ext {
     }
     publishing_version = "2022.1.0"
 }
-
-
-//wpilibTools.deps.wpilibVersion = "2022.4.1"
-
-//def nativeConfigName = 'wpilibNatives'
-//def nativeConfig = configurations.create(nativeConfigName)
-//
-//def nativeTasks = wpilibTools.createExtractionTasks {
-//    configurationName = nativeConfigName
-//}
-//
-//nativeTasks.addToSourceSetResources(sourceSets.main)
-//nativeConfig.dependencies.add wpilibTools.deps.wpilib("ntcore")
-//nativeConfig.dependencies.add wpilibTools.deps.wpilib("wpiutil")

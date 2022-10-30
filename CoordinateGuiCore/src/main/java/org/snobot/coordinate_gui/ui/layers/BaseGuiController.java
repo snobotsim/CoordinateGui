@@ -1,6 +1,11 @@
 package org.snobot.coordinate_gui.ui.layers;
 
+import edu.wpi.first.wpilibj.apriltag.AprilTagFieldLayout;
+import edu.wpi.first.wpilibj.apriltag.AprilTagFields;
 import javafx.scene.paint.Color;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.snobot.coordinate_gui.model.FieldLoader;
 import org.snobot.coordinate_gui.model.Coordinate;
 import org.snobot.coordinate_gui.model.DataProvider;
@@ -16,11 +21,14 @@ import javafx.scene.transform.Scale;
 import org.snobot.coordinate_gui.model.Position2dDistance;
 import org.snobot.coordinate_gui.ui.render_props.CoordinateLayerRenderProps;
 
+import java.io.IOException;
 import java.util.List;
 
 @SuppressWarnings("PMD.TooManyFields")
 public class BaseGuiController
 {
+    private static final Logger sLOGGER = LogManager.getLogger(BaseGuiController.class);
+
     private final Image mFieldImage;
     private final Distance mFieldShortDimension;
     private final Distance mFieldLongDimension;
@@ -38,6 +46,8 @@ public class BaseGuiController
 
     private final DataProvider<Coordinate> mIdealRamseteDataProvider;
     private final CoordinateLayerRenderProps mIdealRamseteRenderProperties;
+
+    private final AprilTagFields mAprilTagConfig;
 
     @FXML
     protected Pane mTopPane;
@@ -77,28 +87,38 @@ public class BaseGuiController
 
     protected BaseGuiController(FieldLoader.FieldsConfig aFieldConfig)
     {
-        this(new FieldLoader(aFieldConfig), Distance.fromInches(36), Distance.fromInches(44));
+        this(aFieldConfig, null);
     }
 
-    protected BaseGuiController(FieldLoader aFieldLoader, Distance aRobotWidth, Distance aRobotHeight)
+    protected BaseGuiController(FieldLoader.FieldsConfig aFieldConfig, AprilTagFields aAprilTagConfig)
     {
-        this(aFieldLoader.getImage(), aFieldLoader.getShortDim(), aFieldLoader.getLongDim(), aRobotWidth, aRobotHeight, PixelConverter.Orientation.Landscape, PixelConverter.OriginPosition.BottomLeft);
+        this(new FieldLoader(aFieldConfig), aAprilTagConfig, Distance.fromInches(36), Distance.fromInches(44));
+    }
+
+    protected BaseGuiController(FieldLoader aFieldLoader, AprilTagFields aAprilTagConfig, Distance aRobotWidth, Distance aRobotHeight)
+    {
+        this(aFieldLoader.getImage(), aAprilTagConfig, aFieldLoader.getShortDim(), aFieldLoader.getLongDim(),
+                aRobotWidth, aRobotHeight, PixelConverter.Orientation.Landscape, PixelConverter.OriginPosition.BottomLeft);
     }
 
     protected BaseGuiController(String aFieldImageUrl,
+                                AprilTagFields aAprilTagConfig,
                                 Distance aShortDirection, Distance aLongDirection,
                                 Distance aRobotWidth, Distance aRobotHeight,
                                 PixelConverter.Orientation aOrientation, PixelConverter.OriginPosition aOriginPosition)
     {
-        this(new Image(BaseGuiController.class.getResource(aFieldImageUrl).toExternalForm()), aShortDirection, aLongDirection, aRobotWidth, aRobotHeight, aOrientation, aOriginPosition);
+        this(new Image(BaseGuiController.class.getResource(aFieldImageUrl).toExternalForm()), aAprilTagConfig,
+                aShortDirection, aLongDirection, aRobotWidth, aRobotHeight, aOrientation, aOriginPosition);
     }
 
     protected BaseGuiController(Image aFieldImage,
+                                AprilTagFields aAprilTagConfig,
                                 Distance aShortDirection, Distance aLongDirection,
                                 Distance aRobotWidth, Distance aRobotHeight,
                                 PixelConverter.Orientation aOrientation, PixelConverter.OriginPosition aOriginPosition)
     {
         mFieldImage = aFieldImage;
+        mAprilTagConfig = aAprilTagConfig;
         mFieldShortDimension = aShortDirection;
         mFieldLongDimension = aLongDirection;
         mRobotWidth = aRobotWidth;
@@ -142,7 +162,19 @@ public class BaseGuiController
         mIdealTrajectoryCoordinatesController.setup(mIdealTrajectoryRenderProperties, mIdealTrajectoryDataProvider, mPixelConverter);
         mIdealRamseteCoordinatesController.setup(mIdealRamseteRenderProperties, mIdealRamseteDataProvider, mPixelConverter);
         mPurePursuitController.setup(mPixelConverter);
-        mAprilTagController.setup(mPixelConverter);
+
+        if (mAprilTagConfig != null)
+        {
+            try
+            {
+                AprilTagFieldLayout layout = AprilTagFieldLayout.fromField(mAprilTagConfig);
+                mAprilTagController.setup(mPixelConverter, layout);
+            }
+            catch (IOException ex)
+            {
+                sLOGGER.log(Level.ERROR, "", ex);
+            }
+        }
     }
 
     public PixelConverter getPixelConverter()

@@ -5,6 +5,7 @@
 package edu.wpi.first.math.util;
 
 /** Utility class that converts between commonly used units in FRC. */
+@SuppressWarnings("PMD")
 public final class Units {
   private static final double kInchesPerFoot = 12.0;
   private static final double kMetersPerInch = 0.0254;

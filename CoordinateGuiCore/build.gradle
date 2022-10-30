@@ -4,6 +4,7 @@ apply plugin: "java"
 
 dependencies {
     implementation "edu.wpi.first.fieldImages:fieldImages-java:" + getWpilibVersion()
+    implementation project(":TempWpilib")
 
     implementation 'org.apache.logging.log4j:log4j-api:2.11.0'
     implementation 'org.apache.logging.log4j:log4j-core:2.11.0'
@@ -16,9 +17,4 @@ dependencies {
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
-
-    implementation project(":TempWpilib")
-
-    implementation "org.photonvision:PhotonLib-java:v2023.1.1-beta-3"
-    implementation "org.photonvision:PhotonTargeting-java:v2023.1.1-beta-3"
 }

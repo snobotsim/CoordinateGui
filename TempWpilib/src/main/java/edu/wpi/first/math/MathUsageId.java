@@ -4,6 +4,7 @@
 
 package edu.wpi.first.math;
 
+@SuppressWarnings("PMD")
 public enum MathUsageId {
   kKinematics_DifferentialDrive,
   kKinematics_MecanumDrive,

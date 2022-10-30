@@ -14,7 +14,6 @@ import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation3d;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -38,6 +37,7 @@ import java.util.Objects;
  * AprilTagFieldLayout#setAlliance(DriverStation.Alliance)} will mirror the poses returned from
  * {@link AprilTagFieldLayout#getTagPose(int)} to be correct relative to the other alliance.
  */
+@SuppressWarnings("PMD")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class AprilTagFieldLayout {

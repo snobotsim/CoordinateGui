@@ -19,3 +19,4 @@ include 'PurePursuitPlotter'
 include 'RamsetePlotter'
 
 include 'TempWpilib'
+include 'TempStandalone'

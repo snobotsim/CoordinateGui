@@ -10,6 +10,7 @@ import edu.wpi.first.math.Num;
 /**
  * A class representing the number 20.
 */
+@SuppressWarnings("PMD")
 public final class N20 extends Num implements Nat<N20> {
   private N20() {
   }

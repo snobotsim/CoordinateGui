@@ -13,6 +13,7 @@ import org.ejml.simple.SimpleMatrix;
  * @param <R> The number of rows of the desired matrix.
  * @param <C> The number of columns of the desired matrix.
  */
+@SuppressWarnings("PMD")
 public class MatBuilder<R extends Num, C extends Num> {
   final Nat<R> m_rows;
   final Nat<C> m_cols;

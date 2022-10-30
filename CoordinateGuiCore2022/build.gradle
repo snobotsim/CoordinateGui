@@ -1,43 +1,11 @@
 
 apply plugin: "java"
-apply plugin: "edu.wpi.first.WpilibTools"
-//apply plugin: "application"
 
-
-wpilibTools.deps.wpilibVersion = "2022.4.1"
-
-def nativeConfigName = 'wpilibNatives2'
-def nativeConfig = configurations.create(nativeConfigName)
-
-def nativeTasks = wpilibTools.createExtractionTasks {
-    configurationName = nativeConfigName
-    resourceFileName = "ResourceInformation-NetworkTables.json"
-}
-
-nativeTasks.addToSourceSetResources(sourceSets.main)
-nativeConfig.dependencies.add wpilibTools.deps.wpilib("ntcore")
-nativeConfig.dependencies.add wpilibTools.deps.wpilib("hal")
-nativeConfig.dependencies.add wpilibTools.deps.wpilib("wpiutil")
 
 
 dependencies {
     implementation project("$coordinateGuiBase:CoordinateGuiCore")
-
     implementation project(":TempWpilib")
-
-    implementation wpilibTools.deps.wpilibJava("wpiutil")
-    implementation wpilibTools.deps.wpilibJava("ntcore")
-    implementation wpilibTools.deps.wpilibJava("hal")
-    implementation wpilibTools.deps.wpilibJava("wpilibj")
-
-//    implementation 'edu.wpi.first.ntcore:ntcore-java:2022.4.1'
-//    implementation "edu.wpi.first.ntcore:ntcore-jni:2022.4.1:windowsx86-64"
-//    implementation "edu.wpi.first.ntcore:ntcore-cpp:2022.4.1:windowsx86-64@zip"
-
-
-//    implementation 'edu.wpi.first.wpiutil:wpiutil-java:2022.4.1'
-
-
 
     implementation 'org.apache.logging.log4j:log4j-api:2.11.0'
     implementation 'org.apache.logging.log4j:log4j-core:2.11.0'
@@ -46,15 +14,4 @@ dependencies {
     implementation "org.openjfx:javafx-graphics:11:" + getJavaFxPlatform()
     implementation "org.openjfx:javafx-controls:11:" + getJavaFxPlatform()
     implementation "org.openjfx:javafx-fxml:11:" + getJavaFxPlatform()
-
-    implementation "org.photonvision:PhotonLib-java:v2023.1.1-beta-3"
-    implementation "org.photonvision:PhotonTargeting-java:v2023.1.1-beta-3"
-}
-
-task run(dependsOn: classes, type: JavaExec) {
-    main = 'org.snobot.coordinate_gui.game.rapid_react.StandaloneMain'
-    classpath = sourceSets.main.runtimeClasspath
-    standardInput = System.in
-
-    workingDir = "C:\\Users\\PJ\\Documents\\GitHub\\old_frc\\snobot_reusable\\CoordinateGui\\CoordinateGuiCore2022\\build\\NativeMain\\RuntimeLibs\\windows\\x86-64\\shared"
 }

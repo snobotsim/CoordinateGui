@@ -13,6 +13,7 @@ import edu.wpi.first.math.interpolation.Interpolatable;
 import java.util.Objects;
 
 /** Represents a 2D pose containing translational and rotational elements. */
+@SuppressWarnings("PMD")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Pose2d implements Interpolatable<Pose2d> {

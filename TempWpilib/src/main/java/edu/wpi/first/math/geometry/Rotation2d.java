@@ -18,6 +18,7 @@ import java.util.Objects;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
+@SuppressWarnings("PMD")
 public class Rotation2d implements Interpolatable<Rotation2d> {
   private final double m_value;
   private final double m_cos;

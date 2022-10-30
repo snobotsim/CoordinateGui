@@ -35,7 +35,7 @@ import edu.wpi.first.math.numbers.N9;
  *
  * @param <T> The {@link Num} this represents.
  */
-@SuppressWarnings({"MethodName", "unused"})
+@SuppressWarnings({"MethodName", "unused", "PMD"})
 public interface Nat<T extends Num> {
   /**
    * The number this interface represents.

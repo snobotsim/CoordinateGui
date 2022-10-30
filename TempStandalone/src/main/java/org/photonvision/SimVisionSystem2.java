@@ -35,6 +35,7 @@ import java.util.List;
 import org.photonvision.targeting.PhotonTrackedTarget;
 import org.photonvision.targeting.TargetCorner;
 
+@SuppressWarnings("PMD")
 public class SimVisionSystem2 {
     SimPhotonCamera cam;
 

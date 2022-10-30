@@ -23,6 +23,7 @@ import org.ejml.simple.SimpleMatrix;
  * @param <R> The number of rows in this matrix.
  * @param <C> The number of columns in this matrix.
  */
+@SuppressWarnings("PMD")
 public class Matrix<R extends Num, C extends Num> {
   protected final SimpleMatrix m_storage;
 

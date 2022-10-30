@@ -15,6 +15,7 @@ import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
+@SuppressWarnings("PMD")
 public class Quaternion {
   private final double m_r;
   private final Vector<N3> m_v;

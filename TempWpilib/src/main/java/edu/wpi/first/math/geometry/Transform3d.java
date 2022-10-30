@@ -7,6 +7,7 @@ package edu.wpi.first.math.geometry;
 import java.util.Objects;
 
 /** Represents a transformation for a Pose3d. */
+@SuppressWarnings("PMD")
 public class Transform3d {
   private final Translation3d m_translation;
   private final Rotation3d m_rotation;
