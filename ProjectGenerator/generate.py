@@ -101,8 +101,8 @@ def generate_widget_project(config):
 
 
 def main():
-
-    os.chdir(r"C:\Users\PJ\Documents\GitHub\snobot_reusable\CoordinateGui")
+    d = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")
+    os.chdir(d)
 
     configs = []
     configs.append(GenConfig(2018, "Powerup"))
@@ -110,6 +110,7 @@ def main():
     configs.append(GenConfig(2020, "InfiniteRecharge"))
     configs.append(GenConfig(2021, "InfiniteRechargeAtHome", subfields = ["Barrel", "Bounce", "GalacticSearchA", "GalacticSearchB", "InfiniteRechargeAtHome", "Slalom"]))
     configs.append(GenConfig(2022, "RapidReact"))
+    configs.append(GenConfig(2023, "ChargedUp"))
 
     for config in configs:
         generate_core_project(config)

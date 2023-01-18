@@ -1,0 +1,11 @@
+
+ext {
+    package_name = "org.snobot.coordinate_gui.shuffleboard.charged_up"
+    base_name = 'CoordinateGuiShuffleboard2023'
+}
+
+dependencies {
+    implementation project("$coordinateGuiBase:CoordinateGuiCore2023")
+}
+
+apply from: "${rootDir}/widget_build.gradle"

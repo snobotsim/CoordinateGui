@@ -20,7 +20,7 @@ dependencies {
     implementation "org.openjfx:javafx-fxml:11:" + getJavaFxPlatform()
 
     implementation "edu.wpi.first.fieldImages:fieldImages-java:" + getWpilibVersion()
-    implementation 'edu.wpi.first.shuffleboard:shuffleboard:' + getShuffleboardVersion()
+    implementation 'edu.wpi.first.tools:Shuffleboard:' + getShuffleboardVersion()
     implementation 'edu.wpi.first.shuffleboard:api:' + getShuffleboardVersion()
 }
 

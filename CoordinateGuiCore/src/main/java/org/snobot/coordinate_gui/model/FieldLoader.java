@@ -1,7 +1,7 @@
 package org.snobot.coordinate_gui.model;
 
 import com.google.gson.Gson;
-import edu.wpi.fields.FieldImages;
+import edu.wpi.fields.Fields;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import org.snobot.coordinate_gui.ui.layers.BaseGuiController;
@@ -18,22 +18,23 @@ public class FieldLoader
 
     public enum FieldsConfig
     {
-        Year2018(FieldImages.k2018PowerUpFieldConfig),
-        Year2019(FieldImages.k2019DeepSpaceFieldConfig),
-        Year2020(FieldImages.k2020InfiniteRechargeFieldConfig),
-        Year2021InfiniteRechargeAtHome(FieldImages.k2021InfiniteRechargeFieldConfig),
-        Year2021Barrel(FieldImages.k2021BarrelFieldConfig),
-        Year2021Bounce(FieldImages.k2021BounceFieldConfig),
-        Year2021GalacticSearchA(FieldImages.k2021GalacticSearchAFieldConfig),
-        Year2021GalacticSearchB(FieldImages.k2021GalacticSearchBFieldConfig),
-        Year2021Slalom(FieldImages.k2021SlalomFieldConfig),
-        Year2022(FieldImages.k2022RapidReactFieldConfig);
+        Year2018(Fields.k2018PowerUp),
+        Year2019(Fields.k2019DeepSpace),
+        Year2020(Fields.k2020InfiniteRecharge),
+        Year2021InfiniteRechargeAtHome(Fields.k2021InfiniteRecharge),
+        Year2021Barrel(Fields.k2021Barrel),
+        Year2021Bounce(Fields.k2021Bounce),
+        Year2021GalacticSearchA(Fields.k2021GalacticSearchA),
+        Year2021GalacticSearchB(Fields.k2021GalacticSearchB),
+        Year2021Slalom(Fields.k2021Slalom),
+        Year2022(Fields.k2022RapidReact),
+        Year2023(Fields.k2023ChargedUp);
 
         private String mConfigPath;
 
-        FieldsConfig(String aConfigPath)
+        FieldsConfig(Fields aField)
         {
-            mConfigPath = aConfigPath;
+            mConfigPath = aField.m_resourceFile;
         }
     }
 
